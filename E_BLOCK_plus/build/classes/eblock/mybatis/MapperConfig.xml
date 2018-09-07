@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE configuration  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="logImpl" value="LOG4J"/>
+	</settings>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="UNPOOLED">
+				<property name="driver" value="com.mysql.cj.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://raonjena.iptime.org:3306/EBLOCK?serverTimezone=UTC" />
+				<property name="username" value="EBlockSub" />
+				<property name="password" value="HLJLJH" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<!-- <mapper resource="eblock/mybatis/mapper/member.xml" /> -->
+	</mappers>
+</configuration>
