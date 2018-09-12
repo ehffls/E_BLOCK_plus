@@ -12,22 +12,22 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class HashMapBinder {
 		HttpServletRequest req = null;
-		//Ã·ºÎÆÄÀÏ Ã³¸®¿¡ ÇÊ¿äÇÑ º¯¼ö ¼±¾ğ
+		//ì²¨ë¶€íŒŒì¼ ì²˜ë¦¬ì— í•„ìš”í•œ ë³€ìˆ˜ ì„ ì–¸
 		MultipartRequest multi = null;
 		String realFolder = "";
-		//Ã·ºÎÆÄÀÏ ÇÑ±ÛÃ³¸®
+		//ì²¨ë¶€íŒŒì¼ í•œê¸€ì²˜ë¦¬
 		String encType = "utf-8";
 		
 		
-		//Ã·ºÎÆÄÀÏÀÇ Å©±â      -------------------------------------Á¤ÇØ¾ßÇÔ-------------------------
+		//ì²¨ë¶€íŒŒì¼ì˜ í¬ê¸°      -------------------------------------ì •í•´ì•¼í•¨-------------------------
 		int maxSize = 5*1024*1024;//5MB
 		
 		public HashMapBinder(HttpServletRequest req) {
 			this.req = req;
-			//Ã·ºÎÆÄÀÏÀÌ ½ÇÁ¦·Î ¹èÆ÷µÉ ¹°¸®ÀûÀÎ À§Ä¡ -
+			//ì²¨ë¶€íŒŒì¼ì´ ì‹¤ì œë¡œ ë°°í¬ë  ë¬¼ë¦¬ì ì¸ ìœ„ì¹˜ -
 			realFolder = "C:\\git\\E_BLOCK_plus\\E_BLOCK_plus\\WebContent\\attached";
 		}
-		//Ã·ºÎÆÄÀÏÀÌ ÀÖ´Â °æ¿ì µî·ÏÇÒ ¶§ »ç¿ëÀÚ°¡ ÀÔ·ÂÇÑ °ªÀ» pMap¿¡ ´ä±â
+		//ì²¨ë¶€íŒŒì¼ì´ ìˆëŠ” ê²½ìš° ë“±ë¡í•  ë•Œ ì‚¬ìš©ìê°€ ì…ë ¥í•œ ê°’ì„ pMapì— ë‹µê¸°
 		public void multiBind(Map<String,Object> pMap) {
 			pMap.clear();
 			try {
@@ -40,21 +40,21 @@ public class HashMapBinder {
 				String key = en.nextElement();
 				pMap.put(key, multi.getParameter(key));
 			}
-			//Ã·ºÎÆÄÀÏ¿¡ ´ëÇÑ Á¤º¸¸¦ ¹Ş¾Æ¿À´Â ÄÚµå Ãß°¡
+			//ì²¨ë¶€íŒŒì¼ì— ëŒ€í•œ ì •ë³´ë¥¼ ë°›ì•„ì˜¤ëŠ” ì½”ë“œ ì¶”ê°€
 			Enumeration<String> files = multi.getFileNames();
-			//ÀÌ·¸°Ô ÀĞ¾î¿Â ÆÄÀÏÀÌ¸§À» °´Ã¼·Î ¸¸µé¾îÁØ´Ù.
+			//ì´ë ‡ê²Œ ì½ì–´ì˜¨ íŒŒì¼ì´ë¦„ì„ ê°ì²´ë¡œ ë§Œë“¤ì–´ì¤€ë‹¤.
 			File file = null;
 			while(files.hasMoreElements()) {
 				String fname = files.nextElement();
 				String filename = multi.getFilesystemName(fname);
 				pMap.put("b_file", filename);
-				//file°´Ã¼ »ı¼ºÇÏ±â -> ¿Ö³ÄÇÏ¸é Ã·ºÎÆÄÀÏÀÇ Å©±â¸¦ ¾Ë°í ½Í¾î¿ä....
+				//fileê°ì²´ ìƒì„±í•˜ê¸° -> ì™œëƒí•˜ë©´ ì²¨ë¶€íŒŒì¼ì˜ í¬ê¸°ë¥¼ ì•Œê³  ì‹¶ì–´ìš”....
 				file = multi.getFile(fname);
 			}
-			//Ã·ºÎÆÄÀÏÀÇ Å©±â¸¦ ´ãÀ» ¼ö ÀÖ´Â º¯¼ö
+			//ì²¨ë¶€íŒŒì¼ì˜ í¬ê¸°ë¥¼ ë‹´ì„ ìˆ˜ ìˆëŠ” ë³€ìˆ˜
 			double size = 0;
 			if(file != null) {
-				size = file.length();//ÆÄÀÏ Å©±â°¡ ÀúÀå 5.2MB
+				size = file.length();//íŒŒì¼ í¬ê¸°ê°€ ì €ì¥ 5.2MB
 				size = size/(1024*1024);
 				pMap.put("b_size", size);
 			}

@@ -26,7 +26,7 @@ public class BudgetController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		logger.info("excute È£Ãâ ¼º°ø, work:"+work+", crud:"+crud);
+		logger.info("excute í˜¸ì¶œ ì„±ê³µ, work:"+work+", crud:"+crud);
 
 		Map<String,Object> pMap = new HashMap<String,Object>();
 		HashMapBinder hmb = new HashMapBinder(req);
@@ -42,49 +42,49 @@ public class BudgetController implements Controller {
 		if(work.equals("ex")) {
 			if(crud.equals("deptEx")) {
 				result = budgetLogic.ex_deptEx(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 			else if(crud.equals("deptUpd")) {
 				result = budgetLogic.ex_deptUpd(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 			else if(crud.equals("deptDel")) {
 				result = budgetLogic.ex_deptDel(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 			else if(crud.equals("deptList")) {
 				list = budgetLogic.ex_deptList(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 			else if(crud.equals("okEx")) {
 				result = budgetLogic.ex_okEx(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 			else if(crud.equals("okDel")) {
 				result = budgetLogic.ex_okDel(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 			else if(crud.equals("okList")) {
 				list = budgetLogic.ex_okList(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 		}
 		else if(work.equals("pay")) {
 			if(crud.equals("ex")) {
 				result = budgetLogic.pay_ex(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 			else if(crud.equals("list")) {
 				list = budgetLogic.pay_list(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 		}

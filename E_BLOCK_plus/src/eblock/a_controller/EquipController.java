@@ -26,7 +26,7 @@ public class EquipController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		logger.info("excute È£Ãâ ¼º°ø, work:"+work+", crud:"+crud);
+		logger.info("excute í˜¸ì¶œ ì„±ê³µ, work:"+work+", crud:"+crud);
 
 		Map<String,Object> pMap = new HashMap<String,Object>();
 		HashMapBinder hmb = new HashMapBinder(req);
@@ -42,85 +42,85 @@ public class EquipController implements Controller {
 		if(work.equals("add")) {
 			if(crud.equals("ask")) {
 				list = equipLogic.add_ask(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 			else if(crud.equals("askUpd")) {
 				result = equipLogic.add_askUpd(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 			else if(crud.equals("askDel")) {
 				result = equipLogic.add_askDel(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 			else if(crud.equals("sign")) {
 				result = equipLogic.add_sign(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 		}
 		else if(work.equals("purc")) {
 			if(crud.equals("ask")) {
 				list = equipLogic.purc_ask(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 			else if(crud.equals("askUpd")) {
 				result = equipLogic.purc_askUpd(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 			else if(crud.equals("askDel")) {
 				result = equipLogic.purc_askDel(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 			else if(crud.equals("sign")) {
 				result = equipLogic.purc_sign(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 		}
 		else if(work.equals("inb")) {
 			if(crud.equals("add")) {
 				result = equipLogic.inb_add(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 			else if(crud.equals("ask")) {
 				result = equipLogic.inb_ask(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 			else if(crud.equals("askUpd")) {
 				result = equipLogic.inb_askUpd(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 			else if(crud.equals("askDel")) {
 				result = equipLogic.inb_askDel(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 			else if(crud.equals("sign")) {
 				result = equipLogic.inb_sign(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 		}
 		else if(work.equals("ask")) {
 			if(crud.equals("list")) {
 				list = equipLogic.ask_list(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 		}
 		else if(work.equals("sign")) {
 			if(crud.equals("list")) {
 				list = equipLogic.sign_list(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 		}

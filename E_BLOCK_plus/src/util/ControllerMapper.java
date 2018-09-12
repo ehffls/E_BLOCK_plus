@@ -14,7 +14,7 @@ public class ControllerMapper {
 	static Logger logger = Logger.getLogger(ControllerMapper.class);
 	
 	public static Controller getController(String command) {
-		logger.info("getControl È£Ãâ ¼º°ø");
+		logger.info("getControl í˜¸ì¶œ ì„±ê³µ");
 		Controller control = null;
 		
 		command = command.replace(".ebp", "");
@@ -38,7 +38,7 @@ public class ControllerMapper {
 			}
 		}
 		else {
-			logger.info("controller ¸ÅÇÎ ½ÇÆÐ");
+			logger.info("controller ë§¤í•‘ì‹¤íŒ¨");
 		}
 		
 		return control;

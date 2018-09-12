@@ -26,7 +26,9 @@ public class AttitudeController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		logger.info("excute È£Ãâ ¼º°ø, work:"+work+", crud:"+crud);
+
+		logger.info("excute í˜¸ì¶œ ì„±ê³µ, work:"+work+", crud:"+crud);
+
 
 		Map<String,Object> pMap = new HashMap<String,Object>();
 		HashMapBinder hmb = new HashMapBinder(req);
@@ -42,34 +44,33 @@ public class AttitudeController implements Controller {
 		if(work.equals("my")) {
 			if(crud.equals("ask")) {
 				result = attitudeLogic.my_ask(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
-				path="forward:xxx.jsp";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 			}
 			else if(crud.equals("askUpd")) {
 				result = attitudeLogic.my_askUpd(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 			else if(crud.equals("askDel")) {
 				result = attitudeLogic.my_askDel(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 			else if(crud.equals("list")) {
 				list = attitudeLogic.my_list(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 		}
 		else if(work.equals("toMe")) {
 			if(crud.equals("sign")) {
 				result = attitudeLogic.toMe_sign(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 			else if(crud.equals("list")) {
 				list = attitudeLogic.toMe_list(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
 				path="forward:xxx.jsp";
 			}
 		}

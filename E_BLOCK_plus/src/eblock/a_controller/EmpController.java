@@ -25,117 +25,117 @@ public class EmpController implements Controller {
 	}
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		logger.info("excute È£Ãâ ¼º°ø, work:"+work+", crud:"+crud);
-		
+		logger.info("excute í˜¸ì¶œ ì„±ê³µ, work:"+work+", crud:"+crud);
+
 		Map<String,Object> pMap = new HashMap<String,Object>();
 		HashMapBinder hmb = new HashMapBinder(req);
 		hmb.bind(pMap);
 		
-		
-		String name = null; //attributeÀÇ name
+
+		String name = null; //attributeì˜ name
 		String path = null; //forward:xxx.jsp
 		Object robj = null; //
 		
-		//work¿Í crud°¡ ÀÖ¾î¾ß ÄÁÆ®·Ñ·¯°¡ »ı¼ºµÇ¹Ç·Î NullPointerExceptionÀ» ³í¸®ÀûÀ¸·Î ¹æÁöÇÑ »óÅÂÀÌ´Ù.
+		//workì™€ crudê°€ ìˆì–´ì•¼ ì»¨íŠ¸ë¡¤ëŸ¬ê°€ ìƒì„±ë˜ë¯€ë¡œ NullPointerExceptionì„ ë…¼ë¦¬ì ìœ¼ë¡œ ë°©ì§€í•œ ìƒíƒœì´ë‹¤.
 		if(work.equals("login")) {
-			//·Î±×ÀÎÇÏ±â
+			//ë¡œê·¸ì¸í•˜ê¸°
 			if(crud.equals("check")) {
 				robj = empLogic.login_check(pMap);
-				name ="attributeÀÇ name";
+				name ="attributeì˜ name";
 				path="forward:xxx.jsp";
 			}
 		}
-		//Á¤º¸Á¶È¸
+		//ì •ë³´ì¡°íšŒ
 		else if(work.equals("info")) {
-			//»ç¿øÁıÇÕ¿¡ ´ëÇÑ Á¶°Ç¿¡ µû¶óÁ¶È¸ÇÏ±â
+			//ì‚¬ì›ì§‘í•©ì— ëŒ€í•œ ì¡°ê±´ì— ë”°ë¼ì¡°íšŒí•˜ê¸°
 			if(crud.equals("empList")) {
 				robj = empLogic.info_empList(pMap);
-				name ="attributeÀÇ name";
+				name ="attributeì˜ name";
 				path="forward:xxx.jsp";
 			}
-			//»ç¿ø °³ÀÎÁ¤º¸ Á¶È¸ÇÏ±â
+			//ì‚¬ì› ê°œì¸ì •ë³´ ì¡°íšŒí•˜ê¸°
 			else if(crud.equals("persList")) {
 				robj = empLogic.info_persList(pMap);
-				name ="attributeÀÇ name";
+				name ="attributeì˜ name";
 				path="forward:xxx.jsp";
 			}
-			//»ç¿ø °³ÀÎÁ¤º¸ ¼±ÅÃºÎºĞ ¼öÁ¤ÇÏ±â
+			//ì‚¬ì› ê°œì¸ì •ë³´ ì„ íƒë¶€ë¶„ ìˆ˜ì •í•˜ê¸°
 			else if(crud.equals("persUpd")) {
 				robj = empLogic.info_persUpd(pMap);
-				name ="attributeÀÇ name";
+				name ="attributeì˜ name";
 				path="forward:xxx.jsp";
 			}
 		}
-		//ÀÎ»çÆò°¡
+		//ì¸ì‚¬í‰ê°€
 		else if(work.equals("pev")) {
-			//ÀÎ»çÆò°¡ ±â°£¿¡ ÀÎ»çÆò°¡ ÀÔ·ÂÇÏ±â
+			//ì¸ì‚¬í‰ê°€ ê¸°ê°„ì— ì¸ì‚¬í‰ê°€ ì…ë ¥í•˜ê¸°
 			if(crud.equals("add")) {
 				robj = empLogic.pev_add(pMap);
-				name ="attributeÀÇ name";
+				name ="attributeì˜ name";
 				path="forward:xxx.jsp";
 			}
-			//ÀÎ»çÆò°¡ ±â°£¿¡ ÀÎ»çÆò°¡ ¼öÁ¤ÇÏ±â
+			//ì¸ì‚¬í‰ê°€ ê¸°ê°„ì— ì¸ì‚¬í‰ê°€ ìˆ˜ì •í•˜ê¸°
 			else if(crud.equals("update")) {
 				robj = empLogic.pev_upd(pMap);
-				name ="attributeÀÇ name";
+				name ="attributeì˜ name";
 				path="forward:xxx.jsp";
 			}
-			//³»°¡ Æò°¡ÇÑ³»¿ª Á¶È¸ÇÏ±â(Å¸ÀÎÀº ¿­¶÷ºÒ°¡)
+			//ë‚´ê°€ í‰ê°€í•œë‚´ì—­ ì¡°íšŒí•˜ê¸°(íƒ€ì¸ì€ ì—´ëŒë¶ˆê°€)
 			else if(crud.equals("myList")) {
 				robj = empLogic.pev_myList(pMap);
-				name ="attributeÀÇ name";
+				name ="attributeì˜ name";
 				path="forward:xxx.jsp";
 			}
 		}
-		//Ãâ°á
+		//ì¶œê²°
 		else if(work.equals("cmt")) {
-			//Ãâ°á Ã¼Å©ÇÏ±â
+			//ì¶œê²° ì²´í¬í•˜ê¸°
 			if(crud.equals("checkIn")) {
 				robj = empLogic.cmt_checkIn(pMap);
-				name ="attributeÀÇ name";
+				name ="attributeì˜ name";
 				path="forward:xxx.jsp";
 			}
-			//Ãâ°á Á¶È¸ÇÏ±â
+			//ì¶œê²° ì¡°íšŒí•˜ê¸°
 			else if(crud.equals("myList")) {
 				robj = empLogic.cmt_myList(pMap);
-				name ="attributeÀÇ name";
+				name ="attributeì˜ name";
 				path="forward:xxx.jsp";
 			}
 		}
-		//ÀÎ»ç°ü¸®
+		//ì¸ì‚¬ê´€ë¦¬
 		else if(work.equals("cntr")) {
-			//ÀÎ»ç»ç¿ø µî·ÏÇÏ±â
+			//ì¸ì‚¬ì‚¬ì› ë“±ë¡í•˜ê¸°
 			if(crud.equals("addEmp")) {
 				robj = empLogic.cntr_addEmp(pMap);
-				name ="attributeÀÇ name";
+				name ="attributeì˜ name";
 				path="forward:xxx.jsp";
 			}
-			//ºÎ¼­¹èÁ¤ÇÏ±â ¹× ÀÌµ¿ÇÏ±â
+			//ë¶€ì„œë°°ì •í•˜ê¸° ë° ì´ë™í•˜ê¸°
 			else if(crud.equals("setDept")) {
 				robj = empLogic.cntr_setDept(pMap);
-				name ="attributeÀÇ name";
+				name ="attributeì˜ name";
 				path="forward:xxx.jsp";
 			}
 		}
-		//Åğ»ç
+		//í‡´ì‚¬
 		else if(work.equals("retire")) {
-			//Åğ»ç ½ÅÃ»ÇÏ±â
+			//í‡´ì‚¬ ì‹ ì²­í•˜ê¸°
 			if(crud.equals("ask")) {
 				robj = empLogic.retire_ask(pMap);
-				name ="attributeÀÇ name";
+				name ="attributeì˜ name";
 				path="forward:xxx.jsp";
 				
 			}
-			//Åğ»ç½ÅÃ» Á¶È¸ÇÏ±â
+			//í‡´ì‚¬ì‹ ì²­ ì¡°íšŒí•˜ê¸°
 			else if(crud.equals("list")) {
 				robj = empLogic.retire_list(pMap);
-				name ="attributeÀÇ name";
+				name ="attributeì˜ name";
 				path="forward:xxx.jsp";
 			}
-			//Åğ»ç½ÅÃ» Ã³¸®ÇÏ±â
+			//í‡´ì‚¬ì‹ ì²­ ì²˜ë¦¬í•˜ê¸°
 			else if(crud.equals("sign")) {
 				robj = empLogic.retire_sign(pMap);
-				name ="attributeÀÇ name";
+				name ="attributeì˜ name";
 				path="forward:xxx.jsp";
 			}
 		}
