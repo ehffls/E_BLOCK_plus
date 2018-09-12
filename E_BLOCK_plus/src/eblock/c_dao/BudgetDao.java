@@ -9,19 +9,60 @@ import util.MybatisSession;
 
 
 public class BudgetDao {
+	SqlSession sqlSession = null;
 	public BudgetDao() {
-		SqlSession sqlSession = MybatisSession.getSqlSession();
+		sqlSession = MybatisSession.getSqlSession();
 	}
-
-	public List<Map<String,Object>> 나의정보(Map<String, Object> pMap) {
-		
-		return null;
-	}
-
-	public int 나의정보삭제(Map<String, Object> pMap) {
-		int result = 0;
-		
+	
+	List<Map<String, Object>> list;
+	int result;
+	String nameSpace = "eblock.mybatis.mapper.budget.";
+	
+	public int ex_deptEx(Map<String, Object> pMap) {
+		result = sqlSession.insert(nameSpace+"ex_deptSign",pMap);
 		return result;
 	}
+
+	public int ex_deptUpd(Map<String, Object> pMap) {
+		result = sqlSession.update(nameSpace+"ex_deptUpd",pMap);
+		return result;
+	}
+
+	public int ex_deptDel(Map<String, Object> pMap) {
+		result = sqlSession.delete(nameSpace+"ex_deptDel",pMap);
+		return result;
+	}
+
+	public List<Map<String, Object>> ex_deptList(Map<String, Object> pMap) {
+		list = sqlSession.selectList(nameSpace+"ex_deptList", pMap);
+		return list;
+	}
+
+	public int ex_okEx(Map<String, Object> pMap) {
+		result = sqlSession.insert(nameSpace+"ex_okSign",pMap);
+		return result;
+	}
+
+	public int ex_okDel(Map<String, Object> pMap) {
+		result = sqlSession.delete(nameSpace+"ex_okDel",pMap);
+		return result;
+	}
+
+	public List<Map<String, Object>> ex_okList(Map<String, Object> pMap) {
+		list = sqlSession.selectList(nameSpace+"ex_okList", pMap);
+		return list;
+	}
+
+	public int pay_ex(Map<String, Object> pMap) {
+		result = sqlSession.insert(nameSpace+"pay_sign", pMap);
+		return result;
+	}
+
+	public List<Map<String, Object>> pay_list(Map<String, Object> pMap) {
+		list = sqlSession.selectList(nameSpace+"pay_list", pMap);
+		return list;
+	}
+	
+	
 	
 }
