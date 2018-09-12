@@ -1,6 +1,7 @@
 package eblock.a_controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,12 +26,12 @@ public class EmpController implements Controller {
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		logger.info("excute 호출 성공, work:"+work+", crud:"+crud);
-		
+
 		Map<String,Object> pMap = new HashMap<String,Object>();
 		HashMapBinder hmb = new HashMapBinder(req);
 		hmb.bind(pMap);
 		
-		
+
 		String name = null; //attribute의 name
 		String path = null; //forward:xxx.jsp
 		Object robj = null; //

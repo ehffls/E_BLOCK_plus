@@ -26,7 +26,9 @@ public class AttitudeController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+
 		logger.info("excute 호출 성공, work:"+work+", crud:"+crud);
+
 
 		Map<String,Object> pMap = new HashMap<String,Object>();
 		HashMapBinder hmb = new HashMapBinder(req);
@@ -43,7 +45,6 @@ public class AttitudeController implements Controller {
 			if(crud.equals("ask")) {
 				result = attitudeLogic.my_ask(pMap);
 				name ="attribute의 name redirect면 안씀";
-				path="forward:xxx.jsp";
 			}
 			else if(crud.equals("askUpd")) {
 				result = attitudeLogic.my_askUpd(pMap);

@@ -38,7 +38,7 @@ public class ControllerMapper {
 			}
 		}
 		else {
-			logger.info("controller 매핑 실패");
+			logger.info("controller 매핑실패");
 		}
 		
 		return control;
