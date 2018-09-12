@@ -9,19 +9,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import eblock.b_logic.BudgetLogic;
+import eblock.b_logic.AttitudeLogic;
 import util.HashMapBinder;
 
-public class BudgetController implements Controller {
-	Logger logger = Logger.getLogger(BudgetController.class);
+public class AttitudeController implements Controller {
+	Logger logger = Logger.getLogger(AttitudeController.class);
 	String work = null;
 	String crud = null;
-	BudgetLogic budgetLogic = null;
+	AttitudeLogic attitudeLogic = null;
 	
-	public BudgetController(String work, String crud){
+	public AttitudeController(String work, String crud) {
 		this.work = work;
 		this.crud = crud;
-		budgetLogic = new BudgetLogic();
+		attitudeLogic = new AttitudeLogic();
 	}
 
 	@Override
@@ -39,51 +39,36 @@ public class BudgetController implements Controller {
 		List<Map<String, Object>> list = null;
 		int result = 0;
 		
-		if(work.equals("ex")) {
-			if(crud.equals("deptEx")) {
-				result = budgetLogic.ex_deptEx(pMap);
+		if(work.equals("my")) {
+			if(crud.equals("ask")) {
+				result = attitudeLogic.my_ask(pMap);
 				name ="attributeÀÇ name redirect¸é ¾È¾¸";
 				path="forward:xxx.jsp";
 			}
-			else if(crud.equals("deptUpd")) {
-				result = budgetLogic.ex_deptUpd(pMap);
+			else if(crud.equals("askUpd")) {
+				result = attitudeLogic.my_askUpd(pMap);
 				name ="attributeÀÇ name redirect¸é ¾È¾¸";
 				path="forward:xxx.jsp";
 			}
-			else if(crud.equals("deptDel")) {
-				result = budgetLogic.ex_deptDel(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
-				path="forward:xxx.jsp";
-			}
-			else if(crud.equals("deptList")) {
-				list = budgetLogic.ex_deptList(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
-				path="forward:xxx.jsp";
-			}
-			else if(crud.equals("okEx")) {
-				result = budgetLogic.ex_okEx(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
-				path="forward:xxx.jsp";
-			}
-			else if(crud.equals("okDel")) {
-				result = budgetLogic.ex_okDel(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
-				path="forward:xxx.jsp";
-			}
-			else if(crud.equals("okList")) {
-				list = budgetLogic.ex_okList(pMap);
-				name ="attributeÀÇ name redirect¸é ¾È¾¸";
-				path="forward:xxx.jsp";
-			}
-		}
-		else if(work.equals("pay")) {
-			if(crud.equals("ex")) {
-				result = budgetLogic.pay_ex(pMap);
+			else if(crud.equals("askDel")) {
+				result = attitudeLogic.my_askDel(pMap);
 				name ="attributeÀÇ name redirect¸é ¾È¾¸";
 				path="forward:xxx.jsp";
 			}
 			else if(crud.equals("list")) {
-				list = budgetLogic.pay_list(pMap);
+				list = attitudeLogic.my_list(pMap);
+				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				path="forward:xxx.jsp";
+			}
+		}
+		else if(work.equals("toMe")) {
+			if(crud.equals("sign")) {
+				result = attitudeLogic.toMe_sign(pMap);
+				name ="attributeÀÇ name redirect¸é ¾È¾¸";
+				path="forward:xxx.jsp";
+			}
+			else if(crud.equals("list")) {
+				list = attitudeLogic.toMe_list(pMap);
 				name ="attributeÀÇ name redirect¸é ¾È¾¸";
 				path="forward:xxx.jsp";
 			}

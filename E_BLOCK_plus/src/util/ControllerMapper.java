@@ -3,8 +3,8 @@ package util;
 
 import org.apache.log4j.Logger;
 
+import eblock.a_controller.AttitudeController;
 import eblock.a_controller.BudgetController;
-import eblock.a_controller.CommuteController;
 import eblock.a_controller.Controller;
 import eblock.a_controller.EmpController;
 import eblock.a_controller.EquipController;
@@ -13,7 +13,7 @@ public class ControllerMapper {
 
 	static Logger logger = Logger.getLogger(ControllerMapper.class);
 	
-	public static Controller getControl(String command) {
+	public static Controller getController(String command) {
 		logger.info("getControl 호출 성공");
 		Controller control = null;
 		
@@ -28,7 +28,7 @@ public class ControllerMapper {
 				control = new BudgetController(work,crud);
 			} 
 			else if(category.equals("commute")) {
-				control = new CommuteController(work,crud);
+				control = new AttitudeController(work,crud);
 			} 
 			else if(category.equals("emp")) {
 				control = new EmpController(work,crud);
@@ -37,6 +37,10 @@ public class ControllerMapper {
 				control = new EquipController(work,crud);
 			}
 		}
+		else {
+			logger.info("controller 매핑 실패");
+		}
+		
 		return control;
 	}
 }

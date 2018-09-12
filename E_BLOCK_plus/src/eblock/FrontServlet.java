@@ -30,7 +30,7 @@ public class FrontServlet extends HttpServlet {
 		
 		Controller control = null;
 		try {
-			control = ControllerMapper.getControl(command);
+			control = ControllerMapper.getController(command);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
