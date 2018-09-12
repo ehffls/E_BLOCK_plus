@@ -5,11 +5,11 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface Controller {
 	/*******************************
-	 * ¸ğµç Controller°¡ ±¸ÇöÇØ¾ßÇÏ´Â Interface
+	 * ëª¨ë“  Controllerê°€ êµ¬í˜„í•´ì•¼í•˜ëŠ” Interface
 	 * @param req
 	 * @param res
 	 * @return String - ex)forward:XXX.jsp | redirect:XXX.jsp
-	 * @throws Exception - µğ¹ö±ë¿¡ ¿ëÀÌÇÏµµ·Ï °èÈ¹
+	 * @throws Exception - ë””ë²„ê¹…ì— ìš©ì´í•˜ë„ë¡ ê³„íš
 	 *******************************/
 	public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception;
 }

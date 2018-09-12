@@ -18,7 +18,7 @@ public class FrontServlet extends HttpServlet {
 	Logger logger = Logger.getLogger(FrontServlet.class);
 	
 	private void doService(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		logger.info("service»£√‚º∫∞¯");
+		logger.info("serviceÌò∏Ï∂úÏÑ±Í≥µ");
 		
 		req.setCharacterEncoding("utf-8");
 		res.setCharacterEncoding("utf-8");
@@ -30,27 +30,27 @@ public class FrontServlet extends HttpServlet {
 		
 		Controller control = null;
 		try {
-			control = ControllerMapper.getControl(command);
+			control = ControllerMapper.getController(command);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		
-		//°·°·°·°·°·°·°·°·°·°·[ START|if : outter ]°·°·°·°·°·°·°·°·°·°·
+		//‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†[ START|if : outter ]‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†
 		if(control != null) {
 			String[] pageMove = null;
 			try {
 				String returnString = control.execute(req, res);
-				//pageMove[0] ∆‰¿Ã¡ˆ ¿ÃµøπÊΩƒ, pageMove[1] ∏Ò¿˚∆‰¿Ã¡ˆ
+				//pageMove[0] ÌéòÏù¥ÏßÄ Ïù¥ÎèôÎ∞©Ïãù, pageMove[1] Î™©Ï†ÅÌéòÏù¥ÏßÄ
 				pageMove = returnString.split(":");//[forward|redirect]:XXX.jsp
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			
-			//°·°·°·°·°·°·°·°·°·°·[ START|if : middle ]°·°·°·°·°·°·°·°·°·°·
+			//‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†[ START|if : middle ]‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†
 			if(pageMove != null) {
 				
-				//°·°·°·°·°·°·°·°·°·°·[ START|if : inner ]°·°·°·°·°·°·°·°·°·°·
+				//‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†[ START|if : inner ]‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†
 				if("redirect".equals(pageMove[0])) { 
 					res.sendRedirect(pageMove[1]);
 				}
@@ -60,22 +60,22 @@ public class FrontServlet extends HttpServlet {
 				}
 				else {
 					res.sendRedirect(contextPath+"/fail/pageMoveFail.jsp");
-					logger.info("¿ÃµøπÊΩƒ¿Ã ø√πŸ∏£¡ˆ æ Ω¿¥œ¥Ÿ. pageMove="+pageMove);
+					logger.info("Ïù¥ÎèôÎ∞©ÏãùÏù¥ Ïò¨Î∞îÎ•¥ÏßÄ ÏïäÏäµÎãàÎã§. pageMove="+pageMove);
 				}
-				//°·°·°·°·°·°·°·°·°·°·[ END|if : inner ]°·°·°·°·°·°·°·°·°·°·
+				//‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†[ END|if : inner ]‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†
 				
-				logger.info("¿ÃµøπÊΩƒ:"+pageMove[0]+", path:"+pageMove[1]);
+				logger.info("Ïù¥ÎèôÎ∞©Ïãù:"+pageMove[0]+", path:"+pageMove[1]);
 				
 			} else {
 				logger.info("pageMove==null");
 				res.sendRedirect(contextPath+"/fail/logicFail.jsp");
 			}
-			//°·°·°·°·°·°·°·°·°·°·[ END|if : middle ]°·°·°·°·°·°·°·°·°·°·
+			//‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†[ END|if : middle ]‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†
 		} else {
 			logger.info("control==null");
 			res.sendRedirect(contextPath+"/fail/controlFail.jsp");
 		}
-		//°·°·°·°·°·°·°·°·°·°·[ END|if : outter ]°·°·°·°·°·°·°·°·°·°·
+		//‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†[ END|if : outter ]‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

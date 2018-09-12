@@ -9,36 +9,36 @@ public class Secure_Base64 {
 	// Logger logger = Logger.getLogger(Secure_Base64.class);
 
 	/**
-	 * Base64 ¾ÏÈ£È­
+	 * Base64 ì•”í˜¸í™”
 	 * 
-	 * @param strObj - ¾ÏÈ£È­ÇÒ Á¤º¸
-	 * @return base64result - ¾ÏÈ£È­µÈ Á¤º¸
+	 * @param strObj - ì•”í˜¸í™”í•  ì •ë³´
+	 * @return base64result - ì•”í˜¸í™”ëœ ì •ë³´
 	 */
 	public String changeBase64(String strObj) {
-//		logger.info("	[[ º¸¾È¸ğµâ ]] changeBase64 ½ÇÇà ¼º°ø");
-//		logger.info("	[[ º¸¾È¸ğµâ ]] º¯È¯´ë»ó : " + strObj);
-		byte[] strBytes = strObj.getBytes(); // ¹®ÀÚ·ÎºÎÅÍ ¹ÙÀÌÆ®¹è¿­ ¾ò±â
-		Encoder strEncoder = Base64.getEncoder(); // java°¡ Á¦°øÇÏ´Â Base64API¸¦ ÅëÇØ º¯È¯¿ë °´Ã¼ »ı¼º
-		byte[] encodedBytes = strEncoder.encode(strBytes);// º¯È¯¿ë°´Ã¼¸¦ ÅëÇØ ¹ÙÀÌÆ®¹è¿­À» ÀÎÄÚµùÇÑ ¹ÙÀÌÆ®¹è¿­·Î ÀúÀå
-		String base64result = new String(encodedBytes); // ÀúÀåµÈ º¯È¯¹æ½ÄÀ» ¹®ÀÚ¿­·Î ´Ù½Ã ÀúÀå
-//		logger.info("	[[ º¸¾È¸ğµâ ]] º¯È¯°á°ú : " + base64result);
+//		logger.info("	[[ ë³´ì•ˆëª¨ë“ˆ ]] changeBase64 ì‹¤í–‰ ì„±ê³µ");
+//		logger.info("	[[ ë³´ì•ˆëª¨ë“ˆ ]] ë³€í™˜ëŒ€ìƒ : " + strObj);
+		byte[] strBytes = strObj.getBytes(); // ë¬¸ìë¡œë¶€í„° ë°”ì´íŠ¸ë°°ì—´ ì–»ê¸°
+		Encoder strEncoder = Base64.getEncoder(); // javaê°€ ì œê³µí•˜ëŠ” Base64APIë¥¼ í†µí•´ ë³€í™˜ìš© ê°ì²´ ìƒì„±
+		byte[] encodedBytes = strEncoder.encode(strBytes);// ë³€í™˜ìš©ê°ì²´ë¥¼ í†µí•´ ë°”ì´íŠ¸ë°°ì—´ì„ ì¸ì½”ë”©í•œ ë°”ì´íŠ¸ë°°ì—´ë¡œ ì €ì¥
+		String base64result = new String(encodedBytes); // ì €ì¥ëœ ë³€í™˜ë°©ì‹ì„ ë¬¸ìì—´ë¡œ ë‹¤ì‹œ ì €ì¥
+//		logger.info("	[[ ë³´ì•ˆëª¨ë“ˆ ]] ë³€í™˜ê²°ê³¼ : " + base64result);
 		return base64result;
 	}
 
 	/**
-	 * Base64 º¹È£È­
+	 * Base64 ë³µí˜¸í™”
 	 * 
-	 * @param strObj - º¹È£È­ÇÒ Á¤º¸
-	 * @return base64result - º¹È£È­µÈ Á¤º¸
+	 * @param strObj - ë³µí˜¸í™”í•  ì •ë³´
+	 * @return base64result - ë³µí˜¸í™”ëœ ì •ë³´
 	 */
 	public String unchangeBase64(String strObj) {
-//		logger.info("	[[ º¸¾È¸ğµâ ]] changeBase64 ½ÇÇà ¼º°ø");
-//		logger.info("	[[ º¸¾È¸ğµâ ]] º¯È¯´ë»ó : " + strObj);
-		byte[] strBytes = strObj.getBytes(); // ¹®ÀÚ·ÎºÎÅÍ ¹ÙÀÌÆ®¹è¿­ ¾ò±â
-		Decoder strDecoder = Base64.getDecoder(); // java°¡ Á¦°øÇÏ´Â Base64API¸¦ ÅëÇØ º¯È¯¿ë °´Ã¼ »ı¼º
-		byte[] decodedBytes = strDecoder.decode(strBytes);// º¯È¯¿ë°´Ã¼¸¦ ÅëÇØ ¹ÙÀÌÆ®¹è¿­À» ÀÎÄÚµùÇÑ ¹ÙÀÌÆ®¹è¿­·Î ÀúÀå
-		String base64result = new String(decodedBytes); // ÀúÀåµÈ º¯È¯¹æ½ÄÀ» ¹®ÀÚ¿­·Î ´Ù½Ã ÀúÀå
-//		logger.info("	[[ º¸¾È¸ğµâ ]] º¯È¯°á°ú : " + base64result);
+//		logger.info("	[[ ë³´ì•ˆëª¨ë“ˆ ]] changeBase64 ì‹¤í–‰ ì„±ê³µ");
+//		logger.info("	[[ ë³´ì•ˆëª¨ë“ˆ ]] ë³€í™˜ëŒ€ìƒ : " + strObj);
+		byte[] strBytes = strObj.getBytes(); // ë¬¸ìë¡œë¶€í„° ë°”ì´íŠ¸ë°°ì—´ ì–»ê¸°
+		Decoder strDecoder = Base64.getDecoder(); // javaê°€ ì œê³µí•˜ëŠ” Base64APIë¥¼ í†µí•´ ë³€í™˜ìš© ê°ì²´ ìƒì„±
+		byte[] decodedBytes = strDecoder.decode(strBytes);// ë³€í™˜ìš©ê°ì²´ë¥¼ í†µí•´ ë°”ì´íŠ¸ë°°ì—´ì„ ì¸ì½”ë”©í•œ ë°”ì´íŠ¸ë°°ì—´ë¡œ ì €ì¥
+		String base64result = new String(decodedBytes); // ì €ì¥ëœ ë³€í™˜ë°©ì‹ì„ ë¬¸ìì—´ë¡œ ë‹¤ì‹œ ì €ì¥
+//		logger.info("	[[ ë³´ì•ˆëª¨ë“ˆ ]] ë³€í™˜ê²°ê³¼ : " + base64result);
 		return base64result;
 	}
 }

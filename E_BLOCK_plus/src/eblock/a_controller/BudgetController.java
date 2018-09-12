@@ -7,10 +7,13 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import eblock.b_logic.BudgetLogic;
 import util.HashMapBinder;
 
 public class BudgetController implements Controller {
+	Logger logger = Logger.getLogger(BudgetController.class);
 	String work = null;
 	String crud = null;
 	BudgetLogic budgetLogic = null;
@@ -23,29 +26,71 @@ public class BudgetController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		String path = null;
-		
+		logger.info("excute í˜¸ì¶œ ì„±ê³µ, work:"+work+", crud:"+crud);
+
 		Map<String,Object> pMap = new HashMap<String,Object>();
 		HashMapBinder hmb = new HashMapBinder(req);
 		hmb.bind(pMap);
 		
-		if(work.equals("")) {
-			if(crud.equals("")) {
-				List<Map<String,Object>> ³ªÀÇÁ¤º¸  = budgetLogic.³ªÀÇÁ¤º¸_crud(pMap);
-				req.setAttribute("³ªÀÇÁ¤º¸", ³ªÀÇÁ¤º¸); //mod
-				path = "";
+		String name = null;
+		String path = null;
+		Object robj = null;
+		
+		List<Map<String, Object>> list = null;
+		int result = 0;
+		
+		if(work.equals("ex")) {
+			if(crud.equals("deptEx")) {
+				result = budgetLogic.ex_deptEx(pMap);
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
+				path="forward:xxx.jsp";
 			}
-			else if(crud.equals("")) {
-				int Ãâ¼® = budgetLogic.Ãâ¼®_crud(pMap);
-				req.setAttribute("Ãâ¼®", Ãâ¼®); 
-				path = "";
+			else if(crud.equals("deptUpd")) {
+				result = budgetLogic.ex_deptUpd(pMap);
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
+				path="forward:xxx.jsp";
+			}
+			else if(crud.equals("deptDel")) {
+				result = budgetLogic.ex_deptDel(pMap);
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
+				path="forward:xxx.jsp";
+			}
+			else if(crud.equals("deptList")) {
+				list = budgetLogic.ex_deptList(pMap);
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
+				path="forward:xxx.jsp";
+			}
+			else if(crud.equals("okEx")) {
+				result = budgetLogic.ex_okEx(pMap);
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
+				path="forward:xxx.jsp";
+			}
+			else if(crud.equals("okDel")) {
+				result = budgetLogic.ex_okDel(pMap);
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
+				path="forward:xxx.jsp";
+			}
+			else if(crud.equals("okList")) {
+				list = budgetLogic.ex_okList(pMap);
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
+				path="forward:xxx.jsp";
 			}
 		}
-		else if(work.equals("")) {
-			
-			
+		else if(work.equals("pay")) {
+			if(crud.equals("ex")) {
+				result = budgetLogic.pay_ex(pMap);
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
+				path="forward:xxx.jsp";
+			}
+			else if(crud.equals("list")) {
+				list = budgetLogic.pay_list(pMap);
+				name ="attributeì˜ name redirectë©´ ì•ˆì”€";
+				path="forward:xxx.jsp";
+			}
 		}
 		
+		req.setAttribute(name, robj);
+
 		return path;
 	}
 
