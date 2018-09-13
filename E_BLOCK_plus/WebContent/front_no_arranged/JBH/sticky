@@ -1,0 +1,6 @@
+</div>
+<script>
+	$('#sticky').sticky({
+	    context: '#context'
+	  });
+</script>
