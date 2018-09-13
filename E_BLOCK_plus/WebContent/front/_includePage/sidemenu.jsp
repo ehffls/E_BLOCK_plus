@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+    
 <script type="text/javascript">
 // 사이드바 여는 코드
 $(document)
@@ -20,13 +20,12 @@ $(document)
     		.sidebar('toggle');
     	});
     });
-
-
 </script>
+<!-- 사이드메뉴 시작 -->
 <div class="ui vertical inverted sidebar menu left" id="sidebar">
   <!-- 로고 시작 -->
   <div class="item">
-    <img src="./images/logo_white_icon.png" style="width: 50%; height: 50%">
+    <img src="/E_BLOCK_plus/1_file/img/_common/logo_white_all.png" style="width: 50%; height: 50%">
   </div>
   <!-- 로고 끝 -->
   <!-- 메인페이지 시작 -->
@@ -120,5 +119,3 @@ $(document)
 <!-- 회계관리 끝 -->
 </div>
 <!-- 사이드메뉴 끝 -->
-
-</html>
