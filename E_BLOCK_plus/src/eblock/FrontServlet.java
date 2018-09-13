@@ -28,19 +28,19 @@ public class FrontServlet extends HttpServlet {
 		String command = requestURI.substring(contextPath.length()+1);
 		logger.info("command : " + command);
 		
-		Controller control = null;
+		Controller controller = null;
 		try {
-			control = ControllerMapper.getController(command);
+			controller = ControllerMapper.getController(command);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		
 		//■■■■■■■■■■[ START|if : outter ]■■■■■■■■■■
-		if(control != null) {
+		if(controller != null) {
 			String[] pageMove = null;
 			try {
-				String returnString = control.execute(req, res);
+				String returnString = controller.execute(req, res);
 				//pageMove[0] 페이지 이동방식, pageMove[1] 목적페이지
 				pageMove = returnString.split(":");//[forward|redirect]:XXX.jsp
 			} catch (Exception e) {
