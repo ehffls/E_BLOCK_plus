@@ -89,10 +89,10 @@ $(document)
       <a class="item" href="./paygoods.jsp">		
         물품결재
       </a>
-      <a class="item" href="./i_o.jsp">
+      <a class="item" href="입출고관리">
         입출고관리
       </a>
-      <a class="item" href="./account.jsp">
+      <a class="item" href="거래처페이지">
         거래처
       </a>
   </div>
