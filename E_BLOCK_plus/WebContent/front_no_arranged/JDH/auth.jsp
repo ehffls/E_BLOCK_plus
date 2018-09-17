@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>부서 정보 관리</title>
+<title>권한부여</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp" %>
 </head>
 <body>
@@ -18,14 +18,14 @@
 
 <!--=============== 작성부분 ===============-->
 
-	<!-- 부서관리 페이지 -->
+	<!-- 권한부여 페이지 -->
 	<div class="ui container" style="margin-top: 5px;">
 			<!-- 검색창 시작 -->
 			<div class="ui two column stackable grid container">
 			<div class="column" align="left" style="padding-left: 0px;">
 				<h2 class="ui header"style="padding-top: 5px;">
-					<i class="archive icon"></i>
-					<div class="content"> 부서 관리 </div>
+					<i class="chess king icon"></i>
+					<div class="content"> 권한 부여 </div>
 				</h2>
 			</div>
 			<div class="column" align="right" style="padding-right: 0px;">
@@ -47,16 +47,16 @@
 				<tr class="center aligned">
 					<th>부서번호</th>
 					<th>부서명</th>
-					<th>연락처</th>
-					<th>주소</th>
+					<th>이름</th>
+					<th>권한</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr class="center aligned">
 					<td>444</td>
 					<td>멍멍이부</td>
-					<td>000-0000-0000</td>
-					<td>멍멍시 멍멍구 멍멍동 멍멍-멍멍</td>
+					<td>멍멍이</td>
+					<td>사원</td>
 				</tr>
 			</tbody>
 			<tfoot>
@@ -84,7 +84,7 @@
 		</table>
 	
 		<div class="ui mini modal" id="acc_add">
-			<div class="header" align="center">부서 정보 수정</div>
+			<div class="header" align="center">권한부여</div>
 
 			<div class="content">
 
@@ -94,10 +94,10 @@
 				<div class="text">부서명</div>
 				<div class="ui input" style="width: 100%"><input type="text"></div>
 			<p>	
-				<div class="text">연락처</div>
+				<div class="text">이름</div>
 				<div class="ui input" style="width: 100%"><input type="text"></div>
 			<p>	
-				<div class="text">주소</div>
+				<div class="text">권한</div>
 				<div class="ui input" style="width: 100%"><input type="text"></div>
 
 				<div class="actions">
@@ -118,6 +118,7 @@
       $('#acc_add').modal('show')
    }
 </script>
+
 
 <!--=============== 작성부분 ===============-->
 

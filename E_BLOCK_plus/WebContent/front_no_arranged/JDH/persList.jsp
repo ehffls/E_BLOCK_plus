@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>부서 정보 관리</title>
+<title>사원정보목록</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp" %>
 </head>
 <body>
@@ -18,36 +18,40 @@
 
 <!--=============== 작성부분 ===============-->
 
-	<!-- 부서관리 페이지 -->
+	<!-- 권한부여 페이지 -->
 	<div class="ui container" style="margin-top: 5px;">
-			<!-- 검색창 시작 -->
-			<div class="ui two column stackable grid container">
+		<!-- 검색창 시작 -->
+		<div class="ui two column stackable grid container">
 			<div class="column" align="left" style="padding-left: 0px;">
-				<h2 class="ui header"style="padding-top: 5px;">
-					<i class="archive icon"></i>
-					<div class="content"> 부서 관리 </div>
+				<h2 class="ui header" style="padding-top: 5px;">
+					<i class="address book outline icon"></i>
+					<div class="content">사원 정보 목록</div>
 				</h2>
 			</div>
 			<div class="column" align="right" style="padding-right: 0px;">
-			<div class="ui left action right icon input">
-				<!-- dropdown 시작 -->			
-				<div class="ui basic floating dropdown button">
-					<div class="text">이름</div>
-					<i class="dropdown icon"></i>
+				<div class="ui left action right icon input">
+					<!-- dropdown 시작 -->
+					<div class="ui basic floating dropdown button">
+						<div class="text">이름</div>
+						<i class="dropdown icon"></i>
+					</div>
+					<!-- dropdown 끝 -->
+					<i class="search icon"></i> <input type="text" placeholder="검색" />
 				</div>
-				<!-- dropdown 끝 -->			
-				<i class="search icon"></i> 
-				<input type="text" placeholder="검색"/>
 			</div>
-			</div>
-			</div>
-			<!-- 검색창 끝 -->
-			<table class="ui fixed single line celled table" style="margin-top: 5px;">
+		</div>
+		<!-- 검색창 끝 -->
+
+		<!--  -->
+		<table class="ui fixed single line celled table"
+			style="margin-top: 5px;">
 			<thead>
 				<tr class="center aligned">
 					<th>부서번호</th>
 					<th>부서명</th>
-					<th>연락처</th>
+					<th>이름</th>
+					<th>직책</th>
+					<th>나이</th>
 					<th>주소</th>
 				</tr>
 			</thead>
@@ -55,36 +59,32 @@
 				<tr class="center aligned">
 					<td>444</td>
 					<td>멍멍이부</td>
-					<td>000-0000-0000</td>
-					<td>멍멍시 멍멍구 멍멍동 멍멍-멍멍</td>
+					<td>멍멍이</td>
+					<td>사원</td>
+					<td>30</td>
+					<td>멍멍시 멍멍구 멍멍동</td>
 				</tr>
 			</tbody>
 			<tfoot>
 				<tr>
-					<th colspan="4">
+					<th colspan="6">
 						<div class="ui right floated pagination menu">
-							<a class="icon item">
-							 	<i class="left chevron icon"></i>
-							</a> 
-								<a class="item">1</a> 
-								<a class="item">2</a> 
-								<a class="item">3</a>
-								<a class="item">4</a> 
-								
-							<a class="icon item"> 
-								<i class="right chevron icon"></i>
+							<a class="icon item"> <i class="left chevron icon"></i>
+							</a> <a class="item">1</a> <a class="item">2</a> <a class="item">3</a>
+							<a class="item">4</a> <a class="icon item"> <i
+								class="right chevron icon"></i>
 							</a>
 						</div>
-							<div align="right">
+						<div align="right">
 							<div class="ui large button" onclick="ac_add()">수정하기</div>
-							</div>
+						</div>
 					</th>
 				</tr>
 			</tfoot>
 		</table>
-	
+
 		<div class="ui mini modal" id="acc_add">
-			<div class="header" align="center">부서 정보 수정</div>
+			<div class="header" align="center">사원 정보 수정</div>
 
 			<div class="content">
 
@@ -94,12 +94,17 @@
 				<div class="text">부서명</div>
 				<div class="ui input" style="width: 100%"><input type="text"></div>
 			<p>	
-				<div class="text">연락처</div>
+				<div class="text">이름</div>
 				<div class="ui input" style="width: 100%"><input type="text"></div>
 			<p>	
+				<div class="text">직책</div>
+				<div class="ui input" style="width: 100%"><input type="text"></div>
+			<p>	
+				<div class="text">나이</div>
+				<div class="ui input" style="width: 100%"><input type="text"></div>
+			<p>
 				<div class="text">주소</div>
 				<div class="ui input" style="width: 100%"><input type="text"></div>
-
 				<div class="actions">
 					<br>
 					<div align="center">
@@ -118,6 +123,8 @@
       $('#acc_add').modal('show')
    }
 </script>
+
+
 
 <!--=============== 작성부분 ===============-->
 

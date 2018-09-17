@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>main page</title>
+<title>근태  결재 승인 내여</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp" %>
 </head>
 <body>
@@ -18,14 +18,14 @@
 
 <!--=============== 작성부분 ===============-->
 
-	<!-- 근태 결제 승인 내역 페이지 -->
+	<!-- 근태 결재 승인 내역 페이지 -->
 	<div class="ui container" style="margin-top: 5px;">
 			<!-- 검색창 시작 -->
 			<div class="ui two column stackable grid container">
 			<div class="column" align="left" style="padding-left: 0px;">
 				<h2 class="ui header"style="padding-top: 5px;">
 					<i class="paste icon"></i>
-					<div class="content"> 근태 결제 승인 내역 </div>
+					<div class="content"> 근태 결재 승인 내역 </div>
 				</h2>
 			</div>
 			<div class="column" align="right" style="padding-right: 0px;">
@@ -58,6 +58,7 @@
 			<tbody>
 				<tr class="center aligned">
 					<td>3000/01/01</td>
+					
 					<td>멍멍이부</td>
 					<td>멍멍이</td>
 					<td>휴가</td>
@@ -83,9 +84,7 @@
 								<i class="right chevron icon"></i>
 							</a>
 						</div>
-							<div align="right">
-							<div class="ui large button">수정하기</div>
-							</div>
+	
 					</th>
 				</tr>
 			</tfoot>
