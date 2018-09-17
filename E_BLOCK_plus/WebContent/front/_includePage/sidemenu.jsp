@@ -64,6 +64,9 @@ $(document)
 <div class="item">
   <div class="header">인사관리</div>
   <div class="menu">
+      <a class="item" href="권한부여페이지">
+        권한부여
+      </a>
       <a class="item" href="전체출결페이지">
         전체출결
       </a>
