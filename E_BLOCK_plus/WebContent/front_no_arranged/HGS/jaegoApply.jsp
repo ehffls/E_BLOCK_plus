@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>main page</title>
+<title>재고신청</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp" %>
 </head>
 <body>
@@ -13,30 +13,48 @@
 <!-- main -->
 <%@ include file="/front/_includePage/mainpage.jsp" %>
 
+<!--=============== 스크립트 영역 시작 ===============-->
+<script type="text/javascript">
 
+$(document).ready(function(){	
+	 $('#j_modal')
+	  .modal('show'); 
+});
+</script> 
+<!--=============== 스크립트 영역 끝 ===============-->
 
 
 <!--=============== 작성부분 ===============-->
-	<div class="ui inverted segment" data-genuitec-lp-enabled="false" data-genuitec-file-id="wc1-779" data-genuitec-path="/E_BLOCK_plus/WebContent/front_no_arranged/HGS/jaegoApply.jsp" style="width: 628px; height: 408px;">
-		<div class="ui inverted form">
-			<div class="field">
-				<label>주문번호</label> <input placeholder="0000" type="text" style="width: 230px;">
-			</div>
-			<select class="ui compact selection dropdown" style="margin-bottom: 10px; height: 42px; width: 245.4px;">
+
+<div id="j_modal" class="ui modal">  
+
+
+<div class="ui form" data-genuitec-lp-enabled="false" data-genuitec-file-id="wc1-783" data-genuitec-path="/E_BLOCK_plus/WebContent/front_no_arranged/HGS/insaWrite.jsp" style="width: 650px;margin-left: 200px;margin-top: 15px;margin-bottom: 15px;">
+		<div class="field" style="width: 200px;">
+			<label>주문번호</label><input placeholder="0000" type="text" style="width: 230px;">
+		<select class="ui compact selection dropdown" style="margin-bottom: 10px;height: 42px;width: 245.4px;margin-top: 10px;">
 				<option value="all">전체품목</option>
 				<option selected="" value="품목0">품목0</option>
 				<option value="품목1">품목1</option>
 				<option value="품목2">품목2</option>
 				<option value="품목3">품목3</option>
 			</select>
+		</div>	
+		<div class="field" style="width: 200px;">
+			<label>부서</label> <select class="ui fluid dropdown">
+				<option value="인사">인사부</option>
+				<option value="총무">총무부</option>
+				<option value="기획">기획부</option>
+				<option value="감사">감사부</option>
+			</select>
 		</div>
-		<div class="field" style="margin-bottom: 10px;">
-			<label>품목명</label> <input placeholder="품목명" type="text" style="height: 36px; width: 404px;">
+		<div class="field" style="margin-bottom: 10px;width: 300px;">
+			<label>품목명</label> <input placeholder="품목명" type="text" style="height: 36px;width: 330px;">
 		</div>
-		<div class="field" style="margin-bottom: 10px;">
-			<label>단가</label>&nbsp&nbsp&nbsp&nbsp <input placeholder="000" type="text" style="height: 42px;">
+		<div class="field" style="margin-bottom: 10px;width: 200px;">
+			<label>단가</label>&nbsp;&nbsp;&nbsp;&nbsp; <input placeholder="000" type="text" style="height: 42px;">
 		</div>
-		<div class="field" style="margin-bottom: 20px;">
+		<div class="field" style="margin-bottom: 20px;width: 200px;">
 			<label>재고량</label> <input placeholder="000" type="text" style="height: 42px;">
 		</div>
 
@@ -48,7 +66,9 @@
 		</div>
 		<div class="ui submit button">결재</div>
 		<div class="ui submit button">취소</div>
-	</div>
+		</div>
+</div> 
+
 	<!--=============== 작성부분 ===============-->
 
 

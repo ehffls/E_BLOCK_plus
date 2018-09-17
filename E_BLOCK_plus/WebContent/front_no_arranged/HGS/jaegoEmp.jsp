@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>main page</title>
+<title>재고관리(사원)</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp" %>
 </head>
 <body>
@@ -42,38 +42,55 @@
           <td>23</td>
           <td>32g</td>
           <td>43g</td>
+          <td>43$</td>
         </tr>
         <tr>
           <td class="left aligned">Joette</td>
           <td>21</td>
           <td>13g</td>
           <td>31g</td>
+          <td>31$</td>
         </tr>
         <tr>
           <td class="left aligned">Le</td>
           <td>28</td>
           <td>39g</td>
           <td>23g</td>
+          <td>23$</td>
         </tr>
         <tr>
           <td class="left aligned">Sacha</td>
           <td>46</td>
           <td>43g</td>
           <td>13g</td>
+          <td>13$</td>
         </tr>
         <tr>
           <td class="left aligned">Bruna</td>
           <td>9</td>
           <td>47g</td>
           <td>12g</td>
+          <td>12$</td>
         </tr>
         <tr>
           <td class="left aligned">Bruna</td>
           <td>9</td>
           <td>47g</td>
           <td>12g</td>
+          <td>12$</td>
         </tr>
       </tbody>
+      <tfoot>
+			<tr>
+				<th colspan="5">
+					<div class="ui right floated pagination menu">
+						<a class="icon item"> <i class="left chevron icon"></i>
+						</a> <a class="item">1</a> <a class="item">2</a> <a class="item">3</a> <a class="item">4</a> <a class="icon item"> <i class="right chevron icon"></i>
+						</a>
+					</div>
+				</th>
+			</tr>
+		</tfoot>
     </table>
   </div>
 <!-- =====================재고리스트 끝=================================== -->
