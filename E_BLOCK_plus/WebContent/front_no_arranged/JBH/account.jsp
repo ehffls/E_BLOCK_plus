@@ -28,17 +28,17 @@
     <div class="content">
     <div class="bady">
     <div class="text">회사 이름</div>
-    <div class="ui input" style="width:300px"><input type="text" style="width:300px"></div>
+    <div class="ui input" style="width:100%"><input type="text" ></div>
     <div class="text">담당자 이름</div>
-    <div class="ui input" style="width:300px"><input type="text" style="width:300px"></div>
-    <div class="text">회사 이름</div>
-    <div class="ui input" style="width:300px"><input type="text" style="width:300px"></div>
-    <div class="text">연락처</div>
-    <div class="ui input" style="width:300px"><input type="text" style="width:300px"></div>
-    <div class="text">팩스번호</div>
-    <div class="ui input" style="width:300px"><input type="text" style="width:300px"></div>
-    <div class="text">이메일</div>
-    <div class="ui input" style="width:300px"><input type="text" style="width:300px"></div>
+    <div class="ui input" style="width:100%"><input type="text" ></div>
+    <div class="text">회사 이름</div>  
+    <div class="ui input" style="width:100%"><input type="text" ></div>
+    <div class="text">연락처</div>     
+    <div class="ui input" style="width:100%"><input type="text" ></div>
+    <div class="text">팩스번호</div>   
+    <div class="ui input" style="width:100%"><input type="text" ></div>
+    <div class="text">이메일</div>     
+    <div class="ui input" style="width:100%"><input type="text" ></div>
      <div class="actions">
      <br>
     <div class="ui a button">등록</div>
