@@ -14,7 +14,18 @@
 <%@ include file="/front/_includePage/mainpage.jsp" %>
 
 
-
+<!--=============== 스크립트 영역 시작 ===============-->
+<script type="text/javascript">
+<!-- 작성처리 -->	
+	function il_write() {
+		$('#i_modal').modal('show')
+	}	 
+<!-- 검색처리 -->	
+	function il_search() {
+		alert("검색처리중..");
+	}
+</script>
+<!--=============== 스크립트 영역  끝 ===============-->
 
 <!--=============== 스크립트 영역 ===============-->
 <script type="text/javascript">
@@ -25,6 +36,8 @@
 <!--=============== 스크립트 영역 ===============-->
 
 <!--=============== 작성부분 ===============-->
+<!--=============== 목록 시작 ===============-->
+	<div class="column">
 <!--=============== 메뉴 시작 ===============-->
 <div class="ui secondary menu">
 
@@ -43,14 +56,12 @@
       <div class="ui action left icon input">
         <i class="search icon"></i>
         <input type="text" placeholder="Search">
-        <button class="ui button">검색</button>
+        <button class="ui button" onclick="i_search()">검색</button>
       </div>
     </div>
   </div>
 </div>
 <!--=============== 메뉴 끝 ===============-->
-<!--=============== 목록 시작 ===============-->
-	<div class="column">
 		<table class="ui celled selectable aligned table" style="width: 452px;">
 			<thead>
 				<tr>
@@ -63,7 +74,7 @@
 				<tr>
 					<td class="left aligned">부서명</td>
 					<td>이름</td>
-					<td><button class="ui button">작성</button></td>
+					<td><button class="ui button" onclick="il_write()">작성</button></td>
 				</tr>
 			</tbody>			
 <!--=============== 페이지 네이션 시작 ===============-->
@@ -83,11 +94,10 @@
 	</div>
 <!--=============== 목록 끝  ===============-->  
 
+  <%@ include file="./insaWrite.jsp" %>
+
 
 <!--=============== 작성부분 ===============-->
-
-
-
 <%@ include file="/front/_includePage/sticky" %>
 </body>
 </html>

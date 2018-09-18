@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%-- <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -12,19 +12,36 @@
 <%@ include file="/front/_includePage/sidemenu.jsp" %>
 <!-- main -->
 <%@ include file="/front/_includePage/mainpage.jsp" %>
+ 
 
 <!--=============== 스크립트 영역 시작 ===============-->
-<script type="text/javascript">
+ <script type="text/javascript">
 
 $(document).ready(function(){	
 	 $('#i_modal')
 	  .modal('show'); 
 });
+</script>  --%>
+<!--=============== 스크립트 영역 시작 ===============-->
+<script type="text/javascript">
+<!-- 작성처리-->	
+	function i_write(){
+		alert("작성처리중");
+	}
+<!-- 수정처리-->	
+	function i_update(){
+		alert("수정처리중");	
+	}
+<!-- 취소처리-->
+	function i_cancle(){
+		location.href = "./insaList.jsp"; 
+	}
 </script>
+<!--=============== 스크립트 영역 끝 ===============-->
 <!--=============== 스크립트 영역 끝 ===============-->
 
 
-<!--=============== 작성부분 ===============-->
+<!--=============== 작성부분 ===============--> 
 
  <div id="i_modal" class="ui modal"> 
 
@@ -44,17 +61,17 @@ $(document).ready(function(){
 			<label>인사평가 작성</label>
 			<textarea></textarea>
 		</div>
-		<div class="ui submit button">작성</div>
-		<div class="ui submit button">수정</div>
-		<div class="ui submit button">취소</div>
+		<div class="ui submit button" onclick="i_write()">작성</div>
+		<div class="ui submit button" onclick="i_update()">수정</div>
+		<div class="ui submit button" onclick="i_cancle()">취소</div>
 	</div>
 
  </div>
 
-	<!--=============== 작성부분 ===============-->
+<!--=============== 작성부분 ===============-->
 
 
 
-<%@ include file="/front/_includePage/sticky" %>
+<%-- <%@ include file="/front/_includePage/sticky" %>
 </body>
-</html>
+</html> --%> 
