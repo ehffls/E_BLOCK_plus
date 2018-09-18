@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>권한부여</title>
+<title>권한 부여</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp" %>
 </head>
 <body>
@@ -33,13 +33,15 @@
 			<div class="ui left action right icon input">
 				<!-- dropdown 시작 -->			
 				<div class="ui basic floating dropdown button">
-					<div class="text">이름</div>
+					<div div class="default text">권한</div>
 					<i class="dropdown icon"></i>
- 				 <div class="menu">
- 				   <div class="item" data-value="1">Male</div>
- 				   <div class="item" data-value="0">Female</div>
- 				 </div>
-				</div>
+						<div class="menu" style="top: 31px;">
+							<div class="item" data-value="name">권한</div>
+							<div class="item" data-value="dname">부서번호</div>
+							<div class="item" data-value="num">부서명</div>
+							<div class="item" data-value="addr">이름</div>
+						</div>
+					</div>
 				<!-- dropdown 끝 -->			
 				<i class="search icon"></i> 
 				<input type="text" placeholder="검색"/>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>근태  결재 승인 내여</title>
+<title>근태  결재 승인 내역</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp" %>
 </head>
 <body>
@@ -39,7 +39,7 @@
 							<div class="item" data-value="name">날짜</div>
 							<div class="item" data-value="dname">부서명</div>
 							<div class="item" data-value="num">근태분류</div>
-							<div class="item" data-value="addr">전체일</div>
+							<div class="item" data-value="addr">전체일수</div>
 						</div>
 					</div>
 				<!-- dropdown 끝 -->			
@@ -91,7 +91,6 @@
 								<i class="right chevron icon"></i>
 							</a>
 						</div>
-	
 					</th>
 				</tr>
 			</tfoot>
