@@ -31,9 +31,15 @@
 			<div class="column" align="right" style="padding-right: 0px;">
 				<div class="ui left action right icon input">
 					<!-- dropdown 시작 -->
-					<div class="ui basic floating dropdown button">
-						<div class="text">이름</div>
-						<i class="dropdown icon"></i>
+				<div class="ui basic floating dropdown button">
+					<div div class="default text">이름</div>
+					<i class="dropdown icon"></i>
+						<div class="menu" style="top: 31px;">
+							<div class="item" data-value="name">이름</div>
+							<div class="item" data-value="dname">직책</div>
+							<div class="item" data-value="num">부서번호</div>
+							<div class="item" data-value="addr">나이</div>
+						</div>
 					</div>
 					<!-- dropdown 끝 -->
 					<i class="search icon"></i> <input type="text" placeholder="검색" />
@@ -122,6 +128,9 @@
    function ac_add(){
       $('#acc_add').modal('show')
    }
+	$(document).ready(function(){
+		$('.ui.dropdown').dropdown();
+	});	
 </script>
 
 

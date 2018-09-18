@@ -18,6 +18,7 @@
 
 <!--=============== 작성부분 ===============-->
 
+
 	<!-- 권한부여 페이지 -->
 	<div class="ui container" style="margin-top: 5px;">
 			<!-- 검색창 시작 -->
@@ -34,6 +35,10 @@
 				<div class="ui basic floating dropdown button">
 					<div class="text">이름</div>
 					<i class="dropdown icon"></i>
+ 				 <div class="menu">
+ 				   <div class="item" data-value="1">Male</div>
+ 				   <div class="item" data-value="0">Female</div>
+ 				 </div>
 				</div>
 				<!-- dropdown 끝 -->			
 				<i class="search icon"></i> 
@@ -117,6 +122,10 @@
    function ac_add(){
       $('#acc_add').modal('show')
    }
+   
+	$(document).ready(function(){
+		$('.ui.dropdown').dropdown();
+	});	
 </script>
 
 

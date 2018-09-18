@@ -18,6 +18,7 @@
 
 <!--=============== 작성부분 ===============-->
 
+
 	<!-- 근태 결재 승인 내역 페이지 -->
 	<div class="ui container" style="margin-top: 5px;">
 			<!-- 검색창 시작 -->
@@ -32,9 +33,15 @@
 			<div class="ui left action right icon input">
 				<!-- dropdown 시작 -->			
 				<div class="ui basic floating dropdown button">
-					<div class="text">이름</div>
+					<div div class="default text">이름</div>
 					<i class="dropdown icon"></i>
-				</div>
+						<div class="menu" style="top: 31px;">
+							<div class="item" data-value="name">날짜</div>
+							<div class="item" data-value="dname">부서명</div>
+							<div class="item" data-value="num">근태분류</div>
+							<div class="item" data-value="addr">전체일</div>
+						</div>
+					</div>
 				<!-- dropdown 끝 -->			
 				<i class="search icon"></i> 
 				<input type="text" placeholder="검색"/>
@@ -91,7 +98,11 @@
 		</table>
 	</div>
 
-
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.ui.dropdown').dropdown();
+	});	
+</script>
 
 <!--=============== 작성부분 ===============-->
 
