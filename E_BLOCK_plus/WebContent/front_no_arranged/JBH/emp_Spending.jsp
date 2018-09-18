@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>물품 결제</title>
+<title>emp_Spending</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp" %>
 </head>
 <body>
@@ -17,42 +17,29 @@
 
 
 <!--=============== 작성부분 ===============-->
-<script type="text/javascript">
-	function menu_add(){
-		
-		location.href="./paygoods2.jsp"
-	}
-</script>
 <div class="ui container">  
-		<div class="ui red three item menu">
-  	<a class="item active" id="menu" >
- 	   현재물품신청
-  	</a>
-  	<a class="item" id="menu_add"onclick="menu_add()">
-  	  추가물품신청
-  	</a>
-  	<div class="item">
+<div class="ui secondary  menu">
+		<a class="item">상세보기</a> <a class="item">수정</a> <a class="item">삭제</a>
+
+		<div class="right menu">
+			<div class="item">
 				<div class="ui icon input">
 					<input type="text" placeholder="Search..." value=""> <i class="search link icon"></i>
 				</div>
 			</div>
 		</div>
-
-	
-			
+	</div>
 	<table class="ui celled  table ">
 		<thead>
 			<tr>
-				<th>Header</th>
-				<th>Header</th>
-				<th>Header</th>
+				<th>사원명</th>
+				<th>연봉</th>
+				<th>월급</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td>
-					<div class="ui ribbon label">First</div>
-				</td>
+				<td>Cell</td>
 				<td>Cell</td>
 				<td>Cell</td>
 			</tr>
@@ -79,7 +66,11 @@
 			</tr>
 		</tfoot>
 	</table>
-</div>
+	</div>
+
+
+
+
 <!--=============== 작성부분 ===============-->
 
 

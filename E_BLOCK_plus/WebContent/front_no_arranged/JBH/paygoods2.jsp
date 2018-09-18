@@ -18,17 +18,16 @@
 
 <!--=============== 작성부분 ===============-->
 <script type="text/javascript">
-	function menu_add(){
-		
-		location.href="./paygoods2.jsp"
+	function menu_add1(){
+		location.href="./paygoods.jsp"
 	}
 </script>
 <div class="ui container">  
 		<div class="ui red three item menu">
-  	<a class="item active" id="menu" >
+  	<a class="item " id="menu"onclick="menu_add1()" >
  	   현재물품신청
   	</a>
-  	<a class="item" id="menu_add"onclick="menu_add()">
+  	<a class="item active" id="menu_add" >
   	  추가물품신청
   	</a>
   	<div class="item">

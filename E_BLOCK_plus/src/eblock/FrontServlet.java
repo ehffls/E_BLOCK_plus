@@ -23,9 +23,9 @@ public class FrontServlet extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 		res.setCharacterEncoding("utf-8");
 		
-		String requestURI = req.getRequestURI();
-		String contextPath = req.getContextPath();
-		String command = requestURI.substring(contextPath.length()+1);
+		String requestURI = req.getRequestURI();//ex)/E_BLOCK_plus/front_no_arranged/JBH/account.jsp
+		String contextPath = req.getContextPath();//ex)/E_BLOCK_plus
+		String command = requestURI.substring(contextPath.length()+1);//ex)front_no_arranged/JBH/account.jsp
 		logger.info("command : " + command);
 		
 		Controller controller = null;
