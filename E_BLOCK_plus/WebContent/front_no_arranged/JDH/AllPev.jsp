@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>인사평가 결과</title>
+<title>인사 평가 결과</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp" %>
 </head>
 <body>
@@ -32,9 +32,15 @@
 			<div class="ui left action right icon input">
 				<!-- dropdown 시작 -->			
 				<div class="ui basic floating dropdown button">
-					<div class="text">이름</div>
+					<div div class="default text">이름</div>
 					<i class="dropdown icon"></i>
-				</div>
+						<div class="menu" style="top: 31px;">
+							<div class="item" data-value="name">이름</div>
+							<div class="item" data-value="dname">부서명</div>
+							<div class="item" data-value="date">날짜</div>
+							<div class="item" data-value="addr">점수</div>
+						</div>
+					</div>
 				<!-- dropdown 끝 -->			
 				<i class="search icon"></i> 
 				<input type="text" placeholder="검색"/>
@@ -85,6 +91,11 @@
 		</table>
 	</div>
 
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.ui.dropdown').dropdown();
+	});	
+</script>
 
 <!--=============== 작성부분 ===============-->
 

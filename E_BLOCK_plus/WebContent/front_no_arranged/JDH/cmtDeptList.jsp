@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>근태  결재 승인 내여</title>
+<title>근태  결재 승인 내역</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp" %>
 </head>
 <body>
@@ -17,6 +17,7 @@
 
 
 <!--=============== 작성부분 ===============-->
+
 
 	<!-- 근태 결재 승인 내역 페이지 -->
 	<div class="ui container" style="margin-top: 5px;">
@@ -32,9 +33,15 @@
 			<div class="ui left action right icon input">
 				<!-- dropdown 시작 -->			
 				<div class="ui basic floating dropdown button">
-					<div class="text">이름</div>
+					<div div class="default text">이름</div>
 					<i class="dropdown icon"></i>
-				</div>
+						<div class="menu" style="top: 31px;">
+							<div class="item" data-value="name">날짜</div>
+							<div class="item" data-value="dname">부서명</div>
+							<div class="item" data-value="num">근태분류</div>
+							<div class="item" data-value="addr">전체일수</div>
+						</div>
+					</div>
 				<!-- dropdown 끝 -->			
 				<i class="search icon"></i> 
 				<input type="text" placeholder="검색"/>
@@ -84,14 +91,17 @@
 								<i class="right chevron icon"></i>
 							</a>
 						</div>
-	
 					</th>
 				</tr>
 			</tfoot>
 		</table>
 	</div>
 
-
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.ui.dropdown').dropdown();
+	});	
+</script>
 
 <!--=============== 작성부분 ===============-->
 
