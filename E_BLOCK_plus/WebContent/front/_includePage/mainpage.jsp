@@ -8,7 +8,7 @@
 		<div class="ui container">
 			<div class="ui large secondary inverted menu">
 				<a class="toc item" id="sidemenu_icon"> <i class="sidebar icon"></i>
-				</a> <a class="active item">메인페이지</a> <a class="item">전자결재</a>
+				</a> <a class="item" id="mainpage">메인페이지</a> <a class="item" id="approval">전자결재</a>
 				<!-- 우측메뉴 시작 -->
 				<div class="right item">홍길동 사원</div>
 				<!-- 우측메뉴 끝 -->
