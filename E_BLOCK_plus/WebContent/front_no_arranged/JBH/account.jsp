@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>물품 결제</title>
+<title>main page</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp" %>
 </head>
 <body>
@@ -18,29 +18,46 @@
 
 <!--=============== 작성부분 ===============-->
 <script type="text/javascript">
-	function menu_add(){
-		
-		location.href="./paygoods2.jsp"
+	function ac_add(){
+		$('#acc_add').modal('show')
 	}
 </script>
-<div class="ui container">  
-		<div class="ui red three item menu">
-  	<a class="item active" id="menu" >
- 	   현재물품신청
-  	</a>
-  	<a class="item" id="menu_add"onclick="menu_add()">
-  	  추가물품신청
-  	</a>
-  	<div class="item">
-				<div class="ui icon input">
-					<input type="text" placeholder="Search..." value=""> <i class="search link icon"></i>
-				</div>
-			</div>
-		</div>
+<div class="ui mini modal" id="acc_add" >
+  <div class="header">거래처 등록</div>
+  
+    <div class="content">
+    <div class="bady">
+    <div class="text">회사 이름</div>
+    <div class="ui input" style="width:100%"><input type="text" ></div>
+    <div class="text">담당자 이름</div>
+    <div class="ui input" style="width:100%"><input type="text" ></div>
+    <div class="text">회사 이름</div>  
+    <div class="ui input" style="width:100%"><input type="text" ></div>
+    <div class="text">연락처</div>     
+    <div class="ui input" style="width:100%"><input type="text" ></div>
+    <div class="text">팩스번호</div>   
+    <div class="ui input" style="width:100%"><input type="text" ></div>
+    <div class="text">이메일</div>     
+    <div class="ui input" style="width:100%"><input type="text" ></div>
+     <div class="actions">
+     <br>
+    <div class="ui a button">등록</div>
+    <div class="ui cancel button">취소</div>
+  </div>
+    
+    </div>
+  </div>
+</div>   
 
-	
-			
-	<table class="ui celled  table ">
+
+<div class="ui container">  
+<div tabindex="0" class="ui button"  onclick="ac_add()">
+  거래처 등록
+</div>
+<div tabindex="0" class="ui button">
+  거래처 삭제
+</div>
+<table class="ui celled  table ">
 		<thead>
 			<tr>
 				<th>Header</th>
@@ -80,6 +97,7 @@
 		</tfoot>
 	</table>
 </div>
+
 <!--=============== 작성부분 ===============-->
 
 

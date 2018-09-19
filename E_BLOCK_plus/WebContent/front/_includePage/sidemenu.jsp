@@ -92,10 +92,10 @@ $(document)
       <a class="item" href="./paygoods.jsp">		
         물품결재
       </a>
-      <a class="item" href="입출고관리">
+      <a class="item" href="./i_o.jsp">
         입출고관리
       </a>
-      <a class="item" href="거래처페이지">
+      <a class="item" href="./account.jsp">
         거래처
       </a>
   </div>
@@ -105,10 +105,10 @@ $(document)
 <div class="item">
   <div class="header">회계관리</div>
   <div class="menu">
-      <a class="item" href="사원지출관리페이지">
+      <a class="item" href="./emp_Spending.jsp">
         사원지출관리
       </a>
-      <a class="item" href="부서지출관리페이지">
+      <a class="item" href="./dept_Spending.jsp">
         부서지출관리
       </a>
       <a class="item" href="비품지출관리페이지">
