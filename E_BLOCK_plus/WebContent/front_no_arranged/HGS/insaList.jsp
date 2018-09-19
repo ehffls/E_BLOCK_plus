@@ -56,7 +56,7 @@
       <div class="ui action left icon input">
         <i class="search icon"></i>
         <input type="text" placeholder="Search">
-        <button class="ui button" onclick="i_search()">검색</button>
+        <button class="ui button" onclick="il_search()">검색</button>
       </div>
     </div>
   </div>

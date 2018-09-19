@@ -57,6 +57,14 @@ $(document).ready(function(){
 				<option value="감사">감사부</option>
 			</select>
 		</div>
+		<div class="field" style="width: 200px;">
+			<label>평가점수</label> <select class="ui fluid dropdown">
+				<option value="100">a</option>
+				<option value="90">b</option>
+				<option value="80">c</option>
+				<option value="70">d</option>
+			</select>
+		</div>
 		<div class="field">
 			<label>인사평가 작성</label>
 			<textarea></textarea>
