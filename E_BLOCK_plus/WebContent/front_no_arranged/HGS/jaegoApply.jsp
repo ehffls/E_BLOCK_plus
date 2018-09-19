@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%-- <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -20,7 +20,19 @@ $(document).ready(function(){
 	 $('#j_modal')
 	  .modal('show'); 
 });
-</script> 
+</script>  --%>
+<!--=============== 스크립트 영역 끝 ===============-->
+<!--=============== 스크립트 영역 시작 ===============-->
+<script type="text/javascript">
+<!-----작성승인----->	
+	function j_ok(){
+		alert("처리되었습니다.");
+	}
+<!-----작성취소 처리중----->
+	function j_cancle(){
+		location.href = "./jaegoEmp.jsp"; 
+	}
+</script>
 <!--=============== 스크립트 영역 끝 ===============-->
 
 
@@ -64,8 +76,8 @@ $(document).ready(function(){
 				<input type="checkbox" tabindex="0" class="hidden"> <label>결제 책임 동의</label>
 			</div>
 		</div>
-		<div class="ui submit button">결재</div>
-		<div class="ui submit button">취소</div>
+		<div class="ui submit button" onclick="j_ok()">결재</div>
+		<div class="ui submit button" onclick="j_cancle()">취소</div>
 		</div>
 </div> 
 
@@ -73,6 +85,6 @@ $(document).ready(function(){
 
 
 
-<%@ include file="/front/_includePage/sticky" %>
+<%-- <%@ include file="/front/_includePage/sticky" %>
 </body>
-</html>
+</html>  --%>

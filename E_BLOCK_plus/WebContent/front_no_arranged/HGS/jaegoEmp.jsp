@@ -6,6 +6,24 @@
 <meta charset="UTF-8">
 <title>재고관리(사원)</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp" %>
+<!--=============== 스크립트 영역 시작 ===============-->
+<script type="text/javascript">
+	<!--신청-->
+	function j_apply_click() {
+		$('#j_modal').modal('show')
+	}
+	
+	<!--수정-->
+	function j_update_click() {
+		$('#j_modal').modal('show')
+	}
+	
+	<!--뒤로가기-->
+	function back() {
+		location.href = "../JBH/main.jsp"; 
+	}
+</script>
+<!--=============== 스크립트 영역  끝 ===============-->
 </head>
 <body>
 <!-- sidebar -->
@@ -17,17 +35,18 @@
 
 
 <!--=============== 작성부분 ===============-->
+
+<!-- =====================재고리스트 시작=================================== -->
+    <div class="column" >
 <!-- =====================버튼시작=================================== -->
 	<div class = "ui secondary menu">
 	<div class = "right menu">
-	<button class="ui button">신청</button>
-	<button class="ui button">수정</button>
-	<button class="ui button">뒤로가기</button>
+	<button class="ui button" id="j_apply" onclick="j_apply_click()">신청</button>
+	<button class="ui button" id="j_update" onclick="j_update_click()">수정</button>
+	<button class="ui button" onclick="back()">뒤로가기</button>
 	</div>
 	</div>
 <!-- =====================뒤로가기 버튼끝  =================================== -->
-<!-- =====================재고리스트 시작=================================== -->
-    <div class="column">
     <table class="ui inverted gray selectable celled right aligned table">
       <thead>
         <th class="left aligned">품번</th>
@@ -93,6 +112,7 @@
 		</tfoot>
     </table>
   </div>
+  <%@ include file="./jaegoApply.jsp" %>
 <!-- =====================재고리스트 끝=================================== -->
 
 
