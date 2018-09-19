@@ -29,7 +29,7 @@ $(document)
   </div>
   <!-- 로고 끝 -->
   <!-- 메인페이지 시작 -->
-  <a class="active item" href="메인페이지">메인페이지</a>
+  <a class="active item" href="./main.jsp">메인페이지</a>
   <!-- 메인페이지 끝 -->
   <!-- 마이페이지 시작 -->
   <div class="item">
@@ -111,10 +111,10 @@ $(document)
       <a class="item" href="./dept_Spending.jsp">
         부서지출관리
       </a>
-      <a class="item" href="비품지출관리페이지">
+      <a class="item" href="./goods_Spending.jsp">
         비품지출관리
       </a>
-      <a class="item" href="회사지출관리페이지">
+      <a class="item" href="./com_Spending.jsp">
         회사지출관리
       </a>
   </div>
