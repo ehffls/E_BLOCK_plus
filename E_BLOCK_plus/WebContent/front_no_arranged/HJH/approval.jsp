@@ -3,9 +3,75 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+.datebox-calendar-inner {
+  height: 250px;
+}
+.datebox-button {
+  padding: 4px 0;
+  text-align: center;
+}
+.datebox-button a {
+  line-height: 22px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+}
+.datebox-button a:hover {
+  opacity: 1.0;
+  filter: alpha(opacity=100);
+}
+.datebox-current,
+.datebox-close {
+  float: left;
+}
+.datebox-close {
+  float: right;
+}
+.datebox .combo-arrow {
+  background-image: url('images/datebox_arrow.png');
+  background-position: center center;
+}
+.datebox-button {
+  background-color: #F4F4F4;
+}
+.datebox-button a {
+  color: #444;
+}
+body {
+    font-family:verdana,helvetica,arial,sans-serif;
+    padding:20px;
+    font-size:12px;
+    margin:0;
+}
+h2 {
+    font-size:18px;
+    font-weight:bold;
+    margin:0;
+    margin-bottom:15px;
+}
+.demo-info{
+	padding:0 0 12px 0;
+}
+.demo-tip{
+	display:none;
+}
+.label-top{
+    display: block;
+    height: 22px;
+    line-height: 22px;
+    vertical-align: middle;
+}
+</style>
 <meta charset="UTF-8">
 <title>전자결재 페이지</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp" %>
+<script src="<%=Project_Root %>/0_src/js/easyui/jquery.easyui.min.js"></script>
+	<%-- <link rel="stylesheet" type="text/css" href="<%=Project_Root %>/0_src/css/easyui/themes/default/easyui.css"> --%>
+	<link rel="stylesheet" type="text/css" href="<%=Project_Root %>/0_src/css/easyui/themes/icon.css?1">
+	<%-- <link rel="stylesheet" type="text/css" href="<%=Project_Root %>/0_src/css/easyui/demo/demo.css"> --%>
 </head>
 <body>
 <!-- sidebar -->
@@ -14,28 +80,22 @@
 <%@ include file="/front/_includePage/mainpage.jsp" %>
 <script type="text/javascript">
 	$(function(){
-		$('#dd_1')
-		  .dropdown({
-				  action : function(text, value, element){
-					  aaa();
-				  }
-				  });
+		
 	});
-	function aaa(){		
-		$('#dd_2')
-		  .dropdown({
-			    values: [
-			        {
-			          name: 'Male',
-			          value: 'male'
-			        },
-			        {
-			          name     : 'Female',
-			          value    : 'female',
-			          selected : true
-			        }
-			      ]
-			    });
+	function btn_1(){
+		$.ajax({
+			method:"get"
+		   ,url:"approvalAjax.jsp"
+		   ,success:function(result){
+			   $("#divx").html(result);
+			}
+		   ,error:function(xhrObject){
+				alert(xhrObject.responseText);
+			}
+		});
+	}
+	function ac_add(){
+		$('#acc_add').modal('show')
 	}
 </script>
 
@@ -73,40 +133,14 @@
     </div>
     </div>
     <label>신청일자</label>
-    <div class="three fields">
-    <div class="field">
-    	<input type="text" placeholder="년도">
-    </div>
-    <div class="field">
-        <select class="ui search dropdown" id="dd_1">
-  <option value="">월</option>
-<% int a=0;
-for(int i=0;i<12;i++){ %>
-  <option value="<%=i+1 %>" id="m<%=i+1 %>"><%=i+1 %>월</option>
-  <%
-	}
-	%>
-</select>
-</div>
-<div class="field">
-<select class="ui search dropdown" id="dd_2">
-  <option value="">일</option>
-<% 
-for(int i=0;i<a;i++){ %>
-  <option value="<%=i+1 %>"><%=i+1 %>일</option>
-  <%} %>
-</select>
-</div>
-    </div>
+  <div class="two fields">
   <div class="field">
-    <label>Billing Address</label>
-    <div class="fields">
-      <div class="twelve wide field">
-        <input type="text" name="shipping[address]" placeholder="Street Address">
-      </div>
-      <div class="four wide field">
-        <input type="text" name="shipping[address-2]" placeholder="Apt #">
-      </div>
+            <input class="easyui-datebox" style="width:100%;">
+    </div>
+    <div id="divx" style="margin-top:10px">
+    <div class="twofield">
+    <div class="large ui button" onClick="javascipt:ac_add()">Button</div>
+    </div>  
     </div>
   </div>
   <div class="ui button" tabindex="0">저장</div>

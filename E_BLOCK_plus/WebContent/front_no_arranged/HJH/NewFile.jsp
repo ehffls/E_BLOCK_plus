@@ -4,21 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<%@ include file="/0_src/_includeList/commonUI_S.jsp" %>
 <title>Insert title here</title>
+<style type="text/css">
+	textarea{ resize: none;}
+</style>
 </head>
 <body>
- 
-  <p>Click and drag the mouse to select text in the inputs.</p>
-  <input type="text" value="Some text">
-  <input type="text" value="to test on">
-  <div></div>
- 
-<script type="text/javascript">
-$( ":input" ).select(["text"]function() {
-  alert("a");
-});
-</script>
- 
+<textarea></textarea>
 </body>
 </html>
