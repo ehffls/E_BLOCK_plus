@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아작스휴가</title>
+<title>아작스출장</title>
 <script type="text/javascript">
 $('#r_start').calendar({
   type: 'date',
@@ -19,7 +19,7 @@ $('#r_end').calendar({
 <body>
 <div class="ui container" style="margin-top:20px">
   <form class="ui form">
-	<h4 class="ui dividing header">휴가신청 결재서</h4>
+	<h4 class="ui dividing header">출장신청 결재서</h4>
 	<div class="two fields">
 	  <div class="field">
 		<div class="ui labeled input">

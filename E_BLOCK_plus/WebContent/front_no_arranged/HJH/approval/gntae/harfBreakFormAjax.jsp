@@ -5,6 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>아작스반가</title>
+<script type="text/javascript">
+$('#day').calendar({
+  type: 'date'
+});
+$('#time').dropdown();
+</script>
 </head>
 <body>
 <div class="ui container" style="margin-top:20px">
@@ -37,7 +43,7 @@
 	<div class="field">
 	<label>신청시간</label>
 	<div class="ui selection dropdown" id="time">
-  <input type="hidden" name="gender">
+  <input type="hidden" name="t_sel">
   <i class="dropdown icon"></i>
   <div class="default text">신청시간</div>
   <div class="menu">

@@ -4,74 +4,87 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>페이지</title>
+<title>결재신청페이지</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp" %>
+<script type="text/javascript">
+$(function(){
+	//Form dropdown처리부분
+	var witch = "";
+	$('#ap_sel').dropdown({
+		allowCategorySelection: true,
+		action: function(text, value) {
+			if(text=="휴가신청"){
+				witch="breakFormAjax";
+			}else if(text=="반가신청"){
+				witch="harfBreakFormAjax";
+			}else if(text=="출장신청"){
+				witch="businessTripFormAjax";
+			}else if(text=="외출신청"){
+				witch="goOutFormAjax";
+			}else if(text=="등록신청"){
+				witch="newArticleFormAjax";
+			}else if(text=="구매신청"){
+				witch="buyArticleFormAjax";
+			}else if(text=="사용신청"){
+				witch="useArticleFormAjax";
+			}else if(text=="퇴사신청"){
+				witch="resignFormAjax";
+			}
+				$.ajax({
+					method:"get"
+				   ,url:witch+".jsp"
+				   ,success:function(result){
+					   $("#form_1").html(result);
+				   }
+				});
+		}
+	});
+	$('#ap_Ok').click(function() {
+		location.href=".jsp";
+	});
+	$('#ap_cancel').click(function() {
+		location.href=".jsp";
+	});
+	
+	//default휴가신청 calendar처리부분
+	$('#r_start').calendar({
+	  type: 'date',
+	  endCalendar: $('#r_end')
+	});
+	$('#r_end').calendar({
+	  type: 'date',
+	  startCalendar: $('#r_start')
+	});
+	
+	//sidemenu처리 부분
+	$('#approval').attr("class","active item");
+	$('#sm_ap').attr("class","active item");
+	$('#sm_ap_form').attr("class","active item");
+});
+</script>
 </head>
 <body>
 <!-- sidebar -->
 <%@ include file="/front/_includePage/sidemenu.jsp" %>
 <!-- main -->
 <%@ include file="/front/_includePage/mainpage.jsp" %>
-<script type="text/javascript">
-	$(function(){
-		$('#r_start1').calendar({
-			type: 'date',
-			endCalendar: $('#rangeend')
-		});
-		$('#r_end1').calendar({
-			type: 'date',
-			startCalendar: $('#rangestart')
-		});
-		$('#ap_sel').dropdown({
-			allowCategorySelection: true
-		});
-		$('#gt_1').click(function() {
-			location.href="breakForm.jsp";
-		});
-		$('#gt_2').click(function() {
-			location.href=".jsp";
-		});
-		$('#gt_3').click(function() {
-			location.href=".jsp";
-		});
-		$('#gt_4').click(function() {
-			location.href=".jsp";
-		});
-		$('#bp_1').click(function() {
-			location.href=".jsp";
-		});
-		$('#bp_2').click(function() {
-			location.href=".jsp";
-		});
-		$('#bp_3').click(function() {
-			location.href=".jsp";
-		});
-		$('#ts_1').click(function() {
-			location.href=".jsp";
-		});
-		$('#ap_Ok').click(function() {
-			location.href=".jsp";
-		});
-		$('#ap_cancel').click(function() {
-			location.href=".jsp";
-		});
-		$('#approval').attr("class","active item");
-		$('#sm_ap').attr("class","active item");
-		$('#sm_ap_form').attr("class","active item");
-	});
-</script>
+
+
+
+
 <!--=============== 작성부분 ===============-->
-<div class="ui container" style="margin-top:20px">
-  <div class="ui compact menu">
+
+<div class="ui container" style="margin-top: 10px">
+<div class="ui compact menu">
 	<div class="ui dropdown button" id="ap_sel" style="margin-right: 0px;">
 	  <span class="text">결재종류</span>
 	  <i class="dropdown icon"></i>
-		<div class="menu">
+		<div class="menu" id="gntae_1">
 		  <div class="item">
 		  <i class="dropdown icon"></i>
 			<span class="text">근태관련</span>
-			  <div class="menu">
-				<div class="active item" id="gt_1">휴가신청</div>
+			  <div class="menu" id="gntae_2">
+				<div class="item" id="gt_1">휴가신청</div>
 				<div class="item" id="gt_2">반가신청</div>
 				<div class="item" id="gt_3">출장신청</div>
 				<div class="item" id="gt_4">외출신청</div>
@@ -87,12 +100,17 @@
 			  </div>
 		  </div>
 		  <div class="item">
-		  <span class="text" id="ts_1">퇴사신청</span>
+		  <i class="dropdown icon"></i>
+		  <span class="text" id="ts_1">사직관련</span>
+		  	<div class="menu">
+				<div class="item" id="bp_1">퇴사신청</div>
+			  </div>
 		  </div>
 		</div>
 	  </div>
   </div>
 </div>
+<div id="form_1">
 <div class="ui container" style="margin-top:20px">
   <form class="ui form">
 	<h4 class="ui dividing header">휴가신청 결재서</h4>
@@ -113,7 +131,7 @@
 	<div class="two fields">
 	  <div class="field">
 		<label>시작일자</label>
-		  <div class="ui calendar" id="r_start1">
+		  <div class="ui calendar" id="r_start">
 			<div class="ui input left icon">
 			  <i class="calendar icon"></i>
 			  <input type="text" placeholder="시작일자">
@@ -122,7 +140,7 @@
 	  </div>
 	  <div class="field">
 		<label>종료일자</label>
-		  <div class="ui calendar" id="r_end1">
+		  <div class="ui calendar" id="r_end">
 			<div class="ui input left icon">
 			  <i class="calendar icon"></i>
 			  <input type="text" placeholder="종료일자">
@@ -140,35 +158,12 @@
 	  </div>
   </form>
 </div>
-<div class="grey ui inverted vertical footer segment" style="margin-top:20px">
-  <div class="ui container">
-	<div class="ui stackable inverted divided equal height stackable grid">
-	  <div class="three wide column">
-		<h4 class="ui inverted header">About</h4>
-		<div class="ui inverted link list">
-		  <a href="#" class="item">Sitemap</a>
-		  <a href="#" class="item">Contact Us</a>
-		  <a href="#" class="item">Religious Ceremonies</a>
-		  <a href="#" class="item">Gazebo Plans</a>
-		</div>
-	  </div>
-	  <div class="three wide column">
-		<h4 class="ui inverted header">Services</h4>
-		<div class="ui inverted link list">
-		  <a href="#" class="item">Banana Pre-Order</a>
-		  <a href="#" class="item">DNA FAQ</a>
-		  <a href="#" class="item">How To Access</a>
-		  <a href="#" class="item">Favorite X-Men</a>
-		</div>
-	  </div>
-	  <div class="seven wide column">
-		<h4 class="ui inverted header">Footer Header</h4>
-		<p>Extra space for a call to action inside the footer that could help re-engage users.</p>
-	  </div>
-	</div>
-  </div>
 </div>
+
 <!--=============== 작성부분 ===============-->
+
+
+
 <%@ include file="/front/_includePage/sticky" %>
 </body>
 </html>

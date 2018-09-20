@@ -4,22 +4,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아작스휴가</title>
+<title>아작스외출</title>
 <script type="text/javascript">
-$('#r_start').calendar({
-  type: 'date',
-  endCalendar: $('#r_end')
+$('#timestart').calendar({
+  type: 'time',
+  endCalendar: $('#timeend')
 });
-$('#r_end').calendar({
-  type: 'date',
-  startCalendar: $('#r_start')
+$('#timeend').calendar({
+  type: 'time',
+  startCalendar: $('#timestart')
+});
+$('#day').calendar({
+	  type: 'date'
 });
 </script>
 </head>
 <body>
 <div class="ui container" style="margin-top:20px">
   <form class="ui form">
-	<h4 class="ui dividing header">휴가신청 결재서</h4>
+	<h4 class="ui dividing header">외출신청 결재서</h4>
 	<div class="two fields">
 	  <div class="field">
 		<div class="ui labeled input">
@@ -34,24 +37,31 @@ $('#r_end').calendar({
 		</div>
 	  </div>
 	</div>
+	<div class="field">
+	<label>신청일자</label>
+	<div class="ui calendar" id="day">
+    <div class="ui input left icon">
+      <i class="calendar icon"></i>
+      <input type="text" placeholder="Date">
+    </div>
+  </div>
+	</div>
 	<div class="two fields">
 	  <div class="field">
-		<label>시작일자</label>
-		  <div class="ui calendar" id="r_start">
-			<div class="ui input left icon">
-			  <i class="calendar icon"></i>
-			  <input type="text" placeholder="시작일자">
-			</div>
-		  </div>
+		  <div class="ui calendar" id="timestart">
+    <div class="ui input left icon">
+      <i class="time icon"></i>
+      <input type="text" placeholder="Time">
+    </div>
+  </div>
 	  </div>
 	  <div class="field">
-		<label>종료일자</label>
-		  <div class="ui calendar" id="r_end">
-			<div class="ui input left icon">
-			  <i class="calendar icon"></i>
-			  <input type="text" placeholder="종료일자">
-			</div>
-		  </div>
+		  <div class="ui calendar" id="timeend">
+    <div class="ui input left icon">
+      <i class="time icon"></i>
+      <input type="text" placeholder="Time">
+    </div>
+  </div>
 	  </div>
 	</div>
 	  <div class="field" style="height:300px">
