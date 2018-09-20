@@ -24,5 +24,5 @@
 	<div class="ui text container" style="margin-top: 60px;">
 		<img src="/E_BLOCK_plus/1_file/img/_common/logo_white_font.png" style="margin-bottom: 60px;"><br>
 	</div>
-</div>
+</div> 
 <!-- 메인페이지 구성 끝 -->

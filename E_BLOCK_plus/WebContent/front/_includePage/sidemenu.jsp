@@ -108,13 +108,13 @@ $(document)
       <a class="item" href="사원지출관리페이지" id="sm_acc">
         사원지출관리
       </a>
-      <a class="item" href="부서지출관리페이지">
+      <a class="item" href="./dept_Spending.jsp">
         부서지출관리
       </a>
-      <a class="item" href="비품지출관리페이지">
+      <a class="item" href="./goods_Spending.jsp">
         비품지출관리
       </a>
-      <a class="item" href="회사지출관리페이지">
+      <a class="item" href="./com_Spending.jsp">
         회사지출관리
       </a>
   </div>
