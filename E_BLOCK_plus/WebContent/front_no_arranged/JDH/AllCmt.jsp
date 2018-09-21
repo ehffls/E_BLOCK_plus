@@ -20,7 +20,7 @@
 
 	<!-- 전체 출결 열람 페이지 -->
 	<div class="ui container" style="margin-top: 5px;">
-			<!-- 검색창 시작 -->
+			<!-- 검색창 시작  -->
 			<div class="ui two column stackable grid container">
 			<div class="column" align="left" style="padding-left: 0px;">
 				<h2 class="ui header"style="padding-top: 5px;">
@@ -35,10 +35,10 @@
 					<div div class="default text">이름</div>
 					<i class="dropdown icon"></i>
 						<div class="menu" style="top: 31px;">
-							<div class="item" data-value="name">이름</div>
+							<div class="item" data-value="name" >이름</div>
 							<div class="item" data-value="dname">부서명</div>
-							<div class="item" data-value="num">날짜</div>
-							<div class="item" data-value="addr">시간</div>
+							<div class="item" data-value="num"  >날짜</div>
+							<div class="item" data-value="addr" >시간</div>
 						</div>
 					</div>
 				<!-- dropdown 끝 -->			
