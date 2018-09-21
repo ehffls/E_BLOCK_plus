@@ -72,7 +72,7 @@
 			<div class="column" align="left" style="padding-left: 0px;">
 				<h2 class="ui header" style="padding-top: 5px;">
 					<i class="address book outline icon"></i>
-					<div class="content">사원 정보 목록</div>
+					<div class="content">전체 사원 정보 목록</div>
 				</h2>
 			</div>
 			<div class="column" align="right" style="padding-right: 0px;">
@@ -89,7 +89,8 @@
 						</div>
 					</div>
 					<!-- dropdown 끝 -->
-					<i class="search icon"></i> <input type="text" placeholder="검색" />
+					<i class="search icon"></i> 
+					<input type="text" placeholder="검색" />
 				</div>
 			</div>
 		</div>
