@@ -17,12 +17,10 @@
 		<br>
 	</div>
 </div>
-
 <div id="context"><!-- 모두 sticky에 context로 묶여있어야 함. -->
-
 <div class="grey ui inverted vertical masthead center aligned segment">
-	<div class="ui text container" style="margin-top: 60px;">
-		<img src="/E_BLOCK_plus/1_file/img/_common/logo_white_font.png" style="margin-bottom: 60px;"><br>
+	<div class="ui text container" style="margin-top: 20px;">
+		<img src="/E_BLOCK_plus/1_file/img/_common/logo_white_font.png" style="margin-bottom:20px; width: 250px; height:60px"><br>
 	</div>
 </div> 
 <!-- 메인페이지 구성 끝 -->

@@ -30,6 +30,7 @@ $(function(){
 			}else if(text=="퇴사신청"){
 				witch="resignFormAjax";
 			}
+			$('#form_1').transition('vertical flip');
 				$.ajax({
 					method:"get"
 				   ,url:witch+".jsp"
@@ -37,6 +38,7 @@ $(function(){
 					   $("#form_1").html(result);
 				   }
 				});
+			$('#form_1').transition('vertical flip');
 		}
 	});
 	$('#ap_Ok').click(function() {
