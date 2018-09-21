@@ -145,25 +145,27 @@ BEGIN -- 안쪽 구문
       IF _e_no = 0
 		  THEN 
 				-- 새 시퀀스 번호를 채번함
-				SELECT currSeqVal('seq_e_no')+1 INTO _new_eno from dual;
+				SELECT nextSeqVal('seq_e_no') INTO _new_eno from dual;
+
 				-- emp 테이블에 INSERT 실행
 				INSERT INTO `emp`(e_no, d_no, e_id, e_pw, e_name, e_jdate, au_no,
 								e_ph, e_email, e_addr, note, e_bdate, gender, e_rank)
 				VALUES(_new_eno, _d_no, _e_id, _e_pw, _e_name, _e_jdate, _au_no,
 						 _e_ph, _e_mail, _e_addr, _note1, _e_bdate, _gender, _e_rank);
+
 					 -- cntr_list 테이블에 INSERT 실행
 				INSERT INTO `cntr_list`(e_no, cntr_date, cntr_sort, cntr_sal,
 												cntr_sdate, cntr_fdate, e_rank, note)
 				VALUES (_new_eno, _cntr_date, _cntr_sort, _cntr_sal,
 						  _cntr_sdate, _cntr_fdate, _e_rank, _note2);
-					 -- INSERT가 정상작동하면 실제 시퀀스를 1 올림
-				SELECT nextSeqVal('seq_e_no') as seq_columnName_val from dual;
-            
+
+
 		  -- 0보다 클때는 기존사원 재계약
       ELSEIF _e_no > 0
 		  THEN 
 					 -- 기존 사원번호를 채번함
             SET _old_eno = _e_no;
+
 					 -- cntr_list 테이블에 INSERT 실행
 				INSERT INTO `cntr_list`(e_no, cntr_date, cntr_sort, cntr_sal,
 												cntr_sdate, cntr_fdate, e_rank, note)

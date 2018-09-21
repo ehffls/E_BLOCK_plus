@@ -37,8 +37,10 @@ public class EmpDao {
 		return result;
 	}
 
+	
+	// 인사평가입
 	public int pev_add(Map<String, Object> pMap) {
-		result = sqlSession.insert(nameSpace+"pev_add",pMap);
+		result = sqlSession.insert(nameSpace+"pev_add",pMap);//프로시저 호
 		return result;
 	}
 
