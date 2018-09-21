@@ -83,7 +83,7 @@
 							</a>
 						</div>
 							<div align="right">
-							<div class="ui large button" onclick="ac_add()">수정하기</div>
+							<div class="ui large button" onclick="ac_add()" style=" margin-top: 1px;">수정하기</div>
 							</div>
 					</th>
 				</tr>
