@@ -1,13 +1,17 @@
 package eblock.c_dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.log4j.Logger;
 
 import util.MybatisSession;
 
 public class EmpDao {
+	Logger logger = Logger.getLogger(EmpDao.class);
+	
 	SqlSession sqlSession = null;
 	public EmpDao() {
 		sqlSession = MybatisSession.getSqlSession();
@@ -37,16 +41,21 @@ public class EmpDao {
 		return result;
 	}
 
+	//─────────[ 인사평가 입력 ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 	public int pev_add(Map<String, Object> pMap) {
-		result = sqlSession.insert(nameSpace+"pev_add",pMap);
+		sqlSession.update(nameSpace+"pev_add",pMap);//프로시저 호출
+		result = (int)pMap.get("result");//'result'키에 담긴 Object 타입을 int타입으로 형전환
+		logger.info("[ pev_add ]	  result: "+result);
 		return result;
 	}
 
+	//─────────[ 인사평가 수정 ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 	public int pev_upd(Map<String, Object> pMap) {
-		result = sqlSession.update(nameSpace+"pev_edit",pMap);
+		result = sqlSession.update(nameSpace+"pev_edit",pMap);//프로시저 호출
 		return result;
 	}
 
+	//─────────[ 인사평가 조회 ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 	public List<Map<String, Object>> pev_myList(Map<String, Object> pMap) {
 		list = sqlSession.selectList(nameSpace+"pev_myList", pMap);
 		return list;
@@ -87,4 +96,22 @@ public class EmpDao {
 		return result;
 	}
 
+	
+	public static void main(String[] args) {
+		EmpDao eDao = new EmpDao();
+		
+		Map<String, Object> pMap = new HashMap<>();
+		pMap.put("ev_eno",3);
+		pMap.put("tg_eno",10);
+		pMap.put("ev_content","넌 좀 혼나야함");
+		pMap.put("ev_score",40);
+		
+		List<Map<String,Object>> rlist = null;
+		int result = 3;
+		 
+		result = eDao.pev_add(pMap);
+		
+		System.out.println(result);
+		
+	}
 }

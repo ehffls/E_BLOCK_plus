@@ -2,7 +2,7 @@
 SELECT * FROM `sequences`;
 
 INSERT INTO `cmt_list`(cmt_no, e_no, cmt_date, cmt_time)
-VALUES(nextSeqVal('seq_cmt_no'), 3#{e_no}
+VALUES(nextSeqVal('seq_cmt_no'), 5#{e_no}
 	   ,DATE_FORMAT(now(), '%Y-%m-%d') /* 2011-06-14 */
       ,curtime() /* 19:32:23 */
       )

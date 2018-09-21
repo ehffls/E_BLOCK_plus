@@ -3,5 +3,17 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="eblock.mybatis.mapper.emp">
+ <!-- #{result, mode=OUT, jdbcType=INTEGER} -->
+ <!-- ─────────[ 인사평가 입력 ] ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  -->
+ 	<update id="pev_add" statementType="CALLABLE" parameterType="map" >
+	 	 { CALL proc_pev_add(
+				#{ev_eno}
+			,	#{tg_eno}
+			,	#{ev_content}
+			,	#{ev_score}
+			, #{result,mode=OUT,jdbcType=INTEGER}  
+			)
+		}
+	</update>
  
  </mapper>
