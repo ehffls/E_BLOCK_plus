@@ -3,17 +3,125 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="eblock.mybatis.mapper.emp">
- <!-- #{result, mode=OUT, jdbcType=INTEGER} -->
- <!-- ─────────[ 인사평가 입력 ] ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  -->
+
+<!-- 
+		EmpDao 클래스의 각 메소드 상단에 있는 업무를 검색하거나,
+		태그 id를 검색하여 찾아가기 바랍니다.
+ -->
+
+
+
+
+
+ <!--
+ ■■■■■■■■■■ [ 로그인하기 | 시작 : 테스트완료(09/23) ] ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  -->
+
+	<select id="login_check" parameterType="map" resultType="map">
+		 SELECT CASE(<!-- [ outter CASE문 ] 시작 -->
+                	 IFNULL(<!-- [ outter 널값체크 ] 시작 -->
+               				(SELECT <!-- [ inner CASE문 ] 시작 -->
+               						CASE (SELECT IFNULL(<!-- [ inner 널값체크 ] 시작
+               							  					 NULL = -1 / NOT NULL(아이디있음) = 1 -->
+               										    (SELECT 1 FROM DUAL WHERE EXISTS
+               										     	(SELECT e_id FROM `emp` WHERE e_id = #{e_id})
+               										    ), -1 ) FROM DUAL
+                                                        <!-- [ inner 널값체크 ] 종료 -->
+                                             )
+                                     <!-- [ inner 널값체크 결과 ] -1(NULL) / 1(아이디있음) -->
+                                     WHEN -1 THEN -1
+                                     WHEN  1 THEN (SELECT 2 FROM `emp`
+                                                    WHERE e_id = #{e_id}
+                                                      AND e_pw = #{e_pw} ) <!-- 아이디&비번 모두 조회할때, 일치하면 2 반환 -->
+                                      END
+                                  <!-- [ inner CASE문 ] 종료 -->
+                                  FROM dual
+                             ), 1 )
+                            <!-- [ outter 널값체크 ] 종료 -->
+                            )
+                <!-- [ outter 널값체크 결과 ] -1(아이디틀림) / 1(아이디만 맞음) / 2(모두일치) -->
+                WHEN -1 THEN 'THE ID DOSE NOT EXIST' 	<!-- 아이디가 존재하지 않는다는 안내메시지 -->
+                WHEN  1 THEN 'PASSWORD DOSE NOT MATCH'  <!-- 아이디만 맞고, 비밀번호가 일치하지 않는다는 안내메시지 -->
+                WHEN  2 THEN 'CONFIRM'					<!-- 아이디,비밀번호 모두 일치한다는 안내메시 -->
+                 END AS 'res_msg'
+  		  FROM DUAL;
+	</select>	
+	<select id="get_empInfo" parameterType="map" resultType="map">
+		SELECT
+			 d_no   AS 'd_no' 	<!-- 부서번호 -->
+	 		,d_name AS 'd_name'	<!-- 부서이름 -->
+	 		,e_no   AS 'e_no' 	<!-- 사원번호 -->
+    		,e_name AS 'e_name'	<!-- 사원이름 -->
+    		,e_rank AS 'e_rank' <!-- 사원직급 -->
+    		,au_no	AS 'au_no'	<!-- 사원권한 -->
+  		  FROM `view_DpEmpName`
+ 		 WHERE e_no = #{e_no};
+	</select>
+	
+ <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ [ 로그인하기 | 끝 ] ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	
+	
+	
+	
+	
+	
+	
+ <!--
+ ■■■■■■■■■■ [ 사원조회 : 사원집합에 대한 조건에 따라 조회하기 | 시작 : 테스트완료(09/23) ] ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  -->
+
+	<select id="info_empList" parameterType="map" resultType="map">
+		SELECT
+			 d.d_name	AS 'd_name'	<!-- 부서이름 -->
+			,e.e_no 	AS 'e_no'	<!-- 사원번호 -->
+			,e.e_id 	AS 'e_id'	<!-- 사원아이디 -->
+			,e.e_name 	AS 'e_name'	<!-- 사원명 -->
+			,e.e_rank	AS 'e_rank'	<!-- 사원직급 -->
+			,e.au_no	AS 'au_no'	<!-- 권한번호 -->
+			,d.d_ph		AS 'd_ph'	<!-- 부서연락처 -->
+			,e.gender	AS 'gender'	<!-- 사원성별 -->
+			,e.e_jdate	AS 'e_jdate'<!-- 사원입사일 -->
+			,e.e_bdate	AS 'e_bdate'<!-- 사원생일 -->
+			,d.d_ph		AS 'd_ph'	<!-- 사원연락처 -->
+			,e.e_email	AS 'e_mail'	<!-- 사원이메일 -->
+		  FROM emp e, dept d
+		 WHERE e.d_no = d.d_no
+		 <choose>
+		 	<when test="e_no != null">
+		   		AND e.e_no = #{e_no} </when>
+		 	<when test="e_name != null">
+			   AND e.e_name LIKE '%${e_name}%' </when>
+		 	<when test="d_name != null">
+			   AND d.d_name = #{d_name}	</when>
+		 	<when test="min_ejdate != null">
+			   <![CDATA[ AND e.e_jdate >= #{min_ejdate} ]]>	</when>
+		 	<when test="max_ejdate != null">
+			   <![CDATA[ AND e.e_jdate <= #{max_ejdate} ]]>	</when>
+		 </choose>
+		 ORDER BY e_rank desc, e_no
+	</select>
+	
+ <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ [ 사원조회 : 사원집합에 대한 조건에 따라 조회하기 | 끝 ] ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+
+
+
+
+
+
+ <!--
+ ■■■■■■■■■■ [ 인사평가 입력 | 시작 : 테스트완료(09/21) ] ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  -->
+ 
  	<update id="pev_add" statementType="CALLABLE" parameterType="map" >
-	 	 { CALL proc_pev_add(
-				#{ev_eno}
-			,	#{tg_eno}
-			,	#{ev_content}
-			,	#{ev_score}
-			, #{result,mode=OUT,jdbcType=INTEGER}  
-			)
+	 	{ CALL proc_pev_add( #{ev_eno}
+							,#{tg_eno}
+							,#{ev_content}
+							,#{ev_score}
+							,#{result,mode=OUT,jdbcType=INTEGER}
+			)				<!--OUT파라미터는 jdbcType을 명시한 -->
 		}
+	<!-- 프로시저 호출은 execute 권한이 있는 계정만 호출가능하다. ( IS NOT OUT PARAMETER ERROR 주의 )
+	 	 프로시저 호출시, CALL과 프로시이름 사이는 스페이스만 허용한다. -->
 	</update>
  
+ <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ [ 인사평가 입력 | 끝 ] ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  
  </mapper>
