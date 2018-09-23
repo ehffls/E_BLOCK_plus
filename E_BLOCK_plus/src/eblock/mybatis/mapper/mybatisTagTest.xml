@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="eblock.mybatis.mapper.mybatisTagTest">
+ 
+ <!-- 다중업데이트 동적쿼리 테스트 -->
+ <update id="multi_update_test" parameterType="java.util.List">
+        <foreach item="item" index="key" collection="list" separator=";">
+        UPDATE auth SET 
+	        <foreach item="value" index="key" collection="item.entrySet()" separator=",">
+	                ${key} = #{value}
+	        </foreach>
+        WHERE au_no = #{item.au_no}
+       </foreach>
+ </update>
+ 
+ </mapper>

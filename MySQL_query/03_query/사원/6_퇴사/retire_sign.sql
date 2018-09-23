@@ -13,8 +13,3 @@ SELECT
 	 rta-3(승인)
 */
 
-UPDATE `retire_ask_list`
-SET sign_rsn  = '승인합니다.' #{sign_rs}
-   ,sign_date = DATE_FORMAT(now(), '%Y-%m-%d') #{sign_date}
-   ,outcome   = 'rta-3' #{sign_rs} -- 승인일때 3 / 기각일때 2
-   ;
