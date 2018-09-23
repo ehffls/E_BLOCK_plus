@@ -61,13 +61,19 @@ public class EmpLogic {
 		return list;
 	}
 
+	public List<Map<String, Object>> cmt_deptList(Map<String, Object> pMap) {
+		list = empDao.cmt_deptList(pMap);
+		return list;
+	}
+	
+	
 	public int cntr_addEmp(Map<String, Object> pMap) {
 		result = empDao.cntr_addEmp(pMap);
 		return result;
 	}
 
-	public int cntr_setDept(Map<String, Object> pMap) {
-		result = empDao.cntr_setDept(pMap);
+	public int cntr_setDeptAuth(Map<String, Object> pMap) {
+		result = empDao.cntr_setDeptAuth(pMap);
 		return result;
 	}
 
@@ -78,6 +84,12 @@ public class EmpLogic {
 
 	public Object retire_list(Map<String, Object> pMap) {
 		list = empDao.retire_list(pMap);
+		return result;
+	}
+	
+	
+	public int retire_askUpd(Map<String, Object> pMap) {
+		result = empDao.retire_askUpd(pMap);
 		return result;
 	}
 	

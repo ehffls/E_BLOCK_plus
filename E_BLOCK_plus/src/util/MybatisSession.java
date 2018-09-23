@@ -24,8 +24,8 @@ public class MybatisSession {
 		try {
 			reader = Resources.getResourceAsReader(resource);
 			sqlMapper = new SqlSessionFactoryBuilder().build(reader);
-			sqlSes = sqlMapper.openSession();//SqlSession 생성
-			
+			sqlSes = sqlMapper.openSession(true);//SqlSession 생성
+//			sqlSes.commit(false);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
