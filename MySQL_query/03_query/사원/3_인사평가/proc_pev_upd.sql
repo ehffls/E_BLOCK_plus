@@ -2,14 +2,14 @@
 	 SELECT * FROM `pev`;
 	 SELECT * FROM `pev_list`;
 --
-	 DROP PROCEDURE proc_pev_add;
+	 DROP PROCEDURE proc_pev_upd;
 	 commit;
     
     
 -- [ 프로시저 사용하기 ] -------------------------------------------------------------
 CALL proc_pev_upd(3#{ev_eno}
-					  ,1#{tg_eno}
-					  ,'테스트로 입력했음'#{ev_content}
+					  ,10#{tg_eno}
+					  ,'배점변경'#{ev_content}
                  ,45#{ev_score}
                  ,@RESULT);
 SELECT @RESULT;
@@ -70,7 +70,7 @@ BEGIN -- 안쪽 구문
 		/* pev 테이블에 UPDATE 실행 */
 		UPDATE `pev` SET ev_date = DATE_FORMAT(now(), '%Y-%m-%d')
 						    ,ev_content = _ev_content
-						    ,ev_score = _ev_content
+						    ,ev_score = _ev_score
                       ,ratio = _ratio /* 평가기간 중 진급이 가능한 경우엔 변경될 여지가 있음 */
 	    WHERE ev_eno = _ev_eno
 		   AND tg_eno = _tg_eno

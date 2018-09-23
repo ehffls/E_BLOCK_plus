@@ -95,8 +95,20 @@ public class EmpController implements Controller {
 				name ="attribute의 name";
 				path="forward:xxx.jsp";
 			}
-			//출결 조회하기
+			//출결 체크하기 (달력용)
+			if(crud.equals("cmt_calendar")) {
+				robj = empLogic.cmt_calendar(pMap);
+				name ="attribute의 name";
+				path="forward:xxx.jsp";
+			}
+			//출결 조회하기 (개인)
 			else if(crud.equals("myList")) {
+				robj = empLogic.cmt_myList(pMap);
+				name ="attribute의 name";
+				path="forward:xxx.jsp";
+			}
+			//출결 조회하기 (부서)
+			else if(crud.equals("deptList")) {
 				robj = empLogic.cmt_myList(pMap);
 				name ="attribute의 name";
 				path="forward:xxx.jsp";
@@ -111,8 +123,8 @@ public class EmpController implements Controller {
 				path="forward:xxx.jsp";
 			}
 			//부서배정하기 및 이동하기
-			else if(crud.equals("setDept")) {
-				robj = empLogic.cntr_setDept(pMap);
+			else if(crud.equals("setDeptAuth")) {
+				robj = empLogic.cntr_setDeptAuth(pMap);
 				name ="attribute의 name";
 				path="forward:xxx.jsp";
 			}
@@ -126,13 +138,19 @@ public class EmpController implements Controller {
 				path="forward:xxx.jsp";
 				
 			}
+			//퇴사신청 수정하기
+			else if(crud.equals("askUpd")) {
+				robj = empLogic.retire_askUpd(pMap);
+				name ="attribute의 name";
+				path="forward:xxx.jsp";
+			}
 			//퇴사신청 조회하기
 			else if(crud.equals("list")) {
 				robj = empLogic.retire_list(pMap);
 				name ="attribute의 name";
 				path="forward:xxx.jsp";
 			}
-			//퇴사신청 처리하기
+			//퇴사신청 처리하기(결재)
 			else if(crud.equals("sign")) {
 				robj = empLogic.retire_sign(pMap);
 				name ="attribute의 name";
