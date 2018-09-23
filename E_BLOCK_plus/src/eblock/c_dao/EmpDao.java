@@ -21,60 +21,65 @@ public class EmpDao {
 
 
 	
-	//─────[ 로그인하기 ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+	//─────[ 로그인하기 | 테스트완료(09/23) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 	public List<Map<String, Object>> login_check(Map<String, Object> pMap) {
 			//아이디,비밀번호를 입력하여 확인받기
 		list = sqlSession.selectList(nameSpace+"login_check", pMap);
-			//승인메시지일때
+			//확인결과가 승인메시지일때
 		if(list.get(0).get("res_msg") == "CONFIRM") {
 			int e_no = (int)list.get(0).get("res_msg");//결과값은 사원번호
-			pMap.put("e_no",e_no);
-				//사원번호로 사원정보받기
+			pMap.put("e_no",e_no);//사원번호로 사원정보받기
 			list = sqlSession.selectList(nameSpace+"get_empInfo", pMap);
-			//logger.info(	"res_msg = "+list.get(0).get("d_name"));
 		}
 		return list;
-	}//	로그인하기 끝 
+	}
 
 	
 	
-	//─────[ 사원조회 : 사원집합에 대한 조건에 따라 조회하기 ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+	
+	//─────[ 사원조회 | 테스트완료(09/23) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 	public List<Map<String, Object>> info_empList(Map<String, Object> pMap) {
 		list = sqlSession.selectList(nameSpace+"info_empList", pMap);
-		//logger.info("list = "+list.get(0).size());
 		return list;
-	}//	사원조회 끝
-
+	}
+	//─────[ 사원개인정보조회 | 테스트완료(09/23) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 	public List<Map<String, Object>> info_persList(Map<String, Object> pMap) {
 		list = sqlSession.selectList(nameSpace+"info_persList", pMap);
 		return list;
 	}
-
+	//─────[ 사원개인정보수정 | 테스트완료(09/23) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 	public int info_persUpd(Map<String, Object> pMap) {
 		result = sqlSession.update(nameSpace+"info_persUpd",pMap);
 		return result;
 	}
 
-	//─────[ 인사평가 입력 ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+	
+	
+	
+	//─────[ 인사평가 입력 | 테스트완료(09/21) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 	public int pev_add(Map<String, Object> pMap) {
 		sqlSession.update(nameSpace+"pev_add",pMap);//프로시저 호출
+		result = (int)pMap.get("result");//'result'키에 담긴 Object 타입을 int타입으로 형전환
+		//logger.info("[ pev_add ]	  result: "+result);
+		return result;
+	}
+	//─────[ 인사평가 수정 | 테스트완료(09/23) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+	public int pev_upd(Map<String, Object> pMap) {
+		result = sqlSession.update(nameSpace+"pev_upd",pMap);//프로시저 호출
 		result = (int)pMap.get("result");//'result'키에 담긴 Object 타입을 int타입으로 형전환
 		logger.info("[ pev_add ]	  result: "+result);
 		return result;
 	}
-
-	//─────[ 인사평가 수정 ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-	public int pev_upd(Map<String, Object> pMap) {
-		result = sqlSession.update(nameSpace+"pev_edit",pMap);//프로시저 호출
-		return result;
-	}
-
-	//─────[ 인사평가 조회 ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+	//─────[ 인사평가 조회 | 테스트완료(09/23) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 	public List<Map<String, Object>> pev_myList(Map<String, Object> pMap) {
 		list = sqlSession.selectList(nameSpace+"pev_myList", pMap);
 		return list;
 	}
 
+	
+	/////////여기까지 작업했음.
+	
+	
 	public int cmt_checkIn(Map<String, Object> pMap) {
 		result = sqlSession.insert(nameSpace+"cmt_checkIn",pMap);
 		return result;
@@ -116,9 +121,56 @@ public class EmpDao {
 		
 		Map<String, Object> pMap = new HashMap<>();
 		List<Map<String,Object>> rlist = null;
+		int result = 0;
+		
+		
+		//인사평가 수정 테스트 (09/23)
+//		pMap.put("ev_eno",3);
+//		pMap.put("tg_eno",10);
+//		pMap.put("ev_content","재판단.. 괜찮은 친구네 ");
+//		pMap.put("ev_score",85);
+//		
+//		result = eDao.pev_upd(pMap);
+//		System.out.println(result);
 
-		pMap.put("e_name", "김");
-		rlist = eDao.info_empList(pMap);
+		
+		//인사평가 입력 테스트 (09/21)
+//		pMap.put("ev_eno",3);
+//		pMap.put("tg_eno",10);
+//		pMap.put("ev_content","넌 좀 혼나야함");
+//		pMap.put("ev_score",40);
+//		
+//		result = eDao.pev_add(pMap);
+//		System.out.println(result);
+		
+		
+		//인사평가 조회 테스트 (09/23)
+//		pMap.put("ev_eno", 3);
+//		pMap.put("min_qrtno", "18-3");
+//		rlist = eDao.pev_myList(pMap);
+		
+		
+		
+		
+		
+		//사원개인정보 수정 테스트 (09/23)
+//		pMap.put("e_no", 5);
+//		pMap.put("e_ph", "010-9988-9898");
+//		pMap.put("e_addr","어디든 살고있음");
+//		result = eDao.info_persUpd(pMap);
+
+		
+		//사원개인정보 조회 테스트 (09/23)
+//		pMap.put("e_no", 1);
+//		rlist = eDao.info_persList(pMap);
+			
+		
+		//사원정보조회 테스트 (09/23)
+//		pMap.put("e_name", "김");
+//		rlist = eDao.info_empList(pMap);
+		
+		
+		
 		
 		
 		//로그인하기 테스트 (09/23)
@@ -127,18 +179,6 @@ public class EmpDao {
 //		rlist = eDao.login_check(pMap);
 //		System.out.println(rlist.get(0).size());
 		
-		
-		//인사평가 입력 테스트 (09/21)
-//		pMap.put("ev_eno",3);
-//		pMap.put("tg_eno",10);
-//		pMap.put("ev_content","넌 좀 혼나야함");
-//		pMap.put("ev_score",40);
-//		
-//		List<Map<String,Object>> rlist = null;
-//		int result = 3;
-//		 
-//		result = eDao.pev_add(pMap);
-//		System.out.println(result);
 		
 	}
 }

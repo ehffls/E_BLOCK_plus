@@ -10,12 +10,7 @@
  -->
 
 
-
-
-
- <!--
- ■■■■■■■■■■ [ 로그인하기 | 시작 : 테스트완료(09/23) ] ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  -->
-
+ <!-- [ 로그인하기 | 테스트완료(09/23) ] ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  -->
 	<select id="login_check" parameterType="map" resultType="map">
 		 SELECT CASE(<!-- [ outter CASE문 ] 시작 -->
                 	 IFNULL(<!-- [ outter 널값체크 ] 시작 -->
@@ -57,7 +52,6 @@
  		 WHERE e_no = #{e_no};
 	</select>
 	
- <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ [ 로그인하기 | 끝 ] ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 	
 	
 	
@@ -65,10 +59,40 @@
 	
 	
 	
- <!--
- ■■■■■■■■■■ [ 사원조회 : 사원집합에 대한 조건에 따라 조회하기 | 시작 : 테스트완료(09/23) ] ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  -->
-
+	
+ <!-- [ 사원조회 | 테스트완료(09/23) ] ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  -->
 	<select id="info_empList" parameterType="map" resultType="map">
+		SELECT
+			 d.d_name	AS 'd_name'	<!-- 부서이름 -->
+			,e.e_no 	AS 'e_no'	<!-- 사원번호 -->
+			,e.e_name 	AS 'e_name'	<!-- 사원명 -->
+			,e.e_rank	AS 'e_rank'	<!-- 사원직급 -->
+			,e.au_no	AS 'au_no'	<!-- 권한번호 -->
+			,d.d_ph		AS 'd_ph'	<!-- 부서연락처 -->
+			,d.d_ph		AS 'd_ph'	<!-- 사원연락처 -->
+			,e.e_email	AS 'e_mail'	<!-- 사원이메일 -->
+		  FROM emp e, dept d
+		 WHERE e.d_no = d.d_no
+		 <choose>
+		 	<when test="e_no != null">
+		   		AND e.e_no = #{e_no} </when>
+		 	<when test="e_name != null">
+			   AND e.e_name LIKE '%${e_name}%'<!-- MySQL의 LIKE PATTERN MATCH -->
+			</when>
+		 	<when test="d_name != null">
+			   AND d.d_name LIKE '%${d_name}%'<!-- MySQL의 LIKE PATTERN MATCH -->
+			   </when>
+		 	<when test="min_ejdate != null"><!-- 검색최소입사기한 -->
+			   <![CDATA[ AND e.e_jdate >= #{min_ejdate} ]]>	</when>
+		 	<when test="max_ejdate != null"><!-- 검색최대입사기한 -->
+			   <![CDATA[ AND e.e_jdate <= #{max_ejdate} ]]>	</when>
+		 </choose>
+		 ORDER BY e_rank desc, e_no
+	</select>
+		
+		
+ <!-- [ 사원개인정보조회 | 테스트완료(09/23) ] ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  -->
+	<select id="info_persList" parameterType="map" resultType="map">
 		SELECT
 			 d.d_name	AS 'd_name'	<!-- 부서이름 -->
 			,e.e_no 	AS 'e_no'	<!-- 사원번호 -->
@@ -84,22 +108,21 @@
 			,e.e_email	AS 'e_mail'	<!-- 사원이메일 -->
 		  FROM emp e, dept d
 		 WHERE e.d_no = d.d_no
-		 <choose>
-		 	<when test="e_no != null">
-		   		AND e.e_no = #{e_no} </when>
-		 	<when test="e_name != null">
-			   AND e.e_name LIKE '%${e_name}%' </when>
-		 	<when test="d_name != null">
-			   AND d.d_name = #{d_name}	</when>
-		 	<when test="min_ejdate != null">
-			   <![CDATA[ AND e.e_jdate >= #{min_ejdate} ]]>	</when>
-		 	<when test="max_ejdate != null">
-			   <![CDATA[ AND e.e_jdate <= #{max_ejdate} ]]>	</when>
-		 </choose>
-		 ORDER BY e_rank desc, e_no
+		   AND e.e_no = #{e_no}
 	</select>
-	
- <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ [ 사원조회 : 사원집합에 대한 조건에 따라 조회하기 | 끝 ] ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+
+ <!-- [ 사원개인정보수정 | 테스트완료(09/21) ] ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  -->
+	<update id="info_persUpd" parameterType="map">
+		UPDATE `emp`
+		<trim prefix="SET" prefixOverrides=",">
+			<if test="e_pw != null">e_pw = #{e_pw}</if>
+			<if test="e_ph != null">,e_ph = #{e_ph}</if>
+			<if test="e_email != null">,e_email = #{e_email}</if>
+			<if test="e_addr != null">,e_addr = #{e_addr}</if>
+		</trim><!-- SET으로 문장이 선행하도록 할때, 각 태그가 콤마(,)로 시작하게되면 콤마를 잘라주는 동적SQL태그 -->
+         WHERE e_no = #{e_no}
+	</update>
 
 
 
@@ -107,21 +130,54 @@
 
 
 
- <!--
- ■■■■■■■■■■ [ 인사평가 입력 | 시작 : 테스트완료(09/21) ] ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  -->
- 
- 	<update id="pev_add" statementType="CALLABLE" parameterType="map" >
+
+ <!-- [ 인사평가 입력 | 테스트완료(09/21) ] ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  -->
+ 	<insert id="pev_add" statementType="CALLABLE" parameterType="map" >
+	<!-- 프로시저 호출은 execute 권한이 있는 계정만 호출가능하다. ( IS NOT OUT PARAMETER ERROR 주의 )
+	 	 프로시저 호출시, CALL과 프로시이름 사이는 스페이스만 허용한다. -->
 	 	{ CALL proc_pev_add( #{ev_eno}
 							,#{tg_eno}
 							,#{ev_content}
 							,#{ev_score}
 							,#{result,mode=OUT,jdbcType=INTEGER}
-			)				<!--OUT파라미터는 jdbcType을 명시한 -->
+			)				<!-- OUT파라미터는 jdbcType을 명시한다. -->
 		}
+	</insert>
+
+
+ <!-- [ 인사평가 수정 | 테스트완료(09/23) ] ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  -->
+ 	<insert id="pev_upd" statementType="CALLABLE" parameterType="map" >
 	<!-- 프로시저 호출은 execute 권한이 있는 계정만 호출가능하다. ( IS NOT OUT PARAMETER ERROR 주의 )
 	 	 프로시저 호출시, CALL과 프로시이름 사이는 스페이스만 허용한다. -->
-	</update>
- 
- <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ [ 인사평가 입력 | 끝 ] ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	 	{ CALL proc_pev_upd( #{ev_eno}
+							,#{tg_eno}
+							,#{ev_content}
+							,#{ev_score}
+							,#{result,mode=OUT,jdbcType=INTEGER}
+			)				<!-- OUT파라미터는 jdbcType을 명시한다. -->
+		}
+	</insert>
   
+  
+ <!-- [ 인사평가 조회 | 테스트완료(09/23) ] ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  -->
+	<select id="pev_myList" parameterType="map" resultType="map">
+		SELECT
+         	ev_eno, tg_eno, qrt_no, ev_date, ev_content, ev_score, ratio
+  		  FROM `pev`
+  		 WHERE ev_eno = #{ev_eno}
+  		<choose>
+		 	<when test="min_qrtno != null">
+  		   		<![CDATA[ AND qrt_no >= #{min_qrtno} ]]>
+		 	</when>
+		 	<when test="max_qrtno != null">
+   		   		<![CDATA[ AND qrt_no <= #{max_qrtno} ]]>
+		 	</when>
+		 </choose>
+	</select>
+ 
+ 
+ 
+ 
+ 
+ 
  </mapper>
