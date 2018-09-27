@@ -84,7 +84,7 @@
 							<a class="icon item"> 
 								<i class="right chevron icon"></i>
 							</a>
-						</div>
+						</div> 
 					</th>
 				</tr>
 			</tfoot>

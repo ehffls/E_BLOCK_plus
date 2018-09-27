@@ -82,14 +82,14 @@
 								<i class="right chevron icon"></i>
 							</a>
 						</div>
-							<div align="right">
+						<div align="right">
 							<div class="ui large button" onclick="ac_add()" style=" margin-top: 1px;">수정하기</div>
-							</div>
+						</div>
 					</th>
 				</tr>
 			</tfoot>
 		</table>
-	
+	<!-- 권한부여 modal -->
 		<div class="ui mini modal" id="acc_add">
 			<div class="header" align="center">권한부여</div>
 
@@ -110,8 +110,8 @@
 				<div class="actions">
 					<br>
 					<div align="center">
-					<div class="ui a button">등록</div>
-					<div class="ui cancel button">취소</div>
+						<div class="ui a button">등록</div>
+						<div class="ui cancel button">취소</div>
 					</div>
 				</div>
 
