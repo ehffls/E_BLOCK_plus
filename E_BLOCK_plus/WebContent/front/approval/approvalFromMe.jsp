@@ -9,13 +9,12 @@
 <meta charset="UTF-8">
 <title>내결재신청목록</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp" %>
+<script src="/E_BLOCK_plus/0_src/js/table/datatables.js"></script>
 <script type="text/javascript">
-	$(function(){
-		//sidemenu처리 부분
-		$('#approval').attr("class","active item");
-		$('#sm_ap').attr("class","active item");
-		$('#sm_ap_fromme').attr("class","active item");
-	});
+$(document).ready(function() {	
+	$('#sm_ap').attr("class","active item");
+	$('#sm_ap_fromme').attr("class","active item");
+});
 </script>
 </head>
 <body>
@@ -29,34 +28,45 @@
 
 <!--=============== 작성부분 ===============-->
 <div class="ui container" style="margin-top:20px">
-<h2 style="margin-top:20px">내 결재신청 목록</h2>
-<table class="grey ui selectable celled table">
-  <thead>
-    <tr>
-      <th>수신자</th>
-      <th>제목</th>
-      <th>날짜</th>
-      <th>상태</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%
-	for(int i=0;i<tablim;i++){
-%>
-    <tr>
-      <td><%=i %></td>
-      <td><%=i %></td>
-      <td><%=i %></td>
-      <td><%=i %></td>
-      <td style="width:125px"><button class="ui fluid secondary basic button">상세보기</button></td>
-    </tr>
-<%
-	}
-%>
-  </tbody>
-</table>
+<table id="taable" class="ui celled table">
+      <thead>
+        <tr><th>Band</th>
+        <th>Song</th>
+      </tr></thead>
+    </table>
 </div>
+
+<script>
+ var table =  $('#taable').DataTable( {
+     ajax: {
+		url: "./List_JSON.jsp",
+    	 dataSrc: 'data'
+     },
+     columns: [
+         { "data": "band" },
+         { "data": "song" }
+     ]
+ } );
+
+$('#taable tbody').on( 'dblclick', 'tr', function () {
+	 var data = table.row( this ).data();
+     alert(data["band"] );
+     
+    if ( $(this).hasClass('active') ) {
+        $(this).removeClass('active');
+    }
+    else {
+        table.$('tr.active').removeClass('active');
+        $(this).addClass('active');
+    }
+} );
+$('#taable tbody').on( 'mouseover', 'tr', function () {
+	 var data = table.row( this ).data();
+       table.$('tr.active').removeClass('active');
+       $(this).addClass('active');
+} );
+
+</script>
 <!--=============== 작성부분 ===============-->
 
 

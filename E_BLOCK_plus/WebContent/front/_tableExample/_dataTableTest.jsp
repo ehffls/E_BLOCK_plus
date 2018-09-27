@@ -52,7 +52,7 @@
      ]
  } );
 
-$('#taable tbody').on( 'click', 'tr', function () {
+$('#taable tbody').on( 'dblclick', 'tr', function () {
 	 var data = table.row( this ).data();
      alert(data["band"] );
      
@@ -63,6 +63,11 @@ $('#taable tbody').on( 'click', 'tr', function () {
         table.$('tr.active').removeClass('active');
         $(this).addClass('active');
     }
+} );
+$('#taable tbody').on( 'mouseover', 'tr', function () {
+	 var data = table.row( this ).data();
+       table.$('tr.active').removeClass('active');
+       $(this).addClass('active');
 } );
 
 </script>
