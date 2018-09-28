@@ -95,7 +95,11 @@ public class EquipDao {
 		result = sqlSession.update(nameSpace+"inb_sign",pMap);
 		return result;
 	}
-
+	
+	public List<Map<String, Object>> inb_list(Map<String, Object> pMap) {
+		list = sqlSession.selectList(nameSpace+"inb_list", pMap);
+		return list;
+	}
 
 	public List<Map<String, Object>> ask_list(Map<String, Object> pMap) {
 		list = sqlSession.selectList(nameSpace+"ask_list", pMap);
@@ -107,4 +111,29 @@ public class EquipDao {
 		list = sqlSession.selectList(nameSpace+"sign_list", pMap);
 		return list;
 	}
+
+
+	public int mk_add(Map<String, Object> pMap) {
+		result = sqlSession.update(nameSpace+"mk_add",pMap);
+		return result;
+	}
+
+
+	public int mk_upd(Map<String, Object> pMap) {
+		result = sqlSession.update(nameSpace+"mk_upd",pMap);
+		return result;
+	}
+
+
+	public int mk_del(Map<String, Object> pMap) {
+		result = sqlSession.update(nameSpace+"mk_del",pMap);
+		return result;
+	}
+
+
+	public List<Map<String, Object>> mk_list(Map<String, Object> pMap) {
+		list = sqlSession.selectList(nameSpace+"mk_list", pMap);
+		return list;
+	}
+
 }
