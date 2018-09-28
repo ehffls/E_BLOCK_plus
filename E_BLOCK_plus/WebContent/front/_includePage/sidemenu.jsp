@@ -37,10 +37,10 @@ $(document)
   <div class="item" id="sm_mp">
  	<div class="header">마이페이지</div>
   	<div class="menu">
-      <a class="item" href="<%=Project_Root2 %>/front/myPage/myPage.jsp" id="sm_mp_mp">
+      <a class="item" href="<%=Project_Root2 %>/front/emp/info/persList.jsp" id="sm_mp_mp">
         내 정보
       </a>
-      <a class="item" href="<%=Project_Root2 %>/front/myPage/myCommute.jsp" id="sm_mp_com">
+      <a class="item" href="<%=Project_Root2 %>/front/emp/cmt/myList.jsp" id="sm_mp_com">
         내 출퇴근 내역
       </a>
     </div>

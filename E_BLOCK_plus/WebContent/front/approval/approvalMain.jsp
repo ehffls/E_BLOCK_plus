@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%	
+	String Project_Root3 = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,26 +17,26 @@ $(function(){
 		allowCategorySelection: true,
 		action: function(text, value) {
 			if(text=="휴가신청"){
-				witch="breakFormAjax";
+				witch="<%=Project_Root3 %>/front/attd/my/breakAsk.jsp";
 			}else if(text=="반가신청"){
-				witch="harfBreakFormAjax";
+				witch="<%=Project_Root3 %>/front/attd/my/harfBreakAsk.jsp";
 			}else if(text=="출장신청"){
-				witch="businessTripFormAjax";
+				witch="<%=Project_Root3 %>/front/attd/my/businessTripAsk.jsp";
 			}else if(text=="외출신청"){
-				witch="goOutFormAjax";
+				witch="<%=Project_Root3 %>/front/attd/my/goOutAsk.jsp";
 			}else if(text=="등록신청"){
-				witch="newArticleFormAjax";
+				witch="<%=Project_Root3 %>/front/equip/add/newArticleAsk.jsp";
 			}else if(text=="구매신청"){
-				witch="buyArticleFormAjax";
+				witch="<%=Project_Root3 %>/front/equip/purc/buyArticleAsk.jsp";
 			}else if(text=="사용신청"){
-				witch="useArticleFormAjax";
+				witch="<%=Project_Root3 %>/front/equip/inb/useArticleAsk.jsp";
 			}else if(text=="퇴사신청"){
-				witch="resignFormAjax";
+				witch="<%=Project_Root3 %>/front/emp/retire/retireAsk.jsp";
 			}
 			$('#form_1').transition('fade down');
 				$.ajax({
 					method:"get"
-				   ,url:witch+".jsp"
+				   ,url:witch
 				   ,success:function(result){
 					   $("#form_1").html(result);
 				   }
