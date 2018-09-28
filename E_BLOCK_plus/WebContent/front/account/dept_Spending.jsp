@@ -12,13 +12,18 @@
 	<!-- main -->
 	<%@ include file="/front/_includePage/mainpage.jsp"%>
 
+<script type="text/javascript">
+function dept2(){
+	
+	location.href="./dept_Spending2.jsp"
+}
 
-
+</script>
 
 	<!--=============== 작성부분 ===============-->
 	<div class="ui container">
 		<div class="ui secondary  menu">
-			<a class="item">상세보기</a> <a class="item">수정</a> <a class="item">삭제</a>
+			<a class="item" id="dept2" onclick="dept2()">상세보기</a> <a class="item">수정</a> <a class="item">삭제</a>
 
 			<div class="right menu">
 				<div class="item">

@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>goods_Spending</title>
+<title>emp_Spending</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp"%>
 <script src="/E_BLOCK_plus/0_src/js/table/datatables.js"></script>
 </head>
@@ -13,10 +13,6 @@
 	<!-- main -->
 	<%@ include file="/front/_includePage/mainpage.jsp"%>
 
-
-
-
-	<!--=============== 작성부분 ===============-->
 	<script type="text/javascript">
 $(document).ready(function() {
 	var table = $('#taable').DataTable({
@@ -50,8 +46,14 @@ $(document).ready(function() {
 	});
 
 });
+function dept2(){
+	
+	location.href="./exDeptEx.jsp"
+}
 
 </script>
+
+	<!--=============== 작성부분 ===============-->
 	<div class="ui container">
 
 		<table id="taable" class="ui celled table">
@@ -60,14 +62,16 @@ $(document).ready(function() {
 				<tr>
 					<td colspan="3">
 						<div class="ui secondary  menu">
-							<a class="item">상세보기</a> <a class="item">수정</a> <a class="item">삭제</a>
+							<a class="item" id="dept2" onclick="dept2()">상세보기</a>
+							 <a class="item">수정</a> 
+							 <a class="item">삭제</a>
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<th>물품명</th>
-					<th>가격</th>
-					<th>갯수</th>
+					<th>부서명</th>
+					<th>총지출</th>
+					<th>월지출</th>
 				</tr>
 
 			</thead>

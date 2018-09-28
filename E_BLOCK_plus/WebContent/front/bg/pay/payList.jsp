@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>goods_Spending</title>
+<title>payList</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp"%>
 <script src="/E_BLOCK_plus/0_src/js/table/datatables.js"></script>
 </head>
@@ -50,24 +50,50 @@ $(document).ready(function() {
 	});
 
 });
+function emp(){
+	$('#dept_S').modal('show')
+}
 
 </script>
+<div class="ui mini modal" id="dept_S" >
+  <div class="header">사원 급여 변경</div>
+  
+    <div class="content">
+    <div class="bady">
+    <div class="text">현재금액</div>
+    <div class="ui input" style="width:100%"><input type="text" ></div>
+    <div class="text">변경 금액</div>
+    <div class="ui input" style="width:100%"><input type="text" ></div>
+    <div class="text">담당자 이름</div>  
+    <div class="ui input" style="width:100%"><input type="text" ></div>
+    <div class="text">변경 날짜</div>     
+    <div class="ui input" style="width:100%"><input type="text" ></div>
+     <div class="actions">
+     <br>
+    <div class="ui a button">등록</div>
+    <div class="ui cancel button">취소</div>
+  </div>
+    
+    </div>
+  </div>
+</div>   
+
 	<div class="ui container">
 
 		<table id="taable" class="ui celled table">
 
 			<thead>
 				<tr>
-					<td colspan="3">
+					<td colspan="2">
 						<div class="ui secondary  menu">
-							<a class="item">상세보기</a> <a class="item">수정</a> <a class="item">삭제</a>
+							 <a class="item" onclick="emp()">수정</a> <a class="item">삭제</a>
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<th>물품명</th>
-					<th>가격</th>
-					<th>갯수</th>
+					<th>사원이름</th>
+					<th>연봉</th>
+					<th>직책</th>
 				</tr>
 
 			</thead>
