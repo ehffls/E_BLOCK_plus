@@ -81,6 +81,11 @@ public class EquipLogic {
 		return result;
 	}
 
+	public List<Map<String, Object>> inb_list(Map<String, Object> pMap) {
+		list = equipDao.inb_list(pMap);
+		return list;
+	}
+
 	public List<Map<String, Object>> ask_list(Map<String, Object> pMap) {
 		list = equipDao.ask_list(pMap);
 		return list;
@@ -91,5 +96,24 @@ public class EquipLogic {
 		return list;
 	}
 
+	public int mk_add(Map<String, Object> pMap) {
+		result = equipDao.mk_add(pMap);
+		return result;
+	}
+
+	public int mk_upd(Map<String, Object> pMap) {
+		result = equipDao.mk_upd(pMap);
+		return result;
+	}
+
+	public int mk_del(Map<String, Object> pMap) {
+		result = equipDao.mk_del(pMap);
+		return result;
+	}
+
+	public List<Map<String, Object>> mk_list(Map<String, Object> pMap) {
+		list = equipDao.mk_list(pMap);
+		return list;
+	}
 	
 }

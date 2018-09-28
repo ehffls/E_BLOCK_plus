@@ -51,11 +51,6 @@ public class AttitudeController implements Controller {
 				name ="attribute의 name redirect면 안씀";
 				path="forward:xxx.jsp";
 			}
-			else if(crud.equals("askDel")) {
-				result = attitudeLogic.my_askDel(pMap);
-				name ="attribute의 name redirect면 안씀";
-				path="forward:xxx.jsp";
-			}
 			else if(crud.equals("list")) {
 				list = attitudeLogic.my_list(pMap);
 				name ="attribute의 name redirect면 안씀";
