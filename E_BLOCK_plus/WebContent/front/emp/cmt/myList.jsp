@@ -10,39 +10,28 @@
 <script src='<%=Project_Root%>/0_src/js/fullcalendar-3.9.0/fullcalendar.js'></script>
 <script>
 
+
   $(document).ready(function() {
-	  var aaa=[
-	        {
-	            title: '출근시간 : 8:0 AM',
-	            start: '2018-10-01',
-	            end: '2018-10-03'
-	          },
-	          {
-	              title: '퇴근시간 : 8:00 PM',
-	              start: '2018-10-01'
-	          }/* ,
-	          {
-	              title: '출근시간 : 8:20 AM',
-	              start: '2018-10-02'
-	          },
-	          {
-	              title: '퇴근시간 : 7:31 PM',
-	              start: '2018-10-02'
-	          } */
-	        ];
     $('#calendar').fullCalendar({
       header: {
         left: 'prev,next today',
         center: 'title'
       },
       defaultDate: '2018-10-20',
-      editable: true,
+      editable: false,
       eventLimit: true, // allow "more" link when too many events
-      events: aaa
+      eventSources: [
+    	    {
+    	      url: './List_JSON.jsp',
+    	      color: 'skyblue',   // a non-ajax option
+    	      textColor: 'white'
+    	    }
+    	  ],
+      timeFormat: 'H(:mm)'
     });
     
     	$('#sm_mp').attr("class","active item");
-    	$('#sm_mp_mp').attr("class","active item");
+    	$('#sm_mp_com').attr("class","active item");
   });
 
 </script>
