@@ -15,8 +15,8 @@
 		</environment>
 	</environments>
 	<mappers>
+		<mapper resource="eblock/mybatis/mapper/attitude.xml" />
 		<mapper resource="eblock/mybatis/mapper/budget.xml" />
-		<mapper resource="eblock/mybatis/mapper/commute.xml" />
 		<mapper resource="eblock/mybatis/mapper/emp.xml" />
 		<mapper resource="eblock/mybatis/mapper/equip.xml" />
 	</mappers>
