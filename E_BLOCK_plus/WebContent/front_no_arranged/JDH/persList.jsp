@@ -1,26 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>사원정보목록</title>
-<%@ include file="/0_src/_includeList/commonUI_S.jsp" %>
+<%@ include file="/0_src/_includeList/commonUI_S.jsp"%>
 </head>
 <body>
-<!-- sidebar -->
-<%@ include file="/front/_includePage/sidemenu.jsp" %>
-<!-- main -->
-<%@ include file="/front/_includePage/mainpage.jsp" %>
+	<!-- sidebar -->
+	<%@ include file="/front/_includePage/sidemenu.jsp"%>
+	<!-- main -->
+	<%@ include file="/front/_includePage/mainpage.jsp"%>
 
 
 
 
-<!--=============== 작성부분 ===============-->
+	<!--=============== 작성부분 ===============-->
 
-<!-- Daum 우편번호 조회 시작  -->
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script>
+	<!-- Daum 우편번호 조회 시작  -->
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script>
     function execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -63,7 +63,7 @@
         }).open();
     }
 </script>
-<!-- Daum 우편번호 조회 끝  -->
+	<!-- Daum 우편번호 조회 끝  -->
 
 	<!-- 권한부여 페이지 -->
 	<div class="ui container" style="margin-top: 5px;">
@@ -78,9 +78,9 @@
 			<div class="column" align="right" style="padding-right: 0px;">
 				<div class="ui left action right icon input">
 					<!-- dropdown 시작 -->
-				<div class="ui basic floating dropdown button">
-					<div div class="default text">이름</div>
-					<i class="dropdown icon"></i>
+					<div class="ui basic floating dropdown button">
+						<div div class="default text">이름</div>
+						<i class="dropdown icon"></i>
 						<div class="menu" style="top: 31px;">
 							<div class="item" data-value="name">이름</div>
 							<div class="item" data-value="dname">직책</div>
@@ -89,15 +89,15 @@
 						</div>
 					</div>
 					<!-- dropdown 끝 -->
-					<i class="search icon"></i> 
-					<input type="text" placeholder="검색" />
+					<i class="search icon"></i> <input type="text" placeholder="검색" />
 				</div>
 			</div>
 		</div>
 		<!-- 검색창 끝 -->
 
 		<!--  -->
-		<table class="ui fixed single line celled table" style="margin-top: 5px;">
+		<table class="ui fixed single line celled table"
+			style="margin-top: 5px;">
 			<thead>
 				<tr class="center aligned">
 					<th>부서번호</th>
@@ -122,20 +122,16 @@
 				<tr>
 					<th colspan="6">
 						<div class="ui right floated pagination menu">
-							<a class="icon item"> 
-								<i class="left chevron icon"></i>
-							</a> 
-							<a class="item">1</a> 
-							<a class="item">2</a> 
-							<a class="item">3</a>
-							<a class="item">4</a> 
-							<a class="icon item"> 
-								<i class="right chevron icon"></i>
+							<a class="icon item"> <i class="left chevron icon"></i>
+							</a> <a class="item">1</a> <a class="item">2</a> <a class="item">3</a>
+							<a class="item">4</a> <a class="icon item"> <i
+								class="right chevron icon"></i>
 							</a>
 						</div>
 						<div align="right">
 							<div class="ui large button" onclick="" style="margin-top: 1px;">사원추가</div>
-							<div class="ui large button" onclick="ac_add()" style="margin-top: 1px;">수정하기</div>
+							<div class="ui large button" onclick="ac_add()"
+								style="margin-top: 1px;">수정하기</div>
 						</div>
 					</th>
 				</tr>
@@ -148,30 +144,42 @@
 			<div class="content">
 
 				<div class="text">부서 번호</div>
-				<div class="ui input" style="width: 100%"><input type="text"></div>
-			<p>
+				<div class="ui input" style="width: 100%">
+					<input type="text">
+				</div>
+				<p>
 				<div class="text">부서명</div>
-				<div class="ui input" style="width: 100%"><input type="text"></div>
-			<p>	
+				<div class="ui input" style="width: 100%">
+					<input type="text">
+				</div>
+				<p>
 				<div class="text">이름</div>
-				<div class="ui input" style="width: 100%"><input type="text"></div>
-			<p>	
+				<div class="ui input" style="width: 100%">
+					<input type="text">
+				</div>
+				<p>
 				<div class="text">직책</div>
-				<div class="ui input" style="width: 100%"><input type="text"></div>
-			<p>	
+				<div class="ui input" style="width: 100%">
+					<input type="text">
+				</div>
+				<p>
 				<div class="text">나이</div>
-				<div class="ui input" style="width: 100%"><input type="text"></div>
-			<p>
-				<!-- 주소검색  시작 -->
+				<div class="ui input" style="width: 100%">
+					<input type="text">
+				</div>
+				<p>
+					<!-- 주소검색  시작 -->
 				<div class="text">주소</div>
 				<div class="ui disabled input" style="width: 26%">
 					<input id="sample6_postcode" placeholder="우편번호">
 				</div>
-				
-				<input class="ui button" onclick="execDaumPostcode()" value="우편번호 찾기" 
-					   style="width: 30%;padding-bottom: 13px;padding-top: 9px;"><br>
-				
-				<div class="ui disabled input" style="width: 100%; padding-top: 5px;">
+
+				<input class="ui button" onclick="execDaumPostcode()"
+					value="우편번호 찾기"
+					style="width: 30%; padding-bottom: 13px; padding-top: 9px;"><br>
+
+				<div class="ui disabled input"
+					style="width: 100%; padding-top: 5px;">
 					<input id="sample6_address" placeholder="주소">
 				</div>
 				<div class="ui input" style="width: 100%; padding-top: 5px;">
@@ -181,8 +189,8 @@
 				<div class="actions">
 					<br>
 					<div align="center">
-					<div class="ui a button">등록</div>
-					<div class="ui cancel button">취소</div>
+						<div class="ui a button">등록</div>
+						<div class="ui cancel button">취소</div>
 					</div>
 				</div>
 
@@ -191,7 +199,7 @@
 
 	</div>
 
-<script type="text/javascript">
+	<script type="text/javascript">
    function ac_add(){
       $('#acc_add').modal('show')
    }
@@ -202,10 +210,10 @@
 
 
 
-<!--=============== 작성부분 ===============-->
+	<!--=============== 작성부분 ===============-->
 
 
 
-<%@ include file="/front/_includePage/sticky" %>
+	<%@ include file="/front/_includePage/sticky"%>
 </body>
 </html>

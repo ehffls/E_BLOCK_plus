@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>main page</title>
+<title>전체 출결 페이지</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp"%>
 <script src="/E_BLOCK_plus/0_src/js/table/datatables.js"></script>
 <link rel="stylesheet" type="text/css"
@@ -30,15 +30,17 @@
 				</h2>
 			</div>
 		</div>
-		<table id="taable" class="ui fixed single line celled table">
+		<table id="taable" class="ui grey fixed single line celled table">
 			<thead>
 				<tr>
-					<th>Band</th>
-					<th>Song</th>
-					<th>Band</th>
-					<th>Song</th>
-					<th>Band</th>
-					<th>Song</th>
+					<th>부서명</th>
+					<th>사원명</th>
+					<th>일자</th>
+					<th>출결상태</th>
+					<th>출근시간</th>
+					<th>퇴근시간</th>
+					<th>상태</th>
+					<th>재실 유무</th>
 				</tr>
 			</thead>
 		</table>
@@ -53,45 +55,63 @@
 				dataSrc: ""
 			  },
 		      columns: [
+		    	  
 		          { data: "band" },
 		          { data: "song" }
 		      ]
 		} );
 		 */
 		var table = $('#taable').DataTable({
-			language : {                
-				  "search": "검색 : ",
-				  "info": "",
+			//"lengthChange": false, //페이지메뉴 없음 설정
+			//페이지 메뉴 조회 수량 설정 
+			//"lengthMenu": [[10, 25, 50, -1], ["10개", "25개", "50개", "All"]],
+			aLengthMenu : [10, 20, 30],
+			language : {
 /* 				  "info": "총 _PAGES_ 중 현재 _PAGE_페이지 입니다." */
-				  "lengthMenu": "_MENU_"
+				  "info": "",//테이블 하단에 나오는  Showing 1 to 10 of 100 entries 빈칸으로 지정
+				  "infoEmpty": "",//검색 후 테이블 하단에 나오는  Showing 1 to 10 of 100 entries 빈칸으로 지정
+				  "infoFiltered": "",//검색 후 테이블 하단에 나오는 (filtered from 100 total entries) 빈칸으로 지정
+				  "zeroRecords": "검색 결과가 없습니다." ,//검색 결과 없을때 나오는 문구 지정	
+				  "search": "검색 : ",
+				  "lengthMenu": "_MENU_",//디폴트: "sLengthMenu": "Show _MENU_ entries",
+ 				  "paginate": {
+						           "previous": "이전",
+						           "next": "다음"
+					          }//페이지 네이션 버튼 한글로 변경
 			},
 			ajax : {
-				url : "./List_JSON.jsp",
+				url : "./.jsp",
 				dataSrc : 'data'
 			},
 			columns : [
 				{
-					"data" : "band"
+					"data" : ""
 				},
 				{
-					"data" : "song"
+					"data" : ""
 				},
 				{
-					"data" : "band"
+					"data" : ""
 				},
 				{
-					"data" : "song"
+					"data" : ""
 				},
 				{
-					"data" : "band"
+					"data" : ""
 				},
 				{
-					"data" : "song"
+					"data" : ""
+				},
+				{
+					"data" : ""
+				},
+				{
+					"data" : ""
 				}
 			],
 			columnDefs : [
 				{
-					targets : [0,1,2,3,4,5]
+					targets : [0,1,2,3,4,5,6,7]
 				   ,className : 'right aligned'
 				}
 
