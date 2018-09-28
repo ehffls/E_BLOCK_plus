@@ -133,9 +133,12 @@
 							</a>
 						</div>
 						<div align="right">
-							<div class="ui large button" onclick="" style="margin-top: 1px;">사원추가</div>
-							<div class="ui large button" onclick="ac_add()" style="margin-top: 1px;">수정하기</div>
-						</div>
+							<div class="large ui buttons">
+							  <button class="ui button" onclick="" style="margin-top: 1px;">사원추가</button>
+							   <div class="or"></div>
+							  <button class="ui button" onclick="ac_add()" style="margin-top: 1px;">수정하기</button>
+							</div>
+						</div>	
 					</th>
 				</tr>
 			</tfoot>
