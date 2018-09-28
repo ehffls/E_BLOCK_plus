@@ -1,4 +1,7 @@
 </div>
+<!-- 모두 sticky에 context로 묶여있어야 함. -->
+</div>
+<!-- 사이드바 사용시 내용물은 pusher 속에 -->
 <script>
 	$('#sticky').sticky({
 	    context: '#context'
