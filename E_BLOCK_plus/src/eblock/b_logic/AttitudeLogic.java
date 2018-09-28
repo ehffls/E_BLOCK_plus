@@ -26,11 +26,6 @@ public class AttitudeLogic {
 		return result;
 	}
 
-	public int my_askDel(Map<String, Object> pMap) {
-		result = attitudeDao.my_askDel(pMap);
-		return result;
-	}
-
 	public List<Map<String, Object>> my_list(Map<String, Object> pMap) {
 		list = attitudeDao.my_list(pMap);
 		return list;

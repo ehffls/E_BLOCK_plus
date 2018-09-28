@@ -27,11 +27,6 @@ public class AttitudeDao {
 		return result;
 	}
 
-	public int my_askDel(Map<String, Object> pMap) {
-		result = sqlSession.delete(nameSpace+"my_askDel",pMap);
-		return result;
-	}
-
 	public List<Map<String, Object>> my_list(Map<String, Object> pMap) {
 		list = sqlSession.selectList(nameSpace+"my_list", pMap);
 		return list;

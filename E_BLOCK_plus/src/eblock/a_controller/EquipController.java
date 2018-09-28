@@ -109,6 +109,11 @@ public class EquipController implements Controller {
 				name ="attribute의 name redirect면 안씀";
 				path="forward:xxx.jsp";
 			}
+			else if(crud.equals("list")) {
+				list = equipLogic.inb_list(pMap);
+				name ="attribute의 name redirect면 안씀";
+				path="forward:xxx.jsp";
+			}
 		}
 		else if(work.equals("ask")) {
 			if(crud.equals("list")) {
@@ -120,6 +125,28 @@ public class EquipController implements Controller {
 		else if(work.equals("sign")) {
 			if(crud.equals("list")) {
 				list = equipLogic.sign_list(pMap);
+				name ="attribute의 name redirect면 안씀";
+				path="forward:xxx.jsp";
+			}
+		}
+		else if(work.equals("mk")) {
+			if(crud.equals("add")) {
+				result = equipLogic.mk_add(pMap);
+				name ="attribute의 name redirect면 안씀";
+				path="forward:xxx.jsp";
+			}
+			else if(crud.equals("upd")) {
+				result = equipLogic.mk_upd(pMap);
+				name ="attribute의 name redirect면 안씀";
+				path="forward:xxx.jsp";
+			}
+			else if(crud.equals("del")) {
+				result = equipLogic.mk_del(pMap);
+				name ="attribute의 name redirect면 안씀";
+				path="forward:xxx.jsp";
+			}
+			else if(crud.equals("list")) {
+				list = equipLogic.mk_list(pMap);
 				name ="attribute의 name redirect면 안씀";
 				path="forward:xxx.jsp";
 			}
