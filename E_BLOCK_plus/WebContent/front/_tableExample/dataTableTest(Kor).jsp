@@ -60,20 +60,14 @@
 		} );
 		 */
 		var table = $('#taable').DataTable({
-			//"lengthChange": false, //페이지메뉴 없음 설정
-			//페이지 메뉴 조회 수량 설정 
-			//"lengthMenu": [[10, 25, 50, -1], ["10개", "25개", "50개", "All"]],
-			aLengthMenu : [10, 20, 30],
-			language : {
-				//"lengthChange": false, //페이지메뉴 없음 설정
-				//페이지 메뉴 조회 수량 설정 
-				//"lengthMenu": [[10, 25, 50, -1], ["10개", "25개", "50개", "All"]],
+
 				aLengthMenu : [10, 20, 30],
 				language : {
 	/* 				  "info": "총 _PAGES_ 중 현재 _PAGE_페이지 입니다." */
 					  "info": "",//테이블 하단에 나오는  Showing 1 to 10 of 100 entries 빈칸으로 지정
 					  "infoEmpty": "",//검색 후 테이블 하단에 나오는  Showing 1 to 10 of 100 entries 빈칸으로 지정
 					  "infoFiltered": "",//검색 후 테이블 하단에 나오는 (filtered from 100 total entries) 빈칸으로 지정
+					  "emptyTable": "데이터가 없습니다",//테이블에 데이터가 없을 때 나오는 문구 지정
 					  "zeroRecords": "검색 결과가 없습니다." ,//검색 결과 없을때 나오는 문구 지정	
 					  "search": "검색 : ",
 					  "lengthMenu": "_MENU_",//디폴트: "sLengthMenu": "Show _MENU_ entries",
