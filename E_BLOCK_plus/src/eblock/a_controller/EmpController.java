@@ -104,8 +104,8 @@ public class EmpController implements Controller {
 			//출결 조회하기 (부서)
 			else if(crud.equals("deptList")) {
 				robj = empLogic.cmt_deptList(pMap);
-				name ="attribute의 name";
-				path="forward:xxx.jsp";
+				name ="dList";
+				path="forward:/emp/cmt/cmtDeptList_JSON.jsp";
 			}
 		}
 		//인사관리

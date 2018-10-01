@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import eblock.a_controller.EmpController;
 import eblock.c_dao.EmpDao;
 
 public class EmpLogic {

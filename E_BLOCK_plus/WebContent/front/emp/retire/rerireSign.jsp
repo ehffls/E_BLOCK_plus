@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>부서 배정 & 이동</title>
+<title>퇴사 처리</title>
 </head>
 <body>
 
