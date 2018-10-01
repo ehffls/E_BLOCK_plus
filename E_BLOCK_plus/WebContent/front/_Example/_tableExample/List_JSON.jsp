@@ -6,6 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+
 	String targetName = "";//여기에 request객체에 담은 리스트의 name을 쓰세요
 
 	List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
@@ -16,6 +17,14 @@
 		pMap.put("song", i);
 		list.add(pMap);
 	}
+	pMap = new HashMap<String,Object>();
+	pMap.put("band", 21);
+	pMap.put("song", null);
+	list.add(pMap);
+	pMap = new HashMap<String,Object>();
+	pMap.put("band", null);
+	pMap.put("song", 21);
+	list.add(pMap);
 	pMap = new HashMap<String,Object>();
 	pMap.put("data", list);
 	Gson gs = new Gson();

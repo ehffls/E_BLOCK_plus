@@ -50,8 +50,8 @@ public class EmpController implements Controller {
 			//사원집합에 대한 조건에 따라조회하기
 			if(crud.equals("empList")) {
 				robj = empLogic.info_empList(pMap);
-				name ="attribute의 name";
-				path="forward:xxx.jsp";
+				name ="eList";
+				path="forward:AllPev_JSON.jsp";
 			}
 			//사원 개인정보 조회하기
 			else if(crud.equals("persList")) {
