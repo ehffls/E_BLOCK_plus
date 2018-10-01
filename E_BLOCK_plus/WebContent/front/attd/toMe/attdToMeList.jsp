@@ -1,14 +1,16 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>전체 출결 페이지</title>
+<title>근태  결재 승인 내역</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp"%>
 <script src="/E_BLOCK_plus/0_src/js/table/datatables.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
+</head>
 </head>
 <body>
 	<!-- sidebar -->
@@ -25,28 +27,32 @@
 		<div class="ui column stackable grid container">
 			<div class="column" align="center" style="padding-left: 0px;">
 				<h2 class="ui header" style="padding-top: 5px;">
-					<i class="users icon"></i>
-					<div class="content">전체 출결</div>
+					<i class="paste icon"></i>
+					<div class="content">근태 결재 승인 내역</div>
 				</h2>
 			</div>
 		</div>
 		<table id="taable" class="ui grey fixed single line celled table">
 			<thead>
 				<tr>
-					<th>부서명</th>
-					<th>사원명</th>
-					<th>일자</th>
-					<th>출결상태</th>
-					<th>출근시간</th>
-					<th>퇴근시간</th>
-					<th>상태</th>
-					<th>재실 유무</th>
+					<th>1</th>
+					<th>2</th>
+					<th>3</th>
+					<th>4</th>
+					<th>5</th>
+					<th>6</th>
+					<th>7</th>
+					<th>8</th>
 				</tr>
 			</thead>
 		</table>
 	</div>
 
 	<script>
+	//사이드 메뉴 설정
+		$('#sm_persmanage').attr("class","active item");
+		$('#sm_persmanage_aplist').attr("class","active item");
+	
 		/* $('#taable').DataTable( {
 			  ajax: {
 			  	url:"./jsonTest.json",
@@ -71,42 +77,43 @@
 				  "info": "",//테이블 하단에 나오는  Showing 1 to 10 of 100 entries 빈칸으로 지정
 				  "infoEmpty": "",//검색 후 테이블 하단에 나오는  Showing 1 to 10 of 100 entries 빈칸으로 지정
 				  "infoFiltered": "",//검색 후 테이블 하단에 나오는 (filtered from 100 total entries) 빈칸으로 지정
-				  "zeroRecords": "검색 결과가 없습니다." ,//검색 결과 없을때 나오는 문구 지정	
+				  "emptyTable": "데이터가 없습니다",//테이블에 데이터가 없을 때 나오는 문구 지정
+				  "zeroRecords": "검색 결과가 없습니다",//검색 결과 없을때 나오는 문구 지정	
 				  "search": "검색 : ",
-				  "lengthMenu": "_MENU_",//디폴트: "sLengthMenu": "Show _MENU_ entries"
+				  "lengthMenu": "_MENU_",//디폴트: "sLengthMenu": "Show _MENU_ entries",
  				  "paginate": {
 						           "previous": "이전",
 						           "next": "다음"
 					          }//페이지 네이션 버튼 한글로 변경
 			},
 			ajax : {
-				url : "./.jsp",
+				url : "attdToMeList_JSON.jsp",
 				dataSrc : 'data'
 			},
 			columns : [
 				{
-					"data" : ""
+					"data" : "band"
 				},
 				{
-					"data" : ""
+					"data" : "band"
 				},
 				{
-					"data" : ""
+					"data" : "band"
 				},
 				{
-					"data" : ""
+					"data" : "band"
 				},
 				{
-					"data" : ""
+					"data" : "band"
 				},
 				{
-					"data" : ""
+					"data" : "band"
 				},
 				{
-					"data" : ""
+					"data" : "band"
 				},
 				{
-					"data" : ""
+					"data" : "band"
 				}
 			],
 			columnDefs : [
@@ -131,6 +138,7 @@
 				$(this).addClass('active');
 			}
 		});
+	
 	</script>
 	<!--=============== 작성부분 ===============-->
 

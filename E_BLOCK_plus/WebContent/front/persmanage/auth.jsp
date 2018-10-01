@@ -14,8 +14,6 @@
 <%@ include file="/front/_includePage/mainpage.jsp" %>
 
 
-
-
 <!--=============== 작성부분 ===============-->
 
 
@@ -121,6 +119,10 @@
 	</div>
 
 <script type="text/javascript">
+	//사이드 메뉴 설정
+	$('#sm_persmanage').attr("class","active item");
+	$('#sm_persmanage_auth').attr("class","active item");
+
    function ac_add(){
       $('#acc_add').modal('show')
    }

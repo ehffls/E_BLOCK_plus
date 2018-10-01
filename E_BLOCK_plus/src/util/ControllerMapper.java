@@ -27,7 +27,7 @@ public class ControllerMapper {
 			if(category.equals("budget")) {
 				control = new BudgetController(work,crud);
 			} 
-			else if(category.equals("commute")) {
+			else if(category.equals("attd")) {
 				control = new AttitudeController(work,crud);
 			} 
 			else if(category.equals("emp")) {

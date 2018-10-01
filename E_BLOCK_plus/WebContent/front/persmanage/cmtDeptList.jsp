@@ -1,112 +1,148 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>근태  결재 승인 내역</title>
-<%@ include file="/0_src/_includeList/commonUI_S.jsp" %>
+<title>전체 출결 페이지</title>
+<%@ include file="/0_src/_includeList/commonUI_S.jsp"%>
+<script src="/E_BLOCK_plus/0_src/js/table/datatables.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
+</head>
 </head>
 <body>
-<!-- sidebar -->
-<%@ include file="/front/_includePage/sidemenu.jsp" %>
-<!-- main -->
-<%@ include file="/front/_includePage/mainpage.jsp" %>
+	<!-- sidebar -->
+	<%@ include file="/front/_includePage/sidemenu.jsp"%>
+	<!-- main -->
+	<%@ include file="/front/_includePage/mainpage.jsp"%>
 
 
 
+	<!--=============== 작성부분 ===============-->
 
-<!--=============== 작성부분 ===============-->
-
-
-	<!-- 근태 결재 승인 내역 페이지 -->
 	<div class="ui container" style="margin-top: 5px;">
-			<!-- 검색창 시작 -->
-			<div class="ui two column stackable grid container">
-			<div class="column" align="left" style="padding-left: 0px;">
-				<h2 class="ui header"style="padding-top: 5px;">
-					<i class="paste icon"></i>
-					<div class="content"> 근태 결재 승인 내역 </div>
+		<!-- 검색창 시작  -->
+		<div class="ui column stackable grid container">
+			<div class="column" align="center" style="padding-left: 0px;">
+				<h2 class="ui header" style="padding-top: 5px;">
+					<i class="users icon"></i>
+					<div class="content">전체 출결</div>
 				</h2>
 			</div>
-			<div class="column" align="right" style="padding-right: 0px;">
-			<div class="ui left action right icon input">
-				<!-- dropdown 시작 -->			
-				<div class="ui basic floating dropdown button">
-					<div div class="default text">이름</div>
-					<i class="dropdown icon"></i>
-						<div class="menu" style="top: 31px;">
-							<div class="item" data-value="name">날짜</div>
-							<div class="item" data-value="dname">부서명</div>
-							<div class="item" data-value="num">근태분류</div>
-							<div class="item" data-value="addr">전체일수</div>
-						</div>
-					</div>
-				<!-- dropdown 끝 -->			
-				<i class="search icon"></i> 
-				<input type="text" placeholder="검색"/>
-			</div>
-			</div>
-			</div>
-			<!-- 검색창 끝 -->
-			<table class="ui fixed single line celled table" style="margin-top: 5px;">
+		</div>
+		<table id="taable" class="ui grey fixed single line celled table">
 			<thead>
-				<tr class="center aligned">
-					<th>결제일자</th>
+				<tr>
 					<th>부서명</th>
-					<th>신청 사원</th>
-					<th>근태분류</th>
-					<th>신청사유</th>
-					<th>시작일자</th>
-					<th>종료일자</th>
-					<th>전체일수</th>
+					<th>사원명</th>
+					<th>일자</th>
+					<th>출결상태</th>
+					<th>출근시간</th>
+					<th>퇴근시간</th>
+					<th>상태</th>
+					<th>재실 유무</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr class="center aligned">
-					<td>3000/01/01</td>
-					
-					<td>멍멍이부</td>
-					<td>멍멍이</td>
-					<td>휴가</td>
-					<td>휴가감</td>
-					<td>3000/02/01</td>
-					<td>3000/02/10</td>
-					<td>10일</td>
-				</tr>
-			</tbody>
-			<tfoot>
-				<tr>
-					<th colspan="8">
-						<div class="ui right floated pagination menu">
-							<a class="icon item">
-							 	<i class="left chevron icon"></i>
-							</a> 
-								<a class="item">1</a> 
-								<a class="item">2</a> 
-								<a class="item">3</a>
-								<a class="item">4</a> 
-								
-							<a class="icon item"> 
-								<i class="right chevron icon"></i>
-							</a>
-						</div>
-					</th>
-				</tr>
-			</tfoot>
 		</table>
 	</div>
 
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('.ui.dropdown').dropdown();
-	});	
-</script>
+	<script>
+	//사이드 메뉴 설정
+	$('#sm_persmanage').attr("class","active item");
+	$('#sm_persmanage_att').attr("class","active item");
+	
+		/* $('#taable').DataTable( {
+			  ajax: {
+			  	url:"./jsonTest.json",
+				type:"POST",
+				dataType:"JSON",
+				dataSrc: ""
+			  },
+		      columns: [
+		    	  
+		          { data: "band" },
+		          { data: "song" }
+		      ]
+		} );
+		 */
+		var table = $('#taable').DataTable({
+			//"lengthChange": false, //페이지메뉴 없음 설정
+			//페이지 메뉴 조회 수량 설정 
+			//"lengthMenu": [[10, 25, 50, -1], ["10개", "25개", "50개", "All"]],
+			aLengthMenu : [10, 20, 30],
+			language : {
+/* 				  "info": "총 _PAGES_ 중 현재 _PAGE_페이지 입니다." */
+				  "info": "",//테이블 하단에 나오는  Showing 1 to 10 of 100 entries 빈칸으로 지정
+				  "infoEmpty": "",//검색 후 테이블 하단에 나오는  Showing 1 to 10 of 100 entries 빈칸으로 지정
+				  "infoFiltered": "",//검색 후 테이블 하단에 나오는 (filtered from 100 total entries) 빈칸으로 지정
+				  "emptyTable": "데이터가 없습니다",//테이블에 데이터가 없을 때 나오는 문구 지정
+				  "zeroRecords": "검색 결과가 없습니다",//검색 결과 없을때 나오는 문구 지정	
+				  "search": "검색 : ",
+				  "lengthMenu": "_MENU_",//디폴트: "sLengthMenu": "Show _MENU_ entries",
+ 				  "paginate": {
+						           "previous": "이전",
+						           "next": "다음"
+					          }//페이지 네이션 버튼 한글로 변경
+			},
+			ajax : {
+				url : "./cmtDeptList_JSON.jsp",
+				dataSrc : 'data'
+			},
+			columns : [
+				{
+					"data" : "band"
+				},
+				{
+					"data" : "band"
+				},
+				{
+					"data" : "band"
+				},
+				{
+					"data" : "band"
+				},
+				{
+					"data" : "band"
+				},
+				{
+					"data" : "band"
+				},
+				{
+					"data" : "band"
+				},
+				{
+					"data" : "band"
+				}
+			],
+			columnDefs : [
+				{
+					targets : [0,1,2,3,4,5,6,7]
+				   ,className : 'right aligned'
+				}
 
-<!--=============== 작성부분 ===============-->
+			]
+		});
+		 
+		$('#taable th').attr("class", "center aligned");
+	
+		$('#taable tbody').on('click', 'tr', function() {
+			var data = table.row(this).data();
+			alert(data["band"]);
+	
+			if ($(this).hasClass('active')) {
+				$(this).removeClass('active');
+			} else {
+				table.$('tr.active').removeClass('active');
+				$(this).addClass('active');
+			}
+		});
+	</script>
+	<!--=============== 작성부분 ===============-->
 
 
 
-<%@ include file="/front/_includePage/sticky" %>
+	<%@ include file="/front/_includePage/sticky"%>
 </body>
 </html>

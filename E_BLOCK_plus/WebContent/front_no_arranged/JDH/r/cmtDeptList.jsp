@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>인사 평가 결과</title>
+<title>근태  결재 승인 내역</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp" %>
 </head>
 <body>
@@ -18,14 +18,15 @@
 
 <!--=============== 작성부분 ===============-->
 
-	<!-- 전체 인사평가결과 페이지 -->
+
+	<!-- 근태 결재 승인 내역 페이지 -->
 	<div class="ui container" style="margin-top: 5px;">
 			<!-- 검색창 시작 -->
 			<div class="ui two column stackable grid container">
 			<div class="column" align="left" style="padding-left: 0px;">
 				<h2 class="ui header"style="padding-top: 5px;">
-					<i class="edit outline icon"></i>
-					<div class="content"> 인사평가 결과 </div>
+					<i class="paste icon"></i>
+					<div class="content"> 근태 결재 승인 내역 </div>
 				</h2>
 			</div>
 			<div class="column" align="right" style="padding-right: 0px;">
@@ -35,10 +36,10 @@
 					<div div class="default text">이름</div>
 					<i class="dropdown icon"></i>
 						<div class="menu" style="top: 31px;">
-							<div class="item" data-value="name">이름</div>
+							<div class="item" data-value="name">날짜</div>
 							<div class="item" data-value="dname">부서명</div>
-							<div class="item" data-value="date">날짜</div>
-							<div class="item" data-value="addr">점수</div>
+							<div class="item" data-value="num">근태분류</div>
+							<div class="item" data-value="addr">전체일수</div>
 						</div>
 					</div>
 				<!-- dropdown 끝 -->			
@@ -51,27 +52,32 @@
 			<table class="ui fixed single line celled table" style="margin-top: 5px;">
 			<thead>
 				<tr class="center aligned">
+					<th>결제일자</th>
 					<th>부서명</th>
-					<th>사원이름</th>
-					<th>날짜</th>
-					<th>평가내용</th>
-					<th>평가점수</th>
-					<th>비고</th>
+					<th>신청 사원</th>
+					<th>근태분류</th>
+					<th>신청사유</th>
+					<th>시작일자</th>
+					<th>종료일자</th>
+					<th>전체일수</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr class="center aligned">
+					<td>3000/01/01</td>
+					
 					<td>멍멍이부</td>
 					<td>멍멍이</td>
-					<td>3001/01/01</td>
-					<td>진급</td>
-					<td>100</td>
-					<td>OK</td>
+					<td>휴가</td>
+					<td>휴가감</td>
+					<td>3000/02/01</td>
+					<td>3000/02/10</td>
+					<td>10일</td>
 				</tr>
 			</tbody>
 			<tfoot>
 				<tr>
-					<th colspan="6">
+					<th colspan="8">
 						<div class="ui right floated pagination menu">
 							<a class="icon item">
 							 	<i class="left chevron icon"></i>
@@ -92,16 +98,10 @@
 	</div>
 
 <script type="text/javascript">
-	//사이드 메뉴 설정
-	$('#sm_persmanage').attr("class","active item");
-	$('#sm_persmanage_Eval').attr("class","active item");
-	
 	$(document).ready(function(){
 		$('.ui.dropdown').dropdown();
 	});	
-
 </script>
-
 
 <!--=============== 작성부분 ===============-->
 

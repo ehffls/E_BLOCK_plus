@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>부서 관리 페이지</title>
+<title>사원 정보 목록</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp"%>
 <script src="/E_BLOCK_plus/0_src/js/table/datatables.js"></script>
 <link rel="stylesheet" type="text/css"
@@ -27,8 +27,8 @@
 		<div class="ui column stackable grid container">
 			<div class="column" align="center" style="padding-left: 0px;">
 				<h2 class="ui header" style="padding-top: 5px;">
-					<i class="archive icon"></i>
-					<div class="content">부서 관리</div>
+					<i class="address book outline icon"></i>
+					<div class="content">사원 정보 목록</div>
 				</h2>
 			</div>
 		</div>
@@ -51,8 +51,8 @@
 		</table>
 	</div>
 	
-			<div class="ui mini modal" id="acc_add">
-			<div class="header" align="center">부서 정보 수정</div>
+		<div class="ui mini modal" id="acc_add">
+			<div class="header" align="center">사원 정보 수정</div>
 
 			<div class="content">
 
@@ -62,9 +62,15 @@
 				<div class="text">부서명</div>
 				<div class="ui input" style="width: 100%"><input type="text"></div>
 			<p>	
-				<div class="text">연락처</div>
+				<div class="text">이름</div>
 				<div class="ui input" style="width: 100%"><input type="text"></div>
 			<p>	
+				<div class="text">직책</div>
+				<div class="ui input" style="width: 100%"><input type="text"></div>
+			<p>	
+				<div class="text">나이</div>
+				<div class="ui input" style="width: 100%"><input type="text"></div>
+			<p>
 				<!-- 주소검색  시작 -->
 				<div class="text">주소</div>
 				<div class="ui disabled input" style="width: 26%">
@@ -72,7 +78,7 @@
 				</div>
 				
 				<input class="ui button" onclick="execDaumPostcode()" value="우편번호 찾기" 
-					   style="width: 30%;padding-bottom: 13px; padding-top: 9px;"><br>
+					   style="width: 30%;padding-bottom: 13px;padding-top: 9px;"><br>
 				
 				<div class="ui disabled input" style="width: 100%; padding-top: 5px;">
 					<input id="sample6_address" placeholder="주소">
@@ -81,7 +87,6 @@
 					<input id="sample6_address2" placeholder="상세주소">
 				</div>
 				<!-- 주소검색  끝 -->
-
 				<div class="actions">
 					<br>
 					<div align="center">
@@ -96,7 +101,7 @@
 	<script>
 	//사이드 메뉴 설정
 	$('#sm_persmanage').attr("class","active item");
-	$('#sm_persmanage_dept').attr("class","active item");
+	$('#sm_persmanage_emp').attr("class","active item");	
 	
 	 function ac_add(){
 		      $('#acc_add').modal('show')
@@ -135,7 +140,7 @@
 					          }//페이지 네이션 버튼 한글로 변경
 			},
 			ajax : {
-				url : "./cntrSetDept_JSON.jsp",
+				url : "./empList_JSON.jsp",
 				dataSrc : 'data'
 			},
 			columns : [

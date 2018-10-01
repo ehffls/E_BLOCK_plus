@@ -69,19 +69,19 @@ $(document)
 <div class="item" id="sm_persmanage">
   <div class="header">인사관리</div>
   <div class="menu">
-      <a class="item" href="<%=Project_Root2 %>/front/persmanage/AllCmt.jsp" id="sm_persmanage_att">
+      <a class="item" href="<%=Project_Root2 %>/front/persmanage/cmtDeptList.jsp" id="sm_persmanage_att">
         전체출결
       </a>
       <a class="item" href="<%=Project_Root2 %>/front/persmanage/AllPev.jsp" id="sm_persmanage_Eval">
         인사평가결과
       </a>
-      <a class="item" href="<%=Project_Root2 %>/front/persmanage/cmtDeptList.jsp" id="sm_persmanage_aplist">
+      <a class="item" href="<%=Project_Root2 %>/front/persmanage/attdToMeList.jsp" id="sm_persmanage_aplist">
         근태결재내역
       </a>
       <a class="item" href="<%=Project_Root2 %>/front/persmanage/cntrSetDept.jsp" id="sm_persmanage_dept">
         부서관리
       </a>
-      <a class="item" href="<%=Project_Root2 %>/front/persmanage/persList.jsp" id="sm_persmanage_emp">
+      <a class="item" href="<%=Project_Root2 %>/front/persmanage/empList.jsp" id="sm_persmanage_emp">
         사원관리
       </a>
       <a class="item" href="<%=Project_Root2 %>/front/persmanage/auth.jsp" id="sm_persmanage_auth">

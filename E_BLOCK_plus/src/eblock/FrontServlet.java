@@ -49,13 +49,13 @@ public class FrontServlet extends HttpServlet {
 			
 			//■■■■■■■■■■[ START|if : middle ]■■■■■■■■■■
 			if(pageMove != null) {
-				
+				String path = "/front"+pageMove[1];
 				//■■■■■■■■■■[ START|if : inner ]■■■■■■■■■■
 				if("redirect".equals(pageMove[0])) { 
-					res.sendRedirect(pageMove[1]);
+					res.sendRedirect(path);
 				}
 				else if("forward".equals(pageMove[0])){
-					RequestDispatcher view = req.getRequestDispatcher(pageMove[1]);
+					RequestDispatcher view = req.getRequestDispatcher(path);
 					view.forward(req, res);
 				}
 				else {
@@ -64,7 +64,7 @@ public class FrontServlet extends HttpServlet {
 				}
 				//■■■■■■■■■■[ END|if : inner ]■■■■■■■■■■
 				
-				logger.info("이동방식:"+pageMove[0]+", path:"+pageMove[1]);
+				logger.info("이동방식:"+pageMove[0]+", path:"+path);
 				
 			} else {
 				logger.info("pageMove==null");
