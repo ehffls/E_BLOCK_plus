@@ -73,7 +73,7 @@ $(document)
         출결관리
       </a>
       <a class="item" href="<%=Project_Root2 %>/front/persmanage/AllPev.jsp" id="sm_persmanage_Eval">
-        사원관리     
+        인사평가          
       </a>
       <a class="item" href="<%=Project_Root2 %>/front/persmanage/attdToMeList.jsp" id="sm_persmanage_aplist">
         근태결재내역

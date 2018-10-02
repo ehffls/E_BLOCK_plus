@@ -41,8 +41,8 @@ public class EmpController implements Controller {
 			//로그인하기
 			if(crud.equals("check")) {
 				robj = empLogic.login_check(pMap);
-				name ="attribute의 name";
-				path="forward:xxx.jsp";
+				name = "attribute의 name";
+				path = "forward:xxx.jsp";
 			}
 		}
 		//정보조회
@@ -50,20 +50,20 @@ public class EmpController implements Controller {
 			//사원집합에 대한 조건에 따라조회하기
 			if(crud.equals("empList")) {
 				robj = empLogic.info_empList(pMap);
-				name ="eList";
-				path="forward:AllPev_JSON.jsp";
+				name = "attribute의 name";
+				path = "forward:xxx.jsp";
 			}
 			//사원 개인정보 조회하기
 			else if(crud.equals("persList")) {
 				robj = empLogic.info_persList(pMap);
-				name ="attribute의 name";
-				path="forward:xxx.jsp";
+				name = "attribute의 name";
+				path = "forward:xxx.jsp";
 			}
 			//사원 개인정보 선택부분 수정하기
 			else if(crud.equals("persUpd")) {
 				robj = empLogic.info_persUpd(pMap);
-				name ="attribute의 name";
-				path="forward:xxx.jsp";
+				name = "attribute의 name";
+				path = "forward:xxx.jsp";
 			}
 		}
 		//인사평가

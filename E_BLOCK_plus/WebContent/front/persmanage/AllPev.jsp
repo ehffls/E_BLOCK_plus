@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>사원 관리</title>
+<title>인사평가</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp"%>
 </head>
 <body>
@@ -25,17 +25,9 @@
 			<div class="column" align="center" style="padding-left: 0px;">
 				<h2 class="ui header" style="padding-top: 5px;">
 					<i class="edit outline icon"></i>
-					<div class="content">사원 관리</div>
+					<div class="content">인사평가</div>
 				</h2>
 			</div>
-		</div>
-
-		<div class="ui grey five item menu">
-			<a class="item" onclick=""> 사원 조회 </a> 
-			<a class="item" onclick=""> 사원 등록 </a>
-			<a class="item" onclick=""> 계약 변경 </a>
-			<a class="item" onclick=""> 부서배정 </a>
-			<a class="item" onclick=""> 부서이동 </a>
 		</div>
 	</div>
 
