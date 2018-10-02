@@ -69,11 +69,11 @@ $(document)
 <div class="item" id="sm_persmanage">
   <div class="header">인사관리</div>
   <div class="menu">
-      <a class="item" href="<%=Project_Root2 %>/front/persmanage/cmtDeptList.jsp" id="sm_persmanage_att">
-        전체출결
+      <a class="item" href="<%=Project_Root2 %>/front/emp/cmt/cmtDeptList.jsp" id="sm_persmanage_att">
+        출결관리
       </a>
       <a class="item" href="<%=Project_Root2 %>/front/persmanage/AllPev.jsp" id="sm_persmanage_Eval">
-        인사평가결과
+        인사평가          
       </a>
       <a class="item" href="<%=Project_Root2 %>/front/persmanage/attdToMeList.jsp" id="sm_persmanage_aplist">
         근태결재내역

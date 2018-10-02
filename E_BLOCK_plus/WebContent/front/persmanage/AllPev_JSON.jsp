@@ -6,19 +6,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+	String targetName = "eList";//여기에 request객체에 담은 리스트의 name을 쓰세요
 
-	List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-	Map<String, Object> pMap = null;
-	for (int i = 0; i < 100; i++) {
-		pMap = new HashMap<String, Object>();
-		pMap.put("band", i);
-		pMap.put("song", i);
-		list.add(pMap);
-	}
-	pMap = new HashMap<String, Object>();
-	pMap.put("data", list);
+	List<Map<String, Object>> list = (List<Map<String, Object>>) request.getAttribute(targetName);
+/*  	Map<String, Object> pMap = new HashMap<String, Object>();
+
+	pMap.put("data", list); */
 	Gson gs = new Gson();
-	String json = gs.toJson(pMap);
-	out.println(json); 
-	
+	String json = gs.toJson(list);
+	out.println(json);
 %>
