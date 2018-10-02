@@ -104,13 +104,23 @@
 			],
 			columnDefs : [
 				{
-					targets : [0,1,2,3,4,5]
-				   ,className : 'right aligned'
-				}
-
+					targets : [ 0, 1, 2, 3, 4, 5 ],
+					className : 'right aligned'
+				},
+/* 				{
+					"targets" : [ 1 ],
+					"visible" : false,
+					"searchable" : false
+				},
+				{
+					"targets" : [ 0 ],
+					"visible" : true,
+					"searchable" : false
+				} */
+	
 			]
 		});
-		 
+	
 		$('#taable th').attr("class", "center aligned");
 	
 		$('#taable tbody').on('click', 'tr', function() {
