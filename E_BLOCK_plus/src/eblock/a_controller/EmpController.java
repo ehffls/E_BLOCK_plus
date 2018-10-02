@@ -56,8 +56,8 @@ public class EmpController implements Controller {
 			//사원 개인정보 조회하기
 			else if(crud.equals("persList")) {
 				robj = empLogic.info_persList(pMap);
-				name ="attribute의 name";
-				path="forward:xxx.jsp";
+				name ="rList";
+				path="forward:/emp/info/persList.jsp";
 			}
 			//사원 개인정보 선택부분 수정하기
 			else if(crud.equals("persUpd")) {
@@ -104,8 +104,8 @@ public class EmpController implements Controller {
 			//출결 조회하기 (개인)
 			else if(crud.equals("myList")) {
 				robj = empLogic.cmt_myList(pMap);
-				name ="attribute의 name";
-				path="forward:xxx.jsp";
+				name ="rList";
+				path="forward:/emp/cmt/List_JSON.jsp";
 			}
 			//출결 조회하기 (부서)
 			else if(crud.equals("deptList")) {
