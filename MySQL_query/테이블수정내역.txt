@@ -1,0 +1,121 @@
+EMP
+-- 직위컬럼 추가 
+-- 권한과 직위를 별개로 놓기 위함 
+ALTER TABLE `emp` ADD e_pos varchar(10) default '0';  
+-- 테이블 타입 변경 
+ALTER TABLE `emp` MODIFY e_pos decimal(2,0) DEFAULT 0; 
+-- 테이블 이름 변경 
+ALTER TABLE `emp` change e_pos e_rank decimal(2,0); 
+
+
+
+PEV
+-- ev_sort 컬럼 삭제 ( 20180918 - Jeongryeol Lee ) 
+ALTER TABLE `pev` DROP ev_sort; 
+ALTER TABLE `pev_list` DROP ev_sort; 
+commit; 
+
+
+-- qrt_no 테이블 타입 변경 
+ALTER TABLE `pev` MODIFY qrt_no varchar(8); 
+ALTER TABLE `pev_list` MODIFY qrt_no varchar(8); 
+
+
+CNTR_LIST
+-- 계약테이블에 계약상태 테이블을 추가 
+ALTER TABLE `EBLOCK`.`cntr_list` 
+  ADD cntr_state VARCHAR(4) DEFAULT '진행';
+
+
+
+
+
+-- 비품분류 테이블의 컬럼 사이즈 변경
+ALTER TABLE `EBLOCK`.`eq_sort` 
+CHANGE COLUMN `eq_sort` `eq_sort` VARCHAR(30) NOT NULL ;
+
+-- 비품추가내역 테이블의 컬럼 기본값 변경
+ALTER TABLE `EBLOCK`.`eq_add_list` 
+CHANGE COLUMN `outcome` `outcome` VARCHAR(5) NULL DEFAULT 'eqa-1' ;
+
+-- 비품추가내역 테이블의 컬럼 NOT NULL 설정 적용 (입력제한을 위한 조치)
+ALTER TABLE `EBLOCK`.`eq_add_list` 
+CHANGE COLUMN `eq_sort` `eq_sort` VARCHAR(5) NOT NULL ;
+
+-- 비품추가내역 테이블의 컬럼 NOT NULL 설정 적용 (입력제한을 위한 조치)
+ALTER TABLE `EBLOCK`.`eq_add_list` 
+CHANGE COLUMN `eq_name` `eq_name` VARCHAR(50) NOT NULL ;
+
+-- 비품추가내역 테이블의 컬럼에 FK설정 적용 (eq테이블 입력트리거 오작동 해결조치)
+ALTER TABLE `eq_add_list`
+ADD `mk_no` NUMERIC(4) NOT NULL
+AFTER `outcome`
+;
+ALTER TABLE `eq_add_list`
+ADD CONSTRAINT `fk_mk_no`
+FOREIGN KEY (`mk_no`)
+REFERENCES `eq_market`(`mk_no`)
+ON DELETE CASCADE -- 부모키가 삭제되면 자식키의 값도 삭제되는 기능
+;
+
+
+
+
+
+-- 거래처 컬럼 NOT NULL 변경
+ALTER TABLE `EBLOCK`.`eq_market` 
+CHANGE COLUMN `mk_cname` `mk_cname` VARCHAR(50) NOT NULL ,
+CHANGE COLUMN `mk_ename` `mk_ename` VARCHAR(30) NOT NULL ,
+CHANGE COLUMN `mk_ph` `mk_ph` VARCHAR(13) NOT NULL ;
+
+-- 거래처명 컬럼 유니크 속성 부여 ( 기존에 있는 회사명 등록시 등록불가되도록 설정)
+ALTER TABLE `EBLOCK`.`eq_market` 
+ADD UNIQUE INDEX `mk_cname_UNIQUE` (`mk_cname` ASC);
+
+-- 거래처 컬럼 추가 ( 거래처추가일자 )
+ALTER TABLE `EBLOCK`.`eq_market` 
+ADD COLUMN `mk_adate` VARCHAR(10) NULL AFTER `mk_email`;
+
+
+
+
+
+
+-- 사원계약테이블 FK에 ON DELETE CASCADE 옵션 추가
+ALTER TABLE `cntr_list`
+DROP FOREIGN KEY `cntr_list_ibfk_1`
+;
+ALTER TABLE `cntr_list`
+ADD CONSTRAINT `cntr_list_ibfk_1`
+FOREIGN KEY (`e_no`)
+REFERENCES `emp`(`e_no`)
+ON DELETE CASCADE -- 부모키가 삭제되면 자식키의 값도 삭제되는 기능
+;
+
+ALTER TABLE `attd_list`
+DROP FOREIGN KEY `attd_list_ibfk_1`
+;
+ALTER TABLE `attd_list`
+ADD CONSTRAINT `attd_list_ibfk_1`
+FOREIGN KEY (`ask_eno`)
+REFERENCES `emp`(`e_no`)
+ON DELETE CASCADE -- 부모키가 삭제되면 자식키의 값도 삭제되는 기능
+;
+
+ALTER TABLE `attd_list`
+DROP FOREIGN KEY `attd_list_ibfk_2`
+;
+ALTER TABLE `attd_list`
+ADD CONSTRAINT `attd_list_ibfk_2`
+FOREIGN KEY (`sign_eno`)
+REFERENCES `emp`(`e_no`)
+ON DELETE CASCADE -- 부모키가 삭제되면 자식키의 값도 삭제되는 기능
+;
+
+
+
+
+-- 구매가능비품내역 outcome 컬럼 기본값 설정 (신청시 자동으로 대기상태로 설정)
+ALTER TABLE `EBLOCK`.`eq_purc_list` 
+CHANGE COLUMN `outcome` `outcome` VARCHAR(5) NULL DEFAULT 'ibp-1' ;
+

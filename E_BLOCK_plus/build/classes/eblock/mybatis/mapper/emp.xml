@@ -70,7 +70,7 @@
 			,e.e_rank	AS 'e_rank'	<!-- 사원직급 -->
 			,e.au_no	AS 'au_no'	<!-- 권한번호 -->
 			,d.d_ph		AS 'd_ph'	<!-- 부서연락처 -->
-			,d.d_ph		AS 'd_ph'	<!-- 사원연락처 -->
+			,e.e_ph		AS 'e_ph'	<!-- 사원연락처 //오타수 -->
 			,e.e_email	AS 'e_mail'	<!-- 사원이메일 -->
 		  FROM emp e, dept d
 		 WHERE e.d_no = d.d_no
@@ -105,7 +105,7 @@
 			,e.gender	AS 'gender'	<!-- 사원성별 -->
 			,e.e_jdate	AS 'e_jdate'<!-- 사원입사일 -->
 			,e.e_bdate	AS 'e_bdate'<!-- 사원생일 -->
-			,d.d_ph		AS 'd_ph'	<!-- 사원연락처 -->
+			,e.e_ph		AS 'e_ph'	<!-- 사원연락처 // 오타수정(화면측체크) -->
 			,e.e_email	AS 'e_mail'	<!-- 사원이메일 -->
 		  FROM emp e, dept d
 		 WHERE e.d_no = d.d_no
@@ -199,6 +199,21 @@
 			  ,cmt_date = DATE_FORMAT(now(), '%Y-%m-%d') <!-- 2011-06-14 -->
 			  ,cmt_time = curtime() <!-- 19:32:23 -->
 	</insert>
+
+ <!-- [ 출결 조회하기 (달력용) | 테스트완료(10/01) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  -->
+ 	<select id="cmt_calendar" parameterType="map" resultType="map">
+ 		SELECT
+			 d_name, e_no, e_name, e_rank,
+			  <!-- '2018-10-01T13-45-27' 으로 반환 -->
+    		 CONCAT(cmt_date,'T',first_check) AS 'checkin',
+		     IF(last_check='--:--:--'
+		       ,NULL <!-- 입실때 한번찍은 경우, last_check는 나오지 않는데, 이때, Calendar기능에 맞게 null로 반환한다. -->
+		       ,CONCAT(cmt_date,'T',last_check)) AS 'checkout',
+			      <!-- '2018-10-01T13-45-27' 으로 반환 -->
+			 attend,lv_state, io_state
+		  FROM view_cmt_list
+		 WHERE e_no = #{e_no}
+ 	</select>
  
  <!-- [ 출결 조회하기 | 테스트완료(09/25) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  -->
 	<select id="cmt_list" parameterType="map" resultType="map">
