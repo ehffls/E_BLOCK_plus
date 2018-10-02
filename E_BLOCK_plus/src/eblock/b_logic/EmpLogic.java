@@ -3,9 +3,12 @@ package eblock.b_logic;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import eblock.c_dao.EmpDao;
 
 public class EmpLogic {
+	Logger logger = Logger.getLogger(EmpLogic.class);
 	EmpDao empDao = null;
 	
 	public EmpLogic() {
@@ -70,7 +73,6 @@ public class EmpLogic {
 		list = empDao.cmt_deptList(pMap);
 		return list;
 	}
-	
 	
 	public int cntr_addEmp(Map<String, Object> pMap) {
 		result = empDao.cntr_addEmp(pMap);

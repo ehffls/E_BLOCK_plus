@@ -182,6 +182,12 @@ public class EmpDao {
 		rlist = eDao.cmt_calendar(pMap);
 		System.out.println(rlist);
 		
+		//퇴사신청처리하기(결재) (09/27)
+//		pMap.put("rt_no", 3);
+//		pMap.put("sign_rsn", "좋은 미래를 기도합니다.");
+//		pMap.put("outcome", "rta-3");
+//		result=eDao.retire_sign(pMap);
+//		System.out.println(result);
 		
 		//퇴사신청처리하기(결재) (09/27)
 //		pMap.put("rt_no", 3);
@@ -190,7 +196,7 @@ public class EmpDao {
 //		result=eDao.retire_sign(pMap);
 //		System.out.println(result);
 		
-		
+
 		
 		
 		//퇴사신청내역 수정하기 (09/27)
@@ -209,8 +215,8 @@ public class EmpDao {
 //		pMap.put("rt_date","2018-10-26");
 //		pMap.put("outcome", "rta-1");
 //		pMap.put("ask_rsn","퇴사신청테스트 실행");
-//		pMap.put("ask_eno", 10);
-//		pMap.put("sign_eno", 11);
+//		pMap.put("ask_eno", 8);
+//		pMap.put("sign_eno", 4);
 //		result = eDao.retire_ask(pMap);
 //		System.out.println(result);
 		
@@ -267,6 +273,15 @@ public class EmpDao {
 		
 		
 		
+		//인사평가 수정 테스트 (09/23)
+//		pMap.put("ev_eno",3);
+//		pMap.put("tg_eno",10);
+//		pMap.put("ev_content","재판단.. 괜찮은 친구네 ");
+//		pMap.put("ev_score",85);
+//		
+//		result = eDao.pev_upd(pMap);
+//		System.out.println(result);
+
 		
 		//인사평가 수정 테스트 (09/23)
 //		pMap.put("ev_eno",3);

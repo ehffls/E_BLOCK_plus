@@ -1,32 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>물품 결제</title>
-<%@ include file="/0_src/_includeList/commonUI_S.jsp" %>
+<title>main page</title>
+<%@ include file="/0_src/_includeList/commonUI_S.jsp"%>
 </head>
 <body>
-<!-- sidebar -->
-<%@ include file="/front/_includePage/sidemenu.jsp" %>
-<!-- main -->
-<%@ include file="/front/_includePage/mainpage.jsp" %>
+	<!-- sidebar -->
+	<%@ include file="/front/_includePage/sidemenu.jsp"%>
+	<!-- main -->
+	<%@ include file="/front/_includePage/mainpage.jsp"%>
 
 
 
 
-<!--=============== 작성부분 ===============-->
-<div class="ui secondary  menu">
-		<a class="item active"> 현재 물품 신청 목록 </a> <a class="item"> 추가 물품 신청 목록 </a>
-
-		<div class="right menu">
-			<div class="item">
-				<div class="ui icon input">
-					<input type="text" placeholder="Search..." value=""> <i class="search link icon"></i>
-				</div>
-			</div>
-		</div>
+	<!--=============== 작성부분 ===============-->
+	<div class="ui container">  
+	<div class="ui icon input">
+		<input type="text" placeholder="Search..." value=""> <i class="search link icon"></i>
 	</div>
 	<table class="ui celled  table ">
 		<thead>
@@ -67,12 +59,15 @@
 			</tr>
 		</tfoot>
 	</table>
-	
-
-<!--=============== 작성부분 ===============-->
+</div>
 
 
 
-<%@ include file="/front/_includePage/sticky" %>
+
+	<!--=============== 작성부분 ===============-->
+
+
+
+	<%@ include file="/front/_includePage/sticky"%>
 </body>
 </html>
