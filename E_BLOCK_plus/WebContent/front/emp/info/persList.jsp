@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.Map, java.util.List" %>
 <%
-	int tablim = 5;
+	List<Map<String,Object>> pList = (List<Map<String,Object>>)request.getAttribute("rList");
+	Map<String,Object> pMap = pList.get(0);
 %>
 <!DOCTYPE html>
 <html>
@@ -27,53 +29,78 @@ $(document).ready(function() {
 
 <!--=============== 작성부분 ===============-->
 <div class="ui container" style="margin-top:20px">
-<div class="ui top attached segment">홍길동 사원</div>
-<div class="ui attached three item menu">
-    <a class="item">Item</a>
-    <a class="item">Item</a>
-    <a class="item">Item</a>
-  </div>
-<div class="ui attached segment">
-    1
-  </div>
-  <div class="ui attached icon info message">
-    <i class="help circle icon"></i>
+<div class="ui top attached segment"><h2><%=pMap.get("e_name")+" "+pMap.get("e_rank") %></h2></div>
+
+<div class="ui bottom attached segment">
+<div class="ui four cards">
+  <div class="card">
+    <div class="extra content">
+      아이디
+    </div>
     <div class="content">
-      Message
+      <%=pMap.get("e_id") %>
     </div>
   </div>
-  <table class="ui attached celled table">
-    <thead>
-      <tr><th>직급</th>
-      <th>부서</th>
-      <th>주소</th>
-    </tr></thead>
-    <tbody>
-      <tr>
-        <td>Cell</td>
-        <td>Cell</td>
-        <td>Cell</td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="ui attached segment">
-    1
+  <div class="card">
+    <div class="extra content">
+      전화번호
+    </div>
+    <div class="content">
+      <%=pMap.get("e_ph") %>
+    </div>
   </div>
-  <table class="ui bottom attached celled table">
-  
-    <thead>
-      <tr><th>Header</th>
-      <th>Header</th>
-      <th>Header</th>
-    </tr></thead>
-    <tbody>
-      <tr>
-        <td>Cell</td>
-        <td>Cell</td>
-        <td>Cell</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="card">
+    <div class="extra content">
+      성별
+    </div>
+    <div class="content">
+      <%=pMap.get("gender") %>
+    </div>
+  </div>
+  <div class="card">
+    <div class="extra content">
+      이메일
+    </div>
+    <div class="content">
+      <%=pMap.get("e_mail") %>
+    </div>
+  </div>
+  </div>
+<div class="ui four cards">
+  <div class="card">
+    <div class="extra content">
+      생년월일
+    </div>
+    <div class="content">
+      <%=pMap.get("e_bdate") %>
+    </div>
+  </div>
+  <div class="card">
+    <div class="extra content">
+      입사일자
+    </div>
+    <div class="content">
+      <%=pMap.get("e_jdate") %>
+    </div>
+  </div>
+  <div class="card">
+    <div class="extra content">
+      부서명
+    </div>
+    <div class="content">
+      <%=pMap.get("d_name") %>
+    </div>
+  </div>
+  <div class="card">
+    <div class="extra content">
+      내선번호
+    </div>
+    <div class="content">
+      <%=pMap.get("d_ph") %>
+    </div>
+  </div>
+  </div>
+</div>
 </div>
 <!--=============== 작성부분 ===============-->
 
