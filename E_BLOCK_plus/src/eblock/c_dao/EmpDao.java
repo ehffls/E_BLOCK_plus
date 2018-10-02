@@ -98,6 +98,12 @@ public class EmpDao {
 		result = sqlSession.insert(nameSpace+"cmt_checkIn",pMap);
 		return result;
 	}
+	
+	//─────[ 출결 조회하기 (달력용) | 테스트완료(10/01) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+	public List<Map<String, Object>> cmt_calendar(Map<String, Object> pMap) {
+		list = sqlSession.selectList(nameSpace+"cmt_calendar",pMap);
+		return list;
+	}
 
 	//─────[ 출결 조회하기 | 테스트완료(09/25) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 	public List<Map<String, Object>> cmt_myList(Map<String, Object> pMap) {
@@ -171,6 +177,10 @@ public class EmpDao {
 		List<Map<String,Object>> rlist = null;
 		int result = 0;
 
+		//출결 조회하기 (달력용)
+		pMap.put("e_no", 3);
+		rlist = eDao.cmt_calendar(pMap);
+		System.out.println(rlist);
 		
 		//퇴사신청처리하기(결재) (09/27)
 //		pMap.put("rt_no", 3);
@@ -179,7 +189,14 @@ public class EmpDao {
 //		result=eDao.retire_sign(pMap);
 //		System.out.println(result);
 		
+		//퇴사신청처리하기(결재) (09/27)
+//		pMap.put("rt_no", 3);
+//		pMap.put("sign_rsn", "좋은 미래를 기도합니다.");
+//		pMap.put("outcome", "rta-3");
+//		result=eDao.retire_sign(pMap);
+//		System.out.println(result);
 		
+
 		
 		
 		//퇴사신청내역 수정하기 (09/27)
@@ -256,6 +273,15 @@ public class EmpDao {
 		
 		
 		
+		//인사평가 수정 테스트 (09/23)
+//		pMap.put("ev_eno",3);
+//		pMap.put("tg_eno",10);
+//		pMap.put("ev_content","재판단.. 괜찮은 친구네 ");
+//		pMap.put("ev_score",85);
+//		
+//		result = eDao.pev_upd(pMap);
+//		System.out.println(result);
+
 		
 		//인사평가 수정 테스트 (09/23)
 //		pMap.put("ev_eno",3);

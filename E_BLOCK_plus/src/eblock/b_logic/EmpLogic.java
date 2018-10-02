@@ -58,6 +58,11 @@ public class EmpLogic {
 		result = empDao.cmt_checkIn(pMap);
 		return result;
 	}
+	
+	public List<Map<String, Object>> cmt_calendar(Map<String, Object> pMap) {
+		list = empDao.cmt_calendar(pMap);
+		return list;
+	}
 
 	public List<Map<String, Object>> cmt_myList(Map<String, Object> pMap) {
 		list = empDao.cmt_myList(pMap);

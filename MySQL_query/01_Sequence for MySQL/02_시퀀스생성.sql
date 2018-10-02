@@ -26,7 +26,7 @@
     CALL `EBLOCK`.`create_sequence`('seq_mk_no');	-- eq_market	:비품 거래처
     CALL `EBLOCK`.`create_sequence`('seq_eq_addno');-- eq_add_list	:비품추가신청내역
     CALL `EBLOCK`.`create_sequence`('seq_eq_no');	-- eq			:신청가능비품
-    CALL `EBLOCK`.`create_sequence`('seq_eq_addno');-- eq_add_list	:비품구매신청내역
+    CALL `EBLOCK`.`create_sequence`('seq_eq_pno');-- eq_purc_list	:비품구매신청내역
     CALL `EBLOCK`.`create_sequence`('seq_inb_no');	-- inb_eq		:입고비품
     CALL `EBLOCK`.`create_sequence`('seq_io_ano');	-- inb_ioask_list:비품입출신청내역
 	

@@ -32,7 +32,7 @@ SELECT
 	  ,IF(MAX(cl.cmt_time) < '17:30:00'&& COUNT(cl.cmt_time)%2 = 0
         ,'조퇴'
         ,IF(COUNT(cl.cmt_time)=1
-           ,IF(cl.cmt_date < curdate(),'--','재실')
+           ,IF(cl.cmt_date < curdate(),' ','재실')
            ,'퇴근') ) AS 'lv_state'
            
 /*   입력시각개수가 홀수면 입실('IN'), 짝수면 퇴실('OUT')  */
@@ -65,7 +65,9 @@ SELECT
    AND cmt_date >= '2018-09-01'#{prev_cmt_date}
    AND cmt_date <= '2018-09-30'#{post_cmt_date}
  ORDER BY d_name;
- 
+
+
+
  
  
 SELECT * FROM view_cmt_list;

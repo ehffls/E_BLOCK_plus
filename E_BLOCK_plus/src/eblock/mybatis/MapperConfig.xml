@@ -8,7 +8,9 @@
 			<transactionManager type="JDBC" />
 			<dataSource type="UNPOOLED">
 				<property name="driver" value="com.mysql.cj.jdbc.Driver" />
-				<property name="url" value="jdbc:mysql://raonjena.iptime.org:3306/EBLOCK?serverTimezone=UTC" />
+																					<!-- xml문서의 url 엔티티참조 구분자인 세미콜론(;)은 &amp;로 변환됨. -->
+		   		<property name="url" value="jdbc:mysql://raonjena.iptime.org:3306/EBLOCK?serverTimezone=UTC&amp;allowMultiQueries=true" />
+ 				<!-- <property name="url" value="jdbc:mysql://raonjena.iptime.org:3306/EBLOCK?serverTimezone=UTC" /> -->
 				<property name="username" value="EBlockSub" />
 				<property name="password" value="HLJLJH" />
 			</dataSource>
@@ -19,5 +21,6 @@
 		<mapper resource="eblock/mybatis/mapper/budget.xml" />
 		<mapper resource="eblock/mybatis/mapper/emp.xml" />
 		<mapper resource="eblock/mybatis/mapper/equip.xml" />
+		<mapper resource="eblock/mybatis/mapper/mybatisTagTest.xml" /><!-- 테스트용 쿼리묶음 -->
 	</mappers>
 </configuration>
