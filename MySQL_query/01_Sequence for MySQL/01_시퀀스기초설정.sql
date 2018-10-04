@@ -10,6 +10,7 @@ CREATE TABLE sequences (name VARCHAR(32), currval BIGINT UNSIGNED)  ENGINE=INNOD
  
 -- 2. 시퀀스 프로시저 생성(변경하는것 없이 그대로 실행)
 DELIMITER $$
+DROP PROCEDURE IF EXISTS `create_sequence`;
 CREATE PROCEDURE `create_sequence`(IN the_name text)
 MODIFIES SQL DATA
 DETERMINISTIC
@@ -17,6 +18,8 @@ BEGIN
     DELETE FROM sequences WHERE name=the_name;
     INSERT INTO sequences VALUES (the_name, 0);
 END;
+$$
+DELIMITER ;
 
 -- 프로시저 호출하여 시퀀스 생성하기
 	CALL `EBLOCK`.`create_sequence`('seq_columnName');
@@ -36,6 +39,11 @@ END;
      SELECT currval INTO ret FROM sequences WHERE name=the_name limit 1;-- 채번후 변수에 저장
      RETURN ret;-- 변수값 반환
  END;
+$$
+DELIMITER ;
+
+
+
 
 -- 4. 시퀀스 생성하기 [ 명명규칙 : seq_컬럼명 ]
 INSERT INTO sequences VALUES ('seq_columnName', 0);
@@ -60,6 +68,10 @@ BEGIN
 	  WHERE name = the_name LIMIT 1;
      RETURN ret;
 END;
+$$
+DELIMITER ;
+
+
 
 -- 7. 활용하기 : 생성된 시퀀스로부터 nextval 값 가져오기
 select currSeqVal('seq_columnName') as seq_columnName_val from dual;

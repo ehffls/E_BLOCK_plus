@@ -65,16 +65,12 @@ SELECT @RESULT;
 
 
 
-
+-- [ 프로시저 선언하기 ] -------------------------------------------------------------
 
 /* DELIMITER 는 프로시저 앞,뒤의 위치하여 안에 있는 부분은  한번에 실행될 수 있게 하는 역할을 한다. */
 DELIMITER $$
-DROP PROCEDURE proc_cntr_addEmp;
-commit;
-
--- [ 프로시저 선언하기 ] -------------------------------------------------------------
-
-CREATE PROCEDURE proc_cntr_addEmp
+DROP PROCEDURE IF EXISTS `proc_cntr_addEmp`;
+CREATE PROCEDURE `proc_cntr_addEmp`
 	 (-- emp table
      IN _e_no		NUMERIC(6)
 	 ,IN _d_no 		NUMERIC(4)
