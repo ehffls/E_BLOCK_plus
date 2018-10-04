@@ -43,6 +43,8 @@ BEGIN
 		     ,ex_date = @var_date	  -- 변수호출(날짜)
            ,d_no 	  =(SELECT d_no FROM `emp` WHERE e_no = old.ask_eno) -- 신청사원의 부서번호
            ,ex_eno  = old.sign_eno -- 결제사원번호
+           ,ex_sort = 'bg-b' -- 집행분류 (비품)
+           ,outcome = 'bg-1' -- 집행결과 (집행)
 		  ;
 	 
     -- 입고(ibp-5)
@@ -74,4 +76,4 @@ SELECT * FROM `eq`;
 
 SELECT * FROM `eq_market`;
 
-
+SELECT * FROM `sequences`;

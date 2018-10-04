@@ -135,13 +135,33 @@ CHANGE COLUMN `inb_state ` `inb_state ` VARCHAR(5) NULL DEFAULT 'inb-1' ;
 
 
 
+
+
+
 -- 비품입출신청내역 outcome 컬럼 기본값 설정 (등록시 자동으로 대기상태로 설정)
 ALTER TABLE `EBLOCK`.`inb_ioask_list` 
 CHANGE COLUMN `outcome` `outcome` VARCHAR(5) NULL DEFAULT 'ioa-1' ;
+
 -- 비품입출신청내역 io_sort 컬럼 NOT NULL 설정
 ALTER TABLE `EBLOCK`.`inb_ioask_list` 
 CHANGE COLUMN `io_sort` `io_sort` VARCHAR(5) NOT NULL ;
 
+-- 비품입출신청내역 sign_eno 컬럼 NOT NULL 설정
+ALTER TABLE `EBLOCK`.`inb_ioask_list` 
+CHANGE COLUMN `sign_eno` `sign_eno` DECIMAL(6,0) NOT NULL ;
 
 
+
+
+
+
+
+-- 비품구매신청내역에서 eq_sort 컬럼 삭제 ( eq 테이블과 중복됨 )
+ALTER TABLE `EBLOCK`.`eq_purc_list` 
+DROP COLUMN `eq_sort`;
+
+
+
+-- DATABASE collation 변경. (설정기본값) -- 프로시저 입력 불가로 재설정
+ALTER DATABASE `EBLOCK` CHARACTER SET utf8 COLLATE utf8_general_ci;
 

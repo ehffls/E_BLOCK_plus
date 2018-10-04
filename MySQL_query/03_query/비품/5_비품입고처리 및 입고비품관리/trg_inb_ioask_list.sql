@@ -35,7 +35,7 @@ BEGIN
         -- 비품입출내역(inb_eq) 테이블 기록최신값 반영(UPDATE)
         UPDATE `inb_eq`
         SET inb_state = old.io_sort -- 승인로우의 입출분류값 [inb- 대여(0)|반납(1)|파손(2)|분실(3)]
-        WHERE inb_no = old_inb_no
+        WHERE inb_no = old.inb_no
 		  ;
         
     END IF; -- End of IF

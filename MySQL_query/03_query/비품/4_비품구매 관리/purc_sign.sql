@@ -7,10 +7,17 @@
 */
 
 UPDATE `eq_purc_list`
-   SET outcome = 'ibp-3'#{new_num} -- <!-- ibp-2(기각)|3(승인)|4(결제)|5(입고) -->
+   SET outcome = 'ibp-5'#{new_num} -- <!-- ibp-2(기각)|3(승인)|4(결제)|5(입고) -->
 	  , sign_date = DATE_FORMAT(now(), '%Y-%m-%d') -- <!-- 2011-06-14 -->
- WHERE eq_pno = 1#{eq_no} --  <!-- 결재할 구매요청비품번호 -->
+ WHERE eq_pno = 3#{eq_no} --  <!-- 결재할 구매요청비품번호 -->
    AND sign_eno = 198#{sign_eno} --  <!-- 결재하는 본인 사원번호 -->
 ;
 
+-- 승인 테스트
 SELECT * FROM `view_purc_eqmk_list`;
+
+-- 결제 테스트
+SELECT * FROM `view_bg_ex_list`;
+
+-- 입고 테스트
+SELECT * FROM `inb_eq`;

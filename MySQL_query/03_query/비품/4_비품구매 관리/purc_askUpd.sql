@@ -1,6 +1,7 @@
 /*
 	 (자신이 신청한)
     비품구매요청을 수정/삭제하는 쿼리
+	 반드시, 대기상태인것만 수정또는 삭제가 가능해야한다. [논리확인 후 추가된 부분]
     
     -수정대상 : 수량(num), 제품분류(eq_sort) 및 제품이름(eq_name)
     -삭제대상 : 결재상태( outcome : ibp-0(취소) / ibp-1(대기:기본값|현재상태) )
@@ -18,6 +19,7 @@ UPDATE `eq_purc_list`
 	  , outcome = 'ibp-0'#{new_num} -- ibp-0(취소)/ibp-1(대기)
  WHERE eq_pno = 1#{eq_no} -- 변경할 구매요청비품번호
    AND ask_eno = 8#{ask_eno} -- 변경하는 본인 사원번호
+   AND outcome = 'inp-1' -- 취소된것만 수정가능하도록 제한[논리확인 후 추가된 부분]
 ;
 
 SELECT * FROM `eq`;

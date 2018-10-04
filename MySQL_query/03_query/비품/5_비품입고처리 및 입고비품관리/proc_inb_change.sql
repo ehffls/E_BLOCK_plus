@@ -17,14 +17,19 @@
 
 -- 프로시저 호출
 
-CALL proc_inb_eq_update( 1 #{p_inb_no} -- 변경하는 대상 입고비품번호
-						     , null #{p_inb_state} -- 변경하는 비품상태 [inb-4(수리반출)|inb-5(반입완료)|inb-6(폐기)]
-                       , 'numuphep' #{p_adm_eno} -- 변경하는 결재사원번호
-                       , @RESULT #{result,mode=OUT,jdbcType=INTEGE}-- 결과값
-	 );				-- <!-- OUT파라미터는 jdbcType을 명시한다. -->
+CALL inb_change( 7 #{p_inb_no} -- 변경하는 대상 입고비품번호
+					, 'inb-4' #{p_inb_state} -- 변경하는 비품상태 [inb-4(수리반출)|inb-5(반입완료)|inb-6(폐기)]
+               , 15 #{p_adm_eno} -- 변경하는 결재사원번호
+               , @RESULT #{result,mode=OUT,jdbcType=INTEGE}-- 결과값
+	 );			-- <!-- OUT파라미터는 jdbcType을 명시한다. -->
 SELECT @RESULT;
 
--- 체크전!
+-- CHECK OK!
+
+SELECT * FROM `inb_eq`;
+
+-- 프로시저 호출중 오류로 아래 코드적용.
+ALTER DATABASE `EBLOCK` CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 
 
@@ -33,32 +38,40 @@ SELECT @RESULT;
 DELIMITER $$
 -- SQL최종종료 문자를 $로 지정하여 다음 DELIMITER를 만나기 전까지 일괄실행하겠다는 의미
 -- MySQL5.5는 CREATE OR REPLACE를 지원하지 않음. (8.0부터 지원)
-DROP PROCEDURE IF EXISTS `proc_inb_eq_update`;
-CREATE PROCEDURE `proc_inb_eq_update`
-	 (IN	p_inb_no	 	VARCHAR(5) -- 변경하는 대상 입고비품번호
+DROP PROCEDURE IF EXISTS `proc_inb_change`;
+CREATE PROCEDURE `proc_inb_change`
+	 (IN	p_inb_no	 	NUMERIC(5) -- 변경하는 대상 입고비품번호
     ,IN  p_inb_state	VARCHAR(5) -- 변경하는 비품상태 [inb-4(수리반출)|inb-5(반입완료)|inb-6(폐기)]
     ,IN	p_adm_eno 	NUMERIC(6) -- 변경하는 결재사원번호
 	 ,OUT RESULT 	 	INT		  -- 결과값
     )
 /*
 	 @DESCRIPTION
-		 inb_eq(입고비품) 테이블에 반영처리(update)하고
-		  동일한 정보와 결제한 사원정보로 inb_io_list(비품반출내역)에 최초등록처리까지
-		  처리후 1번만 커밋하는 트랜잭션처리를 하는 프로시저
+		 inb_eq(입고비품) 테이블에 비품의 변동사항 반영처리(update)하고 
+       [ 수리반출(inb-4),반입완료(inb-5),폐기처리(inb-6) ]
+       
+		 동일한 정보와 결제한 사원정보로 inb_io_list(비품반출내역)에 입력까지
+		 처리후 마지막 1번만 커밋하는 트랜잭션처리을 수행
 	 @PARAM
 		 p_inb_no  : 상태를 변경할 입고비품번호
 		 p_adm_eno : 상태를 변경하는 결재사원번호
 	 @RETURN
-		 RESULT : 성공(1), 실패(0), 에러(-1) : 4,5,6번 외 다른 상태값이 들어온 경우
+		 RESULT : 성공( 1) : 트랜잭션 성공
+				  , 실패( 0) : 예외처리(SQLException)
+              , 에러(-1) : 4,5,6번 외 다른 상태값이 들어온 경우
+              , 에러(-2) : 권한이 없는 사원이 입력된 경우
 */
 /* 바깥쪽 구문 시작 */
 BEGIN
-	 -- 선언부
-	 DECLARE var_date VARCHAR(10); -- 변수선언(날짜)
-	 DECLARE var_isErrorDetected BOOLEAN DEFAULT FALSE; -- 변수선언(에러체크)
+		  -- 변수선언(날짜)
+	 DECLARE var_date VARCHAR(10);
+		  -- 변수선언(변경권한이 있는지 체크)
+    DECLARE var_checkAuth BOOLEAN DEFAULT FALSE;
+		  -- 변수선언(에러체크)
+	 DECLARE var_isErrorDetected BOOLEAN DEFAULT FALSE;
 
 	 -- 두 테이블에 동일하게 넣을 날짜값 초기화
-	 SET @var_date := DATE_FORMAT(now(), '%Y-%m-%d'); -- '2018-10-26'
+	 SET @var_date = DATE_FORMAT(now(), '%Y-%m-%d'); -- '2018-10-26'
 
 /* 안쪽 구문 시작 */
 body_area:
@@ -70,9 +83,18 @@ BEGIN
 				SET RESULT = 0; -- 예외결과값 초기화
 		  END;
 
+	 -- 만약 비품상태관리 및 폐기권한이 없는 경우 프로시저를 탈출한다.
+	 SET @var_checkAuth 
+		   = EXISTS(SELECT e_name FROM `emp`	-- 권한이 있는지 조회하여 결과를 저장
+					    WHERE au_no = 39 		  	-- 비품상태관리및폐기권한 번호
+						   AND e_no = p_adm_eno); 	-- 입력된 결재사원번호
+	 IF NOT @var_checkAuth
+		  THEN LEAVE body_area; -- 안쪽 구문을 탈출
+	 END IF;
+
 	 -- 트랜젝션 시작
 	 START TRANSACTION;
-	
+    
 	 -- inb-4(수리반출)|inb-5(반입완료)|inb-6(폐기) 에 대해서만 발동하는 프로시저
 	 IF p_inb_state IN ('inb-4','inb-5','inb-6') THEN
    
@@ -85,7 +107,7 @@ BEGIN
 		  ;
 
 		  -- 입고비품입출관리 테이블에 비품의 상태이력을 추가한다. (요청사원번호에 결재권자의 번호가 들어감)
-        INSERT INTO `inb_in_list`
+        INSERT INTO `inb_io_list`
         ( io_no, inb_state, sign_date, inb_no, ask_eno )
         VALUES
         ( nextSeqVal('seq_io_no') -- 새 등록을 위한 시퀀스호출 후 입력
@@ -109,6 +131,10 @@ END;
 
 	 IF @var_isErrorDetected THEN
 		  SET RESULT = -1; -- 에러결과값 초기화
+        
+	 ELSEIF NOT @var_checkAuth THEN
+		  SET RESULT = -2; -- 에러결과값 초기화
+        
 	 END IF;
  
 /* 바깥쪽 구문 종료 */

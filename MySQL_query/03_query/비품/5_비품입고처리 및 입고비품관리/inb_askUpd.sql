@@ -11,11 +11,12 @@
 UPDATE
 	 `inb_ioask_list`
 SET
-	  io_sort = 'inb-2'#{io_sort}  <!-- inb-0(대여) | 1(보관=반납) | 2(분실) | 3(파손) -->
+	  io_sort = 'inb-1'#{io_sort}  <!-- inb-0(대여) | 1(보관=반납) | 2(분실) | 3(파손) -->
 	 ,ask_rsn = '비품대여신청 취소테스트'#{ask_rsn} <!-- 신청변경사유 -->
 	 ,outcome = 'ioa-0'#{outcome}  <!-- ioa-0(취소) | 1(대기) -->
 WHERE
 	 io_ano = 1#{io_ano} <!-- 변경대상신청번호 -->
+AND ask_eno = 12#{sign_eno} <!-- 신청사원번호 -->
 ;
 
 
