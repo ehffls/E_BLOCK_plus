@@ -50,7 +50,8 @@
     		,e_rank AS 'e_rank' <!-- 사원직급 -->
     		,au_no	AS 'au_no'	<!-- 사원권한 -->
   		  FROM `view_DpEmpName`
- 		 WHERE e_no = #{e_no};
+ 		 WHERE e_no = (SELECT e_no FROM `emp`WHERE e_id = #{e_id}
+                                               AND e_pw = #{e_pw});
 	</select>
 
 
@@ -214,7 +215,6 @@
 		  FROM view_cmt_list
 		 WHERE e_no = #{e_no}
  	</select>
- 
  <!-- [ 출결 조회하기 | 테스트완료(09/25) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  -->
 	<select id="cmt_list" parameterType="map" resultType="map">
 		SELECT
@@ -229,17 +229,17 @@
 			,lv_state 	<!-- 퇴근상태 -->
 			,io_state 	<!-- 재실유무 -->
 		  FROM view_cmt_list
- 		<trim prefix="WHERE" prefixOverrides="AND ">
+		<trim prefix="WHERE" prefixOverrides="AND ">
 		 	<if test="e_no != null"> <!-- 개인이 확인할 때의 조건 -->
 				e_no = #{e_no}
 			</if>
-		 	<if test="d_name != null"><!--  부서장이 확인할 때의 조건 -->
+		 	<if test="d_name != null"> <!-- 부서장이 확인할 때의 조건 -->
 		   		AND d_name = #{d_name}
 			</if>
-		 	<if test="prev_cmt_date != null"><!--  검색시작일자 -->
+		 	<if test="prev_cmt_date != null"> <!-- 검색시작일자 -->
 				<![CDATA[ AND cmt_date >= #{prev_cmt_date} ]]> <!-- 2018-09-01 -->
 			</if>
-		 	<if test="post_cmt_date != null"><!--  검색종료일자 -->
+		 	<if test="post_cmt_date != null"> <!-- 검색종료일자 -->
 				<![CDATA[ AND cmt_date <= #{post_cmt_date} ]]> <!-- 2018-09-30 -->
 			</if>
 		</trim>

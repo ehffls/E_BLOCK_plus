@@ -50,7 +50,8 @@
     		,e_rank AS 'e_rank' <!-- 사원직급 -->
     		,au_no	AS 'au_no'	<!-- 사원권한 -->
   		  FROM `view_DpEmpName`
- 		 WHERE e_no = #{e_no};
+ 		 WHERE e_no = (SELECT e_no FROM `emp`WHERE e_id = #{e_id}
+                                               AND e_pw = #{e_pw});
 	</select>
 
 
