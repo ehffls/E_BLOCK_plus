@@ -4,4 +4,189 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="eblock.mybatis.mapper.equip">
  
+ <!-- 
+		EquipDao 클래스의 각 메소드 상단에 있는 업무를 검색하거나,
+		태그 id를 검색하여 찾아가기 바랍니다.
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+-->
+
+
+		<!-- /* 비품분류관리 */ -->
+
+	
+<!-- [ 결재권 조회하기 | 테스트완료(10/04) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  -->
+	<select id="emp_authList" parameterType="map" resultType="map">
+		SELECT au_no, au_scope
+		  FROM `auth`
+	</select>
+	
+<!-- [ 결재권자 조회하기 | 테스트완료(10/04) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  -->
+	<select id="emp_authorList" parameterType="map" resultType="map">
+		SELECT
+			 `auth`.au_no  AS 'au_no'
+			,`auth`.au_scope AS 'au_scope' 
+			,`dept`.d_name AS 'd_name'
+			,`emp`.e_name  AS 'e_name'
+			,`emp`.e_no    AS 'e_no'
+		  FROM `emp` NATURAL JOIN `dept`
+		  	 	 	 INNER JOIN `auth` 
+		  	 	 	 ON `auth`.au_no = `emp`.au_no
+		 WHERE `emp`.au_no > 0
+		 <choose>
+		 	<when test="d_no != null">
+		   		AND `dept`.d_no = #{d_no}</when>
+		 </choose>
+		 ORDER BY au_no desc, e_no asc
+	</select>
+
+<!-- [ 비품분류 등록하기 | 테스트완료(10/04) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  -->
+	 <insert id="sort_add" parameterType="map">
+	 	INSERT INTO `eq_sort`(eq_sort)
+	 	SELECT #{eq_sort} FROM `emp`
+	 	 WHERE e_no = #{e_no} AND au_no = 35
+	 </insert>	<!-- 비춤추가신청승인권한(35) 보유자가 추가가능하고, 검색되었을 때 입력된다. -->
+
+<!-- [ 등록된 비품분류 수정하기  | 테스트완료(10/04)]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  -->
+	<update id="sort_upd2" parameterType="map">
+		UPDATE `eq_sort`
+		SET  eq_sort = IF( EXISTS( SELECT 1 FROM `emp`
+	 	 	     		 	 		WHERE e_no = #{e_no}
+	 	 	     		 	 		  AND au_no = 35 )
+	 	 	     		  , #{new_eq_sort}
+	 	 	     		  , #{old_eq_sort} )
+	 	WHERE eq_sort = #{old_eq_sort}
+	</update>	<!-- 비춤추가신청승인권한(35) 보유자가 수정가능하고, 검색되었을 때 해당 값이 수정된다. -->
+	
+<!-- [ 등록된 비품분류 삭제하기 | 테스트완료(10/04) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  -->
+	 <delete id="sort_del" parameterType="map">
+	 	DELETE FROM `eq_sort`
+ 		 WHERE eq_sort = #{eq_sort}
+ 		 LIMIT 1
+ 		<!-- 삭제건수를 1건으로 제한한다. -->
+	 </delete>
+	
+<!-- [ 등록된 비품분류 조회하기 | 테스트완료(10/04) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  -->
+	<select id="sort_list" parameterType="map" resultType="map">
+		SELECT eq_sort FROM `eq_sort`
+ 		 WHERE eq_sort LIKE '%'||#{eq_sort}||'%'
+ 		 ORDER BY eq_sort ASC
+	</select>
+
+
+
+<!--
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+-->
+
+
+<!-- [ 비품추가신청내역에 새로운 비품내역추가 신청하기 ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  -->
+	<insert id="add_ask" parameterType="map">
+		<!-- 
+			eq_add_list(비품추가신청내역)에 새로운 비품 추가신청하기
+	    	
+		    1.  sql_mode가 MySQL5.5에서는 따로 설정된 것이 없기 때문에
+		    	초과된 사이즈의 문자열이나 NN컬럼에 NULL 값 입력등, 문제상황이 야기된다.
+			    STRICT 설정이 필요하고, 조치를 취했다. ( 조치내용은 DB담당자에게 확인바람 )
+				
+			2.  INSERT INTO table(~) VALUES (~) 구문 내부의 각 값은 SELECT 쿼리문을 허용하지 않는다.
+				그러므로 INSERT INTO ~ SELECT ~ 구문을 활용한다.
+		-->
+		INSERT INTO `eq_add_list`
+			(eq_addno, ask_eno, sign_eno, ask_date, eq_sort, eq_name,mk_no)
+		SELECT
+			 nextSeqVal('seq_eq_addno') 
+		    ,#{ask_eno} <!-- 신청사원번호 -->
+		    ,e.e_no 	<!-- 조회된 9001번 부서 최고관리자에게 신청 -->
+		    ,DATE_FORMAT(now(), '%Y-%m-%d') <!-- 2011-06-14 -->
+		    ,IF( EXISTS(SELECT eq_sort FROM `eq_sort`
+		                 WHERE eq_sort = #{eq_sort} ) <!-- 비품분류 -->
+		       , #{eq_sort} <!-- 참 : 해당 이름의 비품분류가 검색되면 접수됨  -->
+		       , NULL )     <!-- 거짓 : 해당 이름의 비품분류가 없으면 접수되면 안됨 -->
+		    ,CASE WHEN (SELECT eq_name FROM `eq_add_list`
+		                 WHERE eq_name = #{eq_name} <!-- 비품이름 -->
+		                   AND outcome IN ('eqa-1','eqa-3')
+		                ) IS NULL <!-- 대기중이거나 승인된 건을 조회해서 존재하지 않을때만 접수 | 중복접수를 방지하고자함 -->
+		          THEN #{eq_name} <!-- 비품이름 -->
+		          ELSE NULL 		<!-- 즉, 해당 이름의 비품이 대기,기각,승인단계에 있는 로우가 하나라도 있을때는 접수되면 안됨 -->
+		     END
+		    ,#{mk_no} <!-- 거래처번호 -->
+		  FROM
+		  	`emp` e
+		  		INNER JOIN `dept` d
+		  		ON e.d_no = d.d_no
+		 WHERE
+		 	 e.au_no = 35  COLLATE utf8_unicode_ci <!--테이블의 기본문자타입과 조건절의 문자타입의 일치 -->
+		 AND e.d_no = 9001 COLLATE utf8_unicode_ci <!--테이블의 기본문자타입과 조건절의 문자타입의 일치 -->
+		 ORDER BY
+		 	 e.e_rank DESC
+		 	,e.e_no ASC <!-- 9001번 부서 최고관리자 1명에게 신청 -->
+		 LIMIT 1
+		 ;
+	<!-- [오류] execute command denied to user 'EBlockSub'@'%' for routine 'eblock.nextSeqVal' -->
+	<!-- [해결] 접속계정의 execute 실행권한 부여 : Function/Procedure 실행가능 -->
+	
+	<!-- [오류] Illegal mix of collations (utf8_unicode_ci,IMPLICIT) and (utf8_general_ci,IMPLICIT) for operation '='
+		 이건 WHERE에서 비교할 때 (utf8_unicode_ci,IMPLICIT) 와?(utf8_general_ci,?IMPLICIT)가??'=' 를 넣는 부분에서 잘못 연결되었다는 의미-->
+	<!-- [해결]  --> 
+	</insert>
+
+	
+<!-- [ 대기중인 비품내역추가신청 수정하기 ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  -->
+	<update id="add_askUpd" parameterType="map">
+	<!-- 
+	    특정컬럼을 조건(신청결과값이 대기인 조건 등)으로 조회결과를 얻고,
+	    다른 컬럼의 값 여러개를 한번에 변경하도록 유도하는 경우는 일괄변경에 해당..
+	    마이바티스를 통해 다중업데이트를 적용할 예정
+	-->
+
+		UPDATE `eq_add_list`
+		<trim prefix="SET"
+			  prefixOverrides=",">
+			<if test="outcome != null">
+				outcome = #{outcome}
+			</if>
+			<if test="eq_sort != null">
+			<!-- eq_sort 컬럼은 NotNull이기 때문에, 이 값이 조회가 되지 않으면 UPDATE 실행되지 않음. -->
+			    ,eq_sort = (SELECT eq_sort FROM `eq_sort`
+			                WHERE eq_sort = #{eq_sort} <!-- 비품분류 : '소프트웨어' -->
+			                LIMIT 1)
+			</if>
+			<if test="eq_name != null">
+			    ,eq_name = #{eq_name} <!-- 비품이름 : 'TobeSoft Application' -->
+			</if>
+		</trim><!-- SET으로 문장이 선행하도록 할때, 각 태그가 콤마(,)로 시작하게되면 콤마를 잘라주는 동적SQL태그 -->
+		 WHERE eq_addno = #{eq_addno} <!-- 변경하는 추가신청 번호 -->
+		   AND outcome  = 'eqa-1' 	  <!-- 대기중인 것만 변경가능 -->
+	</update>
+
+<!-- [ 비품추가신청내역 조회하기 ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  -->
+	<select id="add_askList" parameterType="map" resultType="map">
+		SELECT
+		       eq_addno, ask_eno, sign_eno, ask_date, eq_sort
+		      ,eq_name, outcome, sign_date, sign_rsn
+		  FROM `view_eq_add_list`
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="ask_eno != null">
+				AND ask_eno = #{ask_eno}</if>  <!-- 신청회원번호 -->
+			<if test="sign_eno != null">
+				AND sign_eno = #{sign_eno}</if> <!--  결재회원번호 -->
+			<if test="outcome != null">
+				AND outcome = #{outcome}</if> <!-- 취소|대기|기각|승인 -->
+			<if test="prev_ask_date != null">
+			<![CDATA[ 
+				AND ask_date >=  #{prev_ask_date} 
+			]]>				<!-- 구간검색 : 신청일자 최소일자 | '2018-09-01' -->
+			</if>
+			<if test="post_ask_date != null">
+			<![CDATA[ 
+				AND ask_date <=  #{post_ask_date}
+			]]>				<!-- 구간검색 : 신청일자 최대일자 | '2018-10-01' -->
+			</if>
+		</trim>
+	</select>
+
+
+
+
+
  </mapper>
