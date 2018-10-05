@@ -1,37 +1,22 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
-<title>전체 출결 페이지</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>사원 관리</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp"%>
 <script src="/E_BLOCK_plus/0_src/js/table/datatables.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
 </head>
+</head>
 <body>
-	<!-- sidebar -->
-	<%@ include file="/front/_includePage/sidemenu.jsp"%>
-	<!-- main -->
-	<%@ include file="/front/_includePage/mainpage.jsp"%>
-
-
 
 	<!--=============== 작성부분 ===============-->
-
 	<div class="ui container" style="margin-top: 5px;">
-		<!-- 검색창 시작  -->
-		<div class="ui column stackable grid container">
-			<div class="column" align="center" style="padding-left: 0px;">
-				<h2 class="ui header" style="padding-top: 5px;">
-					<i class="users icon"></i>
-					<div class="content">전체 출결</div>
-				</h2>
-			</div>
-		</div>
-
+		
+<div class="ui piled segment">
 		<div class="ui grid">
 			<div class="row" style="padding-bottom: 5px; padding-top: 0px;">
 				<div class="eight wide column"></div>
@@ -55,42 +40,25 @@
 			</div>
 		</div>
 
+
 		<table id="taable" class="ui grey fixed single line celled table">
 			<thead>
 				<tr>
-					<th>부서명</th>
-					<th>사원번호</th>
-					<th>사원명</th>
-					<th>직급</th>
-					<th>일자</th>
-					<th>출결상태</th>
-					<th>출근시간</th>
-					<th>퇴근시간</th>
+					<th>1</th>
+					<th>2</th>
+					<th>3</th>
+					<th>4</th>
+					<th>5</th>
+					<th>5</th>
+					<th>5</th>
+					<th>5</th>
 				</tr>
 			</thead>
 		</table>
 	</div>
-
-
-	<script type="text/javascript">
-	//캘린더 설정
-		$(function() {
-			$('#r_start').calendar({
-				type : 'date',
-				endCalendar : $('#r_end')
-			});
-			$('#r_end').calendar({
-				type : 'date',
-				startCalendar : $('#r_start')
-			});
-		});
-	</script>
-
+</div>
 
 	<script>
-		//사이드 메뉴 설정
-		$('#sm_persmanage').attr("class", "active item");
-		$('#sm_persmanage_att').attr("class", "active item");
 	
 		/* $('#taable').DataTable( {
 			  ajax: {
@@ -128,8 +96,8 @@
 				} //페이지 네이션 버튼 한글로 변경
 			},
 			ajax : {
-				url : "/E_BLOCK_plus/emp/cmt/deptList.ebp",
-				dataSrc : 'data'
+				url : "/E_BLOCK_plus/emp/info/empList.ebp",
+				dataSrc : 'data' 
 			},
 			columns : [
 				{
@@ -145,29 +113,23 @@
 					"data" : "e_rank"
 				},
 				{
-					"data" : "cmt_date"
+					"data" : "au_no"
 				},
 				{
-					"data" : "attend"
+					"data" : "d_ph"
 				},
 				{
-					"data" : "first_check"
+					"data" : "e_ph"
 				},
 				{
-					"data" : "last_check"
-				},
-				{
-					"data" : "lv_state"
-				},
-				{
-					"data" : "io_state"
+					"data" : "e_mail"
 				}
 			],
 			columnDefs : [
 				{	
-					targets : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
+					targets : [ 0, 1, 2, 3, 4 ,5,6,7],
 					className : 'center aligned'
-				},
+				}/*, 
 		        {
 		             "targets": [ 1 ],
 		             "visible": false, //화면에 출력, 비출력 설정
@@ -177,7 +139,7 @@
 		             "targets": [ 3 ],
 		             "visible": false, //화면에 출력, 비출력 설정
 		             "searchable": false //화면에서 검색가능, 검색 불가 설정
-		        }
+		        } */
 /* 		        {
 		             "targets": [ 1 ],
 		             "visible": false,
@@ -195,8 +157,8 @@
 	
 		$('#taable tbody').on('click', 'tr', function() {
 			var data = table.row(this).data();
-			alert(data["e_no"]);
-			alert(data["e_rank"]);
+			alert(data[""]);
+			alert(data[""]);
 	
 			if ($(this).hasClass('active')) {
 				$(this).removeClass('active');
@@ -206,10 +168,6 @@
 			}
 		});
 	</script>
-	<!--=============== 작성부분 ===============-->
 
-
-
-	<%@ include file="/front/_includePage/sticky"%>
 </body>
 </html>

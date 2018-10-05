@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>부서 배정 & 수정</title>
+<meta charset="UTF-8">
+<title>계약 변경</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp"%>
 <script src="/E_BLOCK_plus/0_src/js/table/datatables.js"></script>
 </head>
@@ -12,18 +12,27 @@
 
 
 	<!--=============== 작성부분 ===============-->
+
 	<div class="ui small modal">
 		<div class="ui container">
 			<form class="ui form" style="margin-top: 10px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">
-				<h4 class="ui dividing header">부서 배정 & 수정</h4>
+				<h4 class="ui dividing header">사원 계약 변경</h4>
 				<div class="two fields">
 					<div class="field">
 						<label>이름</label>
-						<input type="text" placeholder="이름">
+						<div class="field">
+							<div class="ui disabled input">
+								<input id="" placeholder="이름">
+							</div>
+						</div>
 					</div>
 					<div class="field">
 						<label>사원 번호</label>
-						<input type="text" placeholder="사원번호">
+						<div class="field">
+							<div class="ui disabled input">
+								<input id="" placeholder="사원번호">
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="three fields">
@@ -80,9 +89,9 @@
 
 	<script type="text/javascript">
 	
-	$('.ui.modal')
-	  .modal('show')
-	;
+		$('.ui.modal')
+			.modal('show')
+		;
 		//성별
 		$('.dropdown').dropdown();
 	
@@ -116,7 +125,10 @@
 			});
 		});
 	</script>
+
 	<!--=============== 작성부분 ===============-->
+
+
 
 </body>
 </html>
