@@ -12,6 +12,7 @@
 
 
   $(document).ready(function() {
+	  
     $('#calendar').fullCalendar({
       header: {
         left: 'prev,next today',
@@ -22,9 +23,12 @@
       eventLimit: true, // allow "more" link when too many events
       eventSources: [
     	    {
-    	      url: '/E_BLOCK_plus/emp/cmt/myList.ebp',
+    	      url: '/E_BLOCK_plus/emp/cmt/cmt_calendar.ebp',
     	      color: 'skyblue',   // a non-ajax option
-    	      textColor: 'white'
+    	      textColor: 'white',
+    	      data: {
+    	    	  e_no :$("#e_no").val()
+    	      }
     	    }
     	  ],
       timeFormat: 'H(:mm)'

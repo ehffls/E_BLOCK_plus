@@ -1,5 +1,7 @@
 package eblock.b_logic;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -89,7 +91,25 @@ public class EmpLogic {
 	
 	public List<Map<String, Object>> cmt_calendar(Map<String, Object> pMap) {
 		list = empDao.cmt_calendar(pMap);
-		return list;
+		Map<String,Object> rMap = null;
+		Map<String,Object> iMap = null;
+		Map<String,Object> oMap = null;
+		logger.info(list);
+		List<Map<String, Object>> rlist = new ArrayList<Map<String,Object>>();
+		for(int i=0;i<list.size();i++) {
+			rMap = new HashMap<String,Object>();
+			oMap = new HashMap<String,Object>();
+			iMap = new HashMap<String,Object>();
+			rMap = list.get(i);
+			iMap.put("start", rMap.get("checkin"));
+			iMap.put("title", "출근");
+			rlist.add(iMap);
+			oMap.put("start", rMap.get("checkout"));
+			oMap.put("title", "퇴근");
+			rlist.add(oMap);
+			
+		}
+		return rlist;
 	}
 
 	public List<Map<String, Object>> cmt_myList(Map<String, Object> pMap) {

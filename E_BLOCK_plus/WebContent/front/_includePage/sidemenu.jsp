@@ -9,12 +9,9 @@ String e_no=null;
 String au_no=null;
 
 if(cs != null&& cs.length>0 ){
-System.out.print(cs.length);	
 for(int i=0;i<cs.length;i++){
-	System.out.print(cs[i].getName());
 	if("c_ename".equals(cs[i].getName())){
 		 e_name =cs[i].getValue();
-		 System.out.print(e_name);
 	}
 	else if(cs[i].getName().equals("c_eno")){
 		e_no = cs[i].getValue();
@@ -59,7 +56,7 @@ $(document)
   </div>
   <!-- 로고 끝 -->
   <!-- 메인페이지 시작 -->
-  <a class="item" href="<%=Project_Root2 %>/front/main.jsp" id="sm_main">메인페이지</a>
+  <a class="item" href="/<%=Project_Root2 %>/front/main.jsp" id="sm_main">메인페이지</a>
   <!-- 메인페이지 끝 -->
   <!-- 마이페이지 시작 -->
   <div class="item" id="sm_mp">
@@ -68,12 +65,11 @@ $(document)
       <a class="item" id="sm_mp_mp" href="javascript:plist()">
         내 정보
       </a>
-      <form id="f_eno">
-		  <input type="hidden" name="e_no" value="<%=e_no %>">
-      </form>
-      <a class="item" href="<%=Project_Root2 %>/emp/cmt/myList.ebp" id="sm_mp_com">
+      
+      <a class="item" href="javascript:mlist()" id="sm_mp_com">
         내 출퇴근 내역
       </a>
+      
     </div>
 </div>
 <!-- 마이페이지 끝 -->
@@ -160,10 +156,21 @@ $(document)
 <!-- 사이드메뉴 끝 -->
 <!-- 사이드바 사용시 내용물은 pusher 속에 -->
 <div class="pusher">
+
+<form id="p_eno">
+		 <input type="hidden" id="e_no" name="e_no" value="<%=e_no %>">
+		  <input type="hidden" name="e_name" value="<%=e_name %>">
+</form>
+
 <script type="text/javascript">
 function plist(){
-	 $("#f_eno").attr("method","post"); 
-	 $("#f_eno").attr("action","<%=Project_Root2 %>/emp/info/persList.ebp"); 
-	 $("#f_eno").submit(); 
+	 $("#p_eno").attr("method","post"); 
+	 $("#p_eno").attr("action","<%=Project_Root2 %>/emp/info/persList.ebp"); 
+	 $("#p_eno").submit(); 
  }
+function mlist(){
+	 $("#p_eno").attr("method","post"); 
+	 $("#p_eno").attr("action","<%=Project_Root2 %>/front/emp/cmt/myList.jsp"); 
+	 $("#p_eno").submit(); 
+} 
 </script>
