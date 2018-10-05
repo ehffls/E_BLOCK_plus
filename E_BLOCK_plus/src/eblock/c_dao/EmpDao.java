@@ -16,6 +16,7 @@ public class EmpDao {
 	public EmpDao() { sqlSession = MybatisSession.getSqlSession(); }
 	
 	List<Map<String, Object>> list;
+	Map<String, Object> rMap;
 	int result;
 	String nameSpace = "eblock.mybatis.mapper.emp."; //emp.xml mapper namespace
 
@@ -26,16 +27,15 @@ public class EmpDao {
 	
 	
 	//─────[ 로그인하기 | 테스트완료(09/23) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-	public List<Map<String, Object>> login_check(Map<String, Object> pMap) {
+	public Map<String, Object> login_check(Map<String, Object> pMap) {
 			//아이디,비밀번호를 입력하여 확인받기
-		list = sqlSession.selectList(nameSpace+"login_check", pMap);
+		rMap = sqlSession.selectOne(nameSpace+"login_check", pMap);
 			//확인결과가 승인메시지일때
-		if(list.get(0).get("res_msg") == "CONFIRM") {
-			int e_no = (int)list.get(0).get("res_msg");//결과값은 사원번호
-			pMap.put("e_no",e_no);//사원번호로 사원정보받기
-			list = sqlSession.selectList(nameSpace+"get_empInfo", pMap);
+		if("CONFIRM".equals(rMap.get("res_msg").toString())) {
+			rMap = sqlSession.selectOne(nameSpace+"get_empInfo", pMap);
 		}
-		return list;
+		logger.info(rMap);
+		return rMap;
 	}
 
 	

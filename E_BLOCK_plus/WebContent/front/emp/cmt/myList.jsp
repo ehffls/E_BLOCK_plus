@@ -22,7 +22,7 @@
       eventLimit: true, // allow "more" link when too many events
       eventSources: [
     	    {
-    	      url: './List_JSON.jsp',
+    	      url: '/E_BLOCK_plus/emp/cmt/myList.ebp',
     	      color: 'skyblue',   // a non-ajax option
     	      textColor: 'white'
     	    }

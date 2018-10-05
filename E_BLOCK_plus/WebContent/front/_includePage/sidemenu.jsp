@@ -2,7 +2,33 @@
     pageEncoding="UTF-8"%> 
 <%	
 	String Project_Root2 = request.getContextPath();
-%>
+/* int i=0; i<cs.length; i++ */
+Cookie[] cs = request.getCookies();
+String e_name=null;
+String e_no=null;
+String au_no=null;
+
+if(cs != null&& cs.length>0 ){
+System.out.print(cs.length);	
+for(int i=0;i<cs.length;i++){
+	System.out.print(cs[i].getName());
+	if("c_ename".equals(cs[i].getName())){
+		 e_name =cs[i].getValue();
+		 System.out.print(e_name);
+	}
+	else if(cs[i].getName().equals("c_eno")){
+		e_no = cs[i].getValue();
+	}
+	else if(cs[i].getName().equals("c_auno")){
+		au_no = cs[i].getValue();
+	}
+		
+	
+	} 
+}
+
+%> 
+
 <script type="text/javascript">
 // 사이드바 여는 코드
 $(document)
@@ -21,8 +47,10 @@ $(document)
     		$("#sidebar").sidebar('setting', 'transition', 'overlay')
     		.sidebar('toggle');
     	});
+ 
     });
-</script>
+    
+    </script>
 <!-- 사이드메뉴 시작 -->
 <div class="ui vertical inverted sidebar menu left" id="sidebar">
   <!-- 로고 시작 -->
@@ -37,10 +65,13 @@ $(document)
   <div class="item" id="sm_mp">
  	<div class="header">마이페이지</div>
   	<div class="menu">
-      <a class="item" href="<%=Project_Root2 %>/front/emp/info/persList.jsp" id="sm_mp_mp">
+      <a class="item" id="sm_mp_mp" href="javascript:plist()">
         내 정보
       </a>
-      <a class="item" href="<%=Project_Root2 %>/front/emp/cmt/myList.jsp" id="sm_mp_com">
+      <form id="f_eno">
+		  <input type="hidden" name="e_no" value="<%=e_no %>">
+      </form>
+      <a class="item" href="<%=Project_Root2 %>/emp/cmt/myList.ebp" id="sm_mp_com">
         내 출퇴근 내역
       </a>
     </div>
@@ -69,11 +100,11 @@ $(document)
 <div class="item" id="sm_persmanage">
   <div class="header">인사관리</div>
   <div class="menu">
-      <a class="item" href="<%=Project_Root2 %>/front/persmanage/cmtDeptList.jsp" id="sm_persmanage_att">
-        전체출결
+      <a class="item" href="<%=Project_Root2 %>/front/emp/cmt/cmtDeptList.jsp" id="sm_persmanage_att">
+        출결관리
       </a>
       <a class="item" href="<%=Project_Root2 %>/front/persmanage/AllPev.jsp" id="sm_persmanage_Eval">
-        인사평가결과
+        인사평가          
       </a>
       <a class="item" href="<%=Project_Root2 %>/front/persmanage/attdToMeList.jsp" id="sm_persmanage_aplist">
         근태결재내역
@@ -129,3 +160,10 @@ $(document)
 <!-- 사이드메뉴 끝 -->
 <!-- 사이드바 사용시 내용물은 pusher 속에 -->
 <div class="pusher">
+<script type="text/javascript">
+function plist(){
+	 $("#f_eno").attr("method","post"); 
+	 $("#f_eno").attr("action","<%=Project_Root2 %>/emp/info/persList.ebp"); 
+	 $("#f_eno").submit(); 
+ }
+</script>

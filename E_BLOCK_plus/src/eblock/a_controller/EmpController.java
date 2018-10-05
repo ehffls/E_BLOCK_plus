@@ -30,7 +30,7 @@ public class EmpController implements Controller {
 		Map<String,Object> pMap = new HashMap<String,Object>();
 		HashMapBinder hmb = new HashMapBinder(req);
 		hmb.bind(pMap);
-		
+		logger.info(pMap);
 
 		String name = null; //attribute의 name
 		String path = null; //forward:xxx.jsp
@@ -41,8 +41,9 @@ public class EmpController implements Controller {
 			//로그인하기
 			if(crud.equals("check")) {
 				robj = empLogic.login_check(pMap);
-				name ="attribute의 name";
-				path="forward:xxx.jsp";
+				logger.info(robj);
+				name = "login";
+				path = "forward:/emp/login/login.jsp";
 			}
 		}
 		//정보조회
@@ -50,20 +51,20 @@ public class EmpController implements Controller {
 			//사원집합에 대한 조건에 따라조회하기
 			if(crud.equals("empList")) {
 				robj = empLogic.info_empList(pMap);
-				name ="attribute의 name";
-				path="forward:xxx.jsp";
+				name = "attribute의 name";
+				path = "forward:xxx.jsp";
 			}
 			//사원 개인정보 조회하기
 			else if(crud.equals("persList")) {
 				robj = empLogic.info_persList(pMap);
-				name ="attribute의 name";
-				path="forward:xxx.jsp";
+				name = "rList";
+				path = "forward:/emp/info/persList.jsp";
 			}
 			//사원 개인정보 선택부분 수정하기
 			else if(crud.equals("persUpd")) {
 				robj = empLogic.info_persUpd(pMap);
-				name ="attribute의 name";
-				path="forward:xxx.jsp";
+				name = "attribute의 name";
+				path = "forward:xxx.jsp";
 			}
 		}
 		//인사평가
@@ -104,8 +105,8 @@ public class EmpController implements Controller {
 			//출결 조회하기 (개인)
 			else if(crud.equals("myList")) {
 				robj = empLogic.cmt_myList(pMap);
-				name ="attribute의 name";
-				path="forward:xxx.jsp";
+				name ="rList";
+				path="forward:/emp/cmt/List_JSON.jsp";
 			}
 			//출결 조회하기 (부서)
 			else if(crud.equals("deptList")) {
