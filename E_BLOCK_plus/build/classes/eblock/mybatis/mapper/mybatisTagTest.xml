@@ -7,11 +7,11 @@
  <!-- 다중업데이트 동적쿼리 테스트 -->
  <update id="multi_update_test" parameterType="java.util.List">
         <foreach item="item" index="key" collection="list" separator=";">
-        UPDATE auth SET 
-	        <foreach item="value" index="key" collection="item.entrySet()" separator=",">
-	                ${key} = #{value}
-	        </foreach>
-        WHERE au_no = #{item.au_no}
+	        UPDATE auth SET 
+		        <foreach item="value" index="key" collection="item.entrySet()" separator=",">
+		                ${key} = #{value}
+		        </foreach>
+	        WHERE au_no = #{item.au_no}
        </foreach>
  </update>
  
