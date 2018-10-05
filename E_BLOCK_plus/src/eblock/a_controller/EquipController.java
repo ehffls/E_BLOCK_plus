@@ -42,7 +42,7 @@ public class EquipController implements Controller {
 		if(work.equals("add")) {
 			if(crud.equals("ask")) {
 				list = equipLogic.add_ask(pMap);
-				name ="attribute의 name redirect면 안씀";
+				name ="addAsk";
 				path="forward:xxx.jsp";
 			}
 			else if(crud.equals("askUpd")) {

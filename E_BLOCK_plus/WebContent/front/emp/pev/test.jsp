@@ -11,31 +11,10 @@
 <%@ include file="/0_src/_includeList/commonUI_S.jsp"%>
 <script type="text/javascript">
 	function j_ok() {
-		var formData = $("#pev_form").serialize();
-		var score = $("#percent").progress('get percent');
-		formData+="&ev_score="+score
-		$.ajax({
-			url : "pevAdd)result.jsp",
-			type : "POST",
-			data : formData,
-			success : function(data) {
-				 alert(data);
-				 if(data==0){
-					 alert("실패")
-				 }
-				 else if(data==1){
-					 location.href="./pevMylist.jsp";
-				 }
-			},	
-			
-			error : function(xhr, status){
-				alert(xhr+":"+status);
-			}
-		});
 		
 	}
 	function j_cancle() {
-		location.href("pevMylist.jsp");	
+		
 	}
 </script>
 </head>
@@ -55,16 +34,16 @@
 	</div>
 	<div id="form_1">
 		<div class="ui container" style="margin-top: 20px">
-			<form class="ui form" id="pev_form">
+			<form class="ui form">
 				<div class="two fields">
 					<div class="field">
 						<div class="ui labeled input">
-							<a class="ui label">평가대상번호</a> <input name="tg_eno" type="text">
+							<a class="ui label">평가대상번호</a> <input type="text">
 						</div>
 					</div>
 					<div class="field">
 						<div class="ui indicating progress" data-value="10"
-							data-total="20" id="percent" name="ev_score">
+							data-total="20" id="percent">
 							<div class="bar">
 								<div class="progress"></div>
 							</div>
@@ -76,7 +55,7 @@
 				</div>
 				<div class="field" style="height: 300px">
 					<label>인사평가작성</label>
-					<textarea style="resize: none; height: 80%" name="ev_content"></textarea>
+					<textarea style="resize: none; height: 80%"></textarea>
 				</div>
 				<div class="field">
 					<div class="ui submit button" onclick="j_ok()">저장</div>

@@ -71,8 +71,8 @@ public class EmpController implements Controller {
 			//인사평가 기간에 인사평가 입력하기
 			if(crud.equals("add")) {
 				robj = empLogic.pev_add(pMap);
-				name ="attribute의 name";
-				path="forward:xxx.jsp";
+				name ="pevADD";
+				path="forward:pevADD.jsp";
 			}
 			//인사평가 기간에 인사평가 수정하기
 			else if(crud.equals("update")) {
@@ -83,8 +83,8 @@ public class EmpController implements Controller {
 			//내가 평가한내역 조회하기(타인은 열람불가)
 			else if(crud.equals("myList")) {
 				robj = empLogic.pev_myList(pMap);
-				name ="attribute의 name";
-				path="forward:xxx.jsp";
+				name ="pevList";
+				path="forward:/emp/pev/pevMyList_JSON.jsp";
 			}
 		}
 		//출결

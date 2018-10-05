@@ -166,7 +166,7 @@
 		SELECT
          	ev_eno, tg_eno, qrt_no, ev_date, ev_content, ev_score, ratio
   		  FROM `pev`
-  		 WHERE ev_eno = #{ev_eno}
+  		 <!-- WHERE ev_eno = #{ev_eno} -->
   		<choose>
 		 	<when test="min_qrtno != null">
   		   		<![CDATA[ AND qrt_no >= #{min_qrtno} ]]>
