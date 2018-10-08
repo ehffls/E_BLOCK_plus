@@ -1,16 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%
-    out.clear();
-    out.print(2);
-    %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>수정완료</title>
+<title>새비품신청완료</title>
 </head>
 <body>
-수정되었습니다 잠시만 기다리세요.
+<h2>정상적으로 처리되엇습니다. 메인 페이지로 이동합니다.</h2>
 </body>
 </html>

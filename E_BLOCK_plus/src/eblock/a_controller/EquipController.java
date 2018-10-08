@@ -94,8 +94,8 @@ public class EquipController implements Controller {
 		else if(work.equals("add")) {
 			//비품추가신청내역에 새로운 비품내역추가 신청하기 
 			if(crud.equals("ask")) {
-				result = equipLogic.add_ask(pMap);
-				name ="attribute의 name redirect면 안씀";
+				list = equipLogic.add_ask(pMap);
+				name ="addAsk";
 				path="forward:xxx.jsp";
 			}
 			//대기중인 비품내역추가신청 수정하기
