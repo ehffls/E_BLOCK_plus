@@ -137,9 +137,9 @@ public class EmpLogic {
 		return result;
 	}
 
-	public Object retire_list(Map<String, Object> pMap) {
+	public List<Map<String,Object>> retire_list(Map<String, Object> pMap) {
 		list = empDao.retire_list(pMap);
-		return result;
+		return list;
 	}
 	
 	
