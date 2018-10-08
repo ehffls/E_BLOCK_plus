@@ -21,6 +21,5 @@
 		<mapper resource="eblock/mybatis/mapper/budget.xml" />
 		<mapper resource="eblock/mybatis/mapper/emp.xml" />
 		<mapper resource="eblock/mybatis/mapper/equip.xml" />
-		<mapper resource="eblock/mybatis/mapper/mybatisTagTest.xml" /><!-- 테스트용 쿼리묶음 -->
 	</mappers>
 </configuration>
