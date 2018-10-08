@@ -24,7 +24,7 @@
 		function eSearchList() {
 			$.ajax({
 				method : "get",
-				url : "./empSearch.jsp",
+				url : "./cntrListSearch.jsp",
 				success : function(result) {
 					$("#eList").html(result);
 				},
@@ -37,7 +37,7 @@
 		function empInsert() {
 			$.ajax({
 				method : "get",
-				url : "../cntr/cntrAddEmp.jsp",
+				url : "./cntrAddEmp.jsp",
 				success : function(result) {
 					$("#eIns").html(result);
 				},
@@ -65,12 +65,13 @@
 			<a class="item" id="eSearch" onclick="eSearchList()"> 사원 조회 </a>
 		</div>
 		<div id="eList"></div>
+		<div id="eIns"></div>
 		<div id="SetDept"></div>
 		<div id="UpdEmp"></div>
-		<div id="eIns"></div>
 	</div>
 
 	<script>
+		
 		//사이드 메뉴 설정
 		$('#sm_persmanage').attr("class", "active item");
 		$('#sm_persmanage_emp').attr("class", "active item");

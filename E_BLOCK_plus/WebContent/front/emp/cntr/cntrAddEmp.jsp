@@ -84,7 +84,7 @@
 						<div class="ui calendar" id="c_joinday">
 							<div class="ui input left icon">
 								<i class="calendar icon"></i>
-								<input type="text" placeholder="생년월일" />
+								<input type="text" placeholder="입사일자" />
 							</div>
 						</div>
 					</div>

@@ -1,3 +1,4 @@
+<%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,8 +13,14 @@
 
 
 	<!--=============== 작성부분 ===============-->
+	<%
+		String eno = request.getParameter("e_no");
+		System.out.print(eno);
 
-	<div class="ui small modal">
+	%>
+
+
+	<div class="ui small modal" id="emp_modal">
 		<div class="ui container">
 			<form class="ui form" style="margin-top: 10px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">
 				<h4 class="ui dividing header">사원 계약 변경</h4>
@@ -22,7 +29,7 @@
 						<label>이름</label>
 						<div class="field">
 							<div class="ui disabled input">
-								<input id="" placeholder="이름">
+								<input id="name" placeholder="이름" >
 							</div>
 						</div>
 					</div>
@@ -41,7 +48,7 @@
 						<div class="ui calendar" id="c_day">
 							<div class="ui input left icon">
 								<i class="calendar icon"></i>
-								<input type="text" placeholder="계약일자" />
+								<input type="text" placeholder="계약일자"/>
 							</div>
 						</div>
 					</div>
@@ -60,7 +67,7 @@
 						<div class="ui calendar" id="c_start">
 							<div class="ui input left icon">
 								<i class="calendar icon"></i>
-								<input type="text" placeholder="계약시작일" />
+								<input type="text" placeholder="계약시작일"/>
 							</div>
 						</div>
 					</div>
@@ -80,7 +87,7 @@
 				</div>
 				<div align="center">
 					<div class="ui button">등록</div>
-					<div class="ui cancel button">취소</div>
+					<div class="ui button" onclick="b_cencel()">취소</div>
 				</div>
 			</form>
 		</div>
@@ -88,9 +95,9 @@
 
 
 	<script type="text/javascript">
-	
-		$('.ui.modal')
-			.modal('show')
+		function b_cencel() {
+			$('.ui.modal').modal('hide');
+		}
 		;
 		//성별
 		$('.dropdown').dropdown();

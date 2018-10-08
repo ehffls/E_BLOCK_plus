@@ -1,3 +1,4 @@
+<%@page import="java.util. * " %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -12,57 +13,37 @@
 
 
 	<!--=============== 작성부분 ===============-->
-	<div class="ui small modal">
+<%
+	String eno = request.getParameter("e_no");
+	System.out.print(eno);
+%>
+
+	<div class="ui small modal" id="dept_modal">
 		<div class="ui container">
 			<form class="ui form" style="margin-top: 10px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">
 				<h4 class="ui dividing header">부서 배정 & 수정</h4>
 				<div class="two fields">
 					<div class="field">
 						<label>이름</label>
-						<input type="text" placeholder="이름">
-					</div>
-					<div class="field">
-						<label>사원 번호</label>
-						<input type="text" placeholder="사원번호">
-					</div>
-				</div>
-				<div class="three fields">
-					<div class="field">
-						<label>계약일자</label>
-						<div class="ui calendar" id="c_day">
-							<div class="ui input left icon">
-								<i class="calendar icon"></i>
-								<input type="text" placeholder="계약일자" />
-							</div>
+						<div class="ui disabled input">
+							<input type="text" placeholder="이름">
 						</div>
 					</div>
 					<div class="field">
-						<label>계약분류</label>
-						<input type="text" placeholder="계약분류">
-					</div>
-					<div class="field">
-						<label>계약연봉</label>
-						<input type="text" placeholder="계약연봉">
+						<label>사원 번호</label>
+						<div class="ui disabled input">
+							<input type="text" placeholder="사원 번호">
+						</div>
 					</div>
 				</div>
 				<div class="two fields">
 					<div class="field">
-						<label>계약시작일</label>
-						<div class="ui calendar" id="c_start">
-							<div class="ui input left icon">
-								<i class="calendar icon"></i>
-								<input type="text" placeholder="계약시작일" />
-							</div>
-						</div>
+						<label>부서명</label>
+						<input type="text" placeholder="부서명">
 					</div>
 					<div class="field">
-						<label>계약종료일</label>
-						<div class="ui calendar" id="c_end">
-							<div class="ui input left icon">
-								<i class="calendar icon"></i>
-								<input type="text" placeholder="계약종료일" />
-							</div>
-						</div>
+						<label>권한 번호</label>
+						<input type="text" placeholder="권한 번호">
 					</div>
 				</div>
 				<div class="field">
@@ -71,7 +52,7 @@
 				</div>
 				<div align="center">
 					<div class="ui button">등록</div>
-					<div class="ui cancel button">취소</div>
+					<div class="ui button" onclick="b_cencel()">취소</div>
 				</div>
 			</form>
 		</div>
@@ -80,9 +61,10 @@
 
 	<script type="text/javascript">
 	
-	$('.ui.modal')
-	  .modal('show')
-	;
+		function b_cencel() {
+			$('.ui.modal').modal('hide');
+		};
+	
 		//성별
 		$('.dropdown').dropdown();
 	

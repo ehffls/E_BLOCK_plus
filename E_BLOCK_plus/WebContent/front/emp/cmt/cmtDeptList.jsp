@@ -48,7 +48,8 @@
 					<div class="ui calendar" id="r_end" align="right"
 						style="margin-bottom: 5px;">
 						<div class="ui input left icon">
-							<i class="calendar icon"></i> <input id="r_end" type="text" placeholder="종료일자">
+							<i class="calendar icon"></i> 
+							<input id="r_end" type="text" placeholder="종료일자">
 						</div>
 					</div>
 				</div>
@@ -63,9 +64,11 @@
 					<th>사원명</th>
 					<th>직급</th>
 					<th>일자</th>
-					<th>출결상태</th>
+					<th>출결</th>
 					<th>출근시간</th>
 					<th>퇴근시간</th>
+					<th>상태</th>
+					<th>재실유무</th>
 				</tr>
 			</thead>
 		</table>

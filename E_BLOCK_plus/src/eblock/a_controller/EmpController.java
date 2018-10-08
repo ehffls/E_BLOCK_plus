@@ -116,8 +116,14 @@ public class EmpController implements Controller {
 		}
 		//인사관리
 		else if(work.equals("cntr")) {
+			//기존사원 계약조회
+			if(crud.equals("list")) {
+				robj = empLogic.cntr_list(pMap);
+				name ="cntr_list";
+				path="forward:/emp/cntr/cntrList_JSON.jsp";
+			}
 			//인사사원 등록하기
-			if(crud.equals("addEmp")) {
+			else if(crud.equals("addEmp")) {
 				robj = empLogic.cntr_addEmp(pMap);
 				name ="attribute의 name";
 				path="forward:xxx.jsp";

@@ -74,6 +74,11 @@ public class EmpLogic {
 		return list;
 	}
 	
+	public List<Map<String, Object>> cntr_list(Map<String, Object> pMap) {
+		list = empDao.cntr_list(pMap);
+		return list;
+	}
+	
 	public int cntr_addEmp(Map<String, Object> pMap) {
 		result = empDao.cntr_addEmp(pMap);
 		return result;
@@ -104,6 +109,8 @@ public class EmpLogic {
 		result = empDao.retire_sign(pMap);
 		return result;
 	}
+
+
 
 
 }
