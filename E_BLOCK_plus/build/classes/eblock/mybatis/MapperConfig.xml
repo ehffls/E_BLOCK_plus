@@ -8,8 +8,10 @@
 			<transactionManager type="JDBC" />
 			<dataSource type="UNPOOLED">
 				<property name="driver" value="com.mysql.cj.jdbc.Driver" />
+		   												<!-- 임시DB위치 -->
+		   		<property name="url" value="jdbc:mysql://192.168.0.120:3306/EBLOCK?serverTimezone=UTC&amp;allowMultiQueries=true" />
 																					<!-- xml문서의 url 엔티티참조 구분자인 세미콜론(;)은 &amp;로 변환됨. -->
-		   		<property name="url" value="jdbc:mysql://192.168.0.128:3306/EBLOCK?serverTimezone=UTC&amp;allowMultiQueries=true" />
+		   		<!-- <property name="url" value="jdbc:mysql://raonjena.iptime.org:3306/EBLOCK?serverTimezone=UTC&amp;allowMultiQueries=true" /> -->
  				<!-- <property name="url" value="jdbc:mysql://raonjena.iptime.org:3306/EBLOCK?serverTimezone=UTC" /> -->
 				<property name="username" value="EBlockSub" />
 				<property name="password" value="HLJLJH" />

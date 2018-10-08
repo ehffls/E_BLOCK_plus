@@ -4,11 +4,14 @@
 <%@ page import="com.google.gson.Gson" %>
 <%
        
-	String targetName = "";//여기에 request객체에 담은 리스트의 name을 쓰세요
 	
-	List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
-	Map<String,Object> pMap = null;
-	for(int i=1;i<6;i++){
+	List<Map<String,Object>> list = (List<Map<String,Object>>)request.getAttribute("calendar");
+	Gson gs = new Gson();
+	String json = gs.toJson(list);
+	out.println(json);
+	
+	
+	/* for(int i=1;i<6;i++){
 	   pMap = new HashMap<String,Object>();
 	   pMap.put("title", "출근");
 	   pMap.put("start", "2018-10-0"+i+"T08:1"+i+":55");
@@ -17,8 +20,5 @@
 	   pMap.put("title", "퇴근");
 	   pMap.put("start", "2018-10-0"+i+"T20:1"+i+":55");
 	   list.add(pMap);
-	}
-	Gson gs = new Gson();
-	String json = gs.toJson(list);
-	out.println(json);
+	} */
 %>
