@@ -18,10 +18,11 @@ public class EmpLogic {
 	
 	int result = 0;
 	List<Map<String, Object>> list = null;
+	Map<String, Object> rMap;
 	
-	public List<Map<String, Object>> login_check(Map<String, Object> pMap) {
-		list = empDao.login_check(pMap);
-		return list;
+	public Map<String, Object> login_check(Map<String, Object> pMap) {
+		rMap = empDao.login_check(pMap);
+		return rMap;
 	}
 
 	public List<Map<String, Object>> info_empList(Map<String, Object> pMap) {

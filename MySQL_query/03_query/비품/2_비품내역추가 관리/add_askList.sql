@@ -6,4 +6,4 @@ SELECT
    AND sign_eno = 10#{sign_eno}
    AND outcome = '대기'#{outcome}
    AND ask_date >= '2018-09-01' #{prev_ask_date}
-   AND ask_date <= '2018-10-01' #{post_ask_date}
+   AND ask_date <= '2018-11-01' #{post_ask_date}

@@ -12,6 +12,9 @@ SELECT
 		      WHEN pe.outcome='ibp-1' THEN '대기'
             WHEN pe.outcome='ibp-2' THEN '기각'
 		      WHEN pe.outcome='ibp-3' THEN '승인'
+		      WHEN pe.outcome='ibp-4' THEN '결제완료'
+		      WHEN pe.outcome='ibp-5' THEN '입고완료'
+		      WHEN pe.outcome='ibp-6' THEN '결제철회'
             ELSE 'ERROR'
 		  END) AS 'outcome'
 	 , (CASE WHEN pe.outcome='ibp-1' THEN
@@ -20,10 +23,10 @@ SELECT
 		  END) AS 'elapse' -- 대기요청의 경과시간을 알려줌
     , pe.sign_eno	 AS 'sign_eno'
     , (CASE WHEN pe.outcome IN ('ibp-0','ibp-1') THEN ' '
-				WHEN pe.outcome IN ('ibp-2','ibp-3') THEN pe.sign_date
+				WHEN pe.outcome IN ('ibp-2','ibp-3','ibp-4','ibp-5') THEN pe.sign_date
 				ELSE 'ERROR'
 		  END) AS 'sign_date'
-    , pe.eq_sort	 AS 'eq_sort'
+    , eq.eq_sort	 AS 'eq_sort'
     , pe.eq_no		 AS 'eq_no'
     , eq.eq_name	 AS 'eq_name'
     , eq.cost		 AS 'cost'
