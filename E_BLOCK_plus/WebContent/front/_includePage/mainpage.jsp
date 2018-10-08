@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
+<script type="text/javascript">
+
+</script>
 <!-- 메인페이지 구성 시작 -->
 <!-- 상단화면 시작 -->
 <div id="sticky" class="ui sticky">
@@ -10,7 +13,7 @@
 				<a class="toc item" id="sidemenu_icon"> <i class="sidebar icon"></i>
 				</a> <a class="item" id="mainpage" href="">메인페이지</a> <a class="item" id="approval">전자결재</a>
 				<!-- 우측메뉴 시작 -->
-				<div class="right item">홍길동 사원</div>
+				<div class="right item"><%=e_name %></div>
 				<!-- 우측메뉴 끝 -->
 			</div>
 		</div>

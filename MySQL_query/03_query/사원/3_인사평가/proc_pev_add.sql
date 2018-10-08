@@ -18,7 +18,8 @@ SELECT @RESULT;
 
 /* DELIMITER 는 프로시저 앞,뒤의 위치하여 안에 있는 부분은  한번에 실행될 수 있게 하는 역할을 한다. */
 DELIMITER $$
-CREATE PROCEDURE proc_pev_add
+DROP PROCEDURE IF EXISTS `proc_pev_add`;
+CREATE PROCEDURE `proc_pev_add`
 	 (IN _ev_eno		NUMERIC(6)
     ,IN _tg_eno		NUMERIC(6)
 	 ,IN _ev_content 	VARCHAR(500)

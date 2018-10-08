@@ -8,7 +8,7 @@ CREATE TRIGGER trg_pev_add
     FOR EACH ROW 
 -- BEGIN -- MySQL 8.0이상은 BEGIN-END를 선언하지 않습니다.
 INSERT INTO `pev_list`(pev_lno, qrt_no, ev_eno, tg_eno, ev_date, ev_content, ev_score, ratio)
-    VALUES (nextSeqVal('seq_pev_lno')
+VALUES (nextSeqVal('seq_pev_lno')
 		  ,NEW.qrt_no
         ,NEW.ev_eno
         ,NEW.tg_eno
