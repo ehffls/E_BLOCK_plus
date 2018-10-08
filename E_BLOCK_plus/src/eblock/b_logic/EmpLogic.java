@@ -1,5 +1,7 @@
 package eblock.b_logic;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,10 +20,11 @@ public class EmpLogic {
 	
 	int result = 0;
 	List<Map<String, Object>> list = null;
+	Map<String, Object> rMap;
 	
-	public List<Map<String, Object>> login_check(Map<String, Object> pMap) {
-		list = empDao.login_check(pMap);
-		return list;
+	public Map<String, Object> login_check(Map<String, Object> pMap) {
+		rMap = empDao.login_check(pMap);
+		return rMap;
 	}
 
 	public List<Map<String, Object>> info_empList(Map<String, Object> pMap) {
@@ -31,6 +34,33 @@ public class EmpLogic {
 
 	public List<Map<String, Object>> info_persList(Map<String, Object> pMap) {
 		list = empDao.info_persList(pMap);
+		//////////////////View처리 대신 Logic에서 변환처리 할 수 있는 방법 시작////////////////////////////////
+		Map<String,Object> rMap = list.get(0);
+		String gender = (String)rMap.get("gender");
+		if("0".equals(gender)){
+			gender="남자";
+		} else if("1".equals(gender)) {
+			gender="여자";
+		}
+		rMap.put("gender", gender);
+		int e_rank = Integer.parseInt(rMap.get("e_rank").toString());
+		String e_rankS = "";
+		if(e_rank==50){
+			e_rankS="대표";
+		} else if(e_rank==40) {
+			e_rankS="부서장";
+		} else if(e_rank==30) {
+			e_rankS="차장";
+		} else if(e_rank==20) {
+			e_rankS="팀장";
+		} else if(e_rank==10) {
+			e_rankS="사원";
+		} else {
+			e_rankS="인턴";
+		}
+		rMap.put("e_rank", e_rankS);
+		list.add(0, rMap);
+		//////////////////View처리 대신 Logic에서 변환처리 할 수 있는 방법 끝////////////////////////////////
 		return list;
 	}
 
@@ -61,7 +91,25 @@ public class EmpLogic {
 	
 	public List<Map<String, Object>> cmt_calendar(Map<String, Object> pMap) {
 		list = empDao.cmt_calendar(pMap);
-		return list;
+		Map<String,Object> rMap = null;
+		Map<String,Object> iMap = null;
+		Map<String,Object> oMap = null;
+		logger.info(list);
+		List<Map<String, Object>> rlist = new ArrayList<Map<String,Object>>();
+		for(int i=0;i<list.size();i++) {
+			rMap = new HashMap<String,Object>();
+			oMap = new HashMap<String,Object>();
+			iMap = new HashMap<String,Object>();
+			rMap = list.get(i);
+			iMap.put("start", rMap.get("checkin"));
+			iMap.put("title", "출근");
+			rlist.add(iMap);
+			oMap.put("start", rMap.get("checkout"));
+			oMap.put("title", "퇴근");
+			rlist.add(oMap);
+			
+		}
+		return rlist;
 	}
 
 	public List<Map<String, Object>> cmt_myList(Map<String, Object> pMap) {

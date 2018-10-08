@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>새비품신청완료</title>
 </head>
 <body>
-
+<h2>정상적으로 처리되엇습니다. 메인 페이지로 이동합니다.</h2>
 </body>
 </html>

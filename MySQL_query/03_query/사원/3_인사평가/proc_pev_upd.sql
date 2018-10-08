@@ -1,10 +1,3 @@
-	 SELECT * FROM `emp`;
-	 SELECT * FROM `pev`;
-	 SELECT * FROM `pev_list`;
---
-	 DROP PROCEDURE proc_pev_upd;
-	 commit;
-    
     
 -- [ 프로시저 사용하기 ] -------------------------------------------------------------
 CALL proc_pev_upd(3#{ev_eno}
@@ -18,7 +11,8 @@ SELECT @RESULT;
 
 /* DELIMITER 는 프로시저 앞,뒤의 위치하여 안에 있는 부분은  한번에 실행될 수 있게 하는 역할을 한다. */
 DELIMITER $$
-CREATE PROCEDURE proc_pev_upd
+DROP PROCEDURE IF EXISTS `proc_pev_upd`;
+CREATE PROCEDURE `proc_pev_upd`
 	 (IN _ev_eno		NUMERIC(6)
     ,IN _tg_eno		NUMERIC(6)
 	 ,IN _ev_content 	VARCHAR(500)

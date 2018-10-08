@@ -22,7 +22,7 @@
 		VALUES 	(1212,'영업2팀','02-1026-1212','105호',3);		
 	-- #1221 : 운영2팀
 		INSERT INTO `dept`(d_no, d_name, d_ph, d_addr, c_no)
-		VALUES 	(1221,'영업1팀','02-1026-1221','106호',3);
+		VALUES 	(1221,'운영1팀','02-1026-1221','106호',3);
 	-- #1222 : 운영2팀
 		INSERT INTO `dept`(d_no, d_name, d_ph, d_addr, c_no)
 		VALUES 	(1222,'운영2팀','02-1026-1222','107호',3);		
@@ -65,6 +65,10 @@
 	-- #1431 : 그래픽디자인팀
 		INSERT INTO `dept`(d_no, d_name, d_ph, d_addr, c_no)
 		VALUES 	(1431,'그래픽디자인팀', '02-1026-1431','404호',3);
+
+	 -- #8001 : 비품관리팀
+		INSERT INTO `dept`(d_no, d_name, d_ph, d_addr, c_no)
+		VALUES 	(8001,'비품관리팀', '02-1026-8001','511호',3);
 
     -- #9001 : 운영지원팀
 		INSERT INTO `dept`(d_no, d_name, d_ph, d_addr, c_no)

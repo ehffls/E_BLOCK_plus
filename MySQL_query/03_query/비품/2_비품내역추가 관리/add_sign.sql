@@ -13,14 +13,14 @@
 
 UPDATE `eq_add_list`
    SET outcome = CASE eq_addno
-						  WHEN 7 THEN 'eqa-3' -- 기각일 때
-					--   WHEN 7 THEN 'eqa-3' -- 승인일 때
+						  WHEN 23 THEN 'eqa-3' -- 승인일 때
+					--   WHEN 7 THEN 'eqa-2' -- 기각일 때
 						  ELSE outcome
 					   END
 	   ,sign_date = DATE_FORMAT(now(), '%Y-%m-%d') /* 2011-06-14 */
       ,sign_rsn = '트리거승인테스트' #{sign_rsn}
  WHERE sign_eno = 10#{e_no} -- 자기자신의 사원번호가 결재사원번호로 등록된 사원번호와 같아야함
-   AND eq_addno IN (7,19,20) -- 특정 신청번호로 무결성 확보
+   AND eq_addno IN (7,19,23) -- 특정 신청번호로 무결성 확보
 ;
 
 SELECT * FROM `eq`;

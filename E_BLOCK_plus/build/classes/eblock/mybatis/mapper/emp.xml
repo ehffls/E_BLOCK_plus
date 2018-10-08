@@ -50,7 +50,8 @@
     		,e_rank AS 'e_rank' <!-- 사원직급 -->
     		,au_no	AS 'au_no'	<!-- 사원권한 -->
   		  FROM `view_DpEmpName`
- 		 WHERE e_no = #{e_no};
+ 		 WHERE e_no = (SELECT e_no FROM `emp`WHERE e_id = #{e_id}
+                                               AND e_pw = #{e_pw});
 	</select>
 
 
@@ -166,7 +167,7 @@
 		SELECT
          	ev_eno, tg_eno, qrt_no, ev_date, ev_content, ev_score, ratio
   		  FROM `pev`
-  		 WHERE ev_eno = #{ev_eno}
+  		 <!-- WHERE ev_eno = #{ev_eno} -->
   		<choose>
 		 	<when test="min_qrtno != null">
   		   		<![CDATA[ AND qrt_no >= #{min_qrtno} ]]>
@@ -203,14 +204,12 @@
  <!-- [ 출결 조회하기 (달력용) | 테스트완료(10/01) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  -->
  	<select id="cmt_calendar" parameterType="map" resultType="map">
  		SELECT
-			 d_name, e_no, e_name, e_rank,
 			  <!-- '2018-10-01T13-45-27' 으로 반환 -->
     		 CONCAT(cmt_date,'T',first_check) AS 'checkin',
 		     IF(last_check='--:--:--'
 		       ,NULL <!-- 입실때 한번찍은 경우, last_check는 나오지 않는데, 이때, Calendar기능에 맞게 null로 반환한다. -->
-		       ,CONCAT(cmt_date,'T',last_check)) AS 'checkout',
+		       ,CONCAT(cmt_date,'T',last_check)) AS 'checkout'
 			      <!-- '2018-10-01T13-45-27' 으로 반환 -->
-			 attend,lv_state, io_state
 		  FROM view_cmt_list
 		 WHERE e_no = #{e_no}
  	</select>

@@ -2,7 +2,30 @@
     pageEncoding="UTF-8"%> 
 <%	
 	String Project_Root2 = request.getContextPath();
-%>
+/* int i=0; i<cs.length; i++ */
+Cookie[] cs = request.getCookies();
+String e_name=null;
+String e_no=null;
+String au_no=null;
+
+if(cs != null&& cs.length>0 ){
+for(int i=0;i<cs.length;i++){
+	if("c_ename".equals(cs[i].getName())){
+		 e_name =cs[i].getValue();
+	}
+	else if(cs[i].getName().equals("c_eno")){
+		e_no = cs[i].getValue();
+	}
+	else if(cs[i].getName().equals("c_auno")){
+		au_no = cs[i].getValue();
+	}
+		
+	
+	} 
+}
+
+%> 
+
 <script type="text/javascript">
 // 사이드바 여는 코드
 $(document)
@@ -21,8 +44,10 @@ $(document)
     		$("#sidebar").sidebar('setting', 'transition', 'overlay')
     		.sidebar('toggle');
     	});
+ 
     });
-</script>
+    
+    </script>
 <!-- 사이드메뉴 시작 -->
 <div class="ui vertical inverted sidebar menu left" id="sidebar">
   <!-- 로고 시작 -->
@@ -31,18 +56,20 @@ $(document)
   </div>
   <!-- 로고 끝 -->
   <!-- 메인페이지 시작 -->
-  <a class="item" href="<%=Project_Root2 %>/front/main.jsp" id="sm_main">메인페이지</a>
+  <a class="item" href="/<%=Project_Root2 %>/front/main.jsp" id="sm_main">메인페이지</a>
   <!-- 메인페이지 끝 -->
   <!-- 마이페이지 시작 -->
   <div class="item" id="sm_mp">
  	<div class="header">마이페이지</div>
   	<div class="menu">
-      <a class="item" href="<%=Project_Root2 %>/front/emp/info/persList.jsp" id="sm_mp_mp">
+      <a class="item" id="sm_mp_mp" href="javascript:plist()">
         내 정보
       </a>
-      <a class="item" href="<%=Project_Root2 %>/front/emp/cmt/myList.jsp" id="sm_mp_com">
+      
+      <a class="item" href="javascript:mlist()" id="sm_mp_com">
         내 출퇴근 내역
       </a>
+      
     </div>
 </div>
 <!-- 마이페이지 끝 -->
@@ -129,3 +156,21 @@ $(document)
 <!-- 사이드메뉴 끝 -->
 <!-- 사이드바 사용시 내용물은 pusher 속에 -->
 <div class="pusher">
+
+<form id="p_eno">
+		 <input type="hidden" id="e_no" name="e_no" value="<%=e_no %>">
+		  <input type="hidden" name="e_name" value="<%=e_name %>">
+</form>
+
+<script type="text/javascript">
+function plist(){
+	 $("#p_eno").attr("method","post"); 
+	 $("#p_eno").attr("action","<%=Project_Root2 %>/emp/info/persList.ebp"); 
+	 $("#p_eno").submit(); 
+ }
+function mlist(){
+	 $("#p_eno").attr("method","post"); 
+	 $("#p_eno").attr("action","<%=Project_Root2 %>/front/emp/cmt/myList.jsp"); 
+	 $("#p_eno").submit(); 
+} 
+</script>

@@ -18,14 +18,6 @@
 		list.add(pMap);
 	}
 	pMap = new HashMap<String,Object>();
-	pMap.put("band", 21);
-	pMap.put("song", null);
-	list.add(pMap);
-	pMap = new HashMap<String,Object>();
-	pMap.put("band", null);
-	pMap.put("song", 21);
-	list.add(pMap);
-	pMap = new HashMap<String,Object>();
 	pMap.put("data", list);
 	Gson gs = new Gson();
 	String json = gs.toJson(pMap);

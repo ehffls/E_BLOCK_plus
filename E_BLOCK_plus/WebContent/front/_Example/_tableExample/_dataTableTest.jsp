@@ -50,6 +50,19 @@
          { "data": "band" },
          { "data": "song" }
      ]
+     ,
+     columnDefs: [ 
+         {
+             "targets": [ 0 ],
+             "visible": false,
+             "searchable": false
+         },
+         {
+             "targets": [ 1 ],
+             "visible": true,
+             "searchable": false
+         }
+     ]
  } );
 
 $('#taable tbody').on( 'dblclick', 'tr', function () {
