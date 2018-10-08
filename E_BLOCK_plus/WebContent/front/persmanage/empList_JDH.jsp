@@ -21,6 +21,19 @@
 
 
 	<!--=============== 작성부분 ===============-->
+	
+<script type="text/javascript">
+function eSeachList(){
+	$.ajax({
+		method:"get"
+	   ,url:"./empSearch.jsp"
+	   ,success:function(result){
+		   $("#eSeachList").html(result);
+	   }
+	});
+}
+</script>
+	
 
 	<div class="ui container" style="margin-top: 5px;">
 		<!-- 검색창 시작 -->
@@ -34,12 +47,13 @@
 		</div>
 
 		<div class="ui grey five item menu">
-			<a class="item" onclick=""> 사원 조회 </a> 
+			<a class="item" onclick="eSeachList()"> 사원 조회 </a> 
 			<a class="item" onclick=""> 사원 등록 </a>
 			<a class="item" onclick=""> 계약 변경 </a>
 			<a class="item" onclick=""> 부서배정 </a>
 			<a class="item" onclick=""> 부서이동 </a>
 		</div>
+		<div id="eSeachList"></div>
 	</div>
 
 	<script>

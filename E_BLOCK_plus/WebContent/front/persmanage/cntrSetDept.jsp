@@ -11,7 +11,6 @@
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
 </head>
-</head>
 <body>
 	<!-- sidebar -->
 	<%@ include file="/front/_includePage/sidemenu.jsp"%>
