@@ -606,7 +606,7 @@
 		{ CALL inb_change( #{p_inb_no} 	  <!-- 변경하는 대상 입고비품번호 -->
                          , #{p_inb_state} <!-- 변경하는 비품상태 [inb-4(수리반출)|inb-5(반입완료)|inb-6(폐기)] -->
                			 , #{p_adm_eno}   <!-- 변경하는 결재사원번호 -->
-               			 , #{result,mode=OUT,jdbcType=INTEGE} <!-- 결과값 -->
+               			 , #{result,mode=OUT,jdbcType=INTEGER} <!-- 결과값 -->
          ) 				 <!-- OUT파라미터는 jdbcType을 명시한다. -->
         }
 	</update>
