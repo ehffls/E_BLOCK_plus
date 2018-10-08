@@ -20,12 +20,16 @@ if (result != null) {
 			Cookie c_ename = new Cookie("c_ename", e_name);
 			Cookie c_eno = new Cookie("c_eno", e_no);
 			Cookie c_auno = new Cookie("c_auno", au_no);
+			c_ename.setPath("/");
+			c_eno.setPath("/");
+			c_auno.setPath("/");
 			response.addCookie(c_ename);
 			response.addCookie(c_eno);
 			response.addCookie(c_auno);
-			RequestDispatcher requestDispatcher=request.getRequestDispatcher("/front/main.jsp");
-			requestDispatcher.forward(request, response);
-			/* response.sendRedirect(); */
+			isnotok = "ok";
+/* 			RequestDispatcher requestDispatcher=request.getRequestDispatcher("/front/main.jsp");
+			requestDispatcher.forward(request, response); */ 
+			 /* response.sendRedirect(); */ 
 		}
 	}
 %>
@@ -57,9 +61,12 @@ if (result != null) {
     }
   </style>
   <script>
+  if("ok"=="<%=isnotok%>"){
+	  location.href="/E_BLOCK_plus/front/main.jsp";
+  }
   $(document)
     .ready(function() {
-    	alert('<%=isnotok%>');
+    	<%-- alert('<%=isnotok%>'); --%>
     });
   
   </script>
@@ -71,12 +78,12 @@ if (result != null) {
     <h2 class="ui teal image header">
       <img src="/E_BLOCK_plus/1_file/img/_common/logo_white_font.png" style="margin-bottom:20px; width: 250px; height:60px"><br>
     </h2>
-    <form id="f_login" class="ui large form" action="/E_BLOCK_plus/emp/login/check.ebp">
+    <form id="f_login" method="post" class="ui large form" action="/E_BLOCK_plus/emp/login/check.ebp">
       <div class="ui stacked segment">
         <div class="field">
           <div class="ui left icon input">
             <i class="user icon"></i>
-            <input id="e_id" type="text" name="e_id" placeholder="사원 번호">
+            <input id="e_id" type="text" name="e_id" placeholder="아이디">
           </div>
         </div>
         <div class="field">

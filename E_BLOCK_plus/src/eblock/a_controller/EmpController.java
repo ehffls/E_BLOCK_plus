@@ -99,14 +99,14 @@ public class EmpController implements Controller {
 			//출결 체크하기 (달력용)
 			if(crud.equals("cmt_calendar")) {
 				robj = empLogic.cmt_calendar(pMap);
-				name ="attribute의 name";
-				path="forward:xxx.jsp";
+				name ="calendar";
+				path="forward:/emp/cmt/List_JSON.jsp";
 			}
 			//출결 조회하기 (개인)
 			else if(crud.equals("myList")) {
 				robj = empLogic.cmt_myList(pMap);
 				name ="rList";
-				path="forward:/emp/cmt/List_JSON.jsp";
+				path="forward:jsp";
 			}
 			//출결 조회하기 (부서)
 			else if(crud.equals("deptList")) {
