@@ -11,12 +11,13 @@
 <body>
 
 	<!--=============== 작성부분 ===============-->
+
 <script type="text/javascript">
 
 	function empUpdate(data) {
 		$.ajax({
-			method : "get",
-			url : "./cntrUpdEmp.jsp?e_no="+data,
+			method : "post",
+			url : "/E_BLOCK_plus/emp/cntr/list.ebp?e_no="+data,
 			success : function(result) {
 				$("#UpdEmp").html(result);
 				$("#emp_modal").modal('show');
@@ -30,8 +31,8 @@
 	function deptUpdate(data) {
 		//alert(data);
 		$.ajax({
-			method : "get",
-			url : "./cntrSetDept.jsp?e_no="+data,
+			method : "post",
+			url : "/E_BLOCK_plus/emp/cntr/list.ebp?e_no="+data,
 			success : function(result) {
 				$("#SetDept").html(result);
 				$("#dept_modal").modal('show');
@@ -40,6 +41,18 @@
 				alert(xhrObject.responseText);
 			}
 		});
+	}
+	
+	function emp_updata(e_no){
+		$("#emp_form").attr("method","post");
+		$("#emp_form").attr("action","/E_BLOCK_plus/emp/cntr/addEmp.ebp?e_no="+e_no);
+		$("#emp_form").submit();
+	}
+
+	function dept_updata(e_no){
+		$("#dept_form").attr("method","post");
+		$("#dept_form").attr("action","/E_BLOCK_plus/emp/cntr/setDeptAuth.ebp?e_no="+e_no);
+		$("#dept_form").submit();
 	}
 
 	</script>	
@@ -78,8 +91,8 @@
 						<th>사원명</th>
 						<th>사원직급</th>
 						<th>권한번호</th>
-						<th>계약 변경</th>
-						<th>부서 배정 & 수정</th>
+						<th>계약변경</th>
+						<th>부서&권한수정</th>
 					</tr>
 				</thead>
 			</table>
@@ -147,7 +160,7 @@
 					//계약 변경 버튼
 				},
 				{
-					//부서 배정 &수정 버튼
+					//부서 배정  & 수정 버튼  & 권한수정
 				}
 	
 			],
@@ -237,6 +250,7 @@
 			});
 		});
 	</script>
+	
 	<!--=============== 작성부분 ===============-->
 
 </body>

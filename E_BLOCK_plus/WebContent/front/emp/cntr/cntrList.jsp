@@ -1,5 +1,56 @@
-
+<%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ page import = "javax.mail.*, javax.mail.internet.*, java.util.Properties" %>
+
+<%
+	List<Map<String, Object>> aEmp = (List<Map<String, Object>>) request.getAttribute("aEmp");	
+	 
+	String e_name     = ""; //사원이름    
+	String e_jdate    = ""; //입사일자    
+	String e_email	  =""; //사원이메일	
+		
+	if (aEmp != null && aEmp.size() > 0) {
+		e_name = aEmp.get(0).get("e_name").toString();
+		e_email = aEmp.get(0).get("e_email").toString();
+		e_jdate = aEmp.get(0).get("e_jdate").toString();
+	}
+		
+	if(e_email != null){
+	//Naver POP3/STMP를 이용한 메일발송 프로그램 설정하기
+	  String smtpServer   = "smtp.naver.com";		//SMTP서버명
+	  int 	 smtpPort 	  = 465;					//SMTP포트번호
+	  String sendMailAddr = "coco-chloe@naver.com";	//계정메일주소
+	  final String sendId = "coco-chloe";			//NAVER계정명
+	  final String sendPw = "qwer2100";			    //비밀번호
+	
+	//메일 받는 사람 설정
+	String receiveMailAddr = e_email;
+	String mailSubject = e_name +"귀하의 입사를 축하드립니다";
+	String mailContent = "되려낰ㅋㅋㅋ";
+	
+	Properties props = System.getProperties();
+	props.put("mail.smtp.host",smtpServer);
+	props.put("mail.smtp.port",smtpPort);
+	props.put("mail.smtp.auth",true);
+	props.put("mail.smtp.ssl.enable",true);
+	props.put("mail.smtp.ssl.trust",smtpServer);
+	
+	Session session2 = Session.getDefaultInstance(props, new Authenticator(){
+		protected PasswordAuthentication getPasswordAuthentication(){
+			return new PasswordAuthentication(sendId,sendPw);
+		}
+	});
+	
+	session2.setDebug(true);
+	Message msg = new MimeMessage(session2);
+	msg.setFrom(new InternetAddress(sendMailAddr));
+	msg.setRecipient(Message.RecipientType.TO, new InternetAddress(receiveMailAddr));
+	msg.setSubject(mailSubject);
+	msg.setText(mailContent);
+	Transport.send(msg);
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +59,8 @@
 <%@ include file="/0_src/_includeList/commonUI_S.jsp"%>
 <script src="/E_BLOCK_plus/0_src/js/table/datatables.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
+
+
 </head>
 <body>
 	<!-- sidebar -->
@@ -23,8 +76,8 @@
 	<script type="text/javascript">
 		function eSearchList() {
 			$.ajax({
-				method : "get",
-				url : "./cntrListSearch.jsp",
+				method : "post",
+				url : "/E_BLOCK_plus/front/emp/cntr/cntrListSearch.jsp",
 				success : function(result) {
 					$("#eList").html(result);
 				},
@@ -36,8 +89,8 @@
 	
 		function empInsert() {
 			$.ajax({
-				method : "get",
-				url : "./cntrAddEmp.jsp",
+				method : "post",
+				url : "/E_BLOCK_plus/front/emp/cntr/cntrAddEmp.jsp",
 				success : function(result) {
 					$("#eIns").html(result);
 				},
@@ -45,6 +98,12 @@
 					alert(xhrObject.responseText);
 				}
 			});
+		}
+		
+		function cntrAddEmp(){
+			$("#addForm").attr("method","post");
+			$("#addForm").attr("action","/E_BLOCK_plus/emp/cntr/addEmp.ebp");
+			$("#addForm").submit();
 		}
 
 	</script>

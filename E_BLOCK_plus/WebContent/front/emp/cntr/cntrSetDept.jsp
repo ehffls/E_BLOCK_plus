@@ -13,10 +13,7 @@
 
 
 	<!--=============== 작성부분 ===============-->
-<%
-	String eno = request.getParameter("e_no");
-	System.out.print(eno);
-%>
+
 
 	<div class="ui small modal" id="dept_modal">
 		<div class="ui container">

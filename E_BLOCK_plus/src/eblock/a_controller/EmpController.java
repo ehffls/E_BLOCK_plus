@@ -120,19 +120,21 @@ public class EmpController implements Controller {
 			if(crud.equals("list")) {
 				robj = empLogic.cntr_list(pMap);
 				name ="cntr_list";
-				path="forward:/emp/cntr/cntrList_JSON.jsp";
+				path="forward:/emp/cntr/cntrModal.jsp";
 			}
 			//인사사원 등록하기
 			else if(crud.equals("addEmp")) {
+				logger.info(pMap);
 				robj = empLogic.cntr_addEmp(pMap);
-				name ="attribute의 name";
-				path="forward:xxx.jsp";
+				robj = pMap;
+				name ="aEmp";
+				path="forward:/emp/cntr/cntrList.jsp";
 			}
 			//부서배정하기 및 이동하기
 			else if(crud.equals("setDeptAuth")) {
 				robj = empLogic.cntr_setDeptAuth(pMap);
-				name ="attribute의 name";
-				path="forward:xxx.jsp";
+				name ="setDept";
+				path="forward:/emp/cntr/cntrList.jsp";
 			}
 		}
 		//퇴사

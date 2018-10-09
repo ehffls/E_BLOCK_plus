@@ -80,12 +80,16 @@ public class EmpLogic {
 	}
 	
 	public int cntr_addEmp(Map<String, Object> pMap) {
+		logger.info(pMap);
 		result = empDao.cntr_addEmp(pMap);
+		logger.info(pMap.get("result"));
 		return result;
 	}
 
 	public int cntr_setDeptAuth(Map<String, Object> pMap) {
+		logger.info(pMap);
 		result = empDao.cntr_setDeptAuth(pMap);
+		logger.info(result);
 		return result;
 	}
 

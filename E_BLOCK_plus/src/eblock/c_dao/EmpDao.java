@@ -127,6 +127,7 @@ public class EmpDao {
 
 	public List<Map<String, Object>> cntr_list(Map<String, Object> pMap) {
 		//부서장이 조회하는 업무이므로 부서명(d_name)이 조건으로 들어가야함
+		logger.info(pMap);
 		list = sqlSession.selectList(nameSpace+"cntr_list", pMap);
 		return list;
 	}

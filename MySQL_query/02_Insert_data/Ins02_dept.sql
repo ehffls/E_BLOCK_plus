@@ -1,3 +1,4 @@
+
 	SELECT * FROM `dept`;
 -- 	DELETE FROM `dept` WHERE d_no=1101;
 -- 	UPDATE `dept` SET d_name='본부' WHERE d_name='사업본부';
