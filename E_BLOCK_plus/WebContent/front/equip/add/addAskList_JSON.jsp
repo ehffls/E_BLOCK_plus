@@ -7,9 +7,9 @@
     pageEncoding="UTF-8"%>
 <%
 
-	String targetName = "";//여기에 request객체에 담은 리스트의 name을 쓰세요
+	String targetName = "addList";//여기에 request객체에 담은 리스트의 name을 쓰세요
 
-	List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+	List<Map<String,Object>> list = (List<Map<String,Object>>)request.getAttribute("addList");	
 	Map<String,Object> pMap = null; 
 	pMap = new HashMap<String,Object>();
 	pMap.put("data", list);

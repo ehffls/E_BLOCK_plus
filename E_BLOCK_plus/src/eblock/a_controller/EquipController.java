@@ -106,9 +106,9 @@ public class EquipController implements Controller {
 			}
 			//비품추가신청내역 조회하기
 			else if(crud.equals("askList")) {
-				robj = equipLogic.add_askList(pMap);
-				name ="rList";
-				path="forward:/equip/add/askList_JSON.jsp";
+				list = equipLogic.add_askList(pMap);
+				name ="addList";
+				path="forward:/equip/add/addAskList_JSON.jsp";
 			}
 			//[결재권자]
 			//비품추가신청내역에 새로운 비품내역 추가신청 결재하기
@@ -261,7 +261,7 @@ public class EquipController implements Controller {
 
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
-		req.setAttribute(name, robj);
+		req.setAttribute(name, list);
 
 		return path;
 	}
