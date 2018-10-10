@@ -11,15 +11,16 @@
 <body>
 
 	<!--=============== 작성부분 ===============-->
+
 <script type="text/javascript">
 
 	function empUpdate(data) {
 		$.ajax({
-			method : "get",
-			data : data,
-			url : "../cntr/cntrUpdEmp.jsp",
+			method : "post",
+			url : "/E_BLOCK_plus/emp/cntr/list.ebp?e_no="+data,
 			success : function(result) {
 				$("#UpdEmp").html(result);
+				$("#emp_modal").modal('show');
 			},
 			error : function(xhrObject) {
 				alert(xhrObject.responseText);
@@ -28,17 +29,29 @@
 	}
 	
 	function deptUpdate(data) {
+		//alert(data);
 		$.ajax({
-			method : "get",
-			data : data,
-			url : "../cntr/cntrSetDept.jsp",
+			method : "post",
+			url : "/E_BLOCK_plus/emp/cntr/list.ebp?e_no="+data,
 			success : function(result) {
 				$("#SetDept").html(result);
+				$("#dept_modal").modal('show');
 			},
 			error : function(xhrObject) {
 				alert(xhrObject.responseText);
 			}
 		});
+	}
+	function emp_updata(e_no){
+		$("#emp_form").attr("method","post");
+		$("#emp_form").attr("action","/E_BLOCK_plus/emp/cntr/addEmp.ebp?e_no="+e_no);
+		$("#emp_form").submit();
+	}
+
+	function dept_updata(e_no){
+		$("#dept_form").attr("method","post");
+		$("#dept_form").attr("action","/E_BLOCK_plus/emp/cntr/setDeptAuth.ebp?e_no="+e_no);
+		$("#dept_form").submit();
 	}
 
 	</script>	
@@ -77,8 +90,8 @@
 						<th>사원명</th>
 						<th>사원직급</th>
 						<th>권한번호</th>
-						<th>계약 변경</th>
-						<th>부서 배정 & 수정</th>
+						<th>계약변경</th>
+						<th>부서&권한수정</th>
 					</tr>
 				</thead>
 			</table>
@@ -105,7 +118,7 @@
 			//페이지 메뉴 조회 수량 설정 
 			//"lengthMenu": [[10, 25, 50, -1], ["10개", "25개", "50개", "All"]],
 			aLengthMenu : [ 5, 10, 15 ],
-			language : {
+				language : {
 				/* 				  "info": "총 _PAGES_ 중 현재 _PAGE_페이지 입니다." */
 				"info" : "", //테이블 하단에 나오는  Showing 1 to 10 of 100 entries 빈칸으로 지정
 				"infoEmpty" : "", //검색 후 테이블 하단에 나오는  Showing 1 to 10 of 100 entries 빈칸으로 지정
@@ -143,10 +156,10 @@
 					"data" : "au_no"
 				},
 				{
-	
+					//계약 변경 버튼
 				},
 				{
-	
+					//부서 배정  & 수정 버튼  & 권한수정
 				}
 	
 			],
@@ -206,16 +219,21 @@
 				});
 		 		 */
 		$('#taable tbody').on('click', 'div', function() {
- 			var data = table.row($(this).parents('tr')).data();
-			alert(data["e_name"]);
+ 			//var data = table.row($(this).parents('tr')).data();
+			//alert(data["e_name"]);
  //			if (document.getElementById('b_change')!=null) {
 			if (this.id == 'b_change') {
-			    alert('제발');
-			    empUpdate(data);			   			    
+			    //alert(this.id);
+				var data = table.row($(this).parents('tr')).data();
+				//alert(data["e_no"]);
+			    empUpdate(data["e_no"]);	
+
 			} 
 			else if(this.id == 'b_edit') {
-				alert('되니?');
-				deptUpdate(data);
+			    //alert(this.id);
+				var data = table.row($(this).parents('tr')).data();
+				//alert(data["e_no"]);
+				deptUpdate(data["e_no"]);
  			}
 		});
 	
@@ -231,6 +249,7 @@
 			});
 		});
 	</script>
+	
 	<!--=============== 작성부분 ===============-->
 
 </body>
