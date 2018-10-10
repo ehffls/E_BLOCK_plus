@@ -40,7 +40,7 @@ $(document)
             $('.fixed.menu').transition('fade out');
           }
         });
-      $("#sidemenu_icon").click(function(){
+      $(".sidemenu_icon").click(function(){
     		$("#sidebar").sidebar('setting', 'transition', 'overlay')
     		.sidebar('toggle');
     	});
