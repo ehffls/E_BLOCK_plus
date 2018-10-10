@@ -68,7 +68,7 @@
 <!-- [ 등록된 비품분류 조회하기 | 테스트완료(10/04) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  -->
 	<select id="sort_list" parameterType="map" resultType="map">
 		SELECT eq_sort FROM `eq_sort`
- 		 WHERE eq_sort LIKE '%'||#{eq_sort}||'%'
+ 		  <!-- WHERE eq_sort LIKE '%'||#{eq_sort}||'%' -->
  		 ORDER BY eq_sort ASC
 	</select>
 
@@ -285,10 +285,11 @@
 <!-- ─────[ 등록된 거래처 조회하기 ]──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
 	<select id="mk_list" parameterType="map" resultType="map">
 		SELECT
-		      mk_no, mk_cname, mk_ename, mk_ph, mk_fax, mk_email
+		      mk_no, mk_cname<!-- , mk_ename, mk_ph, mk_fax, mk_email -->
 		  FROM `eq_market`
-		 WHERE UPPER(mk_cname) LIKE CONCAT('%',UPPER('t'),'%')
-		   AND UPPER(mk_ename) LIKE CONCAT('%','test','%')
+		 
+		<!--  WHERE UPPER(mk_cname) LIKE CONCAT('%',UPPER('t'),'%')
+		   AND UPPER(mk_ename) LIKE CONCAT('%','test','%') -->
 		  <!-- UPPER(Column|String) : 파라미터의 컬럼값 혹은 문자열의 영문을 대문자로 반환 -->
 		  <!-- CONCAT(arg1,arg2,..) : 파라미터의 문자들을 합쳐서 하나의 문자열로 반환 -->
 	</select>
@@ -323,7 +324,7 @@
 	  FROM `eq`
 	 WHERE eq_no = #{eq_no} <!-- 구매요청비품번호 -->
 	</insert>	
-<!-- ─────[ 구매가능내역에서 비품구매 하기 ]──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+<!-- ─────[ 구매가능내역에서 비품구매 신청 수정하기 (취소포함) ]──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
 <!-- (자신이 신청한)비품구매요청을 수정/삭제하는 쿼리
      반드시, 대기상태인것만 수정또는 삭제가 가능해야한다. [논리확인 후 추가된 부분]
   
@@ -332,7 +333,7 @@
     
      신청물품이 다수인 경우를 대비하여,
      일괄처리가 가능하도록 마이바티스를 이용한 다중동적쿼리 적용	-->
-	<update id="purc_ask" parameterType="java.util.List">
+	<update id="purc_askUpd" parameterType="java.util.List">
 	<foreach item="item" index="key" collection="list" separator=";">
 		UPDATE `eq_purc_list`
 		<trim prefix="SET" prefixOverrides=",">
@@ -606,7 +607,7 @@
 		{ CALL inb_change( #{p_inb_no} 	  <!-- 변경하는 대상 입고비품번호 -->
                          , #{p_inb_state} <!-- 변경하는 비품상태 [inb-4(수리반출)|inb-5(반입완료)|inb-6(폐기)] -->
                			 , #{p_adm_eno}   <!-- 변경하는 결재사원번호 -->
-               			 , #{result,mode=OUT,jdbcType=INTEGE} <!-- 결과값 -->
+               			 , #{result,mode=OUT,jdbcType=INTEGER} <!-- 결과값 -->
          ) 				 <!-- OUT파라미터는 jdbcType을 명시한다. -->
         }
 	</update>

@@ -1,7 +1,10 @@
 package eblock.b_logic;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.sun.media.jfxmedia.logging.Logger;
 
 import eblock.c_dao.EquipDao;
 
@@ -186,5 +189,15 @@ public class EquipLogic {
 		list = equipDao.sign_list(pMap);
 		return list;
 	}
+	//추가 비품 신청 드롭다운(보현)
+		public List<Map<String, Object>> newArticleAsk(Map<String, Object> pMap) {
+			Map<String,Object> pMap2 = new HashMap<String,Object>();
+			 = equipDao.mk_list(pMap);
+			List<Map<String,Object>> list3 =  (List<Map<String,Object>>)equipDao.sort_list(pMap);
+			
+			System.out.println(list.size());
+			return list;
+	}
+	
 	
 }

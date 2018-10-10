@@ -94,7 +94,7 @@ public class EquipController implements Controller {
 		else if(work.equals("add")) {
 			//비품추가신청내역에 새로운 비품내역추가 신청하기 
 			if(crud.equals("ask")) {
-				list = equipLogic.add_ask(pMap);
+				result = equipLogic.add_ask(pMap);
 				name ="addAsk";
 				path="forward:xxx.jsp";
 			}
@@ -131,6 +131,14 @@ public class EquipController implements Controller {
 				name ="attribute의 name redirect면 안씀";
 				path="forward:xxx.jsp";
 			}
+			//추가 비품 신청
+			else if(crud.equals("newArticleAsk")) {
+				robj = equipLogic.newArticleAsk(pMap);
+				logger.info("여기");
+				name ="newAA";
+				path="forward:/equip/add/newArticleAsk.jsp";
+			}
+	
 			
 		}
 		
