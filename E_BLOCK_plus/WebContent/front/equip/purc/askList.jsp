@@ -21,7 +21,7 @@
 	<div class="ui container" style="margin-top: 20px;">
 		<%@ include file="/front/_includePage/approval_head.jsp"%>
 		<div class="ui pointing menu">
-			<a class="item">비품추가신청조회</a> <a class="item">비품구매신청조회</a> <a class="item">비품입출신청조회</a>
+			<a class="item" href="../add/askList.jsp">비품추가신청조회</a> <a class="item active">비품구매신청조회</a> <a class="item">비품입출신청조회</a>
 		</div>
 		<div class="ui segment">
 			<!-- 검색창 시작  -->
@@ -194,14 +194,14 @@
 		$('#taable tbody').on('click', 'tr', function() {
 			
 			//로우의 outcome값이 '취소' 또는 '기각' 또는 '입고완료'가 아닌 로우에 대하여
-			if(table.row(this).data()["outcome"]!="취소"
-					||table.row(this).data()["outcome"]!="기각"
-					||table.row(this).data()["outcome"]!="입고완료"){
+			if(table.row(this).data()["outcome"]=="대기"
+					||table.row(this).data()["outcome"]=="승인"
+					||table.row(this).data()["outcome"]=="결제완료"){
 				
 				//취소하기
 				if ($(this).hasClass('active ro')) {
 					$(this).removeClass('active ro');
-					$('#btn_approval').transition('shake')//버튼 흔들어줌
+					$('#btn_approval').transition('jiggle')//버튼 흔들어줌
 				}
 				
 				//선택하기
@@ -218,7 +218,8 @@
 					//둘을 비교해서 같거나, 혹은 먼저 선택된 로우의 outcome값이 없으면
 					if(f_outcome == t_outcome || f_outcome == null){
 						$(this).addClass('active ro');//선택되도록 해줌
-						$('#btn_approval').transition('shake')//버튼 흔들어줌
+						$('#btn_approval').transition('jiggle')//버튼 흔들어줌
+						//12321312
 					}
 				}
 			}

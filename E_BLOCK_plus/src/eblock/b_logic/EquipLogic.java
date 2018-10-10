@@ -135,6 +135,7 @@ public class EquipLogic {
 	}
 	//비품구매신청내역 조회하기
 	public List<Map<String,Object>> purc_askList(Map<String, Object> pMap) {
+		pMap.put("sign_eno", pMap.get("c_eno"));
 		list = equipDao.purc_askList(pMap);
 		return list;
 	}
@@ -151,7 +152,7 @@ public class EquipLogic {
 			newMap = new HashMap<>();
 			newMap.put("outcome",words[0]);//상태값
 			newMap.put("eq_pno",words[i]);
-			newMap.put("sign_eno", 197);//결재자번호.. 쿠키에서 얻어야함.
+			newMap.put("sign_eno", pMap.get("c_eno"));//결재자번호.. 쿠키에서 얻어야함.
 			newList.add(newMap);
 		}
 		logger.info("newList : "+newList);

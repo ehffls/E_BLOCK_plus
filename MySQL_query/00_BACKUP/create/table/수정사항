@@ -1,0 +1,2 @@
+1010 - emp 테이블 e_id unique 추가
+1008내용에서 ALTER TABLE `EBLOCK`.`emp` ADD UNIQUE INDEX (e_id);

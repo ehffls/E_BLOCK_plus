@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import eblock.b_logic.EquipLogic;
+import util.CookieBinder;
 import util.HashMapBinder;
 
 public class EquipController implements Controller {
@@ -31,6 +32,8 @@ public class EquipController implements Controller {
 		Map<String,Object> pMap = new HashMap<String,Object>();
 		HashMapBinder hmb = new HashMapBinder(req);
 		hmb.bind(pMap);
+		CookieBinder cb = new CookieBinder(req);
+		cb.bind(pMap);
 
 		String name = null;
 		String path = null;
@@ -261,7 +264,7 @@ public class EquipController implements Controller {
 
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
-		req.setAttribute(name, list);
+		req.setAttribute(name, robj);
 
 		return path;
 	}
