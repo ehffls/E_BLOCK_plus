@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%	
 	String Project_Root3 = request.getContextPath();
+	/* String ob	= Object.class(); */
 %>
 <!DOCTYPE html>
 <html>
@@ -11,12 +12,13 @@
 <%@ include file="/0_src/_includeList/commonUI_S.jsp" %>
 <script type="text/javascript">
 <!-----작성승인----->	
-	function j_ok(){
+	function j_update(){
 		/* alert("처리되었습니다."); */
 		/* location.href = "./pevAdd_result.jsp"; */
-		var formData = $("#ask_form").serialize();
+		var formData = $("#askUp_form").serialize();
+		var object = 
 		$.ajax({
-			url : "/E_BLOCK_plus/equip/add/ask.ebp",
+			url : "/equip/add/askUpd.ebp",
 			type : "POST",
 			data : formData,
 			success : function(data) {
@@ -57,24 +59,24 @@
 </div>
 <div id="form_1">
 <div class="ui container" style="margin-top:20px">
-  <form class="ui form" id="ask_form">
+  <form class="ui form" id="askUp_form">
 	<div class="three fields">
 	  <div class="field">
 		<div class="ui labeled input">
 		  <a class="ui label">비품신청 번호</a>
-		  <input type="text" name="eq_addno">
+		  <input type="text">
 		</div>
 	  </div>
 	  <div class="field">
 		<div class="ui labeled input">
 		  <a class="ui label">신청사원 번호</a>
-		  <input type="text" name="ask_eno">
+		  <input type="text">
 		</div>
 	  </div>
 	  <div class="field">
 		<div class="ui labeled input">
 		  <a class="ui label">결재사원 번호</a>
-		  <input type="text" name="sign_eno">
+		  <input type="text">
 		</div>
 	  </div>
 	</div>
@@ -82,24 +84,24 @@
 	  <div class="field">
 		<div class="ui labeled input">
 		  <a class="ui label">신청일자</a>
-		  <input type="text" name="ask_date">
+		  <input type="text">
 		</div>
 	  </div>
 	  <div class="field">
 		<div class="ui labeled input">
 		  <a class="ui label">비품분류</a>
-		  <input type="text" name="eq_sort">
+		  <input type="text">
 		</div>
 	  </div>
 	  <div class="field">
 		<div class="ui labeled input">
 		  <a class="ui label">비품이름</a>
-		  <input type="text" name="eq_name">
+		  <input type="text">
 		</div>
 	  </div>
 	</div>
 	  <div class="field">
-		<div class="ui submit button" onclick="j_ok()">저장</div>
+		<div class="ui submit button" onclick="j_update()">수정</div>
 		<div class="ui submit button" onclick="j_cancle()">취소</div>
 	  </div>
   </form>
