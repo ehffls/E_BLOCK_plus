@@ -30,6 +30,7 @@
 				<!-- 우측메뉴 시작 -->
   <div class="right item"><%=e_name %></div>
     <a class="ui item active" href='/E_BLOCK_plus/front/emp/login/logout.jsp'>
+ <!--    <a class="ui item active" href='/E_BLOCK_plus/emp/login/logout.ebp'> -->
       Logout
     </a>
 				

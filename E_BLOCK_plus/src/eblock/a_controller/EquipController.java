@@ -131,6 +131,14 @@ public class EquipController implements Controller {
 				name ="attribute의 name redirect면 안씀";
 				path="forward:xxx.jsp";
 			}
+			//추가 비품 신청
+			else if(crud.equals("newArticleAsk")) {
+				robj = equipLogic.newArticleAsk(pMap);
+				logger.info("여기");
+				name ="newAA";
+				path="forward:/equip/add/newArticleAsk.jsp";
+			}
+	
 			
 		}
 		

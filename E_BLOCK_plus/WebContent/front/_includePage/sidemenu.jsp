@@ -6,6 +6,7 @@
 Cookie[] cs = request.getCookies();
 String e_name=null;
 String e_no=null;
+String d_no=null;
 String au_no=null;
 
 if(cs != null&& cs.length>0 ){
@@ -15,6 +16,9 @@ for(int i=0;i<cs.length;i++){
 	}
 	else if(cs[i].getName().equals("c_eno")){
 		e_no = cs[i].getValue();
+	}
+	else if(cs[i].getName().equals("c_dno")){
+		d_no = cs[i].getValue();
 	}
 	else if(cs[i].getName().equals("c_auno")){
 		au_no = cs[i].getValue();
@@ -77,7 +81,7 @@ $(document)
   <div class="item" id="sm_ap">
   <div class="header">전자결재</div>
   <div class="menu">
-  	  <a class="item" href="<%=Project_Root2 %>/front/approval/approvalMain.jsp" id="sm_ap_form">
+  	  <a class="item" href="javascript:amain()" id="sm_ap_form">
         결재신청
       </a>
       <a class="item" href="<%=Project_Root2 %>/front/approval/approvalFromMe.jsp" id="sm_ap_fromme">
@@ -170,4 +174,9 @@ function mlist(){
 	 $("#p_eno").attr("action","<%=Project_Root2 %>/front/emp/cmt/myList.jsp"); 
 	 $("#p_eno").submit(); 
 } 
+function amain(){
+	 $("#p_eno").attr("method","post"); 
+	 $("#p_eno").attr("action","<%=Project_Root2 %>/front/approval/approvalMain.jsp"); 
+	 $("#p_eno").submit(); 
+}
 </script>
