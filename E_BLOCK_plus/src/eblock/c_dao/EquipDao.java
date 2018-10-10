@@ -174,9 +174,9 @@ public class EquipDao {
 		return result;
 	}
 	//─────[ 비품구매신청내역 조회하기 ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-	public int purc_askList(Map<String, Object> pMap) {
-		result = sqlSession.delete(nameSpace+"purc_askList",pMap);
-		return result;
+	public List<Map<String,Object>> purc_askList(Map<String, Object> pMap) {
+		list = sqlSession.selectList(nameSpace+"purc_askList",pMap);
+		return list;
 	}
 	//[결재권자]
 	//─────[ 비품구매신청내역 결재하기 ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -212,6 +212,12 @@ public class EquipDao {
 	public int inb_askUpd(Map<String, Object> pMap) {
 		result = sqlSession.update(nameSpace+"inb_askUpd",pMap);
 		return result;
+	}
+	//[결재권자]
+	//─────[ 비품입출신청내역의 신청 결재하기 (기각|승인) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+	public List<Map<String,Object>> inb_askList(Map<String, Object> pMap) {
+		list = sqlSession.selectList(nameSpace+"inb_iolist",pMap);
+		return list;
 	}
 	//[결재권자]
 	//─────[ 비품입출신청내역의 신청 결재하기 (기각|승인) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────

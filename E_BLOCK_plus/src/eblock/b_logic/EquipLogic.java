@@ -129,9 +129,9 @@ public class EquipLogic {
 		return result;
 	}
 	//비품구매신청내역 조회하기
-	public int purc_askList(Map<String, Object> pMap) {
-		result = equipDao.purc_askList(pMap);
-		return result;
+	public List<Map<String,Object>> purc_askList(Map<String, Object> pMap) {
+		list = equipDao.purc_askList(pMap);
+		return list;
 	}
 	//[결재권자]
 	//비품구매신청내역 결재하기
@@ -159,6 +159,12 @@ public class EquipLogic {
 		result = equipDao.inb_askUpd(pMap);
 		return result;
 	}
+	//[결재권자]
+	//입고비품내역에서 입출비품내역 조회하기
+		public List<Map<String, Object>> inb_askList(Map<String, Object> pMap) {
+			list = equipDao.inb_askList(pMap);
+			return list;
+		}
 	//[결재권자]
 	//비품입출신청내역의 신청 결재하기 (기각|승인)
 	public int inb_sign(Map<String, Object> pMap) {
