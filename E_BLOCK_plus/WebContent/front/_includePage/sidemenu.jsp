@@ -2,7 +2,34 @@
     pageEncoding="UTF-8"%> 
 <%	
 	String Project_Root2 = request.getContextPath();
-%>
+/* int i=0; i<cs.length; i++ */
+Cookie[] cs = request.getCookies();
+String e_name=null;
+String e_no=null;
+String d_no=null;
+String au_no=null;
+
+if(cs != null&& cs.length>0 ){
+for(int i=0;i<cs.length;i++){
+	if("c_ename".equals(cs[i].getName())){
+		 e_name =cs[i].getValue();
+	}
+	else if(cs[i].getName().equals("c_eno")){
+		e_no = cs[i].getValue();
+	}
+	else if(cs[i].getName().equals("c_dno")){
+		d_no = cs[i].getValue();
+	}
+	else if(cs[i].getName().equals("c_auno")){
+		au_no = cs[i].getValue();
+	}
+		
+	
+	} 
+}
+
+%> 
+
 <script type="text/javascript">
 // 사이드바 여는 코드
 $(document)
@@ -17,12 +44,14 @@ $(document)
             $('.fixed.menu').transition('fade out');
           }
         });
-      $("#sidemenu_icon").click(function(){
+      $(".sidemenu_icon").click(function(){
     		$("#sidebar").sidebar('setting', 'transition', 'overlay')
     		.sidebar('toggle');
     	});
+ 
     });
-</script>
+    
+    </script>
 <!-- 사이드메뉴 시작 -->
 <div class="ui vertical inverted sidebar menu left" id="sidebar">
   <!-- 로고 시작 -->
@@ -31,18 +60,20 @@ $(document)
   </div>
   <!-- 로고 끝 -->
   <!-- 메인페이지 시작 -->
-  <a class="item" href="<%=Project_Root2 %>/front/main.jsp" id="sm_main">메인페이지</a>
+  <a class="item" href="/<%=Project_Root2 %>/front/main.jsp" id="sm_main">메인페이지</a>
   <!-- 메인페이지 끝 -->
   <!-- 마이페이지 시작 -->
   <div class="item" id="sm_mp">
  	<div class="header">마이페이지</div>
   	<div class="menu">
-      <a class="item" href="<%=Project_Root2 %>/front/emp/info/persList.jsp" id="sm_mp_mp">
+      <a class="item" id="sm_mp_mp" href="javascript:plist()">
         내 정보
       </a>
-      <a class="item" href="<%=Project_Root2 %>/front/emp/cmt/myList.jsp" id="sm_mp_com">
+      
+      <a class="item" href="javascript:mlist()" id="sm_mp_com">
         내 출퇴근 내역
       </a>
+      
     </div>
 </div>
 <!-- 마이페이지 끝 -->
@@ -50,13 +81,13 @@ $(document)
   <div class="item" id="sm_ap">
   <div class="header">전자결재</div>
   <div class="menu">
-  	  <a class="item" href="<%=Project_Root2 %>/front/approval/approvalMain.jsp" id="sm_ap_form">
+  	  <a class="item" href="javascript:amain()" id="sm_ap_form">
         결재신청
       </a>
       <a class="item" href="<%=Project_Root2 %>/front/approval/approvalFromMe.jsp" id="sm_ap_fromme">
         내 결재 신청목록
       </a>
-      <a class="item" href="<%=Project_Root2 %>/front/approval/approvalToMe.jsp" id="sm_ap_tome">
+      <a class="item" href="<%=Project_Root2 %>/front/attd/toMe/list.jsp" id="sm_ap_tome">
         내게온 결재목록
       </a>
   </div>
@@ -95,10 +126,10 @@ $(document)
   <div class="header">물품관리</div>
   <div class="menu">
       <a class="item" href="<%=Project_Root2 %>/front/article/paygoods.jsp" id="sm_artcl_ap">		
-        물품결재내역
+        입출고신청조회
       </a>
       <a class="item" href="<%=Project_Root2 %>/front/article/i_o.jsp" id="sm_artcl_sar">
-        입출고관리
+        비품구매신청조회
       </a>
       <a class="item" href="<%=Project_Root2 %>/front/article/account.jsp" id="sm_artcl_acc">
         거래처
@@ -110,17 +141,14 @@ $(document)
 <div class="item" id="sm_acc">
   <div class="header">회계관리</div>
   <div class="menu">
-      <a class="item" href="<%=Project_Root2 %>/front/account/com_Spending.jsp" id="sm_acc">
-        사원지출관리
+      <a class="item" href="<%=Project_Root2 %>/front/bg/ex/deptList.jsp" id="sm_acc">
+        부서별 예산할당
       </a>
       <a class="item" href="<%=Project_Root2 %>/front/account/dept_Spending.jsp">
-        부서지출관리
+        부서별 예산집행
       </a>
       <a class="item" href="<%=Project_Root2 %>/front/account/goods_Spending.jsp">
-        비품지출관리
-      </a>
-      <a class="item" href="<%=Project_Root2 %>/front/account/com_Spending.jsp">
-        회사지출관리
+        급여관리
       </a>
   </div>
 </div>
@@ -129,3 +157,26 @@ $(document)
 <!-- 사이드메뉴 끝 -->
 <!-- 사이드바 사용시 내용물은 pusher 속에 -->
 <div class="pusher">
+
+<form id="p_eno">
+		 <input type="hidden" id="e_no" name="e_no" value="<%=e_no %>">
+		  <input type="hidden" name="e_name" value="<%=e_name %>">
+</form>
+
+<script type="text/javascript">
+function plist(){
+	 $("#p_eno").attr("method","post"); 
+	 $("#p_eno").attr("action","<%=Project_Root2 %>/emp/info/persList.ebp"); 
+	 $("#p_eno").submit(); 
+ }
+function mlist(){
+	 $("#p_eno").attr("method","post"); 
+	 $("#p_eno").attr("action","<%=Project_Root2 %>/front/emp/cmt/myList.jsp"); 
+	 $("#p_eno").submit(); 
+} 
+function amain(){
+	 $("#p_eno").attr("method","post"); 
+	 $("#p_eno").attr("action","<%=Project_Root2 %>/front/approval/approvalMain.jsp"); 
+	 $("#p_eno").submit(); 
+}
+</script>

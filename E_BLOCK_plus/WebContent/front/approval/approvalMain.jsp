@@ -25,7 +25,7 @@ $(function(){
 			}else if(text=="외출신청"){
 				witch="<%=Project_Root3 %>/front/attd/my/goOutAsk.jsp";
 			}else if(text=="등록신청"){
-				witch="<%=Project_Root3 %>/front/equip/add/newArticleAsk.jsp";
+				witch="<%=Project_Root3 %>/equip/add/newArticleAsk.ebp";
 			}else if(text=="구매신청"){
 				witch="<%=Project_Root3 %>/front/equip/purc/buyArticleAsk.jsp";
 			}else if(text=="사용신청"){

@@ -10,27 +10,30 @@
 
 -- INSERT INTO ~ VALUES~ 구문은 내부의 각 값은 SELECT 쿼리문을 허용하지 않는다.
 -- 그러므로 INSERT INTO ~ SELECT ~ 구문을 활용한다.
-INSERT INTO `EBLOCK`.`eq_add_list`
-(eq_addno, ask_eno, sign_eno, ask_date, eq_sort, eq_name)
+INSERT INTO `eq_add_list`
+(eq_addno, ask_eno, sign_eno, ask_date, eq_sort, eq_name,mk_no)
 SELECT 
-	  `EBLOCK`.nextSeqVal('seq_eq_addno')
-	 ,11#{ask_eno}
-	 ,`emp`.e_no -- 9001번 부서 최고관리자에게 신청
+	  nextSeqVal('seq_eq_addno')
+	 ,15#{ask_eno}
+	 ,e.e_no -- 9001번 부서 최고관리자에게 신청
     ,DATE_FORMAT(now(), '%Y-%m-%d') /* 2011-06-14 */
-	 ,(SELECT eq_sort FROM `EBLOCK`.`eq_sort`
-       WHERE eq_sort = '하드웨어'#{eq_sort}
-       LIMIT 1)-- eq_sort 컬럼은 NotNull이기 때문에, 이 값이 조회가 되지 않으면 INSERT가 실행되지 않음.
+    ,IF(EXISTS(SELECT eq_sort FROM `eq_sort`
+					 WHERE eq_sort = '하드웨어'#{eq_name}
+				  )
+	    ,'하드웨어'#{eq_name}}
+	    ,NULL) -- 해당 이름의 비품분류가 없으면 접수되면 안됨
 	 ,CASE
-		  WHEN (SELECT eq_name FROM `EBLOCK`.`eq_add_list`
-				   WHERE eq_name = '라즈베리파이3'#{eq_name}
-                 AND NOT outcome = 'eqa-0'
-				 ) IS NULL THEN '라즈베리파이3'#{eq_name}
+		  WHEN (SELECT eq_name FROM `eq_add_list`
+				   WHERE eq_name = 'New MacBook 2018'#{eq_name}
+                 AND outcome IN ('eqa-1','eqa-3') -- 대기중이거나 승인된 건을 조회해서 중복되면 접수되지 않게 함
+				 ) IS NULL THEN 'New MacBook 2018'#{eq_name}
 		  ELSE NULL -- 해당 이름의 비품이 대기,기각,승인단계에 있는 로우가 하나라도 있을때는 접수되면 안됨
      END
-  FROM `EBLOCK`.`emp` NATURAL JOIN `EBLOCK`.`dept`
- WHERE `emp`.au_no = 35
-   AND `dept`.d_no = 9001
- ORDER BY `emp`.e_rank DESC
+	 ,1#{mk_no} -- 거래처번호
+  FROM `emp` e INNER JOIN `dept` d ON e.d_no = d.d_no
+ WHERE e.au_no = 35
+   AND e.d_no = 9001
+ ORDER BY e.e_rank DESC
  LIMIT 1 -- 9001번 부서 최고관리자에게 신청
 ;
 
@@ -38,3 +41,4 @@ SELECT
 SELECT * FROM `eq_add_list`;
 
 SELECT * FROM `view_eq_add_list`;
+

@@ -50,11 +50,8 @@ public class FrontServlet extends HttpServlet {
 			//■■■■■■■■■■[ START|if : middle ]■■■■■■■■■■
 			if(pageMove != null) {
 				//■■■■■■■■■■[ START|if : inner ]■■■■■■■■■■
-				String path = null;
-				if("redirect".equals(pageMove[0])) {
-					 path = "/E_BLOCK_plus/front"+pageMove[1];
-					
-					res.sendRedirect(path);
+				if("redirect".equals(pageMove[0])) { 
+					res.sendRedirect(contextPath+path);
 				}
 				else if("forward".equals(pageMove[0])){
 					path = "/front"+pageMove[1];

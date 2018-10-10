@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -30,7 +31,7 @@ public class EmpController implements Controller {
 		Map<String,Object> pMap = new HashMap<String,Object>();
 		HashMapBinder hmb = new HashMapBinder(req);
 		hmb.bind(pMap);
-		
+		logger.info(pMap);
 
 		String name = null; //attribute의 name
 		String path = null; //forward:xxx.jsp
@@ -41,9 +42,34 @@ public class EmpController implements Controller {
 			//로그인하기
 			if(crud.equals("check")) {
 				robj = empLogic.login_check(pMap);
-				name = "attribute의 name";
-				path = "forward:xxx.jsp";
+				Map rMap = (Map<String,Object>)robj;
+				if(rMap.get("res_msg")==null) {
+					String e_name = (String) rMap.get("e_name"); 
+					String e_no = String.valueOf(rMap.get("e_no")); 
+					String au_no = String.valueOf(rMap.get("au_no")); 
+					Cookie c_ename = new Cookie("c_ename", e_name); 
+					Cookie c_eno = new Cookie("c_eno", e_no); 
+					Cookie c_auno = new Cookie("c_auno", au_no); 
+					c_ename.setPath("/"); 
+					c_eno.setPath("/"); 
+					c_auno.setPath("/"); 
+					res.addCookie(c_ename); 
+					res.addCookie(c_eno); 
+					res.addCookie(c_auno);
+					
+					Cookie c_res_msg = new Cookie("res_msg","");
+					c_res_msg.setPath("/");
+					c_res_msg.setMaxAge(0);
+					res.addCookie(c_res_msg);
+				}else {
+					String res_msg = rMap.get("res_msg").toString();
+					Cookie c_res_msg = new Cookie("res_msg",res_msg);
+					c_res_msg.setPath("/");
+					res.addCookie(c_res_msg);
+				}
+				path = "redirect:/emp/login/login_result.jsp"; 
 			}
+			
 		}
 		//정보조회
 		else if(work.equals("info")) {
@@ -56,8 +82,8 @@ public class EmpController implements Controller {
 			//사원 개인정보 조회하기
 			else if(crud.equals("persList")) {
 				robj = empLogic.info_persList(pMap);
-				name = "attribute의 name";
-				path = "forward:xxx.jsp";
+				name = "rList";
+				path = "forward:/emp/info/persList.jsp";
 			}
 			//사원 개인정보 선택부분 수정하기
 			else if(crud.equals("persUpd")) {
@@ -71,8 +97,8 @@ public class EmpController implements Controller {
 			//인사평가 기간에 인사평가 입력하기
 			if(crud.equals("add")) {
 				robj = empLogic.pev_add(pMap);
-				name ="attribute의 name";
-				path="forward:xxx.jsp";
+				name ="pevADD";
+				path="forward:pevADD.jsp";
 			}
 			//인사평가 기간에 인사평가 수정하기
 			else if(crud.equals("update")) {
@@ -83,8 +109,8 @@ public class EmpController implements Controller {
 			//내가 평가한내역 조회하기(타인은 열람불가)
 			else if(crud.equals("myList")) {
 				robj = empLogic.pev_myList(pMap);
-				name ="attribute의 name";
-				path="forward:xxx.jsp";
+				name ="pevList";
+				path="forward:/emp/pev/pevMyList_JSON.jsp";
 			}
 		}
 		//출결
@@ -98,14 +124,14 @@ public class EmpController implements Controller {
 			//출결 체크하기 (달력용)
 			if(crud.equals("cmt_calendar")) {
 				robj = empLogic.cmt_calendar(pMap);
-				name ="attribute의 name";
-				path="forward:xxx.jsp";
+				name ="calendar";
+				path="forward:/emp/cmt/List_JSON.jsp";
 			}
 			//출결 조회하기 (개인)
 			else if(crud.equals("myList")) {
 				robj = empLogic.cmt_myList(pMap);
-				name ="attribute의 name";
-				path="forward:xxx.jsp";
+				name ="rList";
+				path="forward:jsp";
 			}
 			//출결 조회하기 (부서)
 			else if(crud.equals("deptList")) {
@@ -153,8 +179,8 @@ public class EmpController implements Controller {
 			//퇴사신청 조회하기
 			else if(crud.equals("list")) {
 				robj = empLogic.retire_list(pMap);
-				name ="attribute의 name";
-				path="forward:xxx.jsp";
+				name ="rList";
+				path="forward:/emp/retire/list_JSON.jsp";
 			}
 			//퇴사신청 처리하기(결재)
 			else if(crud.equals("sign")) {
