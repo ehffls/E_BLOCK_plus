@@ -39,6 +39,7 @@ $(document)
           $("#sidebar").sidebar('setting', 'transition', 'overlay')
           .sidebar('toggle');
        });
+      $(".accordion.menu").accordion();
  
     });
     
@@ -59,10 +60,16 @@ $(document)
    <!-- 나의전자결재 시작 -->
    <div class="item" id="sm_fromMe">
       <div class="header">나의전자결재</div>
-      <div class="menu">
+      <div class="ui vertical inverted accordion menu">
          <a class="item" href="<%=Project_Root2%>" id="sm_fromMe_attd"> 근태관련 </a>
          <a class="item" href="<%=Project_Root2%>" id="sm_fromMe_retire"> 사직관련 </a>
-         <a class="item" href="<%=Project_Root2%>" id="sm_fromMe_equip"> 비품관련 </a>
+         <div class="item">
+            <a class="active title" id="sm_fromMe_equip"> 비품관련 </a>
+            <div class="active content">
+               <a class="item" href="<%=Project_Root2%>/equip/add/addAskList.jsp" id="sm_fromMe_equipC"> 비품관련 신청 </a>      
+               <a class="item" href="<%=Project_Root2%>" id="sm_fromMe_equipR"> 내 신청 조회 </a>      
+            </div>
+         </div>
       </div>
    </div>
    <!-- 전자결재 끝 -->

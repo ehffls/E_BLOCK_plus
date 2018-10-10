@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import eblock.b_logic.EmpLogic;
+import util.CookieBinder;
 import util.HashMapBinder;
 
 public class EmpController implements Controller {
@@ -31,6 +32,8 @@ public class EmpController implements Controller {
 		Map<String,Object> pMap = new HashMap<String,Object>();
 		HashMapBinder hmb = new HashMapBinder(req);
 		hmb.bind(pMap);
+		CookieBinder cb = new CookieBinder(req);
+		cb.bind(pMap);
 		logger.info(pMap);
 
 		String name = null; //attribute의 name
@@ -41,32 +44,7 @@ public class EmpController implements Controller {
 		if(work.equals("login")) {
 			//로그인하기
 			if(crud.equals("check")) {
-				robj = empLogic.login_check(pMap);
-				Map rMap = (Map<String,Object>)robj;
-				if(rMap.get("res_msg")==null) {
-					String e_name = (String) rMap.get("e_name"); 
-					String e_no = String.valueOf(rMap.get("e_no")); 
-					String au_no = String.valueOf(rMap.get("au_no")); 
-					Cookie c_ename = new Cookie("c_ename", e_name); 
-					Cookie c_eno = new Cookie("c_eno", e_no); 
-					Cookie c_auno = new Cookie("c_auno", au_no); 
-					c_ename.setPath("/"); 
-					c_eno.setPath("/"); 
-					c_auno.setPath("/"); 
-					res.addCookie(c_ename); 
-					res.addCookie(c_eno); 
-					res.addCookie(c_auno);
-					
-					Cookie c_res_msg = new Cookie("res_msg","");
-					c_res_msg.setPath("/");
-					c_res_msg.setMaxAge(0);
-					res.addCookie(c_res_msg);
-				}else {
-					String res_msg = rMap.get("res_msg").toString();
-					Cookie c_res_msg = new Cookie("res_msg",res_msg);
-					c_res_msg.setPath("/");
-					res.addCookie(c_res_msg);
-				}
+				robj = empLogic.login_check(pMap, res);
 				path = "redirect:/emp/login/login_result.jsp"; 
 			}
 			

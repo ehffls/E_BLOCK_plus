@@ -212,8 +212,8 @@ public class EquipController implements Controller {
 			//입고비품내역에서 입출가능한 비품 조회하기
 			if(crud.equals("eqList")) {
 				robj = equipLogic.inb_eqList(pMap);
-				name ="attribute의 name redirect면 안씀";
-				path="forward:xxx.jsp";
+				name ="addAskList_2";
+				path="forward:/equip/add/addAskList_JSON2.jsp";
 			}
 			//비품입출신청내역에 비품입출 신청하기
 			else if(crud.equals("ask")) {
