@@ -4,21 +4,25 @@
 */
 
 -- 1. 시퀀스를 담는 테이블 생성
-CREATE TABLE sequences (name VARCHAR(32), currval BIGINT UNSIGNED)  ENGINE=INNODB;
+CREATE TABLE sequences (NAME VARCHAR(32), currval BIGINT UNSIGNED)  ENGINE=INNODB;
 
  
  
 -- 2. 시퀀스 프로시저 생성(변경하는것 없이 그대로 실행)
 DELIMITER $$
-DROP PROCEDURE IF EXISTS `create_sequence`;
-CREATE PROCEDURE `create_sequence`(IN the_name text)
-MODIFIES SQL DATA
-DETERMINISTIC
+
+USE `EBLOCK`$$
+
+DROP PROCEDURE IF EXISTS `create_sequence`$$
+
+CREATE DEFINER=`EBlockMaster`@`%` PROCEDURE `create_sequence`(IN the_name TEXT)
+    MODIFIES SQL DATA
+    DETERMINISTIC
 BEGIN
-    DELETE FROM sequences WHERE name=the_name;
+    DELETE FROM sequences WHERE seq_name=the_name;
     INSERT INTO sequences VALUES (the_name, 0);
-END
-$$
+END$$
+
 DELIMITER ;
 
 -- 프로시저 호출하여 시퀀스 생성하기

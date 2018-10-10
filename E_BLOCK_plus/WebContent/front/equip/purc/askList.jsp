@@ -36,98 +36,80 @@
 			<table id="taable" class="ui grey fixed single line celled table">
 				<thead>
 					<tr>
-						<th>신청번호</th>
-						<th>가격</th>
-						<th>비품종류</th>
-						<th>결재일자</th>
-						<th>비품명</th>
+						<th>구매신청번호</th>
+						<th>비품이름</th>
+						<th>수량</th>
+						<th>소계</th>
+						<th>신청일자</th>
 						<th>신청사원번호</th>
-						<th>신청일자</th>
-						<th>신청일자</th>
+						<th>결재상태</th>
 					</tr>
 				</thead>
 			</table>
-			<div id="btn_1" class="ui button">선택수정</div>
+			<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ결재버튼 시작ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ-->
+			<div align="center">
+				<div class="ui orange buttons" id="btn_approval">
+					<div class="ui button">선택</div>
+						<div class="ui floating dropdown icon button">
+						<i class="dropdown icon"></i>
+						<div class="menu">
+							<div class="item" id="btn_permit"><i class="thumbs up icon"></i> 승인</div>
+							<div class="item" id="btn_dismiss"><i class="thumbs down icon"></i> 기각</div>
+							<div class="item" id="btn_cash"><i class="credit card icon"></i> 결제</div>
+							<div class="item" id="btn_inbound"><i class="truck icon"></i> 입고</div>
+						</div>
+					</div>
+				</div>
+				<script type="text/javascript">
+					$('.ui.dropdown').dropdown();
+				</script>
+			</div>
+			<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ결재버튼 종료ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ-->
 		</div>
 	</div>
-	</div>
-	<div class="ui first coupled modal" id="modal_1">
+	<div class="ui modal" id="modal_1">
 		<div class="header">상세보기</div>
 		<div class="ui segment" style="margin-right: 20px; margin-left: 20px">
 			<div class="ui form">
-				<div class="three fields">
+				<div class="four fields">
 					<div class="field">
-						<label>신청번호</label> <input type="text" id="text_1" readonly>
+						<label>구매신청번호</label> <input type="text" id="text_1" readonly>
 					</div>
 					<div class="field">
-						<label>비품분류</label> <input type="text" id="text_2" readonly>
+						<label>비품이름</label> <input type="text" id="text_2" readonly>
 					</div>
 					<div class="field">
-						<label>비품이름</label> <input type="text" id="text_3" readonly>
+						<label>수량</label> <input type="text" id="text_3" readonly>
+					</div>
+					<div class="field">
+						<label>소계</label> <input type="text" id="text_4" readonly>
 					</div>
 				</div>
 			</div>
 			<div class="ui form">
 				<div class="three fields">
 					<div class="field">
-						<label>신청사원번호</label> <input type="text" id="text_4" readonly>
-					</div>
-					<div class="field">
 						<label>신청일자</label> <input type="text" id="text_5" readonly>
 					</div>
 					<div class="field">
-						<label>상태</label> <input type="text" id="text_6" readonly>
+						<label>신청사원번호</label> <input type="text" id="text_6" readonly>
+					</div>
+					<div class="field">
+						<label>결재상태</label> <input type="text" id="text_7" readonly>
 					</div>
 				</div>
 			</div>
 
 		</div>
 		<div class="actions">
-			<div class="ui ok button">처리</div>
-			<div class="ui black deny button">취소</div>
-		</div>
-	</div>
-	<div class="ui second coupled modal" id="modal_2">
-		<div class="header">상세보기</div>
-		<div class="ui segment" style="margin-right: 20px; margin-left: 20px">
-			<div class="ui form">
-				<div class="three fields">
-					<div class="field">
-						<label>신청번호</label> <input type="text" id="text_1" readonly>
-					</div>
-					<div class="field">
-						<label>비품분류</label> <input type="text" id="text_2" readonly>
-					</div>
-					<div class="field">
-						<label>비품이름</label> <input type="text" id="text_3" readonly>
-					</div>
-				</div>
-			</div>
-			<div class="ui form">
-				<div class="three fields">
-					<div class="field">
-						<label>신청사원번호</label> <input type="text" id="text_4" readonly>
-					</div>
-					<div class="field">
-						<label>신청일자</label> <input type="text" id="text_5" readonly>
-					</div>
-					<div class="field">
-						<label>상태</label> <input type="text" id="text_6" readonly>
-					</div>
-				</div>
-			</div>
-
-		</div>
-		<div class="actions">
-			<div class="ui ok button">확인</div>
-			<div class="ui black deny button">취소</div>
+			<div class="ui black deny button">닫기</div>
 		</div>
 	</div>
 	<script>
 	$(function(){
 		$('#ap_bp').attr('class', 'item active');
 	});
-		$.fn.dataTable.ext.errMode = '';
+		$.fn.dataTable.ext.errMode = '';//null 에러 오류 따로 안띄우게
 		var table = $('#taable').DataTable({
 
 			aLengthMenu : [ 10, 20, 30 ],
@@ -153,25 +135,54 @@
 				dataSrc : 'data'
 			},
 			columns : [ {
-				"data" : "eq_addno"
+				"data" : "eq_pno" //구매신청번호
 			}, {
-				"data" : "eq_sort"
+				"data" : "eq_name"//비품이름
 			}, {
-				"data" : "eq_name"
+				"data" : "num"//수량
 			}, {
-				"data" : "ask_eno"
+				"data" : "subtotal"//소계
 			}, {
-				"data" : "ask_date"
+				"data" : "ask_date"//신청일자
 			}, {
-				"data" : "ask_date"
+				"data" : "ask_eno" //신청사원번호
 			}, {
-				"data" : "ask_date"
-			}, {
-				"data" : "outcome"
+				"data" : "outcome"//결재상태
 			} ],
 			columnDefs : [ {
-				targets : [ 0, 1, 2, 3, 4, 5, 6, 7 ],
+				targets : [ 0, 3, 4, 5 ],
+				width: "12%",
 				className : 'right aligned'
+			},
+			{
+				targets : [ 1 ], //비품이름
+				width: "15%",
+				className : 'right aligned'
+			},
+			{
+				targets : [ 2 ], //수량
+				width: "10%",
+				className : 'center aligned',
+				render : function( data, type, row ) {
+					return "<div class='ui input' align='center'><input type='text' value='"+data+"' style='width:15px;'></div>";
+				}// 해놓긴 했는데, 결재자는 수량을 바꾸지 않네.. 다른데 써주렴...
+			},
+			{
+				targets : [ 6 ], // 상태
+				width: "20%",
+				className : 'center aligned',
+				render : function ( data, type, row ) {
+					//해당 로우의 문자를 잘랐을때를 비교해서 렌더할 태그를 결정함
+					if(data.trim()=="대기"){
+						return "<div class='ui left icon transparent input loading'>"
+								+"<i class='search icon'></i>"
+								+"<input type='text' style='width: 1px;'/>"+data+"</div>";
+						//return "<div class='ui active inline tiny loader'>"+data+"</div>";
+					}
+					else{
+						return data;
+					}					
+                }
 			}
 
 			]
@@ -179,39 +190,102 @@
 
 		$('#taable th').attr("class", "center aligned");
 
+		//다중선택 이벤트 설정
 		$('#taable tbody').on('click', 'tr', function() {
-			$(this).addClass('active');
+			
+			//로우의 outcome값이 '취소' 또는 '기각' 또는 '입고완료'가 아닌 로우에 대하여
+			if(table.row(this).data()["outcome"]!="취소"
+					||table.row(this).data()["outcome"]!="기각"
+					||table.row(this).data()["outcome"]!="입고완료"){
+				
+				//취소하기
+				if ($(this).hasClass('active ro')) {
+					$(this).removeClass('active ro');
+					$('#btn_approval').transition('shake')//버튼 흔들어줌
+				}
+				
+				//선택하기
+				else {
+					//선택되어져 있던 로우들 중 최초의 outcome값
+					var f_outcome = null;
+					$('.active.ro').each(function(index, element){
+						f_outcome = $(this).children().eq(6).text();
+						return;//먼저 선택된 결재상태의 문자값만 담고 반복each문 탈출
+					});
+					//(이후에)현재 선택한 로우의  outcome값
+					var t_outcome = $(this).children().eq(6).text();
+					
+					//둘을 비교해서 같거나, 혹은 먼저 선택된 로우의 outcome값이 없으면
+					if(f_outcome == t_outcome || f_outcome == null){
+						$(this).addClass('active ro');//선택되도록 해줌
+						$('#btn_approval').transition('shake')//버튼 흔들어줌
+					}
+				}
+			}
+			
 		});
 
-		$('#btn_1').on('click', function() {
-			var data2 = $('#taable').append($("tr")).hasClass('active').val();
+		$('#btn_permit').on('click', function() {
+			approval('ibp-3');//승인
 		});
-
+		$('#btn_dismiss').on('click', function() {
+			approval('ibp-2');//기각
+		});
+		$('#btn_cash').on('click', function() {
+			approval('ibp-4');//결제
+		});
+		$('#btn_inbound').on('click', function() {
+			approval('ibp-5');//입고
+		});
+		
 		$('#taable tbody').on('dblclick', 'tr', function() {
 			var data = table.row(this).data();
-			$('#text_1').val(data["eq_addno"]);
-			$('#text_2').val(data["eq_sort"]);
-			$('#text_3').val(data["eq_name"]);
-			$('#text_4').val(data["ask_eno"]);
+			$('#text_1').val(data["eq_pno"]);
+			$('#text_2').val(data["eq_name"]);
+			$('#text_3').val(data["num"]);
+			$('#text_4').val(data["subtotal"]);
 			$('#text_5').val(data["ask_date"]);
-			$('#text_6').val(data["outcome"]);
-			$('.coupled.modal').modal({
-				allowMultiple : false
-			});
+			$('#text_6').val(data["ask_eno"]);
+			$('#text_7').val(data["outcome"]);
 			// attach events to buttons
-			$('#modal_2').modal('attach events', '.first.modal .ok.button');
 			$('#modal_1').modal('setting', 'closable', false).modal('show');
-
-			if ($(this).hasClass('active')) {
-				$(this).removeClass('active');
-			} else {
-				table.$('tr.active').removeClass('active');
-				$(this).addClass('active');
-			}
+			
 		});
+		
+		function approval(outcome){
+			//수정할 로우의 첫번째 셀(신청번호)의 값을 배열에 담음
+			var tdArr = new Array();
+			tdArr.push(outcome);//상태 담음
+			
+			$('.active.ro').each(function(index, element){
+				var td = $(this).children();
+				tdArr.push(td.eq(0).text());
+				return;
+				/* 
+				td.each(function(i){//전체돌기
+				tdArr.push(td.eq(i).text());
+				}); */
+			});
+			//alert(tdArr);//배열에 담기 확인
+			var param = tdArr.toString();
+			//alert(param);//문자열로 전환 확인
+			
+			//결재진행(서버요청)
+			$.ajax({
+				 method:'post'
+				,data:{//승인상태와 변경대상을 배열에 담아서 넘김 (ibp-3,X,X,X,..)
+					"param":param
+				}
+				,url:'/E_BLOCK_plus/equip/purc/sign.ebp'
+						//결재사원번호는 로직에서 쿠키로 얻음
+				,success:function(html){
+					alert('결재되었습니다.');
+					location.href = "./askList.jsp";//자기자신에게 페이지이동(새로고침)
+				}
+			});
+		}
 	</script>
 	<!--=============== 작성부분 ===============-->
-
 
 
 	<%@ include file="/front/_includePage/sticky"%>

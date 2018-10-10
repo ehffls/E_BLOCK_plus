@@ -106,9 +106,9 @@ public class EquipController implements Controller {
 			}
 			//비품추가신청내역 조회하기
 			else if(crud.equals("askList")) {
-				list = equipLogic.add_askList(pMap);
-				name ="addList";
-				path="forward:/equip/add/addAskList_JSON.jsp";
+				robj = equipLogic.add_askList(pMap);
+				name ="rList";
+				path="forward:/equip/add/askList_JSON.jsp";
 			}
 			//[결재권자]
 			//비품추가신청내역에 새로운 비품내역 추가신청 결재하기
@@ -189,7 +189,7 @@ public class EquipController implements Controller {
 			else if(crud.equals("sign")) {
 				result = equipLogic.purc_sign(pMap);
 				name ="attribute의 name redirect면 안씀";
-				path="forward:xxx.jsp";
+				path="forward:/equip/purc/askList.jsp";//페이지 새로고침하고자함
 			}
 		}
 		

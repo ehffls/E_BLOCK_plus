@@ -180,8 +180,8 @@ public class EquipDao {
 	}
 	//[결재권자]
 	//─────[ 비품구매신청내역 결재하기 ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-	public int purc_sign(Map<String, Object> pMap) {
-		result = sqlSession.update(nameSpace+"purc_sign",pMap);
+	public int purc_sign(List<Map<String, Object>> pList) {
+		result = sqlSession.update(nameSpace+"purc_sign",pList);
 		return result;
 	}
 	
