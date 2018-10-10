@@ -1,20 +1,26 @@
-<%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<%@ page import = "javax.mail.*, javax.mail.internet.*, java.util.Properties" %>
+<%@page import="java.util.*"%>
+<%@page import="java.net.URLDecoder"%>
+<%@ page import="javax.mail.*,javax.mail.internet.*, java.util.Properties" %>
 
 <%
-	List<Map<String, Object>> aEmp = (List<Map<String, Object>>) request.getAttribute("aEmp");	
-	 
-	String e_name     = ""; //사원이름    
-	String e_jdate    = ""; //입사일자    
-	String e_email	  =""; //사원이메일	
-		
-	if (aEmp != null && aEmp.size() > 0) {
-		e_name = aEmp.get(0).get("e_name").toString();
-		e_email = aEmp.get(0).get("e_email").toString();
-		e_jdate = aEmp.get(0).get("e_jdate").toString();
+	Cookie[] cs = request.getCookies();
+	String e_email = null;
+	String e_name = null;
+	if(cs != null){
+		for (int i = 0; i < cs.length; i++) {
+			String cs_name = cs[i].getName();
+			System.out.print(cs_name);			
+			if("name".equals(cs_name)){
+				e_name = URLDecoder.decode(cs[i].getValue(),"utf-8");
+			}
+			else if("email".equals(cs_name)){
+				e_email = URLDecoder.decode(cs[i].getValue(),"utf-8");
+			}
+		}
 	}
+	System.out.print(e_email);
+	System.out.print(e_name);
 		
 	if(e_email != null){
 	//Naver POP3/STMP를 이용한 메일발송 프로그램 설정하기
@@ -26,8 +32,10 @@
 	
 	//메일 받는 사람 설정
 	String receiveMailAddr = e_email;
-	String mailSubject = e_name +"귀하의 입사를 축하드립니다";
-	String mailContent = "되려낰ㅋㅋㅋ";
+	String mailSubject = e_name+" 귀하의 입사를 축하드립니다";
+	String mailContent = e_name+"님 OOO사의 가족이 되신것을 진심으로 환영합니다."+"\n"
+						 +"언제나 오늘을 기억하며 당신의 무한 역정과 겸손의 자세로"+"\n"
+						 +"끊임없이 성장하는 인재가 되시길 기대합니다.";
 	
 	Properties props = System.getProperties();
 	props.put("mail.smtp.host",smtpServer);
@@ -51,6 +59,7 @@
 	Transport.send(msg);
 	}
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,16 +68,12 @@
 <%@ include file="/0_src/_includeList/commonUI_S.jsp"%>
 <script src="/E_BLOCK_plus/0_src/js/table/datatables.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
-
-
 </head>
 <body>
 	<!-- sidebar -->
 	<%@ include file="/front/_includePage/sidemenu.jsp"%>
 	<!-- main -->
 	<%@ include file="/front/_includePage/mainpage.jsp"%>
-
-
 
 	<!--=============== 작성부분 ===============-->
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -132,8 +137,8 @@
 	<script>
 		
 		//사이드 메뉴 설정
-		$('#sm_persmanage').attr("class", "active item");
-		$('#sm_persmanage_emp').attr("class", "active item");
+		$('#').attr("class", "active item");
+		$('#').attr("class", "active item");
 
 		
 		$('#menu').find('a').click(function() {

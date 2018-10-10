@@ -52,7 +52,7 @@ public class AttitudeController implements Controller {
 				path="forward:xxx.jsp";
 			}
 			else if(crud.equals("list")) {
-				list = attitudeLogic.my_list(pMap);
+				robj = attitudeLogic.my_list(pMap);
 				name ="attribute의 name redirect면 안씀";
 				path="forward:xxx.jsp";
 			}
@@ -64,9 +64,16 @@ public class AttitudeController implements Controller {
 				path="forward:xxx.jsp";
 			}
 			else if(crud.equals("list")) {
-				list = attitudeLogic.toMe_list(pMap);
+				robj = attitudeLogic.toMe_list(pMap);
 				name ="attribute의 name redirect면 안씀";
 				path="forward:xxx.jsp";
+			}
+		}
+		else if(work.equals("list")) {
+			if(crud.equals("attdAllList")) {
+				robj = attitudeLogic.list_attdAllList(pMap);
+				name ="attdlist";
+				path="forward:/attd/list/attdAllList_JSON.jsp";
 			}
 		}
 		

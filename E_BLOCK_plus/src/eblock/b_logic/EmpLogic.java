@@ -1,7 +1,12 @@
 package eblock.b_logic;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
@@ -79,9 +84,24 @@ public class EmpLogic {
 		return list;
 	}
 	
-	public int cntr_addEmp(Map<String, Object> pMap) {
+	public int cntr_addEmp(Map<String, Object> pMap, HttpServletResponse res)  {
 		logger.info(pMap);
 		result = empDao.cntr_addEmp(pMap);
+		logger.info(pMap.get("result"));
+		if(result == 1) {
+			try {
+				Cookie c_email = new Cookie("email",URLEncoder.encode(pMap.get("e_email").toString(),"utf-8"));
+				Cookie c_ename = new Cookie("name", URLEncoder.encode(pMap.get("e_name").toString(),"utf-8"));
+				c_email.setMaxAge(2*60);
+				c_ename.setMaxAge(2*60);
+				c_email.setPath("/");
+				c_ename.setPath("/");
+				res.addCookie(c_email);
+				res.addCookie(c_ename);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		}
 		logger.info(pMap.get("result"));
 		return result;
 	}

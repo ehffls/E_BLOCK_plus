@@ -125,10 +125,8 @@ public class EmpController implements Controller {
 			//인사사원 등록하기
 			else if(crud.equals("addEmp")) {
 				logger.info(pMap);
-				robj = empLogic.cntr_addEmp(pMap);
-				robj = pMap;
-				name ="aEmp";
-				path="forward:/emp/cntr/cntrList.jsp";
+				robj = empLogic.cntr_addEmp(pMap, res); //쿠키 생성을 위한 응답객체
+				path="redirect:/emp/cntr/cntrList.jsp";
 			}
 			//부서배정하기 및 이동하기
 			else if(crud.equals("setDeptAuth")) {

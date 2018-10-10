@@ -42,7 +42,6 @@
 			}
 		});
 	}
-	
 	function emp_updata(e_no){
 		$("#emp_form").attr("method","post");
 		$("#emp_form").attr("action","/E_BLOCK_plus/emp/cntr/addEmp.ebp?e_no="+e_no);

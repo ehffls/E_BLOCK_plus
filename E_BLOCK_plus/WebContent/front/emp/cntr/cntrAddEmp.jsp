@@ -8,6 +8,7 @@
 <%@ include file="/0_src/_includeList/commonUI_S.jsp"%>
 <script src="/E_BLOCK_plus/0_src/js/table/datatables.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 </head>
 <body>
 
@@ -116,7 +117,7 @@
 							<div class="ui disabled input" style="width: 25%;">
 								<input id="sample6_postcode" placeholder="우편번호">
 							</div>
-							<input class="ui grey button" onclick="execDaumPostcode()" value="우편번호 찾기" style="width: 30%; margin-left: 5px">
+							<div class="ui grey button" onclick="execDaumPostcode()" >우편번호 찾기</div>
 						</div>
 					</div>
 					<div class="field">
@@ -275,7 +276,9 @@
 			});
 		});
 	
+		
 		<!-- Daum 우편번호 조회 시작  -->
+		
 		function execDaumPostcode() {
 			new daum.Postcode({
 				oncomplete : function(data) {
@@ -313,7 +316,7 @@
 					document.getElementById('sample6_address').value = fullAddr;
 	
 					// 커서를 상세주소 필드로 이동한다.
-					document.getElementById('sample6_address2').focus();
+					document.getElementById('sample6_address').focus();
 				}
 			}).open();
 		}
