@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내게온결재목록페이지</title>
+<title>비품입출 전체내역</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp"%>
 <script src="/E_BLOCK_plus/0_src/js/table/datatables.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
@@ -19,76 +19,38 @@
 	<!--=============== 작성부분 ===============-->
 
 	<div class="ui container" style="margin-top: 20px;">
-		<%@ include file="/front/_includePage/approval_head.jsp"%>
-		<div class="ui pointing menu">
-			<a class="item">비품추가신청조회</a> <a class="item">비품구매신청조회</a> <a class="item">비품입출신청조회</a>
-		</div>
 		<div class="ui segment">
 			<!-- 검색창 시작  -->
 			<div class="ui column stackable grid container">
 				<div class="column" align="center" style="padding-left: 0px;">
 					<h2 class="ui header" style="padding-top: 5px;">
 						<i class="tasks icon"></i>
-						<div class="content">비품입출 신청내역</div>
+						<div class="content">비품입출 전체내역</div>
 					</h2>
 				</div>
 			</div>
 			<table id="taable" class="ui grey fixed single line celled table">
 				<thead>
 					<tr>
-						<th>신청사원</th>
+						<th>입출번호</th>
 						<th>비품분류</th>
-						<th>신청부서</th>
 						<th>비품이름</th>
-						<th>결재일자</th>
 						<th>신청사원</th>
-						<th>신청번호</th>
+						<th>신청부서</th>
 						<th>결재부서</th>
+						<th>신청일자</th>
+						<th>결재일자</th>
+						<th>종류</th>
+						<th>상태</th>
 					</tr>
 				</thead>
 			</table>
-			<div id="btn_1" class="ui button">선택수정</div>
+			<div id="btn_1" class="ui button">상세보기</div>
 		</div>
 	</div>
 	</div>
-	<div class="ui first coupled modal" id="modal_1">
-		<div class="header">상세보기</div>
-		<div class="ui segment" style="margin-right: 20px; margin-left: 20px">
-			<div class="ui form">
-				<div class="three fields">
-					<div class="field">
-						<label>신청번호</label> <input type="text" id="text_1" readonly>
-					</div>
-					<div class="field">
-						<label>비품분류</label> <input type="text" id="text_2" readonly>
-					</div>
-					<div class="field">
-						<label>비품이름</label> <input type="text" id="text_3" readonly>
-					</div>
-				</div>
-			</div>
-			<div class="ui form">
-				<div class="three fields">
-					<div class="field">
-						<label>신청사원번호</label> <input type="text" id="text_4" readonly>
-					</div>
-					<div class="field">
-						<label>신청일자</label> <input type="text" id="text_5" readonly>
-					</div>
-					<div class="field">
-						<label>상태</label> <input type="text" id="text_6" readonly>
-					</div>
-				</div>
-			</div>
-
-		</div>
-		<div class="actions">
-			<div class="ui ok button">처리</div>
-			<div class="ui black deny button">취소</div>
-		</div>
-	</div>
-	<div class="ui second coupled modal" id="modal_2">
-		<div class="header">상세보기</div>
+	<div class="ui modal" id="modal_1">
+	<div class="header">상세보기</div>
 		<div class="ui segment" style="margin-right: 20px; margin-left: 20px">
 			<div class="ui form">
 				<div class="three fields">
@@ -153,20 +115,28 @@
 				dataSrc : 'data'
 			},
 			columns : [ {
-				"data" : "eq_addno"
+				"data" : "ask_eno"
 			}, {
 				"data" : "eq_sort"
 			}, {
 				"data" : "eq_name"
 			}, {
-				"data" : "ask_eno"
+				"data" : "ask_ename"
+			}, {
+				"data" : "ask_dname"
+			}, {
+				"data" : "sign_dname"
 			}, {
 				"data" : "ask_date"
+			}, {
+				"data" : "sign_date"
+			}, {
+				"data" : "io_ano"
 			}, {
 				"data" : "outcome"
 			} ],
 			columnDefs : [ {
-				targets : [ 0, 1, 2, 3, 4, 5 ],
+				targets : [ 0, 1, 2, 3, 4, 5, 6, 7, 8],
 				className : 'right aligned'
 			}
 
@@ -184,7 +154,7 @@
 		});
 
 		$('#btn_1').on('click', function() {
-			var data2 = $('#taable').append($("tr")).hasClass('active').val();
+			$('#modal_1').modal('setting', 'closable', false).modal('show');
 		});
 
 		$('#taable tbody').on('dblclick', 'tr', function() {
@@ -198,9 +168,7 @@
 			$('.coupled.modal').modal({
 				allowMultiple : false
 			});
-			// attach events to buttons
-			$('#modal_2').modal('attach events', '.first.modal .ok.button');
-			$('#modal_1').modal('setting', 'closable', false).modal('show');
+			
 
 			table.$('tr.active').removeClass('active');
 			$(this).addClass('active');

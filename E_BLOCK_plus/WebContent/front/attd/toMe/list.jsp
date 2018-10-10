@@ -36,7 +36,7 @@
 			<table id="taable" class="ui grey fixed single line celled table">
 				<thead>
 					<tr>
-						<th>신청사원</th>
+						<th>비품번호</th>
 						<th>비품분류</th>
 						<th>신청부서</th>
 						<th>비품이름</th>
