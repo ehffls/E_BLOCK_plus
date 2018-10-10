@@ -64,9 +64,9 @@ public class AttitudeController implements Controller {
 				path="forward:xxx.jsp";
 			}
 			else if(crud.equals("list")) {
-				list = attitudeLogic.toMe_list(pMap);
-				name ="attribute의 name redirect면 안씀";
-				path="forward:xxx.jsp";
+				robj = attitudeLogic.toMe_list(pMap);
+				name ="rList";
+				path="forward:/attd/toMe/list_JSON.jsp";
 			}
 		}
 		
