@@ -180,9 +180,9 @@ public class EquipController implements Controller {
 			}
 			//비품구매신청내역 조회하기
 			else if(crud.equals("askList")) {
-				result = equipLogic.purc_askList(pMap);
-				name ="attribute의 name redirect면 안씀";
-				path="forward:xxx.jsp";
+				robj = equipLogic.purc_askList(pMap);
+				name ="rList";
+				path="forward:/equip/purc/askList_JSON.jsp";
 			}
 			//[결재권자]
 			//비품구매신청내역 결재하기
@@ -215,6 +215,13 @@ public class EquipController implements Controller {
 				result = equipLogic.inb_askUpd(pMap);
 				name ="attribute의 name redirect면 안씀";
 				path="forward:xxx.jsp";
+			}
+			//[결재권자]
+			//비품입출신청내역의 신청 결재하기 (기각|승인)
+			else if(crud.equals("askList")) {
+				robj = equipLogic.inb_askList(pMap);
+				name ="rList";
+				path="forward:/equip/inb/askList_JSON.jsp";
 			}
 			//[결재권자]
 			//비품입출신청내역의 신청 결재하기 (기각|승인)

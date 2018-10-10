@@ -122,10 +122,10 @@ $(document)
   <div class="header">물품관리</div>
   <div class="menu">
       <a class="item" href="<%=Project_Root2 %>/front/article/paygoods.jsp" id="sm_artcl_ap">		
-        물품결재내역
+        입출고신청조회
       </a>
       <a class="item" href="<%=Project_Root2 %>/front/article/i_o.jsp" id="sm_artcl_sar">
-        입출고관리
+        비품구매신청조회
       </a>
       <a class="item" href="<%=Project_Root2 %>/front/article/account.jsp" id="sm_artcl_acc">
         거래처
