@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -41,10 +42,34 @@ public class EmpController implements Controller {
 			//로그인하기
 			if(crud.equals("check")) {
 				robj = empLogic.login_check(pMap);
-				logger.info(robj);
-				name = "login";
-				path = "forward:/emp/login/login.jsp";
+				Map rMap = (Map<String,Object>)robj;
+				if(rMap.get("res_msg")==null) {
+					String e_name = (String) rMap.get("e_name"); 
+					String e_no = String.valueOf(rMap.get("e_no")); 
+					String au_no = String.valueOf(rMap.get("au_no")); 
+					Cookie c_ename = new Cookie("c_ename", e_name); 
+					Cookie c_eno = new Cookie("c_eno", e_no); 
+					Cookie c_auno = new Cookie("c_auno", au_no); 
+					c_ename.setPath("/"); 
+					c_eno.setPath("/"); 
+					c_auno.setPath("/"); 
+					res.addCookie(c_ename); 
+					res.addCookie(c_eno); 
+					res.addCookie(c_auno);
+					
+					Cookie c_res_msg = new Cookie("res_msg","");
+					c_res_msg.setPath("/");
+					c_res_msg.setMaxAge(0);
+					res.addCookie(c_res_msg);
+				}else {
+					String res_msg = rMap.get("res_msg").toString();
+					Cookie c_res_msg = new Cookie("res_msg",res_msg);
+					c_res_msg.setPath("/");
+					res.addCookie(c_res_msg);
+				}
+				path = "redirect:/emp/login/login_result.jsp"; 
 			}
+			
 		}
 		//정보조회
 		else if(work.equals("info")) {
@@ -117,17 +142,23 @@ public class EmpController implements Controller {
 		}
 		//인사관리
 		else if(work.equals("cntr")) {
+			//기존사원 계약조회
+			if(crud.equals("list")) {
+				robj = empLogic.cntr_list(pMap);
+				name ="cntr_list";
+				path="forward:/emp/cntr/cntrModal.jsp";
+			}
 			//인사사원 등록하기
-			if(crud.equals("addEmp")) {
-				robj = empLogic.cntr_addEmp(pMap);
-				name ="attribute의 name";
-				path="forward:xxx.jsp";
+			else if(crud.equals("addEmp")) {
+				logger.info(pMap);
+				robj = empLogic.cntr_addEmp(pMap, res); //쿠키 생성을 위한 응답객체
+				path="redirect:/emp/cntr/cntrList.jsp";
 			}
 			//부서배정하기 및 이동하기
 			else if(crud.equals("setDeptAuth")) {
 				robj = empLogic.cntr_setDeptAuth(pMap);
-				name ="attribute의 name";
-				path="forward:xxx.jsp";
+				name ="setDept";
+				path="forward:/emp/cntr/cntrList.jsp";
 			}
 		}
 		//퇴사
