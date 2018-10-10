@@ -44,7 +44,7 @@ $(document)
             $('.fixed.menu').transition('fade out');
           }
         });
-      $("#sidemenu_icon").click(function(){
+      $(".sidemenu_icon").click(function(){
     		$("#sidebar").sidebar('setting', 'transition', 'overlay')
     		.sidebar('toggle');
     	});
@@ -87,7 +87,7 @@ $(document)
       <a class="item" href="<%=Project_Root2 %>/front/approval/approvalFromMe.jsp" id="sm_ap_fromme">
         내 결재 신청목록
       </a>
-      <a class="item" href="<%=Project_Root2 %>/front/approval/approvalToMe.jsp" id="sm_ap_tome">
+      <a class="item" href="<%=Project_Root2 %>/front/attd/toMe/list.jsp" id="sm_ap_tome">
         내게온 결재목록
       </a>
   </div>
@@ -126,10 +126,10 @@ $(document)
   <div class="header">물품관리</div>
   <div class="menu">
       <a class="item" href="<%=Project_Root2 %>/front/article/paygoods.jsp" id="sm_artcl_ap">		
-        물품결재내역
+        입출고신청조회
       </a>
       <a class="item" href="<%=Project_Root2 %>/front/article/i_o.jsp" id="sm_artcl_sar">
-        입출고관리
+        비품구매신청조회
       </a>
       <a class="item" href="<%=Project_Root2 %>/front/article/account.jsp" id="sm_artcl_acc">
         거래처
@@ -141,17 +141,14 @@ $(document)
 <div class="item" id="sm_acc">
   <div class="header">회계관리</div>
   <div class="menu">
-      <a class="item" href="<%=Project_Root2 %>/front/account/com_Spending.jsp" id="sm_acc">
-        사원지출관리
+      <a class="item" href="<%=Project_Root2 %>/front/bg/ex/deptList.jsp" id="sm_acc">
+        부서별 예산할당
       </a>
       <a class="item" href="<%=Project_Root2 %>/front/account/dept_Spending.jsp">
-        부서지출관리
+        부서별 예산집행
       </a>
       <a class="item" href="<%=Project_Root2 %>/front/account/goods_Spending.jsp">
-        비품지출관리
-      </a>
-      <a class="item" href="<%=Project_Root2 %>/front/account/com_Spending.jsp">
-        회사지출관리
+        급여관리
       </a>
   </div>
 </div>

@@ -46,13 +46,13 @@ public class EquipController implements Controller {
 		if(work.equals("emp")) {
 			//결재권 조회하기
 			if(crud.equals("authList")) {
-				list = equipLogic.emp_authList(pMap);
+				robj = equipLogic.emp_authList(pMap);
 				name ="attribute의 name redirect면 안씀";
 				path="forward:xxx.jsp";
 			}
 			//결재권자 조회하기
 			else if(crud.equals("authlist")) {
-				list = equipLogic.emp_authorList(pMap);
+				robj = equipLogic.emp_authorList(pMap);
 				name ="attribute의 name redirect면 안씀";
 				path="forward:xxx.jsp";
 			}
@@ -81,7 +81,7 @@ public class EquipController implements Controller {
 			}
 			//등록된 비품분류 조회하기 
 			else if(crud.equals("list")) {
-				list = equipLogic.sort_list(pMap);
+				robj = equipLogic.sort_list(pMap);
 				name ="attribute의 name redirect면 안씀";
 				path="forward:xxx.jsp";
 			}
@@ -106,9 +106,9 @@ public class EquipController implements Controller {
 			}
 			//비품추가신청내역 조회하기
 			else if(crud.equals("askList")) {
-				list = equipLogic.add_askList(pMap);
-				name ="attribute의 name redirect면 안씀";
-				path="forward:xxx.jsp";
+				robj = equipLogic.add_askList(pMap);
+				name ="rList";
+				path="forward:/equip/add/askList_JSON.jsp";
 			}
 			//[결재권자]
 			//비품추가신청내역에 새로운 비품내역 추가신청 결재하기
@@ -120,7 +120,7 @@ public class EquipController implements Controller {
 			//[결재권자]
 			//(신청가능)비품테이블에서 비품 조회하기
 			else if(crud.equals("equipList")) {
-				list = equipLogic.add_equipList(pMap);
+				robj = equipLogic.add_equipList(pMap);
 				name ="attribute의 name redirect면 안씀";
 				path="forward:xxx.jsp";
 			}
@@ -163,9 +163,9 @@ public class EquipController implements Controller {
 			}
 			//거래처 조회하기 
 			else if(crud.equals("list")) {
-				list = equipLogic.mk_list(pMap);
-				name ="attribute의 name redirect면 안씀";
-				path="forward:xxx.jsp";
+				robj = equipLogic.mk_list(pMap);
+				name ="rList";
+				path="forward:/equip/mk/list_JSON.jsp";
 			}
 		}
 		
@@ -176,7 +176,7 @@ public class EquipController implements Controller {
 		else if(work.equals("purc")) {
 			//구매가능내역에서 비품구매 신청하기
 			if(crud.equals("ask")) {
-				list = equipLogic.purc_ask(pMap);
+				robj = equipLogic.purc_ask(pMap);
 				name ="attribute의 name redirect면 안씀";
 				path="forward:xxx.jsp";
 			}
@@ -188,16 +188,16 @@ public class EquipController implements Controller {
 			}
 			//비품구매신청내역 조회하기
 			else if(crud.equals("askList")) {
-				result = equipLogic.purc_askList(pMap);
-				name ="attribute의 name redirect면 안씀";
-				path="forward:xxx.jsp";
+				robj = equipLogic.purc_askList(pMap);
+				name ="rList";
+				path="forward:/equip/purc/askList_JSON.jsp";
 			}
 			//[결재권자]
 			//비품구매신청내역 결재하기
 			else if(crud.equals("sign")) {
 				result = equipLogic.purc_sign(pMap);
 				name ="attribute의 name redirect면 안씀";
-				path="forward:xxx.jsp";
+				path="forward:/equip/purc/askList.jsp";//페이지 새로고침하고자함
 			}
 		}
 		
@@ -208,7 +208,7 @@ public class EquipController implements Controller {
 		else if(work.equals("inb")) {
 			//입고비품내역에서 입출가능한 비품 조회하기
 			if(crud.equals("eqList")) {
-				list = equipLogic.inb_eqList(pMap);
+				robj = equipLogic.inb_eqList(pMap);
 				name ="attribute의 name redirect면 안씀";
 				path="forward:xxx.jsp";
 			}
@@ -223,6 +223,13 @@ public class EquipController implements Controller {
 				result = equipLogic.inb_askUpd(pMap);
 				name ="attribute의 name redirect면 안씀";
 				path="forward:xxx.jsp";
+			}
+			//[결재권자]
+			//비품입출신청내역의 신청 결재하기 (기각|승인)
+			else if(crud.equals("askList")) {
+				robj = equipLogic.inb_askList(pMap);
+				name ="rList";
+				path="forward:/equip/inb/askList_JSON.jsp";
 			}
 			//[결재권자]
 			//비품입출신청내역의 신청 결재하기 (기각|승인)
@@ -246,7 +253,7 @@ public class EquipController implements Controller {
 		else if(work.equals("ask")) {
 			//내가 신청한 결재내역 조회하기 (비품구매 | 비품반출 2종)
 			if(crud.equals("list")) {
-				list = equipLogic.ask_list(pMap);
+				robj = equipLogic.ask_list(pMap);
 				name ="attribute의 name redirect면 안씀";
 				path="forward:xxx.jsp";
 			}
@@ -254,7 +261,7 @@ public class EquipController implements Controller {
 		else if(work.equals("sign")) {
 			//내가 신청받은 결재요청 조회하기 (조건: 대기|승인|기각)
 			if(crud.equals("list")) {
-				list = equipLogic.sign_list(pMap);
+				robj = equipLogic.sign_list(pMap);
 				name ="attribute의 name redirect면 안씀";
 				path="forward:xxx.jsp";
 			}

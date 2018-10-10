@@ -4,11 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.sun.media.jfxmedia.logging.Logger;
+import org.apache.log4j.Logger;
 
 import eblock.c_dao.EquipDao;
 
 public class EquipLogic {
+	Logger logger = Logger.getLogger(EquipLogic.class);	
 	EquipDao equipDao = null;
 	
 	public EquipLogic(String crud) {
@@ -132,14 +133,30 @@ public class EquipLogic {
 		return result;
 	}
 	//비품구매신청내역 조회하기
-	public int purc_askList(Map<String, Object> pMap) {
-		result = equipDao.purc_askList(pMap);
-		return result;
+	public List<Map<String,Object>> purc_askList(Map<String, Object> pMap) {
+		list = equipDao.purc_askList(pMap);
+		return list;
 	}
 	//[결재권자]
 	//비품구매신청내역 결재하기
 	public int purc_sign(Map<String, Object> pMap) {
-		result = equipDao.purc_sign(pMap);
+		logger.info("pMap.get(\"param\") : "+pMap.get("param"));
+		//넘어온 파람을 분할한다.
+		String[] words = pMap.get("param").toString().split(",");
+		//넘어온걸 반복문을 위해 리스트로 작성한다.
+		List<Map<String,Object>> newList = new ArrayList<>();
+		Map<String,Object> newMap = null;
+		for(int i=1;i<words.length;i++) {
+			newMap = new HashMap<>();
+			newMap.put("outcome",words[0]);//상태값
+			newMap.put("eq_pno",words[i]);
+			newMap.put("sign_eno", 197);//결재자번호.. 쿠키에서 얻어야함.
+			newList.add(newMap);
+		}
+		logger.info("newList : "+newList);
+		//작성한 리스트를 넘김
+		result = equipDao.purc_sign(newList);
+		logger.info("result : "+result);
 		return result;
 	}
 
@@ -162,6 +179,12 @@ public class EquipLogic {
 		result = equipDao.inb_askUpd(pMap);
 		return result;
 	}
+	//[결재권자]
+	//입고비품내역에서 입출비품내역 조회하기
+		public List<Map<String, Object>> inb_askList(Map<String, Object> pMap) {
+			list = equipDao.inb_askList(pMap);
+			return list;
+		}
 	//[결재권자]
 	//비품입출신청내역의 신청 결재하기 (기각|승인)
 	public int inb_sign(Map<String, Object> pMap) {
