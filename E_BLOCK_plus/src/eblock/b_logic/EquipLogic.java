@@ -1,5 +1,6 @@
 package eblock.b_logic;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -134,6 +135,7 @@ public class EquipLogic {
 	}
 	//비품구매신청내역 조회하기
 	public List<Map<String,Object>> purc_askList(Map<String, Object> pMap) {
+		pMap.put("sign_eno", pMap.get("c_eno"));
 		list = equipDao.purc_askList(pMap);
 		return list;
 	}
@@ -150,7 +152,7 @@ public class EquipLogic {
 			newMap = new HashMap<>();
 			newMap.put("outcome",words[0]);//상태값
 			newMap.put("eq_pno",words[i]);
-			newMap.put("sign_eno", 197);//결재자번호.. 쿠키에서 얻어야함.
+			newMap.put("sign_eno", pMap.get("c_eno"));//결재자번호.. 쿠키에서 얻어야함.
 			newList.add(newMap);
 		}
 		logger.info("newList : "+newList);
@@ -212,15 +214,5 @@ public class EquipLogic {
 		list = equipDao.sign_list(pMap);
 		return list;
 	}
-	//추가 비품 신청 드롭다운(보현)
-		public List<Map<String, Object>> newArticleAsk(Map<String, Object> pMap) {
-			Map<String,Object> pMap2 = new HashMap<String,Object>();
-			 = equipDao.mk_list(pMap);
-			List<Map<String,Object>> list3 =  (List<Map<String,Object>>)equipDao.sort_list(pMap);
-			
-			System.out.println(list.size());
-			return list;
-	}
-	
 	
 }

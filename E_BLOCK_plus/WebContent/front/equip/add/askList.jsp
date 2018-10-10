@@ -21,7 +21,7 @@
 	<div class="ui container" style="margin-top: 20px;">
 		<%@ include file="/front/_includePage/approval_head.jsp"%>
 		<div class="ui pointing menu">
-			<a class="item">비품추가신청조회</a> <a class="item">비품구매신청조회</a> <a class="item">비품입출신청조회</a>
+			<a class="item active">비품추가신청조회</a> <a class="item" href="../purc/askList.jsp">비품구매신청조회</a> <a class="item">비품입출신청조회</a>
 		</div>
 		<div class="ui segment">
 			<!-- 검색창 시작  -->

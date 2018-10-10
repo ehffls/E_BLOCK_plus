@@ -1,5 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<% %>
+<%
+/* Cookie[] cookies = request.getCookies();
+String path = null;
+if(cookies!=null){
+	for(Cookie cookie: cookies){
+		if(cookie.getName().equals("c_eno")||cookie.getName().equals("c_ename")||cookie.getName().equals("c_auno"))
+			break;
+		else
+			path = "/E_BLOCK_plus/front/emp/login/login.jsp";
+			//out.print(cookie.getName()+", "+cookie.getValue());
+	}
+	if(path!=null)
+		response.sendRedirect(path);
+} */
+%>
 <script type="text/javascript">
 
 </script>

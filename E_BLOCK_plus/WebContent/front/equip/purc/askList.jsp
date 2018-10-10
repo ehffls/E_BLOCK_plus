@@ -19,6 +19,10 @@
 	<!--=============== 작성부분 ===============-->
 
 	<div class="ui container" style="margin-top: 20px;">
+		<%@ include file="/front/_includePage/approval_head.jsp"%>
+		<div class="ui pointing menu">
+			<a class="item" href="../add/askList.jsp">비품추가신청조회</a> <a class="item active">비품구매신청조회</a> <a class="item">비품입출신청조회</a>
+		</div>
 		<div class="ui segment">
 			<!-- 검색창 시작  -->
 			<div class="ui column stackable grid container">
@@ -146,10 +150,36 @@
 		$('#taable th').attr("class", "center aligned");
 
 		$('#taable tbody').on('click', 'tr', function() {
-			if ($(this).hasClass('active')) {
-				$(this).removeClass('active');
-			} else {
-				$(this).addClass('active');
+			
+			//로우의 outcome값이 '취소' 또는 '기각' 또는 '입고완료'가 아닌 로우에 대하여
+			if(table.row(this).data()["outcome"]=="대기"
+					||table.row(this).data()["outcome"]=="승인"
+					||table.row(this).data()["outcome"]=="결제완료"){
+				
+				//취소하기
+				if ($(this).hasClass('active ro')) {
+					$(this).removeClass('active ro');
+					$('#btn_approval').transition('jiggle')//버튼 흔들어줌
+				}
+				
+				//선택하기
+				else {
+					//선택되어져 있던 로우들 중 최초의 outcome값
+					var f_outcome = null;
+					$('.active.ro').each(function(index, element){
+						f_outcome = $(this).children().eq(6).text();
+						return;//먼저 선택된 결재상태의 문자값만 담고 반복each문 탈출
+					});
+					//(이후에)현재 선택한 로우의  outcome값
+					var t_outcome = $(this).children().eq(6).text();
+					
+					//둘을 비교해서 같거나, 혹은 먼저 선택된 로우의 outcome값이 없으면
+					if(f_outcome == t_outcome || f_outcome == null){
+						$(this).addClass('active ro');//선택되도록 해줌
+						$('#btn_approval').transition('jiggle')//버튼 흔들어줌
+						//12321312
+					}
+				}
 			}
 		});
 
