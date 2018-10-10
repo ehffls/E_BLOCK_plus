@@ -1,15 +1,12 @@
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
-<title>전체 출결 페이지</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>전체 근태 내역 조회</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp"%>
 <script src="/E_BLOCK_plus/0_src/js/table/datatables.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
 </head>
 <body>
 	<!-- sidebar -->
@@ -17,19 +14,13 @@
 	<!-- main -->
 	<%@ include file="/front/_includePage/mainpage.jsp"%>
 
-
-
-	<!--=============== 작성부분 ===============-->
-<!-- 로그인시 부서 이름 쿠키로 .. 부서장 이상의 관리자 조회 되게 해야함. -->	
-<!-- 전체 조회 되게만 했음... -->	
-
 	<div class="ui container" style="margin-top: 5px;">
 		<!-- 검색창 시작  -->
 		<div class="ui column stackable grid container">
 			<div class="column" align="center" style="padding-left: 0px;">
 				<h2 class="ui header" style="padding-top: 5px;">
-					<i class="users icon"></i>
-					<div class="content">전체 출결</div>
+					<i class="list alternate outline icon"></i>
+					<div class="content">근태 내역 조회</div>
 				</h2>
 			</div>
 		</div>
@@ -39,18 +30,17 @@
 				<div class="eight wide column"></div>
 				<div class="one wide column"></div>
 				<div class="three wide column">
-					<div class="ui calendar" id="r_start" align="right"	style="margin-bottom: 5px;">
+					<div class="ui calendar" id="r_start" align="right" style="margin-bottom: 5px;">
 						<div class="ui input left icon">
-							<i class="calendar icon"></i> 
+							<i class="calendar icon"></i>
 							<input type="text" placeholder="시작일자" />
 						</div>
 					</div>
 				</div>
 				<div class="four wide column ">
-					<div class="ui calendar" id="r_end" align="right"
-						style="margin-bottom: 5px;">
+					<div class="ui calendar" id="r_end" align="right" style="margin-bottom: 5px;">
 						<div class="ui input left icon">
-							<i class="calendar icon"></i> 
+							<i class="calendar icon"></i>
 							<input id="r_end" type="text" placeholder="종료일자">
 						</div>
 					</div>
@@ -65,34 +55,12 @@
 					<th>사원번호</th>
 					<th>사원명</th>
 					<th>직급</th>
-					<th>일자</th>
-					<th>출결</th>
-					<th>출근시간</th>
-					<th>퇴근시간</th>
-					<th>상태</th>
-					<th>재실유무</th>
 				</tr>
 			</thead>
 		</table>
 	</div>
-
-
-	<script type="text/javascript">
-	//캘린더 설정
-		$(function() {
-			$('#r_start').calendar({
-				type : 'date',
-				endCalendar : $('#r_end')
-			});
-			$('#r_end').calendar({
-				type : 'date',
-				startCalendar : $('#r_start')
-			});
-		});
-	</script>
-
-
-	<script>
+	
+		<script>
 		//사이드 메뉴 설정
 		$('#').attr("class", "active item");
 		$('#').attr("class", "active item");
@@ -211,10 +179,6 @@
 			}
 		});
 	</script>
-	<!--=============== 작성부분 ===============-->
 
-
-
-	<%@ include file="/front/_includePage/sticky"%>
 </body>
 </html>

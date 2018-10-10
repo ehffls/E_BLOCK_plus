@@ -27,18 +27,13 @@ public class AttitudeDao {
 		return result;
 	}
 
-	public List<Map<String, Object>> my_list(Map<String, Object> pMap) {
-		list = sqlSession.selectList(nameSpace+"my_list", pMap);
-		return list;
-	}
-
 	public int toMe_sign(Map<String, Object> pMap) {
 		result = sqlSession.update(nameSpace+"toMe_sign",pMap);
 		return result;
 	}
 
-	public List<Map<String, Object>> toMe_list(Map<String, Object> pMap) {
-		list = sqlSession.selectList(nameSpace+"toMe_list", pMap);
+	public List<Map<String, Object>> attd_list(Map<String, Object> pMap) {
+		list = sqlSession.selectList(nameSpace+"attd_list", pMap);
 		return list;
 	}
 

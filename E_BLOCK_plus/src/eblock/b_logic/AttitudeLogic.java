@@ -27,7 +27,7 @@ public class AttitudeLogic {
 	}
 
 	public List<Map<String, Object>> my_list(Map<String, Object> pMap) {
-		list = attitudeDao.my_list(pMap);
+		list = attitudeDao.attd_list(pMap);
 		return list;
 	}
 
@@ -37,7 +37,12 @@ public class AttitudeLogic {
 	}
 
 	public List<Map<String, Object>> toMe_list(Map<String, Object> pMap) {
-		list = attitudeDao.toMe_list(pMap);
+		list = attitudeDao.attd_list(pMap);
+		return list;
+	}
+
+	public List<Map<String, Object>> list_attdAllList(Map<String, Object> pMap) {
+		list = attitudeDao.attd_list(pMap);
 		return list;
 	}
 }

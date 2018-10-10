@@ -2,20 +2,14 @@
     pageEncoding="UTF-8"%>
 <%
 Cookie cookie[] = request.getCookies();
+String a = "";
 if(cookie!=null){
  for(int i=0; i<cookie.length; i++){
-  if(cookie[i].getName().equals("c_ename")){
+
    cookie[i].setMaxAge(0); //시간 0
+   cookie[i].setPath("/");
    response.addCookie(cookie[i]);
-  }
-  else if(cookie[i].getName().equals("c_eno")){
-	   cookie[i].setMaxAge(0); //시간 0
-	   response.addCookie(cookie[i]);
-	  }
-  else if(cookie[i].getName().equals("c_auno")){
-	   cookie[i].setMaxAge(0); //시간 0
-	   response.addCookie(cookie[i]);
-	  }
+ 
  }
 }
 %>

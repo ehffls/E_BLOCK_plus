@@ -3,35 +3,17 @@
 <%@page import="java.util.Map"%>
 <%@page import="java.lang.NullPointerException"%>
 <%
-	Map<String,Object> result = null;
-String e_name ;
-String e_no;
-String au_no;
-String isnotok= null;
- result = (Map<String,Object>)request.getAttribute("login");
-if (result != null) {
-	isnotok ="a";
-		if (result.get("res_msg") != null) {
-			isnotok = (String) result.get("res_msg");
-		} else {
-			e_name = (String) result.get("e_name");
-			e_no = String.valueOf(result.get("e_no"));
-			au_no = String.valueOf(result.get("au_no"));
-			Cookie c_ename = new Cookie("c_ename", e_name);
-			Cookie c_eno = new Cookie("c_eno", e_no);
-			Cookie c_auno = new Cookie("c_auno", au_no);
-			c_ename.setPath("/");
-			c_eno.setPath("/");
-			c_auno.setPath("/");
-			response.addCookie(c_ename);
-			response.addCookie(c_eno);
-			response.addCookie(c_auno);
-			isnotok = "ok";
-/* 			RequestDispatcher requestDispatcher=request.getRequestDispatcher("/front/main.jsp");
-			requestDispatcher.forward(request, response); */ 
-			 /* response.sendRedirect(); */ 
+//response.sendRedirect("/E_BLOCK_plus/front/emp/login/login.jsp");
+Cookie[] cookies = request.getCookies();
+String isnotok = "";
+if(cookies != null){
+	for(Cookie cookie: cookies){
+		if(cookie.getName().equals("c_eno")||cookie.getName().equals("c_ename")||cookie.getName().equals("c_auno")){
+			isnotok="ok";
+			break;
 		}
 	}
+}
 %>
 <!DOCTYPE html>
 <html>
