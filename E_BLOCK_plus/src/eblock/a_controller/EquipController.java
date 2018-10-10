@@ -155,9 +155,9 @@ public class EquipController implements Controller {
 			}
 			//거래처 조회하기 
 			else if(crud.equals("list")) {
-				list = equipLogic.mk_list(pMap);
-				name ="attribute의 name redirect면 안씀";
-				path="forward:xxx.jsp";
+				robj = equipLogic.mk_list(pMap);
+				name ="rList";
+				path="forward:/equip/mk/list_JSON.jsp";
 			}
 		}
 		

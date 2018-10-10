@@ -123,10 +123,16 @@
 			<div class="ui black deny button">취소</div>
 		</div>
 	</div>
-	<script>
+<script type="text/javascript">
 	$(function(){
+		//sidemenu처리부분
 		$('#ap_gnt').attr('class', 'item active');
+		$('#approval').attr('class', 'item active');
+		$('#sm_ap').attr('class', 'item active');
+		$('#sm_ap_tome').attr('class', 'item active');
 	});
+</script>
+	<script>
 		$.fn.dataTable.ext.errMode = '';
 		var table = $('#taable').DataTable({
 
