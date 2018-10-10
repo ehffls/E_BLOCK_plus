@@ -56,7 +56,6 @@ public class FrontServlet extends HttpServlet {
 					res.sendRedirect(path);
 				}
 				else if("forward".equals(pageMove[0])){
-					path = "/front"+pageMove[1];
 					RequestDispatcher view = req.getRequestDispatcher(path);
 					view.forward(req, res);
 				}
