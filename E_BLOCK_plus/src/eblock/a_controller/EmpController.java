@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import eblock.b_logic.EmpLogic;
+import util.CookieBinder;
 import util.HashMapBinder;
 
 public class EmpController implements Controller {
@@ -31,6 +32,9 @@ public class EmpController implements Controller {
 		Map<String,Object> pMap = new HashMap<String,Object>();
 		HashMapBinder hmb = new HashMapBinder(req);
 		hmb.bind(pMap);
+		CookieBinder cb = new CookieBinder(req);
+		cb.bind(pMap);
+		
 		logger.info(pMap);
 
 		String name = null; //attribute의 name
@@ -110,6 +114,12 @@ public class EmpController implements Controller {
 			else if(crud.equals("myList")) {
 				robj = empLogic.pev_myList(pMap);
 				name ="pevList";
+				path="forward:/emp/pev/pevMyList_JSON.jsp";
+			}
+			//내가평가 가능한 인사평가대상 조회
+			else if(crud.equals("myList")) {
+				robj = empLogic.pev_tgList(pMap);
+				name ="";
 				path="forward:/emp/pev/pevMyList_JSON.jsp";
 			}
 		}

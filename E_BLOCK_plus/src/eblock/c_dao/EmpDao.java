@@ -176,4 +176,11 @@ public class EmpDao {
 		return result;
 	}
 
+
+	//내가평가 가능한 인사평가대상 조회
+	public List<Map<String, Object>> pev_tgList(Map<String, Object> pMap) {
+		list = sqlSession.selectList(nameSpace+"pev_tgList", pMap);
+		return list;
+	}
+
 }

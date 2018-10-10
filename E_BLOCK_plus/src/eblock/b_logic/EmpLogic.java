@@ -182,6 +182,11 @@ public class EmpLogic {
 		return result;
 	}
 
+	public List<Map<String,Object>> pev_tgList(Map<String, Object> pMap) {
+		list = empDao.pev_tgList(pMap);
+		return list;
+	}
+
 
 
 
