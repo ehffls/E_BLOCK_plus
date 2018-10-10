@@ -15,5 +15,5 @@ if(cookie!=null){
 %>
 <script type="text/javascript">
 alert("로그아웃 되었습니다");
-location.href="/E_BLOCK_plus/front/emp/login/login.jsp";
+location.href="/E_BLOCK_plus/emp/login/login.jsp";
 </script>

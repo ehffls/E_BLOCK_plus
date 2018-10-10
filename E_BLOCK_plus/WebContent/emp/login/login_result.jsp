@@ -8,7 +8,7 @@
 	for (Cookie cookie : cookies) {
 		aa=cookie.getMaxAge();
 		if (cookie.getName().equals("c_eno") || cookie.getName().equals("c_ename")|| cookie.getName().equals("c_auno")) {
-			path = "/E_BLOCK_plus/front/main.jsp";
+			path = "/E_BLOCK_plus/emp/cmt/myList.jsp";
 			break;
 		}
 	}

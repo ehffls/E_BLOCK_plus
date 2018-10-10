@@ -44,7 +44,7 @@ if(cookies != null){
   </style>
   <script>
   if("ok"=="<%=isnotok%>"){
-	  location.href="/E_BLOCK_plus/front/main.jsp";
+	  location.href="/E_BLOCK_plus/emp/cmt/myList.jsp";
   }
   $(document)
     .ready(function() {

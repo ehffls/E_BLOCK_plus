@@ -21,7 +21,7 @@
 		function eSearchList() {
 			$.ajax({
 				method : "post",
-				url : "/E_BLOCK_plus/front/emp/cntr/cntrListSearch.jsp",
+				url : "/E_BLOCK_plus/emp/cntr/cntrListSearch.jsp",
 				success : function(result) {
 					$("#eList").html(result);
 				},
@@ -34,7 +34,7 @@
 		function empInsert() {
 			$.ajax({
 				method : "post",
-				url : "/E_BLOCK_plus/front/emp/cntr/cntrAddEmp.jsp",
+				url : "/E_BLOCK_plus/emp/cntr/cntrAddEmp.jsp",
 				success : function(result) {
 					$("#eIns").html(result);
 				},
