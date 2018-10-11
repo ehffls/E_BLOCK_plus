@@ -202,6 +202,7 @@ public class EmpLogic {
 	}
 
 	public int retire_ask(Map<String, Object> pMap) {
+		pMap.put("ask_eno", pMap.get("c_eno"));
 		result = empDao.retire_ask(pMap);
 		return result;
 	}

@@ -34,10 +34,6 @@ public class EmpController implements Controller {
 		hmb.bind(pMap);
 		CookieBinder cb = new CookieBinder(req);
 		cb.bind(pMap);
-<<<<<<< HEAD
-		
-=======
->>>>>>> refs/remotes/origin/BH_1010_2
 		logger.info(pMap);
 
 		String name = null; //attribute의 name
@@ -154,8 +150,7 @@ public class EmpController implements Controller {
 			//퇴사 신청하기
 			if(crud.equals("ask")) {
 				robj = empLogic.retire_ask(pMap);
-				name ="attribute의 name";
-				path="forward:xxx.jsp";
+				path="redirect:/emp/cmt/myList.jsp";
 				
 			}
 			//퇴사신청 수정하기

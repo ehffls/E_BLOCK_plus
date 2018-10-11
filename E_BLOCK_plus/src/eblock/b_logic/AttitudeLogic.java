@@ -17,6 +17,8 @@ public class AttitudeLogic {
 	List<Map<String, Object>> list = null;
 	
 	public int my_ask(Map<String, Object> pMap) {
+		pMap.put("e_no", Integer.parseInt(pMap.get("c_eno").toString()));
+		pMap.put("d_no", Integer.parseInt(pMap.get("c_dno").toString()));
 		result = attitudeDao.my_ask(pMap);
 		return result;
 	}
