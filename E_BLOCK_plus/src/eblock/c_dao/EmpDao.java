@@ -171,7 +171,7 @@ public class EmpDao {
 	}
 	
 	//─────[ 퇴사신청 처리하기(결재) | 테스트완료(09/27) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-	public int retire_sign(Map<String, Object> pMap) {
+	public int retire_sign(List<Map<String, Object>> pMap) {
 		result = sqlSession.update(nameSpace+"retire_sign",pMap);
 		return result;
 	}

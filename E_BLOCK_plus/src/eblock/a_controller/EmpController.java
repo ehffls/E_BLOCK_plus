@@ -150,8 +150,7 @@ public class EmpController implements Controller {
 			//퇴사 신청하기
 			if(crud.equals("ask")) {
 				robj = empLogic.retire_ask(pMap);
-				name ="attribute의 name";
-				path="forward:xxx.jsp";
+				path="redirect:/E_BLOCK_plus/emp/retire/list.jsp";
 				
 			}
 			//퇴사신청 수정하기

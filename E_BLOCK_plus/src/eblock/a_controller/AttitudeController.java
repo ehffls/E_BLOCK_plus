@@ -61,12 +61,12 @@ public class AttitudeController implements Controller {
 			if(crud.equals("sign")) {
 				result = attitudeLogic.toMe_sign(pMap);
 				name ="attribute의 name redirect면 안씀";
-				path="forward:xxx.jsp";
+				path="redirect:/attd/toMe/list.jsp";
 			}
 			else if(crud.equals("list")) {
 				robj = attitudeLogic.toMe_list(pMap);
-				name ="attribute의 name redirect면 안씀";
-				path="forward:xxx.jsp";
+				name ="rList";
+				path="forward:/attd/toMe/list_JSON.jsp";
 			}
 		}
 		else if(work.equals("list")) {
