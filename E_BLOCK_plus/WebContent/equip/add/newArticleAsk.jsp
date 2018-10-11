@@ -76,7 +76,7 @@
 			<div class="two fields">
 				<div class="field">
 					<div class="ui labeled input">
-						<a class="ui label">비품이름</a> <input type="text" name="">
+						<a class="ui label">비품이름</a> <input type="text" name="eq_name">
 					</div>
 				</div>
 				
@@ -86,7 +86,7 @@
 					<div class="ui large label">비품분류</div>
 					<br>
 
-					<select name="" class="ui search selection dropdown" id="s_list">
+					<select name="eq_sort" class="ui search selection dropdown" id="s_list">
 						<%
 							for (int i = 0; i < list2.size(); i++) {
 						%>
@@ -101,7 +101,7 @@
 		<div class="field">
 		<div class="ui large label">거래처</div>
 					<br>
-			<select name="" class="ui search selection dropdown" id="search-select">
+			<select name="mk_no" class="ui search selection dropdown" id="search-select">
 				<%
 					for (int i = 0; i < list2.size(); i++) {
 				%>
@@ -121,7 +121,7 @@
 	</div>
 	<div class="field">
 		<div class="ui button" tabindex="0" id="ap_Ok" onclick="newaa()">저장</div>
-		<div class="ui button" tabindex="0" id="ap_cancel">취소</div>
+		<div class="ui button" tabindex="0" id="ap_cancel" onclick="newaa2()">취소</div>
 	</div>
 	</form>
 	</div>
@@ -133,7 +133,12 @@
 			.dropdown()
 		;
 		function newaa(){
-			$("#f_newAA").attr()
+			$("#f_newAA").attr("method","post")
+			$("#f_newAA").attr("action","/E_BLOCK_plus/equip/add/ask.ebp")
+			$("#f_newAA").submit()
+		}
+		function newaa2(){
+			location.href="/E_BLOCK_plus/equip/add/addAskList2.jsp"
 		}
 	</script>
 </body>

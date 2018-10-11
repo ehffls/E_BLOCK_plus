@@ -194,15 +194,13 @@
 	<update id="add_sign" parameterType="java.util.List">
 		<foreach item="item" index="key" collection="list" separator=";">
 			UPDATE `eq_add_list`
-			   SET outcome = CASE eq_addno
-			              <!--  WHEN 11 		  THEN 'eqa-2' // 기각일 때 -->
-			                    WHEN #{item.e_no} THEN #{item.outcome}
-			                 ELSE outcome
-			                 END
+			   SET outcome = #{item.outcome}
 			      ,sign_date = DATE_FORMAT(now(), '%Y-%m-%d')
+			      <if test="item.sign_rsn != null">
 			      ,sign_rsn = #{item.sign_rsn}
+			      </if>
 			 WHERE sign_eno = #{item.e_no} <!-- 자기자신의 사원번호가 결재사원번호로 등록된 사원번호와 같아야함 -->
-			   AND eq_addno IN (#{item.eq_addno}) <!-- 특정 신청번호로 무결성 확보 -->
+			   AND eq_addno = #{item.eq_addno} <!-- 특정 신청번호로 무결성 확보 -->
 		</foreach>
 	</update>
 
@@ -316,15 +314,14 @@
 <!-- ─────[ 구매가능내역에서 비품구매 신청하기 ]──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
 	<insert id="purc_ask" parameterType="map">
 	INSERT INTO `eq_purc_list`
-		(eq_pno, ask_date, eq_sort, num, subtotal, ask_eno, sign_eno, eq_no)
+		(eq_pno, ask_date, num, subtotal, ask_eno, sign_eno, eq_no)
 	SELECT
 	      nextSeqVal('seq_eq_pno')
 	    , DATE_FORMAT(now(), '%Y-%m-%d') <!-- 2011-06-14 -->
-			<!-- NOT NULL 컬럼으로 만들것 --> -->
-   		, #{eq_sort} <!--  NOT NULL 컬럼이므로 없을 때 입력을 막음 -->
+			<!-- NOT NULL 컬럼으로 만들것 -->
 	    , #{num} <!-- 수량 -->
 	    , cost*${num} <!-- 소계 -->
-	    , #{ask_eno} --신청하는 본인 사원번호
+	    , #{ask_eno} -- 신청하는 본인 사원번호
 	    ,(SELECT e_no FROM `emp`
 	       WHERE d_no = 9001 <!-- 유지보수팀소속 -->
 	         AND au_no = 36  <!-- 비품구매결재권한 -->

@@ -6,7 +6,12 @@
 <title>비품입출 전체내역</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp"%>
 <script src="/E_BLOCK_plus/0_src/js/table/datatables.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />\
+<script type="text/javascript">
+	$(function(){
+		$('#')
+	});
+</script>
 </head>
 <body>
 	<!-- sidebar -->
@@ -41,44 +46,36 @@
 						<th>신청일자</th>
 						<th>결재일자</th>
 						<th>종류</th>
-						<th>상태</th>
 					</tr>
 				</thead>
 			</table>
-			<div id="btn_1" class="ui button">상세보기</div>
+			   <div align="center">
+            <div class="ui orange buttons" id="btn_approval">
+               <div class="ui button">선택</div>
+                  <div class="ui floating dropdown icon button">
+                  <i class="dropdown icon"></i>
+                  <div class="menu">
+                     <div class="item" id="btn_0"><i class="thumbs up icon"></i> 대여중</div>
+                     <div class="item" id="btn_1"><i class="thumbs down icon"></i> 신청가능</div>
+                     <div class="item" id="btn_"><i class="thumbs down icon"></i> 분실</div>
+                     <div class="item" id="btn_"><i class="thumbs down icon"></i> 파손</div>
+                     <div class="item" id="btn_"><i class="thumbs down icon"></i> 수리중</div>
+                     <div class="item" id="btn_"><i class="thumbs down icon"></i> 반입완료</div>
+                     <div class="item" id="btn_"><i class="thumbs down icon"></i> 폐기</div>
+                  </div>
+               </div>
+            </div>
+            <script type="text/javascript">
+               $('.ui.dropdown').dropdown();
+            </script>
+         </div>
 		</div>
 	</div>
 	</div>
-	<div class="ui modal" id="modal_1">
-	<div class="header">상세보기</div>
-		<div class="ui segment" style="margin-right: 20px; margin-left: 20px">
-			<div class="ui form">
-				<div class="three fields">
-					<div class="field">
-						<label>신청번호</label> <input type="text" id="text_1" readonly>
-					</div>
-					<div class="field">
-						<label>비품분류</label> <input type="text" id="text_2" readonly>
-					</div>
-					<div class="field">
-						<label>비품이름</label> <input type="text" id="text_3" readonly>
-					</div>
-				</div>
-			</div>
-			<div class="ui form">
-				<div class="three fields">
-					<div class="field">
-						<label>신청사원번호</label> <input type="text" id="text_4" readonly>
-					</div>
-					<div class="field">
-						<label>신청일자</label> <input type="text" id="text_5" readonly>
-					</div>
-					<div class="field">
-						<label>상태</label> <input type="text" id="text_6" readonly>
-					</div>
-				</div>
-			</div>
-
+	<div class="ui modal"id = "modal_1">
+	<div class="header">비품 이력보기</div>
+		<div class="ui segment" style="margin-right: 20px; margin-left: 20px" id="detail_modal">
+			
 		</div>
 		<div class="actions">
 			<div class="ui ok button">확인</div>
@@ -111,40 +108,36 @@
 			//페이지 네이션 버튼 한글로 변경
 			},
 			ajax : {
-				url : "/E_BLOCK_plus/equip/inb/askList.ebp",
+				url : "/E_BLOCK_plus/equip/inb/eqListState.ebp",
 				dataSrc : 'data'
 			},
 			columns : [ {
-				"data" : "ask_eno"
+				"data" : "eq_no"
+			}, {
+				"data" : "last_dname"
+			}, {
+				"data" : "last_ename"
 			}, {
 				"data" : "eq_sort"
 			}, {
 				"data" : "eq_name"
 			}, {
-				"data" : "ask_ename"
+				"data" : "inb_no"
 			}, {
-				"data" : "ask_dname"
+				"data" : "inb_date"
 			}, {
-				"data" : "sign_dname"
+				"data" : "last_date"
 			}, {
-				"data" : "ask_date"
-			}, {
-				"data" : "sign_date"
-			}, {
-				"data" : "io_ano"
-			}, {
-				"data" : "outcome"
+				"data" : "inb_state"
 			} ],
 			columnDefs : [ {
-				targets : [ 0, 1, 2, 3, 4, 5, 6, 7, 8],
+				targets : [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ],
 				className : 'right aligned'
 			}
-
 			]
 		});
-
 		$('#taable th').attr("class", "center aligned");
-
+		
 		$('#taable tbody').on('click', 'tr', function() {
 			if ($(this).hasClass('active')) {
 				$(this).removeClass('active');
@@ -154,22 +147,22 @@
 		});
 
 		$('#btn_1').on('click', function() {
-			$('#modal_1').modal('setting', 'closable', false).modal('show');
+			
 		});
 
 		$('#taable tbody').on('dblclick', 'tr', function() {
-			var data = table.row(this).data();
-			$('#text_1').val(data["eq_addno"]);
-			$('#text_2').val(data["eq_sort"]);
-			$('#text_3').val(data["eq_name"]);
-			$('#text_4').val(data["ask_eno"]);
-			$('#text_5').val(data["ask_date"]);
-			$('#text_6').val(data["outcome"]);
-			$('.coupled.modal').modal({
-				allowMultiple : false
+			$('#modal_1').modal('setting', 'closable', false).modal('show');
+			$.ajax({
+				method:'get',
+				url:'./askListDetail.jsp',
+				success:function(result){
+					$('#modal_1').modal('setting', 'closable', false).modal('show');
+					$('#detail_modal').html(result);
+				},
+				error:function(XhrObject){
+					alert(XhrObject);
+				}
 			});
-			
-
 			table.$('tr.active').removeClass('active');
 			$(this).addClass('active');
 		});

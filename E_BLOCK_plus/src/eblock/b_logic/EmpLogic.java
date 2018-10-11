@@ -219,7 +219,23 @@ public class EmpLogic {
 	}
 	
 	public int retire_sign(Map<String, Object> pMap) {
-		result = empDao.retire_sign(pMap);
+		logger.info("pMap.get(\"param\") : "+pMap.get("param"));
+		//넘어온 파람을 분할한다.
+		String[] words = pMap.get("param").toString().split(",");
+		//넘어온걸 반복문을 위해 리스트로 작성한다.
+		List<Map<String,Object>> newList = new ArrayList<>();
+		Map<String,Object> newMap = null;
+		for(int i=1;i<words.length;i++) {
+			newMap = new HashMap<>();
+			newMap.put("outcome",words[0]);//상태값
+			newMap.put("rt_no",words[i]);
+			//newMap.put("rt_no", pMap.get("c_eno"));//결재자번호 10.. 쿠키에서 얻어야함.
+			newList.add(newMap);
+		}
+		logger.info("newList : "+newList);
+		//작성한 리스트를 넘김
+		result = empDao.retire_sign(newList);
+		logger.info("result : "+result);
 		return result;
 	}
 

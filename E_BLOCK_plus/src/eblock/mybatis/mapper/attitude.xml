@@ -4,15 +4,15 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="eblock.mybatis.mapper.attitude">
  	<insert id="my_ask">
- 	-- at_days는 시작일자와 종료일자를 이용하여 계산 후 입력
+ 	<!-- at_days는 시작일자와 종료일자를 이용하여 계산 후 입력 -->
 	 	INSERT INTO attd_list(at_no, ask_eno, d_no, sign_eno, ask_date, at_sort, ask_rsn, at_sdate, at_fdate, at_days, outcome)
 		SELECT 
 	        nextSeqVal('seq_at_no')
 	        ,#{e_no}
 	    ,#{d_no}
 	    ,`emp`.e_no
-	        ,DATE_FORMAT(now(), '%Y-%m-%d')  /* 2011-06-14 */
-	    ,#{at_sort} /*atd-a(야근)|atd-b(외근)|atd-c(출장)|atd-d(휴가)*/
+	        ,DATE_FORMAT(now(), '%Y-%m-%d')  <!-- /* 2011-06-14 */ -->
+	    ,#{at_sort} 
 	    ,#{at_rsn}
 	    ,#{at_sdate}
 	    ,#{at_fdate}
@@ -22,13 +22,13 @@
 		 WHERE au_no = 25
 		   AND d_no = #{d_no}
 		 ORDER BY e_rank desc
-		 LIMIT 1 -- 9001번 부서 최고관리자에게 신청
+		 LIMIT 1 <!-- 9001번 부서 최고관리자에게 신청 -->
  	</insert>
 	
 	<update id="my_askUpd">
-		-- 본인이 신청한 내역 중에 선택된것을 수정
+		<!-- 본인이 신청한 내역 중에 선택된것을 수정 -->
 		UPDATE `attd_list`
-		SET at_sort = #{at_sort} /*atd-a(야근)|atd-b(외근)|atd-c(출장)|atd-d(휴가)*/
+		SET at_sort = #{at_sort} <!-- /*atd-a(야근)|atd-b(외근)|atd-c(출장)|atd-d(휴가)*/ -->
 		    , ask_rsn = #{at_rsn}
 		    , at_sdate = #{at_sdate}
 		    , at_fdate = #{at_fdate}
@@ -39,7 +39,7 @@
 	</update>
 	
 	<select id="attd_list" parameterType="map" resultType="map">
-		-- 신청결과, 근태분류, 신청일자, 신청사원, 결제사원, 부서번호 or 부서명 등으로 조회 가능
+		<!-- 신청결과, 근태분류, 신청일자, 신청사원, 결제사원, 부서번호 or 부서명 등으로 조회 가능 -->
 		SELECT at_no, d_no, ask_eno, ask_ename, ask_date, at_sort, ask_rsn, at_sdate, at_fdate, at_days, outcome, sign_eno, sign_ename, sign_rsn, sign_date 
 		  FROM `view_attd_list`
 		<where>
@@ -56,7 +56,7 @@
 		    	AND d_no = (SELECT d_no FROM `dept` WHERE d_name = #{d_name})
 		    </if>
 		    <if test="outcome!=null"> 
-		    	AND outcome = #{outcome} /*atd-0(취소)|atd-1(대기)|atd-2(기각)|atd-3(승인)*/
+		    	AND outcome = #{outcome} <!-- /*atd-0(취소)|atd-1(대기)|atd-2(기각)|atd-3(승인)*/ -->
 		    </if>
 			<if test="at_sort!=null">
 		    	AND at_sort = #{at_sort}
@@ -72,11 +72,11 @@
 	</select>
 	
 	<update id="toMe_sign">
-		-- 본인한테 신청온 내역을 처리하기
+		<!-- 본인한테 신청온 내역을 처리하기 -->
 		UPDATE `attd_list`
 		   SET sign_rsn = #{sign_rs}
 		   ,sign_date = DATE_FORMAT(now(), '%Y-%m-%d') #{sign_date}
-		   ,outcome = #{sign_rs} -- 승인일때 3 / 기각일때 2
+		   ,outcome = #{sign_rs} <!-- 승인일때 3 / 기각일때 2 -->
 		 WHERE at_no = #{at_no}
 		   AND sign_eno = #{e_no}
 	</update>

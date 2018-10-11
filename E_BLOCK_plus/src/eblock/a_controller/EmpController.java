@@ -151,7 +151,6 @@ public class EmpController implements Controller {
 			if(crud.equals("ask")) {
 				robj = empLogic.retire_ask(pMap);
 				path="redirect:/emp/cmt/myList.jsp";
-				
 			}
 			//퇴사신청 수정하기
 			else if(crud.equals("askUpd")) {

@@ -26,7 +26,7 @@
 						<div class="ui column stackable grid container">
 							<div class="column" align="center" style="padding-left: 0px;">
 								<h2 class="ui header" style="padding-top: 5px;">
-									<i class="tasks icon"></i>
+									<i class="fax icon"></i>
 									<div class="content">거래처</div>
 								</h2>
 							</div>
@@ -35,11 +35,11 @@
 							<thead>
 								<tr>
 									<th>번호</th>
-									<th>mk_cname</th>
-									<th>mk_ename</th>
-									<th>mk_ph</th>
-									<th>mk_fax</th>
-									<th>mk_email</th>
+									<th>거래처종류</th>
+									<th>거래처이름</th>
+									<th>연락처</th>
+									<th>팩스</th>
+									<th>이메일</th>
 								</tr>
 							</thead>
 						</table>
@@ -49,7 +49,7 @@
 						<div class="ui column stackable grid container">
 							<div class="column" align="center" style="padding-left: 0px;">
 								<h2 class="ui header" style="padding-top: 5px;">
-									<i class="fax icon"></i>
+									<i class="tasks icon"></i>
 									<div class="content">비품분류</div>
 								</h2>
 							</div>
@@ -57,7 +57,7 @@
 						<table id="taable2" class="ui grey fixed single line celled table">
 							<thead>
 								<tr>
-									<th>mk_no</th>
+									<th>비품분류</th>
 								</tr>
 							</thead>
 						</table>

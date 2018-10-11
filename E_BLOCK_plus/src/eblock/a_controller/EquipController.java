@@ -86,7 +86,7 @@ public class EquipController implements Controller {
 			else if(crud.equals("list")) {
 				robj = equipLogic.sort_list(pMap);
 				name ="rList";
-				path="forward:/equip/sort/list_JSON.jsp";
+				path="forward:/equip/all/list_JSON.jsp";
 			}
 		}
 		
@@ -98,8 +98,7 @@ public class EquipController implements Controller {
 			//비품추가신청내역에 새로운 비품내역추가 신청하기 
 			if(crud.equals("ask")) {
 				result = equipLogic.add_ask(pMap);
-				name ="addAsk";
-				path="forward:xxx.jsp";
+				path="redirect:/equip/add/addAskList.jsp";
 			}
 			//대기중인 비품내역추가신청 수정하기
 			else if(crud.equals("askUpd")) {
@@ -117,15 +116,14 @@ public class EquipController implements Controller {
 			//비품추가신청내역에 새로운 비품내역 추가신청 결재하기
 			else if(crud.equals("sign")) {
 				result = equipLogic.add_sign(pMap);
-				name ="attribute의 name redirect면 안씀";
-				path="forward:xxx.jsp";
+				path="redirect:/equip/add/askList.jsp";
 			}
 			//[결재권자]
 			//(신청가능)비품테이블에서 비품 조회하기
 			else if(crud.equals("equipList")) {
 				robj = equipLogic.add_equipList(pMap);
-				name ="attribute의 name redirect면 안씀";
-				path="forward:xxx.jsp";
+				name ="eList";
+				path="forward:/equip/add/addAskList_JSON3.jsp";
 			}
 			//[결재권자]
 			//(신청가능)비품테이블에 비품가격 수정하기
@@ -180,8 +178,7 @@ public class EquipController implements Controller {
 			//구매가능내역에서 비품구매 신청하기
 			if(crud.equals("ask")) {
 				robj = equipLogic.purc_ask(pMap);
-				name ="attribute의 name redirect면 안씀";
-				path="forward:xxx.jsp";
+				path="redirect:/equip/add/addAskList2.jsp";
 			}
 			//구매가능내역에서 비품구매 신청 수정하기 (취소포함)
 			else if(crud.equals("askUpd")) {
@@ -215,6 +212,12 @@ public class EquipController implements Controller {
 				name ="addAskList_2";
 				path="forward:/equip/add/addAskList_JSON2.jsp";
 			}
+			//입고비품상태 가져와서 보여주기
+			if(crud.equals("eqListState")) {
+				robj = equipLogic.inb_eqList(pMap);
+				name ="rList";
+				path="forward:/equip/inb/askList_JSON.jsp";
+			}
 			//비품입출신청내역에 비품입출 신청하기
 			else if(crud.equals("ask")) {
 				result = equipLogic.inb_ask(pMap);
@@ -228,11 +231,18 @@ public class EquipController implements Controller {
 				path="forward:xxx.jsp";
 			}
 			//[결재권자]
-			//비품입출신청내역의 신청 결재하기 (기각|승인)
+			//비품입출신청내역 조회
 			else if(crud.equals("askList")) {
 				robj = equipLogic.inb_askList(pMap);
 				name ="rList";
 				path="forward:/equip/inb/askList_JSON.jsp";
+			}
+			//[결재권자]
+			//비품입출 상태조회
+			else if(crud.equals("changeList")) {
+				robj = equipLogic.inb_changeList(pMap);
+				name ="rList";
+				path="forward:/equip/inb/changeList_JSON.jsp";
 			}
 			//[결재권자]
 			//비품입출신청내역의 신청 결재하기 (기각|승인)
@@ -278,9 +288,11 @@ public class EquipController implements Controller {
 		}
 
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-
-		req.setAttribute(name, robj);
-
+		if(path.contains("forward")) {
+			req.setAttribute(name, robj);
+			//[name이 없으면, 오류발생]
+			//Cannot call setAttribute with a null name
+		}
 		return path;
 	}
 
