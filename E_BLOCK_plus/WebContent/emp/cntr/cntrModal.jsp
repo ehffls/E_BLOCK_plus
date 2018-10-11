@@ -7,10 +7,13 @@
 <title>계약 변경</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp"%>
 <script src="/E_BLOCK_plus/0_src/js/table/datatables.js"></script>
+<style>
+	.ui.disabled.input{
+		opacity:1;
+	}
+</style>
 </head>
 <body>
-
-
 
 	<!--=============== 작성부분 ===============-->
 	<%
@@ -75,7 +78,7 @@
 						<label>이름</label>
 						<div class="field">
 							<div class="ui disabled input">
-								<input id="emp_ename" name="e_name" placeholder="이름" value="<%=e_name%>">
+								<input id="emp_ename" onfocus="this.blur()" name="e_name" placeholder="이름" value="<%=e_name%>">
 							</div>
 						</div>
 					</div>
@@ -220,7 +223,7 @@
 					<div class="field">
 						<label>이름</label>
 						<div class="ui disabled input">
-							<input type="text" id="dept_ename" name="e_name" placeholder="이름" value="<%=e_name%>">
+							<input type="text" onfocus="this.blur()" id="dept_ename" name="e_name" placeholder="이름" value="<%=e_name%>">
 						</div>
 					</div>
 					<div class="field">

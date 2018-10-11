@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>사원 관리</title>
+<title>사원/부서 관리</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp"%>
 <script src="/E_BLOCK_plus/0_src/js/table/datatables.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
@@ -18,6 +18,7 @@
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 	<script type="text/javascript">
+	
 		function eSearchList() {
 			$.ajax({
 				method : "post",
@@ -54,12 +55,11 @@
 
 
 	<div class="ui container" style="margin-top: 15px;">
-		<!-- 검색창 시작 -->
 		<div class="ui column stackable grid container">
 			<div class="column" align="center" style="padding-left: 0px;">
 				<h2 class="ui header" style="padding-top: 15px; padding-bottom: 15px">
 					<i class="address book outline icon"></i>
-					<div class="content">사원 관리</div>
+					<div class="content">사원/부서 관리</div>
 				</h2>
 			</div>
 		</div>
@@ -75,26 +75,23 @@
 
 	<script>
 		
-		//사이드 메뉴 설정
-		$('#').attr("class", "active item");
-		$('#').attr("class", "active item");
-
+	//사이드 메뉴 설정
+	$('#sm_emp').attr("class", "active item");
+	$('#sm_emp_dept').attr("class", "active item");
 		
 		$('#menu').find('a').click(function() {
-	
 			$('#menu').find('a').attr('class', 'item');
 			$(this).attr('class', 'item active');
 			if ($(this).attr('id') == 'eSearch') {
 				$("#eList").show();
 				$("#eIns").hide();
-
 			
 			} else if ($(this).attr('id') == 'eInsert') { 
 				$("#eList").hide();
 				$("#eIns").show();
 			} 	
 		});
-		
+
 	</script>
 
 	<!--=============== 작성부분 ===============-->

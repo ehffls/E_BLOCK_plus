@@ -4,8 +4,8 @@
 <%@ page import="com.google.gson.Gson" %>
 <%
        
-	Map<String,Object> pMap = new HashMap<String,Object>();
 	List<Map<String,Object>> list = (List<Map<String,Object>>)request.getAttribute("rList");
+	Map<String,Object> pMap = new HashMap<String,Object>();
 	pMap.put("data", list);
 	Gson gs = new Gson();
 	String json = gs.toJson(pMap);
