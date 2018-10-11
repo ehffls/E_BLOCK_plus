@@ -69,31 +69,37 @@
          <div class="ui form">
             <div class="four fields">
                <div class="field">
-                  <label>구매신청번호</label> <input type="text" id="text_1" readonly>
+                  <label>신청번호</label> <input type="text" id="text_1" readonly>
                </div>
                <div class="field">
-                  <label>비품이름</label> <input type="text" id="text_2" readonly>
+                  <label>신청사원</label> <input type="text" id="text_2" readonly>
                </div>
                <div class="field">
-                  <label>수량</label> <input type="text" id="text_3" readonly>
+                  <label>신청일자</label> <input type="text" id="text_3" readonly>
                </div>
                <div class="field">
-                  <label>소계</label> <input type="text" id="text_4" readonly>
+                  <label>종류</label> <input type="text" id="text_4" readonly>
                </div>
             </div>
          </div>
          <div class="ui form">
-            <div class="three fields">
+            <div class="four fields">
                <div class="field">
-                  <label>신청일자</label> <input type="text" id="text_5" readonly>
+                  <label>소요일</label> <input type="text" id="text_5" readonly>
                </div>
                <div class="field">
-                  <label>신청사원번호</label> <input type="text" id="text_6" readonly>
+                  <label>시작일자</label> <input type="text" id="text_6" readonly>
                </div>
                <div class="field">
-                  <label>결재상태</label> <input type="text" id="text_7" readonly>
+                  <label>종료일자</label> <input type="text" id="text_7" readonly>
+               </div>
+               <div class="field">
+                  <label>결재상태</label> <input type="text" id="text_8" readonly>
                </div>
             </div>
+            <div class="field">
+                  <label>결재사유</label> <input type="text" id="text_9" readonly>
+               </div>
          </div>
 
       </div>
@@ -131,11 +137,11 @@
             dataSrc : 'data'
          },
          columns : [ {
-            "data" : "at_no" //추가신청번호
+            "data" : "at_no"
          }, {
-            "data" : "ask_ename"//비품분류
+            "data" : "ask_ename"
          }, {
-            "data" : "ask_date"//비품이름
+            "data" : "ask_date"
          }, {
             "data" : "at_sort"
          }, {
@@ -214,11 +220,11 @@
                //선택되어져 있던 로우들 중 최초의 outcome값
                var f_outcome = null;
                $('.active.ro').each(function(index, element){
-                  f_outcome = $(this).children().eq(6).text();
+                  f_outcome = $(this).children().eq(8).text();
                   return;//먼저 선택된 결재상태의 문자값만 담고 반복each문 탈출
                });
                //(이후에)현재 선택한 로우의  outcome값
-               var t_outcome = $(this).children().eq(6).text();
+               var t_outcome = $(this).children().eq(8).text();
                
                //둘을 비교해서 같거나, 혹은 먼저 선택된 로우의 outcome값이 없으면
                if(f_outcome == t_outcome || f_outcome == null){
@@ -231,21 +237,23 @@
       });
 
       $('#btn_permit').on('click', function() {
-         approval('eqa-3');//승인
+         approval('attd-3');//승인
       });
       $('#btn_dismiss').on('click', function() {
-         approval('eqa-2');//기각
+         approval('attd-2');//기각
       });
       
       $('#taable tbody').on('dblclick', 'tr', function() {
          var data = table.row(this).data();
-         $('#text_1').val(data["eq_pno"]);
-         $('#text_2').val(data["eq_name"]);
-         $('#text_3').val(data["num"]);
-         $('#text_4').val(data["subtotal"]);
-         $('#text_5').val(data["ask_date"]);
-         $('#text_6').val(data["ask_eno"]);
-         $('#text_7').val(data["outcome"]);
+         $('#text_1').val(data["at_no"]);
+         $('#text_2').val(data["ask_ename"]);
+         $('#text_3').val(data["ask_date"]);
+         $('#text_4').val(data["at_sort"]);
+         $('#text_5').val(data["at_days"]);
+         $('#text_6').val(data["at_sdate"]);
+         $('#text_7').val(data["at_fdate"]);
+         $('#text_8').val(data["outcome"]);
+         $('#text_9').val(data["at_rsn"]);
          // attach events to buttons
          $('#modal_1').modal('setting', 'closable', false).modal('show');
          
@@ -279,7 +287,7 @@
                   //결재사원번호는 로직에서 쿠키로 얻음
             ,success:function(html){
                alert('결재되었습니다.');
-               location.href = "./askList.jsp";//자기자신에게 페이지이동(새로고침)
+               location.href = "./list.jsp";//자기자신에게 페이지이동(새로고침)
             }
          });
       }

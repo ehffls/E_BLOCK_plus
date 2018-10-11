@@ -404,12 +404,15 @@
 	</update>
  
  <!-- [ 퇴사신청 결재하기 | 테스트완료(09/27) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  -->
-	<update id="retire_sign" parameterType="map">
+	<update id="retire_sign" parameterType="java.util.List">
+		<foreach item="item" index="key" collection="list" separator=";">
 		UPDATE `retire_ask_list`
 		   SET sign_rsn  = '퇴사처리완료' <!-- 승인사유 -->
    			  ,sign_date = DATE_FORMAT(now(), '%Y-%m-%d')
-   			  ,outcome   = #{outcome} <!-- 승인일때 'rta-3' / 기각일때 'rta-2' -->
-   		 WHERE rt_no = #{rt_no}
+   			  ,outcome   = #{item.outcome} <!-- 승인일때 'rta-3' / 기각일때 'rta-2' -->
+   		 WHERE rt_no = #{item.rt_no}
+   		AND sign_eno = #{item.sign_eno}
+   		 </foreach>
 	</update>
 	
 	

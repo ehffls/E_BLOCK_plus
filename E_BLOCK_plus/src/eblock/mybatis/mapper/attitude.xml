@@ -43,11 +43,11 @@
 		SELECT at_no, d_no, ask_eno, ask_ename, ask_date, at_sort, ask_rsn, at_sdate, at_fdate, at_days, outcome, sign_eno, sign_ename, sign_rsn, sign_date 
 		  FROM `view_attd_list`
 		<where>
-			<if test="ask_no!=null">
-		 		AND ask_eno = #{ask_no}
+			<if test="ask_eno!=null">
+		 		AND ask_eno = #{ask_eno}
 			</if>
-			<if test="sign_no!=null">
-		    	AND sign_eno = #{sign_no}
+			<if test="sign_eno!=null">
+		    	AND sign_eno = #{sign_eno}
 			</if>
 			<if test="d_no!=null">
 		    	AND d_no = #{d_no}
@@ -71,13 +71,15 @@
 		ORDER BY ask_date desc, at_no desc
 	</select>
 	
-	<update id="toMe_sign">
+	<update id="toMe_sign" parameterType="java.util.List">
+		<foreach item="item" index="key" collection="list" separator=";">
 		<!-- 본인한테 신청온 내역을 처리하기 -->
 		UPDATE `attd_list`
-		   SET sign_rsn = #{sign_rs}
-		   ,sign_date = DATE_FORMAT(now(), '%Y-%m-%d') #{sign_date}
-		   ,outcome = #{sign_rs} <!-- 승인일때 3 / 기각일때 2 -->
-		 WHERE at_no = #{at_no}
-		   AND sign_eno = #{e_no}
+		   SET sign_rsn = '처리완료'
+		   ,sign_date = DATE_FORMAT(now(), '%Y-%m-%d')
+		   ,outcome = #{item.sign_rs} <!-- 승인일때 3 / 기각일때 2 -->
+		 WHERE at_no = #{item.at_no}
+		   AND sign_eno = #{item.e_no}
+		 </foreach>
 	</update>
  </mapper>
