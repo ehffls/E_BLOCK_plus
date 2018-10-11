@@ -93,9 +93,8 @@ $(document)
    <div class="item" id="sm_equip">
       <div class="header">비품관리</div>
       <div class="menu">
-         <a class="item" href="<%=Project_Root2%>" id="sm_equip_add"> 비품추가신청내역 </a>
-         <a class="item" href="<%=Project_Root2%>" id="sm_equip_buy"> 비품구매신청내역 </a>
-         <a class="item" href="<%=Project_Root2%>" id="sm_equip_use"> 입출신청내역 </a>
+         <a class="item" href="<%=Project_Root2%>" id="sm_equip_add"> 입고비품관리 </a>
+         <a class="item" href="<%=Project_Root2%>/equip/all/list.jsp" id="sm_equip_buy"> 비품분류|거래처 </a>
       </div>
    </div>
    <!-- 물품관리 끝 -->
