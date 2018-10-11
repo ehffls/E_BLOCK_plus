@@ -66,6 +66,7 @@ public class HashMapBinder {
 			while(en.hasMoreElements()) {
 				String key = en.nextElement();
 				pMap.put(key, req.getParameter(key));
+				System.out.println(key+","+req.getParameter(key));
 			}
 		}
 }

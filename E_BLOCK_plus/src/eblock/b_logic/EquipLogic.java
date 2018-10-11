@@ -65,6 +65,7 @@ public class EquipLogic {
 	
 	//비품추가신청내역에 새로운 비품내역추가 신청하기 
 	public int add_ask(Map<String, Object> pMap) {
+		pMap.put("ask_eno", pMap.get("c_eno"));
 		result = equipDao.add_ask(pMap);
 		return result;
 	}
@@ -130,6 +131,7 @@ public class EquipLogic {
 	
 	//구매가능내역에서 비품구매 신청하기
 	public List<Map<String, Object>> purc_ask(Map<String, Object> pMap) {
+		pMap.put("ask_eno", pMap.get("c_eno"));
 		list = equipDao.purc_ask(pMap);
 		return list;
 	}

@@ -34,10 +34,6 @@ public class EmpController implements Controller {
 		hmb.bind(pMap);
 		CookieBinder cb = new CookieBinder(req);
 		cb.bind(pMap);
-<<<<<<< HEAD
-		
-=======
->>>>>>> refs/remotes/origin/BH_1010_2
 		logger.info(pMap);
 
 		String name = null; //attribute의 name
