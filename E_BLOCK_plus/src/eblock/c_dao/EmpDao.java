@@ -171,9 +171,16 @@ public class EmpDao {
 	}
 	
 	//─────[ 퇴사신청 처리하기(결재) | 테스트완료(09/27) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-	public int retire_sign(Map<String, Object> pMap) {
+	public int retire_sign(List<Map<String, Object>> pMap) {
 		result = sqlSession.update(nameSpace+"retire_sign",pMap);
 		return result;
+	}
+
+
+	//내가평가 가능한 인사평가대상 조회
+	public List<Map<String, Object>> pev_tgList(Map<String, Object> pMap) {
+		list = sqlSession.selectList(nameSpace+"pev_tgList", pMap);
+		return list;
 	}
 
 }

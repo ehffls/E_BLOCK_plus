@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>근태신청내역</title>
+<title>비품관리페이지</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp"%>
 <script src="/E_BLOCK_plus/0_src/js/table/datatables.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
@@ -25,22 +25,20 @@
             <div class="column" align="center" style="padding-left: 0px;">
                <h2 class="ui header" style="padding-top: 5px;">
                   <i class="tasks icon"></i>
-                  <div class="content">근태 신청내역</div>
+                  <div class="content">비품 처리내역</div>
                </h2>
             </div>
          </div>
          <table id="taable" class="ui grey fixed single line celled table">
             <thead>
                <tr>
-                  <th>번호</th>
-                  <th>신청사원</th>
+                  <th>구매신청번호</th>
+                  <th>비품이름</th>
+                  <th>수량</th>
+                  <th>소계</th>
                   <th>신청일자</th>
-                  <th>분류</th>
-                  <th>신청사유</th>
-                  <th>시작일자</th>
-                  <th>종료일자</th>
-                  <th>소요일</th>
-                  <th>상태</th>
+                  <th>신청사원번호</th>
+                  <th>결재상태</th>
                </tr>
             </thead>
          </table>
@@ -53,6 +51,8 @@
                   <div class="menu">
                      <div class="item" id="btn_permit"><i class="thumbs up icon"></i> 승인</div>
                      <div class="item" id="btn_dismiss"><i class="thumbs down icon"></i> 기각</div>
+                     <div class="item" id="btn_cash"><i class="credit card icon"></i> 결제</div>
+                     <div class="item" id="btn_inbound"><i class="truck icon"></i> 입고</div>
                   </div>
                </div>
             </div>
@@ -127,30 +127,26 @@
          //페이지 네이션 버튼 한글로 변경
          },
          ajax : {
-            url : "/E_BLOCK_plus/attd/toMe/list.ebp",
+            url : "/E_BLOCK_plus/equip/inb/changeList.ebp",
             dataSrc : 'data'
          },
          columns : [ {
-            "data" : "at_no" //추가신청번호
+            "data" : "eq_pno" //구매신청번호
          }, {
-            "data" : "ask_ename"//비품분류
+            "data" : "eq_name"//비품이름
          }, {
-            "data" : "ask_date"//비품이름
+            "data" : "num"//수량
          }, {
-            "data" : "at_sort"
+            "data" : "subtotal"//소계
          }, {
-            "data" : "at_rsn"
+            "data" : "ask_date"//신청일자
          }, {
-            "data" : "at_sdate"
+            "data" : "ask_eno" //신청사원번호
          }, {
-            "data" : "at_fdate"
-         }, {
-            "data" : "at_days"
-         }, {
-            "data" : "outcome"
+            "data" : "outcome"//결재상태
          } ],
          columnDefs : [ {
-            targets : [ 0, 3 ],
+            targets : [ 0, 3, 4, 5 ],
             width: "12%",
             className : 'right aligned'
          },
@@ -161,21 +157,14 @@
          },
          {
             targets : [ 2 ], //수량
-            width: "20%",
-            className : 'center aligned'
+            width: "10%",
+            className : 'center aligned',
+            render : function( data, type, row ) {
+               return "<div class='ui input' align='center'><input type='text' value='"+data+"' style='width:15px;'></div>";
+            }// 해놓긴 했는데, 결재자는 수량을 바꾸지 않네.. 다른데 써주렴...
          },
          {
-            targets : [ 4 ], //수량
-            width: "25%",
-            className : 'center aligned'
-         },
-         {
-            targets : [ 5,6,7 ], //수량
-            width: "20%",
-            className : 'center aligned'
-         },
-         {
-            targets : [ 8 ], // 상태
+            targets : [ 6 ], // 상태
             width: "20%",
             className : 'center aligned',
             render : function ( data, type, row ) {
@@ -201,7 +190,9 @@
       $('#taable tbody').on('click', 'tr', function() {
          
          //로우의 outcome값이 '취소' 또는 '기각' 또는 '입고완료'가 아닌 로우에 대하여
-         if(table.row(this).data()["outcome"]=="대기"){
+         if(table.row(this).data()["outcome"]!="취소"
+               ||table.row(this).data()["outcome"]!="기각"
+               ||table.row(this).data()["outcome"]!="입고완료"){
             
             //취소하기
             if ($(this).hasClass('active ro')) {
@@ -231,10 +222,16 @@
       });
 
       $('#btn_permit').on('click', function() {
-         approval('eqa-3');//승인
+         approval('ibp-3');//승인
       });
       $('#btn_dismiss').on('click', function() {
-         approval('eqa-2');//기각
+         approval('ibp-2');//기각
+      });
+      $('#btn_cash').on('click', function() {
+         approval('ibp-4');//결제
+      });
+      $('#btn_inbound').on('click', function() {
+         approval('ibp-5');//입고
       });
       
       $('#taable tbody').on('dblclick', 'tr', function() {
@@ -275,7 +272,7 @@
             ,data:{//승인상태와 변경대상을 배열에 담아서 넘김 (ibp-3,X,X,X,..)
                "param":param
             }
-            ,url:'/E_BLOCK_plus/attd/toMe/sign.ebp'
+            ,url:'/E_BLOCK_plus/equip/purc/sign.ebp'
                   //결재사원번호는 로직에서 쿠키로 얻음
             ,success:function(html){
                alert('결재되었습니다.');
