@@ -314,15 +314,14 @@
 <!-- ─────[ 구매가능내역에서 비품구매 신청하기 ]──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
 	<insert id="purc_ask" parameterType="map">
 	INSERT INTO `eq_purc_list`
-		(eq_pno, ask_date, eq_sort, num, subtotal, ask_eno, sign_eno, eq_no)
+		(eq_pno, ask_date, num, subtotal, ask_eno, sign_eno, eq_no)
 	SELECT
 	      nextSeqVal('seq_eq_pno')
 	    , DATE_FORMAT(now(), '%Y-%m-%d') <!-- 2011-06-14 -->
-			<!-- NOT NULL 컬럼으로 만들것 --> -->
-   		, #{eq_sort} <!--  NOT NULL 컬럼이므로 없을 때 입력을 막음 -->
+			<!-- NOT NULL 컬럼으로 만들것 -->
 	    , #{num} <!-- 수량 -->
 	    , cost*${num} <!-- 소계 -->
-	    , #{ask_eno} --신청하는 본인 사원번호
+	    , #{ask_eno} -- 신청하는 본인 사원번호
 	    ,(SELECT e_no FROM `emp`
 	       WHERE d_no = 9001 <!-- 유지보수팀소속 -->
 	         AND au_no = 36  <!-- 비품구매결재권한 -->

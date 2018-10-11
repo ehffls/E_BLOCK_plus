@@ -98,8 +98,7 @@ public class EquipController implements Controller {
 			//비품추가신청내역에 새로운 비품내역추가 신청하기 
 			if(crud.equals("ask")) {
 				result = equipLogic.add_ask(pMap);
-				name ="addAsk";
-				path="forward:xxx.jsp";
+				path="redirect:/equip/add/addAskList.jsp";
 			}
 			//대기중인 비품내역추가신청 수정하기
 			else if(crud.equals("askUpd")) {
@@ -123,8 +122,8 @@ public class EquipController implements Controller {
 			//(신청가능)비품테이블에서 비품 조회하기
 			else if(crud.equals("equipList")) {
 				robj = equipLogic.add_equipList(pMap);
-				name ="attribute의 name redirect면 안씀";
-				path="forward:xxx.jsp";
+				name ="eList";
+				path="forward:/equip/add/addAskList_JSON3.jsp";
 			}
 			//[결재권자]
 			//(신청가능)비품테이블에 비품가격 수정하기
@@ -179,8 +178,7 @@ public class EquipController implements Controller {
 			//구매가능내역에서 비품구매 신청하기
 			if(crud.equals("ask")) {
 				robj = equipLogic.purc_ask(pMap);
-				name ="attribute의 name redirect면 안씀";
-				path="forward:xxx.jsp";
+				path="redirect:/equip/add/addAskList2.jsp";
 			}
 			//구매가능내역에서 비품구매 신청 수정하기 (취소포함)
 			else if(crud.equals("askUpd")) {

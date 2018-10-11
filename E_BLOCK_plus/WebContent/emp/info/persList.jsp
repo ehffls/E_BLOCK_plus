@@ -101,6 +101,7 @@ $(document).ready(function() {
   </div>
   </div>
 </div>
+<button class="fluid ui button" onclick="javascript:location.href='../retire/retireAsk.jsp'">퇴사신청</button>
 </div>
 <!--=============== 작성부분 ===============-->
 
