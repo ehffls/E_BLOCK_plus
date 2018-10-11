@@ -198,7 +198,7 @@
 				    } 
 				    */
 			]
-		});
+		});	
 		$('#taable th').attr("class", "center aligned");
 //===================================버튼 아이디 비교===========================		
 		$('#taable tbody').on('click', 'div', function() {
