@@ -16,26 +16,16 @@
 <body>
 
 	<!--=============== 작성부분 ===============-->
-<%
-	String targetName = "pevTgList";//여기에 request객체에 담은 리스트의 name을 쓰세요
-	List<Map<String, Object>> tgList = (List<Map<String, Object>>) request.getAttribute(targetName);
-	
-	String e_name = ""; 	   
-	
-	if (tgList != null) {
-		e_name = tgList.get(0).get("e_name").toString();
-	}
-%>
 
-		<div class="ui container" id="pev_AddForm">
-			<form class="ui form">
+		<div class="ui container" >
+			<form class="ui form" id="pev_AddForm">
 				<h4 class="ui dividing header">인사평가작성</h4>
 				<div class="two fields">
 					<div class="field">
 						<label>평가사원이름</label>
 						<div class="field">
 							<div class="ui disabled input">
-								<input name="e_name" placeholder="평가사원이름" id="e_name" value="<%=e_name%>">
+								<input id="e_name" placeholder="평가사원이름" value='<%=request.getParameter("e_name")%>'>
 							</div>
 						</div>
 					</div>
@@ -50,8 +40,10 @@
 					<label>인사평가작성</label>
 					<textarea style="resize: none; height: 80%" name="ev_content"></textarea>
 				</div>
+				<input type="hidden" name="ev_eno" />
+				<input type="hidden" name="ev_score" />
 				<div class="field" align="center">
-					<div class="ui button" >저장</div>
+					<a href="javascript:pevAddTg()" class="ui button" >저장</a>
 					<div class="ui button" onclick="pev_bcencel()">취소</div>
 				</div>
 			</form>

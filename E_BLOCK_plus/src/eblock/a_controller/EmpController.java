@@ -73,7 +73,7 @@ public class EmpController implements Controller {
 			if (crud.equals("add")) {
 				robj = empLogic.pev_add(pMap);
 				name = "aPev";
-				path = "forward:xxx.jsp";
+				path = "forward:/emp/pev/pevTgList.jsp";
 			}
 			// 인사평가 기간에 인사평가 수정하기
 			else if (crud.equals("upd")) {

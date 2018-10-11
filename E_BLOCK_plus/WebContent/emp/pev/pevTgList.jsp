@@ -124,13 +124,13 @@
 			$('#taable tbody').on('click', 'div', function() {
 					//alert(this.id);
 					var data = table.row($(this).parents('tr')).data();
-					pevMyAdd(data);
+					pevMyAdd(data["e_name"]);
 			});
 			
 			function pevMyAdd(data) {
 				$.ajax({
 					method : "post",
-					url : "/E_BLOCK_plus/emp/pev/pevAdd.jsp?e_no="+eno,
+					url : "/E_BLOCK_plus/emp/pev/pevAdd.jsp?e_name="+data,
 					success : function(result) {
 						$("#pev_AddForm").html(result);
 					},
@@ -139,6 +139,14 @@
 					}
 				});
 			}
+	        function pevAddTg(){
+	    		var new_score = $('.rating').rating('get rating')*2;
+	        	alert(new_score);
+	        	$("#ev_score").val(new_score);
+	    		$("#pev_AddForm").attr("method","post");
+	    		$("#pev_AddForm").attr("action","/E_BLOCK_plus/emp/pev/add.ebp");
+	    		$("#pev_AddForm").submit();
+	    	}
 		</script>
 
 	<!--=============== 작성부분 ===============-->
