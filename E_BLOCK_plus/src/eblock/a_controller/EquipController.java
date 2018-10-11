@@ -85,8 +85,8 @@ public class EquipController implements Controller {
 			//등록된 비품분류 조회하기 
 			else if(crud.equals("list")) {
 				robj = equipLogic.sort_list(pMap);
-				name ="attribute의 name redirect면 안씀";
-				path="forward:xxx.jsp";
+				name ="rList";
+				path="forward:/equip/sort/list_JSON.jsp";
 			}
 		}
 		
@@ -267,6 +267,13 @@ public class EquipController implements Controller {
 				robj = equipLogic.sign_list(pMap);
 				name ="attribute의 name redirect면 안씀";
 				path="forward:xxx.jsp";
+			}
+		}
+		else if(work.equals("all")) {
+			if(crud.equals("list")) {
+				robj = equipLogic.mk_allList(pMap);
+				name ="rList";
+				path="forward:/equip/all/list_JSON.jsp";
 			}
 		}
 

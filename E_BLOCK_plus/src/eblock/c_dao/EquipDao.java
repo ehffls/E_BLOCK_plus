@@ -150,6 +150,11 @@ public class EquipDao {
 		list = sqlSession.selectList(nameSpace+"mk_list", pMap);
 		return list;
 	}
+	//─────[ 등록된 거래처 조회하기 ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+		public List<Map<String, Object>> mk_allList(Map<String, Object> pMap) {
+		list = sqlSession.selectList(nameSpace+"mk_allList", pMap);
+		return list;
+	}
 	
 	
 	
