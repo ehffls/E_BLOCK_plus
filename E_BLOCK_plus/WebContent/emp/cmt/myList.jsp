@@ -18,7 +18,7 @@
         left: 'prev,next today',
         center: 'title'
       },
-      defaultDate: '2018-10-20',
+      //defaultDate: '2018-10-20',
       editable: false,
       eventLimit: true, // allow "more" link when too many events
       eventSources: [
@@ -26,9 +26,9 @@
     	      url: '/E_BLOCK_plus/emp/cmt/cmt_calendar.ebp',
     	      color: 'skyblue',   // a non-ajax option
     	      textColor: 'white',
-    	      data: {
+    	    /*   data: {
     	    	  e_no :$("#e_no").val()
-    	      }
+    	      } */
     	    }
     	  ],
       timeFormat: 'H(:mm)'
@@ -51,14 +51,18 @@
 
 	<!--=============== 작성부분 ===============-->
 	<div class="ui container">
+	<!-- <button class="ui button" onclick="">
+  	내정보
+	</button> -->
 	<h2 style="margin-top:20px">내 출퇴근 내역</h2>
 		<div id="calendar" class="fc fc-unthemed fc-ltr">
 		</div>
 	</div>
 	<!--=============== 작성부분 ===============-->
+	
 
-
-
+	
+	
 	<%@ include file="/front/_includePage/sticky"%>
 </body>
 </html>

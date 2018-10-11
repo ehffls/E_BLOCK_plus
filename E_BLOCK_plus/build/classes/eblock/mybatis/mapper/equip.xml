@@ -442,7 +442,7 @@
 		    , eq_no 	<!-- 비품번호 -->
 		    , eq_name 	<!-- 비품이름 -->
 		    , eq_sort 	<!-- 비품분류 -->
-		    , inb_state <!-- 비품상태 --> -->
+		    , inb_state <!-- 비품상태 --> 
 		    , inb_date 	<!-- 비품입고일자 -->
 		    , last_date <!-- 마지막 변경일자 -->
 		    , CASE lapse_day

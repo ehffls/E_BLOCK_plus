@@ -215,13 +215,14 @@ public class EquipLogic {
 		return list;
 	}
 	//추가 비품 신청 드롭다운(보현)
-	public List<Map<String, Object>> newArticleAsk(Map<String, Object> pMap) {
-		Map<String,Object> pMap2 = new HashMap<String,Object>();
+	public Map<String, Object> newArticleAsk(Map<String, Object> pMap) {
+		Map<String,Object> rMap = new HashMap<String,Object>();
 		List<Map<String,Object>> list2 = equipDao.mk_list(pMap);
-		List<Map<String,Object>> list3 =  (List<Map<String,Object>>)equipDao.sort_list(pMap);
-
-		System.out.println(list.size());
-		return list;
+		List<Map<String,Object>> list3 = equipDao.sort_list(pMap);
+		rMap.put("mk_list",list2);
+		rMap.put("sort_list",list3);
+		
+		return rMap;
 	}
 
 
