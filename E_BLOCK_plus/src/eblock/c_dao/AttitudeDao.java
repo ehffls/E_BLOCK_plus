@@ -27,7 +27,7 @@ public class AttitudeDao {
 		return result;
 	}
 
-	public int toMe_sign(Map<String, Object> pMap) {
+	public int toMe_sign(List<Map<String, Object>> pMap) {
 		result = sqlSession.update(nameSpace+"toMe_sign",pMap);
 		return result;
 	}

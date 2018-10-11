@@ -52,10 +52,10 @@ $(document)
    </div>
    <!-- 로고 끝 -->
    <!-- 메인페이지 시작 -->
-   <a class="item" href="<%=Project_Root2%>/front/emp/cmt/myList.jsp" id="sm_main">메인페이지</a>
+   <a class="item" href="<%=Project_Root2%>/emp/cmt/myList.jsp" id="sm_main">메인페이지</a>
    <!-- 메인페이지 끝 -->
    <!-- 메인페이지 시작 -->
-   <a class="item" href="<%=Project_Root2%>" id="sm_search">부서/사원검색</a>
+   <%-- <a class="item" href="<%=Project_Root2%>" id="sm_search">부서/사원검색</a> --%>
    <!-- 메인페이지 끝 -->
    <!-- 나의전자결재 시작 -->
    <div class="item" id="sm_fromMe">
@@ -77,9 +77,9 @@ $(document)
    <div class="item" id="sm_toMe">
       <div class="header">내게온전자결재</div>
       <div class="menu">
-         <a class="item" href="<%=Project_Root2%>" id="sm_toMe_attd"> 근태관련 </a>
-         <a class="item" href="<%=Project_Root2%>" id="sm_toMe_retire"> 사직관련 </a>
-         <a class="item" href="<%=Project_Root2%>" id="sm_toMe_equip"> 비품관련 </a>
+         <a class="item" href="<%=Project_Root2%>/attd/toMe/list.jsp" id="sm_toMe_attd"> 근태관련 </a>
+         <a class="item" href="<%=Project_Root2%>/emp/retire/list.jsp" id="sm_toMe_retire"> 사직관련 </a>
+         <a class="item" href="<%=Project_Root2%>/equip/add/askList.jsp" id="sm_toMe_equip"> 비품관련 </a>
       </div>
    </div>
    <!-- 전자결재 끝 -->
@@ -105,7 +105,7 @@ $(document)
       </div>
    </div>
    <!-- 물품관리 끝 -->
-   <!-- 회계관리 시작 -->
+<%--    <!-- 회계관리 시작 -->
    <div class="item" id="sm_bg">
       <div class="header">회계관리</div>
       <div class="menu">
@@ -114,7 +114,7 @@ $(document)
          <a class="item" href="<%=Project_Root2%>" id="sm_bg_2"> 급여관리 </a>
       </div>
    </div>
-   <!-- 회계관리 끝 -->
+   <!-- 회계관리 끝 --> --%>
 </div>
 <!-- 사이드메뉴 끝 -->
 <!-- 사이드바 사용시 내용물은 pusher 속에 -->

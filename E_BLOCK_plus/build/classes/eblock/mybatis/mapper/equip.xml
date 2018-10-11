@@ -194,15 +194,13 @@
 	<update id="add_sign" parameterType="java.util.List">
 		<foreach item="item" index="key" collection="list" separator=";">
 			UPDATE `eq_add_list`
-			   SET outcome = CASE eq_addno
-			              <!--  WHEN 11 		  THEN 'eqa-2' // 기각일 때 -->
-			                    WHEN #{item.e_no} THEN #{item.outcome}
-			                 ELSE outcome
-			                 END
+			   SET outcome = #{item.outcome}
 			      ,sign_date = DATE_FORMAT(now(), '%Y-%m-%d')
+			      <if test="item.sign_rsn != null">
 			      ,sign_rsn = #{item.sign_rsn}
+			      </if>
 			 WHERE sign_eno = #{item.e_no} <!-- 자기자신의 사원번호가 결재사원번호로 등록된 사원번호와 같아야함 -->
-			   AND eq_addno IN (#{item.eq_addno}) <!-- 특정 신청번호로 무결성 확보 -->
+			   AND eq_addno = #{item.eq_addno} <!-- 특정 신청번호로 무결성 확보 -->
 		</foreach>
 	</update>
 
