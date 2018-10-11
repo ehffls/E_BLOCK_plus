@@ -16,8 +16,8 @@
 	    ,#{at_rsn}
 	    ,#{at_sdate}
 	    ,#{at_fdate}
-	    ,12#{at_days}
-	    ,'atd-1'#{outcome} <!-- /*대기*/ -->
+	    ,#{at_days}
+	    ,'atd-1'<!-- #{outcome} --> /*대기*/
 		  FROM `emp`
 		 WHERE au_no = 25
 		   AND d_no = #{d_no}

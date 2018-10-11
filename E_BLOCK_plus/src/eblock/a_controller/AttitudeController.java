@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import eblock.b_logic.AttitudeLogic;
+import util.CookieBinder;
 import util.HashMapBinder;
 
 public class AttitudeController implements Controller {
@@ -33,6 +34,8 @@ public class AttitudeController implements Controller {
 		Map<String,Object> pMap = new HashMap<String,Object>();
 		HashMapBinder hmb = new HashMapBinder(req);
 		hmb.bind(pMap);
+		CookieBinder cb = new CookieBinder(req);
+		cb.bind(pMap);
 		
 		String name = null;
 		String path = null;
@@ -44,7 +47,7 @@ public class AttitudeController implements Controller {
 		if(work.equals("my")) {
 			if(crud.equals("ask")) {
 				result = attitudeLogic.my_ask(pMap);
-				name ="attribute의 name redirect면 안씀";
+				path="redirect:/emp/cmt/myList.jsp";
 			}
 			else if(crud.equals("askUpd")) {
 				result = attitudeLogic.my_askUpd(pMap);
@@ -85,7 +88,9 @@ public class AttitudeController implements Controller {
 		
 		}
 		
-		req.setAttribute(name, robj);
+		if(path.contains("forward")) {
+			req.setAttribute(name, robj);
+		}
 
 		return path;
 	}

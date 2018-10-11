@@ -29,14 +29,13 @@
 	</div>
 	  <div class="field" style="height:300px">
 		<label>신청사유</label>
-		<textarea name="at_rsn" style="resize:none; height:80%"></textarea>
+		<textarea style="resize:none; height:80%"></textarea>
 	  </div>
 	  <div class="field">
 		<div class="ui button" tabindex="0" id="ap_Ok">신청</div>
 		<div class="ui button" tabindex="0" id="ap_cancel">취소</div>
 	  </div>
-	  <input type="hidden" name="at_days" id="at_days" value="0.5">
-	  <input type="hidden" name="at_sort" value="atd-d">
+	  <input type="hidden" name="at_days" id="at_days">
   </form>
 </div>
 
