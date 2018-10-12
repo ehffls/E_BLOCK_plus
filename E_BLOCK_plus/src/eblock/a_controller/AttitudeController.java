@@ -47,7 +47,7 @@ public class AttitudeController implements Controller {
 		if(work.equals("my")) {
 			if(crud.equals("ask")) {
 				result = attitudeLogic.my_ask(pMap);
-				name ="attribute의 name redirect면 안씀";
+				path="redirect:/emp/cmt/myList.jsp";
 			}
 			else if(crud.equals("askUpd")) {
 				result = attitudeLogic.my_askUpd(pMap);
@@ -88,7 +88,9 @@ public class AttitudeController implements Controller {
 		
 		}
 		
-		req.setAttribute(name, robj);
+		if(path.contains("forward")) {
+			req.setAttribute(name, robj);
+		}
 
 		return path;
 	}

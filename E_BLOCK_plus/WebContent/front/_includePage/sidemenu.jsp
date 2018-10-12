@@ -61,8 +61,13 @@ $(document)
    <div class="item" id="sm_fromMe">
       <div class="header">나의전자결재</div>
       <div class="ui vertical inverted accordion menu">
-         <a class="item" href="<%=Project_Root2%>" id="sm_fromMe_attd"> 근태관련 </a>
-         <a class="item" href="<%=Project_Root2%>" id="sm_fromMe_retire"> 사직관련 </a>
+         <div class="item">
+            <a class="active title" id="sm_fromMe_equip"> 근태관련 </a>
+            <div class="active content">
+               <a class="item" href="<%=Project_Root2%>/attd/my/attdMyAsk.jsp" id=""> 근태관련 신청 </a>      
+               <a class="item" href="<%=Project_Root2%>" id=""> 내 신청 조회 </a>      
+            </div>
+         </div>
          <div class="item">
             <a class="active title" id="sm_fromMe_equip"> 비품관련 </a>
             <div class="active content">
