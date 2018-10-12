@@ -21,7 +21,7 @@ if(cookies!=null){
     <div class="ui container">
       <div class="ui large secondary inverted menu">
 				<a class="toc item sidemenu_icon" id="sidemenu_icon"> <i class="sidebar icon"></i>
-				</a> <a class="item" id="mainpage" href="">메인페이지</a> <a class="item" id="approval">전자결재</a>
+				</a> <a class="item" id="mainpage" href="/E_BLOCK_plus/emp/cmt/myList.jsp">메인페이지</a> <a class="item" id="approval">전자결재</a>
 			</div>
 				<!-- 우측메뉴 시작 -->
   <div class="right inverted menu primary">
@@ -43,7 +43,7 @@ if(cookies!=null){
 		<div class="ui container">
 			<div class="ui secondary inverted menu">
 				<a class="toc item sidemenu_icon" id="sidemenu_icon"> <i class="sidebar icon"></i>
-				</a> <a class="item" id="mainpage" href="">메인페이지</a> <a class="item" id="approval">전자결재</a>
+				</a> <a class="item" id="mainpage" href="/E_BLOCK_plus/emp/cmt/myList.jsp">메인페이지</a> <a class="item" id="approval">전자결재</a>
 				<!-- 우측메뉴 시작 -->
   <div class="right item"><%=e_name %></div>
     <a class="ui item" href='/E_BLOCK_plus/emp/login/logout.jsp'>

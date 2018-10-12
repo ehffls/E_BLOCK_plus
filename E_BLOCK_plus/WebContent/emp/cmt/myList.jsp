@@ -8,6 +8,7 @@
 <link href='<%=Project_Root%>/0_src/js/fullcalendar-3.9.0/fullcalendar.css' rel='stylesheet' />
 <script src='<%=Project_Root%>/0_src/js/fullcalendar-3.9.0/lib/moment.min.js'></script>
 <script src='<%=Project_Root%>/0_src/js/fullcalendar-3.9.0/fullcalendar.js'></script>
+<script src='<%=Project_Root%>/0_src/js/fullcalendar-3.9.0/gcal.js'></script>
 <script>
 
 
@@ -21,7 +22,17 @@
       //defaultDate: '2018-10-20',
       editable: false,
       eventLimit: true, // allow "more" link when too many events
+      googleCalendarApiKey : "AIzaSyB3TgMopBcluINZyCntrHTmYpojvV81xcE"      // Google API KEY
+          // 예제소스에 적힌 구글캘린더 API 키는 FullCalendar 예제에 있는 API키를 그대로 사용한 것이다.
+,
       eventSources: [
+          // 대한민국의 공휴일
+          {
+                googleCalendarId : "ko.south_korea#holiday@group.v.calendar.google.com"
+              , className : "koHolidays"
+              , color : "#FF0000"
+              , textColor : "#FFFFFF"
+          },
     	    {
     	      url: '/E_BLOCK_plus/emp/cmt/cmt_calendar.ebp',
     	      color: 'skyblue',   // a non-ajax option
