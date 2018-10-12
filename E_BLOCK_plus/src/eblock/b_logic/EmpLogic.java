@@ -208,6 +208,7 @@ public class EmpLogic {
 	}
 
 	public List<Map<String,Object>> retire_list(Map<String, Object> pMap) {
+		pMap.put("sign_eno", pMap.get("c_eno"));
 		list = empDao.retire_list(pMap);
 		return list;
 	}
@@ -229,7 +230,7 @@ public class EmpLogic {
 			newMap = new HashMap<>();
 			newMap.put("outcome",words[0]);//상태값
 			newMap.put("rt_no",words[i]);
-			//newMap.put("rt_no", pMap.get("c_eno"));//결재자번호 10.. 쿠키에서 얻어야함.
+			newMap.put("sign_no", pMap.get("c_eno"));//결재자번호 10.. 쿠키에서 얻어야함.
 			newList.add(newMap);
 		}
 		logger.info("newList : "+newList);

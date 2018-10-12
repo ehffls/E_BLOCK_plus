@@ -64,31 +64,28 @@
       <div class="header">상세보기</div>
       <div class="ui segment" style="margin-right: 20px; margin-left: 20px">
          <div class="ui form">
-            <div class="four fields">
+            <div class="three fields">
                <div class="field">
-                  <label>구매신청번호</label> <input type="text" id="text_1" readonly>
+                  <label>신청번호</label> <input type="text" id="text_1" readonly>
                </div>
                <div class="field">
-                  <label>비품이름</label> <input type="text" id="text_2" readonly>
+                  <label>신청일자</label> <input type="text" id="text_2" readonly>
                </div>
                <div class="field">
-                  <label>수량</label> <input type="text" id="text_3" readonly>
-               </div>
-               <div class="field">
-                  <label>소계</label> <input type="text" id="text_4" readonly>
+                  <label>신청사원번호</label> <input type="text" id="text_3" readonly>
                </div>
             </div>
          </div>
          <div class="ui form">
             <div class="three fields">
                <div class="field">
-                  <label>신청일자</label> <input type="text" id="text_5" readonly>
+                  <label>퇴사일자</label> <input type="text" id="text_4" readonly>
                </div>
                <div class="field">
-                  <label>신청사원번호</label> <input type="text" id="text_6" readonly>
+                  <label>신청사유</label> <input type="text" id="text_5" readonly>
                </div>
                <div class="field">
-                  <label>결재상태</label> <input type="text" id="text_7" readonly>
+                  <label>결재상태</label> <input type="text" id="text_6" readonly>
                </div>
             </div>
          </div>
@@ -212,21 +209,20 @@
       });
 
       $('#btn_permit').on('click', function() {
-         approval('eqa-3');//승인
+         approval('rta-3');//승인
       });
       $('#btn_dismiss').on('click', function() {
-         approval('eqa-2');//기각
+         approval('rta-2');//기각
       });
       
       $('#taable tbody').on('dblclick', 'tr', function() {
          var data = table.row(this).data();
-         $('#text_1').val(data["eq_pno"]);
-         $('#text_2').val(data["eq_name"]);
-         $('#text_3').val(data["num"]);
-         $('#text_4').val(data["subtotal"]);
-         $('#text_5').val(data["ask_date"]);
-         $('#text_6').val(data["ask_eno"]);
-         $('#text_7').val(data["outcome"]);
+         $('#text_1').val(data["rt_no"]);
+         $('#text_2').val(data["rt_date"]);
+         $('#text_3').val(data["ask_eno"]);
+         $('#text_4').val(data["ask_date"]);
+         $('#text_5').val(data["ask_rsn"]);
+         $('#text_6').val(data["outcome"]);
          // attach events to buttons
          $('#modal_1').modal('setting', 'closable', false).modal('show');
          

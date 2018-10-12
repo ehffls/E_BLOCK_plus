@@ -35,7 +35,7 @@
 			//페이지 네이션 버튼 한글로 변경
 			},
 			ajax : {
-				url : "/E_BLOCK_plus/equip/inb/eqListState.ebp",
+				url : "/E_BLOCK_plus/equip/inb/askListDetail.ebp",
 				dataSrc : 'data'
 			},
 			columns : [ {

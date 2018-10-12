@@ -34,7 +34,6 @@ public class EmpController implements Controller {
 		hmb.bind(pMap);
 		CookieBinder cb = new CookieBinder(req);
 		cb.bind(pMap);
-		logger.info(pMap);
 
 		String name = null; //attribute의 name
 		String path = null; //forward:xxx.jsp
