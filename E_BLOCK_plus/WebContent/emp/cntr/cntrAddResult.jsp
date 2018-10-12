@@ -12,10 +12,10 @@
 			String cs_name = cs[i].getName();
 			System.out.print(cs_name);			
 			if("name".equals(cs_name)){
-				e_name = URLDecoder.decode(cs[i].getValue(),"utf-8");
+				e_name = cs[i].getValue();
 			}
 			else if("email".equals(cs_name)){
-				e_email = URLDecoder.decode(cs[i].getValue(),"utf-8");
+				e_email = cs[i].getValue();
 			}
 		}
 	}

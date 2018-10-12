@@ -138,10 +138,10 @@
  	<insert id="pev_add" statementType="CALLABLE" parameterType="map" >
 	<!-- 프로시저 호출은 execute 권한이 있는 계정만 호출가능하다. ( IS NOT OUT PARAMETER ERROR 주의 )
 	 	 프로시저 호출시, CALL과 프로시이름 사이는 스페이스만 허용한다. -->
-	 	{ CALL proc_pev_add( #{ev_eno}
-							,#{tg_eno}
-							,#{ev_content}
-							,#{ev_score}
+	 	{ CALL proc_pev_add( #{ev_eno}    <!-- 평가사원번호 -->
+							,#{tg_eno}    <!-- 대상사원번호 -->
+							,#{ev_content}<!-- 평가내용 -->
+							,#{ev_score}  <!-- 평가점수 -->
 							,#{result,mode=OUT,jdbcType=INTEGER}
 			)				<!-- OUT파라미터는 jdbcType을 명시한다. -->
 		}
@@ -165,9 +165,16 @@
  <!-- [ 인사평가 조회 | 테스트완료(09/23) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  -->
 	<select id="pev_myList" parameterType="map" resultType="map">
 		SELECT
-         	ev_eno, tg_eno, qrt_no, ev_date, ev_content, ev_score, ratio
-  		  FROM `pev`
-  		 WHERE ev_eno = #{ev_eno} 
+	         	  ev_eno     <!-- 평가사원번호 -->
+	         	, tg_eno     <!-- 대상사원번호 -->
+	         	, qrt_no     <!-- 평가분기번호 -->
+	         	, ev_date    <!-- 평가일자 -->
+	         	, ev_content <!-- 평가내용 -->
+	         	, ev_score   <!-- 평가점수 -->
+	         	, ratio      <!-- 평가점수비율 -->
+	         	, e_name     <!-- 사원이름 -->
+  		  FROM `pev` LEFT JOIN `emp` ON tg_eno = e_no
+  		  WHERE ev_eno = #{ev_eno}
   		<choose>
 		 	<when test="min_qrtno != null">
   		   		<![CDATA[ AND qrt_no >= #{min_qrtno} ]]>
@@ -175,7 +182,7 @@
 		 	<when test="max_qrtno != null">
    		   		<![CDATA[ AND qrt_no <= #{max_qrtno} ]]>
 		 	</when>
-		 </choose>
+		 </choose> 
 	</select>
 	
 <!-- 내가 평가 가능한 사원 조회 -->
@@ -190,7 +197,22 @@
 		   AND e_no != #{e_no}
 	</select>
  
- 
+ <!-- [ 내가 평가 가능한 사원 조회   ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  -->
+   <select id="pev_tgList" parameterType="map" resultType="map">
+      SELECT e_no, e_name
+			,(CASE WHEN (e_rank = 50) THEN '대표' 
+				   WHEN (e_rank = 40) THEN '부서장'
+				   WHEN (e_rank = 30) THEN '차장'
+				   WHEN (e_rank = 20) THEN '팀장'
+				   WHEN (e_rank = 10) THEN '사원'
+				   ELSE '인턴' END
+			   ) AS `e_rank`
+      FROM `emp` 
+       WHERE d_no = #{d_no}
+         AND e_no NOT IN (SELECT  tg_eno FROM `pev` 
+                           	 WHERE ev_eno=#{e_no})
+         AND e_no != #{e_no}
+   </select>
  
 <!--
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■

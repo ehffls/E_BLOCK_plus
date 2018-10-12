@@ -95,9 +95,9 @@ $(document)
    <div class="item" id="sm_emp">
       <div class="header">인사관리</div>
       <div class="menu">
-         <a class="item" href="<%=Project_Root2%>" id="sm_emp_cmt"> 출결관리 </a>
-         <a class="item" href="<%=Project_Root2%>" id="sm_emp_pev"> 인사평가결과 </a>
-         <a class="item" href="<%=Project_Root2%>" id="sm_emp_dept"> 부서/사원관리 </a>
+         <a class="item" href="<%=Project_Root2%>/emp/cmt/cmtDeptList.jsp" id="sm_emp_cmt"> 출결관리 </a>
+         <a class="item" href="<%=Project_Root2%>/emp/pev/pevList.jsp" id="sm_emp_pev"> 인사평가결과 </a>
+         <a class="item" href="<%=Project_Root2%>/emp/cntr/cntrList.jsp" id="sm_emp_dept"> 사원/부서 관리 </a>
       </div>
    </div>
    <!-- 인사관리 끝 -->

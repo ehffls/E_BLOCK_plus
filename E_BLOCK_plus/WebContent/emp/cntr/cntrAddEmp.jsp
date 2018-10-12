@@ -9,6 +9,11 @@
 <script src="/E_BLOCK_plus/0_src/js/table/datatables.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<style>
+	.ui.disabled.input{
+		opacity:1;
+	}
+</style>
 </head>
 <body>
 

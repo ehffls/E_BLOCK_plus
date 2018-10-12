@@ -119,11 +119,17 @@ public class EmpLogic {
 
 	public int pev_upd(Map<String, Object> pMap) {
 		result = empDao.pev_upd(pMap);
+		logger.info("RESULT = "+result);
 		return result;
 	}
 
 	public List<Map<String, Object>> pev_myList(Map<String, Object> pMap) {
 		list = empDao.pev_myList(pMap);
+		return list;
+	}
+	
+	public List<Map<String,Object>> pev_tgList(Map<String, Object> pMap) {
+		list = empDao.pev_tgList(pMap);
 		return list;
 	}
 
@@ -177,18 +183,14 @@ public class EmpLogic {
 		result = empDao.cntr_addEmp(pMap);
 		logger.info(pMap.get("result"));
 		if(result == 1) {
-			try {
-				Cookie c_email = new Cookie("email",URLEncoder.encode(pMap.get("e_email").toString(),"utf-8"));
-				Cookie c_ename = new Cookie("name", URLEncoder.encode(pMap.get("e_name").toString(),"utf-8"));
-				c_email.setMaxAge(2*60);
-				c_ename.setMaxAge(2*60);
-				c_email.setPath("/");
-				c_ename.setPath("/");
-				res.addCookie(c_email);
-				res.addCookie(c_ename);
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			}
+			Cookie c_email = new Cookie("email",pMap.get("e_email").toString());
+			Cookie c_ename = new Cookie("name",pMap.get("e_name").toString());
+			c_email.setMaxAge(2*60);
+			c_ename.setMaxAge(2*60);
+			c_email.setPath("/");
+			c_ename.setPath("/");
+			res.addCookie(c_email);
+			res.addCookie(c_ename);
 		}
 		logger.info(pMap.get("result"));
 		return result;
@@ -239,13 +241,4 @@ public class EmpLogic {
 		logger.info("result : "+result);
 		return result;
 	}
-
-	public List<Map<String,Object>> pev_tgList(Map<String, Object> pMap) {
-		list = empDao.pev_tgList(pMap);
-		return list;
-	}
-
-
-
-
 }

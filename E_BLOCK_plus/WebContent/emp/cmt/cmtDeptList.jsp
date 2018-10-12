@@ -1,6 +1,5 @@
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +7,7 @@
 <title>전체 출결 페이지</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp"%>
 <script src="/E_BLOCK_plus/0_src/js/table/datatables.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
 </head>
 <body>
 	<!-- sidebar -->
@@ -20,11 +18,10 @@
 
 
 	<!--=============== 작성부분 ===============-->
-<!-- 로그인시 부서 이름 쿠키로 .. 부서장 이상의 관리자 조회 되게 해야함. -->	
-<!-- 전체 조회 되게만 했음... -->	
+	<!-- 로그인시 부서 이름 쿠키로 .. 부서장 이상의 관리자 조회 되게 해야함. -->
+	<!-- 전체 조회 되게만 했음... -->
 
 	<div class="ui container" style="margin-top: 5px;">
-		<!-- 검색창 시작  -->
 		<div class="ui column stackable grid container">
 			<div class="column" align="center" style="padding-left: 0px;">
 				<h2 class="ui header" style="padding-top: 5px;">
@@ -33,52 +30,52 @@
 				</h2>
 			</div>
 		</div>
-
-		<div class="ui grid">
-			<div class="row" style="padding-bottom: 5px; padding-top: 0px;">
-				<div class="eight wide column"></div>
-				<div class="one wide column"></div>
-				<div class="three wide column">
-					<div class="ui calendar" id="r_start" align="right"	style="margin-bottom: 5px;">
-						<div class="ui input left icon">
-							<i class="calendar icon"></i> 
-							<input type="text" placeholder="시작일자" />
+		<div class="ui segment">
+			<div class="ui grid">
+				<div class="row" style="padding-bottom: 5px; padding-top: 10px;">
+					<div class="eight wide column"></div>
+					<div class="one wide column"></div>
+					<div class="three wide column">
+						<div class="ui calendar" id="r_start" align="right" style="margin-bottom: 5px;">
+							<div class="ui input left icon">
+								<i class="calendar icon"></i>
+								<input type="text" placeholder="시작일자" />
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="four wide column ">
-					<div class="ui calendar" id="r_end" align="right"
-						style="margin-bottom: 5px;">
-						<div class="ui input left icon">
-							<i class="calendar icon"></i> 
-							<input id="r_end" type="text" placeholder="종료일자">
+					<div class="four wide column ">
+						<div class="ui calendar" id="r_end" align="right" style="margin-bottom: 5px;">
+							<div class="ui input left icon">
+								<i class="calendar icon"></i>
+								<input id="r_end" type="text" placeholder="종료일자">
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
-		<table id="taable" class="ui grey fixed single line celled table">
-			<thead>
-				<tr>
-					<th>부서명</th>
-					<th>사원번호</th>
-					<th>사원명</th>
-					<th>직급</th>
-					<th>일자</th>
-					<th>출결</th>
-					<th>출근시간</th>
-					<th>퇴근시간</th>
-					<th>상태</th>
-					<th>재실유무</th>
-				</tr>
-			</thead>
-		</table>
+			<table id="taable" class="ui grey fixed single line celled table">
+				<thead>
+					<tr>
+						<th>부서명</th>
+						<th>사원번호</th>
+						<th>사원명</th>
+						<th>직급</th>
+						<th>일자</th>
+						<th>출결</th>
+						<th>출근시간</th>
+						<th>퇴근시간</th>
+						<th>상태</th>
+						<th>재실유무</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
 	</div>
 
 
 	<script type="text/javascript">
-	//캘린더 설정
+		//캘린더 설정
 		$(function() {
 			$('#r_start').calendar({
 				type : 'date',
@@ -94,8 +91,8 @@
 
 	<script>
 		//사이드 메뉴 설정
-		$('#').attr("class", "active item");
-		$('#').attr("class", "active item");
+		$('#sm_emp').attr("class", "active item");
+		$('#sm_emp_cmt').attr("class", "active item");
 	
 		/* $('#taable').DataTable( {
 			  ajax: {
@@ -169,30 +166,30 @@
 				}
 			],
 			columnDefs : [
-				{	
+				{
 					targets : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
 					className : 'center aligned'
 				},
-		        {
-		             "targets": [ 1 ],
-		             "visible": false, //화면에 출력, 비출력 설정
-		             "searchable": false //화면에서 검색가능, 검색 불가 설정
-		        },
-		        {
-		             "targets": [ 3 ],
-		             "visible": false, //화면에 출력, 비출력 설정
-		             "searchable": false //화면에서 검색가능, 검색 불가 설정
-		        }
-/* 		        {
-		             "targets": [ 1 ],
-		             "visible": false,
-		             "searchable": false
-		        },
-		        {
-		             "targets": [ 1 ],
-		             "visible": true,
-		             "searchable": false
-		        } */	
+				{
+					"targets" : [ 1 ],
+					"visible" : false, //화면에 출력, 비출력 설정
+					"searchable" : false //화면에서 검색가능, 검색 불가 설정
+				},
+				{
+					"targets" : [ 3 ],
+					"visible" : false, //화면에 출력, 비출력 설정
+					"searchable" : false //화면에서 검색가능, 검색 불가 설정
+				}
+			/* 		        {
+					             "targets": [ 1 ],
+					             "visible": false,
+					             "searchable": false
+					        },
+					        {
+					             "targets": [ 1 ],
+					             "visible": true,
+					             "searchable": false
+					        } */
 			]
 		});
 	
@@ -212,8 +209,6 @@
 		});
 	</script>
 	<!--=============== 작성부분 ===============-->
-
-
 
 	<%@ include file="/front/_includePage/sticky"%>
 </body>
