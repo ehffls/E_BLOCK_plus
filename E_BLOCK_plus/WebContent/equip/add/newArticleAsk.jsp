@@ -89,7 +89,7 @@
 
 					<select name="eq_sort" class="ui search selection dropdown" id="s_list">
 						<%
-							for (int i = 0; i < list2.size(); i++) {
+							for (int i = 0; i < list1.size(); i++) {
 						%>
 						<option value="<%=list1.get(i).get("eq_sort")%>"><%=list1.get(i).get("eq_sort")%></option>
 						<%

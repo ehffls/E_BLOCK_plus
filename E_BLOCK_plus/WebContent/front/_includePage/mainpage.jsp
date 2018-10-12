@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-Cookie[] cookies = request.getCookies();
+/* Cookie[] cookies = request.getCookies();
 String path = null;
 if(cookies!=null){
 	for(Cookie cookie: cookies){
@@ -12,7 +12,7 @@ if(cookies!=null){
 	}
 	if(path!=null)
 		response.sendRedirect(path);
-}
+} */
 %>
 <script type="text/javascript">
 

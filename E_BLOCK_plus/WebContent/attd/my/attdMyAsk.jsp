@@ -83,7 +83,7 @@ $(document).ready(function(){
 		c_days();
 	});
 	$('#ap_cancel').click(function() {
-		
+		location.href="/E_BLOCK_plus/emp/cmt/myList.jsp";
 	});
 	
 	//sidemenu처리 부분

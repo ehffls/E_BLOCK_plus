@@ -20,7 +20,7 @@ public class LoginServer {
 		HashMap<Integer, ChatVO> hm = new HashMap<>();
 		initDisplay();
 		try{
-			ServerSocket server = new ServerSocket(5555);
+			ServerSocket server = new ServerSocket(12223);
 			jta.append("[LoginServer]시작\n");
 			while(true){
 				Socket sock = server.accept();

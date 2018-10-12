@@ -82,7 +82,7 @@ public class EmpController implements Controller {
 			else if (crud.equals("upd")) {
 				robj = empLogic.pev_upd(pMap);
 				name = "uPev";
-				path = "forward:/emp/pev/pevMylist.jsp";
+				path = "forward:/emp/pev/pevMyList.jsp";
 			}
 			// 내가 평가한내역 조회하기(타인은 열람불가)
 			else if (crud.equals("myList")) {
