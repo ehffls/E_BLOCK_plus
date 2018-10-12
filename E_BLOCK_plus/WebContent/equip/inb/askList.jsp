@@ -152,10 +152,9 @@
 
 		$('#taable tbody').on('dblclick', 'tr', function() {
 			$('#modal_1').modal('setting', 'closable', false).modal('show');
-			var data = 
 			$.ajax({
 				method:'get',
-				url:'./askListDetail.jsp?io_ano',
+				url:'./askListDetail.jsp',
 				success:function(result){
 					$('#modal_1').modal('setting', 'closable', false).modal('show');
 					$('#detail_modal').html(result);
