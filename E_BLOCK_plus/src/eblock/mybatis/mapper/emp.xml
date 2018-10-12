@@ -185,17 +185,6 @@
 		 </choose> 
 	</select>
 	
-<!-- 내가 평가 가능한 사원 조회 -->
-	<select id="pev_tgList" parameterType="map" resultType="map">
-		SELECT e_no, e_name
-			,(CASE WHEN (e_rank = 50) THEN '대표' WHEN (e_rank = 40) THEN '부서장' WHEN (e_rank = 30) THEN '차장' WHEN (e_rank = 20) THEN '팀장' WHEN (e_rank = 10) THEN '사원' ELSE '인턴' END) AS `e_rank`
-		FROM `emp` 
-		 WHERE d_no = #{d_no}
-		   AND e_no NOT IN (SELECT  tg_eno FROM `pev` 
-		                     WHERE ev_eno=#{e_no}
-		                     )
-		   AND e_no != #{e_no}
-	</select>
  
  <!-- [ 내가 평가 가능한 사원 조회   ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  -->
    <select id="pev_tgList" parameterType="map" resultType="map">
