@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import eblock.b_logic.EmpLogic;
+import util.CookieBinder;
 import util.HashMapBinder;
 
 public class EmpController implements Controller {
@@ -32,19 +33,21 @@ public class EmpController implements Controller {
 		Map<String, Object> pMap = new HashMap<String, Object>();
 		HashMapBinder hmb = new HashMapBinder(req);
 		hmb.bind(pMap);
-		logger.info(pMap);
+		CookieBinder cb = new CookieBinder(req);
+		cb.bind(pMap);
 
 		String name = null; // attribute의 name
 		String path = null; // forward:xxx.jsp
 		Object robj = null; //
 
-		// work와 crud가 있어야 컨트롤러가 생성되므로 NullPointerException을 논리적으로 방지한 상태이다.
-		if (work.equals("login")) {
-			// 로그인하기
-			if (crud.equals("check")) {
+		//work와 crud가 있어야 컨트롤러가 생성되므로 NullPointerException을 논리적으로 방지한 상태이다.
+		if(work.equals("login")) {
+			//로그인하기
+			if(crud.equals("check")) {
 				robj = empLogic.login_check(pMap, res);
-				path = "redirect:/emp/login/login_result.jsp";
+				path = "redirect:/emp/login/login_result.jsp"; 
 			}
+
 		}
 		// 정보조회
 		else if (work.equals("info")) {
@@ -92,6 +95,12 @@ public class EmpController implements Controller {
 				robj = empLogic.pev_tgList(pMap);
 				name = "pevTgList";
 				path = "forward:/emp/pev/pevTgList_JSON.jsp";
+			}
+			//내가평가 가능한 인사평가대상 조회
+			else if(crud.equals("myList")) {
+				robj = empLogic.pev_tgList(pMap);
+				name ="";
+				path="forward:/emp/pev/pevMyList_JSON.jsp";
 			}
 		}
 		// 출결
@@ -147,9 +156,7 @@ public class EmpController implements Controller {
 			// 퇴사 신청하기
 			if (crud.equals("ask")) {
 				robj = empLogic.retire_ask(pMap);
-				name = "attribute의 name";
-				path = "forward:xxx.jsp";
-
+				path="redirect:/emp/cmt/myList.jsp";
 			}
 			// 퇴사신청 수정하기
 			else if (crud.equals("askUpd")) {

@@ -100,11 +100,8 @@ public class EquipDao {
 	//다중조건 검토문 예제 구현하기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 	//[결재권자]
 	//─────[ 비품추가신청내역신청 결재하기 ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-	public int add_sign(Map<String, Object> pMap) {
-		List<Map<String, Object>> list_forMultiDynamict = new ArrayList<>();
-		list_forMultiDynamict.add(pMap);;
-		//다중업데이트 동작쿼리 : List<Map<String,Object>> 를 파라미터로 이용
-		result = sqlSession.update(nameSpace+"add_sign",pMap);
+	public int add_sign(List<Map<String, Object>> pList) {
+		result = sqlSession.update(nameSpace+"add_sign",pList);
 		return result;
 	}
 ///////////////////// 상위 코드 단위테스트 완료 [ 10/04 ] //////////////////////////////////////////
@@ -148,6 +145,11 @@ public class EquipDao {
 	//─────[ 등록된 거래처 조회하기 ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 	public List<Map<String, Object>> mk_list(Map<String, Object> pMap) {
 		list = sqlSession.selectList(nameSpace+"mk_list", pMap);
+		return list;
+	}
+	//─────[ 등록된 거래처 조회하기 ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+		public List<Map<String, Object>> mk_allList(Map<String, Object> pMap) {
+		list = sqlSession.selectList(nameSpace+"mk_allList", pMap);
 		return list;
 	}
 	
@@ -214,8 +216,14 @@ public class EquipDao {
 		return result;
 	}
 	//[결재권자]
-	//─────[ 비품입출신청내역의 신청 결재하기 (기각|승인) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+	//─────[ 비품입출신청내역 조회 ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 	public List<Map<String,Object>> inb_askList(Map<String, Object> pMap) {
+		list = sqlSession.selectList(nameSpace+"inb_iolist",pMap);
+		return list;
+	}
+	//[결재권자]
+	//─────[ 비품상태 조회) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+	public List<Map<String,Object>> inb_changeList(Map<String, Object> pMap) {
 		list = sqlSession.selectList(nameSpace+"inb_iolist",pMap);
 		return list;
 	}

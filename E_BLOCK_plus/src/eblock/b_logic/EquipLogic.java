@@ -38,6 +38,7 @@ public class EquipLogic {
 	//[결재권자]
 	//비품분류 등록하기
 	public int sort_add(Map<String, Object> pMap) {
+		pMap.put("e_no", pMap.get("c_eno"));
 		result = equipDao.sort_add(pMap);
 		return result;
 	}
@@ -65,6 +66,7 @@ public class EquipLogic {
 	
 	//비품추가신청내역에 새로운 비품내역추가 신청하기 
 	public int add_ask(Map<String, Object> pMap) {
+		pMap.put("ask_eno", pMap.get("c_eno"));
 		result = equipDao.add_ask(pMap);
 		return result;
 	}
@@ -75,13 +77,30 @@ public class EquipLogic {
 	}
 	//비품추가신청내역 조회하기
 	public List<Map<String, Object>> add_askList(Map<String, Object> pMap) {
+		pMap.put("sign_eno", pMap.get("c_eno"));//결재자번호 10.. 쿠키에서 얻어야함.
 		list = equipDao.add_askList(pMap);
 		return list;
 	}
 	//[결재권자]
 	//비품추가신청내역에 새로운비품내역 추가신청 결재하기
 	public int add_sign(Map<String, Object> pMap) {
-		result = equipDao.add_sign(pMap);
+		logger.info("pMap.get(\"param\") : "+pMap.get("param"));
+		//넘어온 파람을 분할한다.
+		String[] words = pMap.get("param").toString().split(",");
+		//넘어온걸 반복문을 위해 리스트로 작성한다.
+		List<Map<String,Object>> newList = new ArrayList<>();
+		Map<String,Object> newMap = null;
+		for(int i=1;i<words.length;i++) {
+			newMap = new HashMap<>();
+			newMap.put("outcome",words[0]);//상태값
+			newMap.put("eq_addno",words[i]);
+			newMap.put("e_no", pMap.get("c_eno"));//결재자번호 10.. 쿠키에서 얻어야함.
+			newList.add(newMap);
+		}
+		logger.info("newList : "+newList);
+		//작성한 리스트를 넘김
+		result = equipDao.add_sign(newList);
+		logger.info("result : "+result);
 		return result;
 	}
 	//[결재권자]
@@ -104,6 +123,7 @@ public class EquipLogic {
 	//[결재권자]
 	//거래처 등록하기 
 	public int mk_add(Map<String, Object> pMap) {
+		logger.info(pMap);
 		result = equipDao.mk_add(pMap);
 		return result;
 	}
@@ -118,6 +138,11 @@ public class EquipLogic {
 		list = equipDao.mk_list(pMap);
 		return list;
 	}
+	//거래처|비품종류 거래처 조회하기
+	public List<Map<String, Object>> mk_allList(Map<String, Object> pMap) {
+		list = equipDao.mk_allList(pMap);
+		return list;
+	}
 	
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
@@ -125,6 +150,7 @@ public class EquipLogic {
 	
 	//구매가능내역에서 비품구매 신청하기
 	public List<Map<String, Object>> purc_ask(Map<String, Object> pMap) {
+		pMap.put("ask_eno", pMap.get("c_eno"));
 		list = equipDao.purc_ask(pMap);
 		return list;
 	}
@@ -183,10 +209,16 @@ public class EquipLogic {
 	}
 	//[결재권자]
 	//입고비품내역에서 입출비품내역 조회하기
-		public List<Map<String, Object>> inb_askList(Map<String, Object> pMap) {
-			list = equipDao.inb_askList(pMap);
-			return list;
-		}
+	public List<Map<String, Object>> inb_askList(Map<String, Object> pMap) {
+		list = equipDao.inb_askList(pMap);
+		return list;
+	}
+	//[결재권자]
+	//입고비품내역에서 입출비품내역 조회하기
+	public List<Map<String, Object>> inb_changeList(Map<String, Object> pMap) {
+		list = equipDao.inb_changeList(pMap);
+		return list;
+	}
 	//[결재권자]
 	//비품입출신청내역의 신청 결재하기 (기각|승인)
 	public int inb_sign(Map<String, Object> pMap) {
@@ -215,13 +247,14 @@ public class EquipLogic {
 		return list;
 	}
 	//추가 비품 신청 드롭다운(보현)
-	public List<Map<String, Object>> newArticleAsk(Map<String, Object> pMap) {
-		Map<String,Object> pMap2 = new HashMap<String,Object>();
+	public Map<String, Object> newArticleAsk(Map<String, Object> pMap) {
+		Map<String,Object> rMap = new HashMap<String,Object>();
 		List<Map<String,Object>> list2 = equipDao.mk_list(pMap);
-		List<Map<String,Object>> list3 =  (List<Map<String,Object>>)equipDao.sort_list(pMap);
-
-		System.out.println(list.size());
-		return list;
+		List<Map<String,Object>> list3 = equipDao.sort_list(pMap);
+		rMap.put("mk_list",list2);
+		rMap.put("sort_list",list3);
+		
+		return rMap;
 	}
 
 

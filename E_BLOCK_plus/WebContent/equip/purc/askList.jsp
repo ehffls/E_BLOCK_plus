@@ -9,19 +9,18 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
 </head>
 <body>
-<%--    <!-- sidebar -->
+   <!-- sidebar -->
    <%@ include file="/front/_includePage/sidemenu.jsp"%>
    <!-- main -->
-   <%@ include file="/front/_includePage/mainpage.jsp"%> --%>
+   <%@ include file="/front/_includePage/mainpage.jsp"%>
 
    <!--■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■[비품구매신청조회]■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
 
    <!--=============== 작성부분 ===============-->
 
    <div class="ui container" style="margin-top: 20px;">
-      <%@ include file="/front/_includePage/approval_head.jsp"%>
       <div class="ui pointing menu">
-         <a class="item">비품추가신청조회</a> <a class="item">비품구매신청조회</a> <a class="item">비품입출신청조회</a>
+         <a class="item" href="/E_BLOCK_plus/equip/add/askList.jsp">비품추가신청조회</a> <a class="item active" href="/E_BLOCK_plus/equip/purc/askList.jsp">비품구매신청조회</a> <a class="item" href="/E_BLOC_plus/equip/inb/askList.jsp">비품입출신청조회</a>
       </div>
       <div class="ui segment">
          <!-- 검색창 시작  -->

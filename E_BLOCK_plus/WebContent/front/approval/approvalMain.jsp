@@ -17,21 +17,21 @@ $(function(){
 		allowCategorySelection: true,
 		action: function(text, value) {
 			if(text=="휴가신청"){
-				witch="<%=Project_Root3 %>/front/attd/my/breakAsk.jsp";
+				witch="<%=Project_Root3 %>/attd/my/breakAsk.jsp";
 			}else if(text=="반가신청"){
-				witch="<%=Project_Root3 %>/front/attd/my/harfBreakAsk.jsp";
+				witch="<%=Project_Root3 %>/attd/my/harfBreakAsk.jsp";
 			}else if(text=="출장신청"){
-				witch="<%=Project_Root3 %>/front/attd/my/businessTripAsk.jsp";
+				witch="<%=Project_Root3 %>/attd/my/businessTripAsk.jsp";
 			}else if(text=="외출신청"){
-				witch="<%=Project_Root3 %>/front/attd/my/goOutAsk.jsp";
+				witch="<%=Project_Root3 %>/attd/my/goOutAsk.jsp";
 			}else if(text=="등록신청"){
-				witch="<%=Project_Root3 %>/equip/add/newArticleAsk.ebp";
+				witch="<%=Project_Root3 %>/equip/add/newArticleAsk.jsp";
 			}else if(text=="구매신청"){
-				witch="<%=Project_Root3 %>/front/equip/purc/buyArticleAsk.jsp";
+				witch="<%=Project_Root3 %>/equip/purc/buyArticleAsk.jsp";
 			}else if(text=="사용신청"){
-				witch="<%=Project_Root3 %>/front/equip/inb/useArticleAsk.jsp";
+				witch="<%=Project_Root3 %>/equip/inb/useArticleAsk.jsp";
 			}else if(text=="퇴사신청"){
-				witch="<%=Project_Root3 %>/front/emp/retire/retireAsk.jsp";
+				witch="<%=Project_Root3 %>/emp/retire/retireAsk.jsp";
 			}
 			$('#form_1').transition('fade down');
 				$.ajax({

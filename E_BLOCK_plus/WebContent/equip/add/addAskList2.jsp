@@ -7,11 +7,15 @@
 <%@ include file="/0_src/_includeList/commonUI_S.jsp"%>
 <script src="/E_BLOCK_plus/0_src/js/table/datatables.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
-<script>
-	function aal2(){
-		location.href="/E_BLOCK_plus/equip/add/addAskList2.jsp";
-		
-	}
+</head>
+<body>
+	<!-- sidebar -->
+	<%@ include file="/front/_includePage/sidemenu.jsp"%>
+	<!-- main -->
+	<%@ include file="/front/_includePage/mainpage.jsp"%>
+	<!--=============== 작성부분 ===============-->
+
+	<script type="text/javascript">
 
 	function empUpdate(data) {
 		$.ajax({
@@ -52,41 +56,56 @@
 		$("#dept_form").attr("action","/E_BLOCK_plus/emp/cntr/setDeptAuth.ebp?e_no="+e_no);
 		$("#dept_form").submit();
 	}
-</script>
-</head>
-<body>
-<!-- sidebar -->
-	<%@ include file="/front/_includePage/sidemenu.jsp"%>
-	<!-- main -->
-	<%@ include file="/front/_includePage/mainpage.jsp"%>
-	<!--=============== 작성부분 ===============-->
 
-	
+	</script>
 
 
 	<div class="ui segment">
 		<div class="ui container">
-		<div class="ui dividing header">입출신청</div>
+			<div class="ui dividing header">구매신청</div>
 			<table id="taable" class="ui grey fixed single line celled table">
 				<thead>
 					<tr>
-						<th>비품이름</th>
+						<th>비품번호</th>
 						<th>비품분류</th>
-						<th>비품상태</th>
-						<th>마지막 변경일자</th>
-						<th>마지막 사용자이름</th>
+						<th>비품이름</th>
+						<th>가격</th>
+						<th>날짜</th>
 						<th>신청</th>
 					</tr>
 				</thead>
 			</table>
-			<button class="fluid ui button" onclick="aal2()">구매신청</button>
+			<button class="fluid ui button" onclick="newaa()">추가신청</button>
+			<br>
+			<button class="fluid ui button" onclick="back()">뒤로가기</button>
 		</div>
 	</div>
-
+	<div class="ui modal mini" id="modal">
+		<div class="header">구매 신청</div>
+		<div class="content">
+			<div class="bady">
+				<form id="f_insert">
+					<div class="text">수량</div>
+					<div class="ui input" style="width: 100%">
+						<input type="text" name="num">
+					</div>
+					<div class="text">비품번호</div>
+					<div class="ui input" style="width: 100%">
+						<input type="text" name="eq_no" id="eq_no" readonly="readonly">
+					</div>
+					<div class="actions">
+						<br>
+						<div class="ui a button" onclick="insert()">등록</div>
+						<div class="ui cancel button">취소</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 	<script>
 		/* $('#taable').DataTable( {
 			  ajax: {
-			  	url:"./jsonTest.json",7
+			  	url:"./jsonTest.json",
 				type:"POST",
 				dataType:"JSON",
 				dataSrc: ""
@@ -98,7 +117,7 @@
 		      ]
 		} );
 		 */
-		 
+		 $.fn.dataTable.ext.errMode ='';
 		var table = $('#taable').DataTable({
 			//"lengthChange": false, //페이지메뉴 없음 설정
 			//페이지 메뉴 조회 수량 설정 
@@ -121,25 +140,25 @@
 				} //페이지 네이션 버튼 한글로 변경
 			},
 			ajax : {
-				url : "/E_BLOCK_plus/equip/inb/eqList.ebp",
+				url : "/E_BLOCK_plus/equip/add/equipList.ebp",
 				dataSrc : 'data'
 			},
 	
 			columns : [
 				{
-					"data" : "eq_name"
+					"data" : "eq_no"
 				},
 				{
 					"data" : "eq_sort"
 				},
 				{
-					"data" : "inb_state"
+					"data" : "eq_name"
 				},
 				{
-					"data" : "last_ename"
+					"data" : "cost"
 				},
 				{
-					"data" : "last_date"
+					"data" : "eq_date"
 				},
 				{
 					//계약 변경 버튼
@@ -154,9 +173,8 @@
 				{
 					targets : [ 5 ],
 					data : null,
-					defaultContent : "<div class='ui small button' id='b_change' value ='대여신청' >대여신청</div>"
+					defaultContent : "<div class='ui small button' id='b_click' value ='신청' >신청</div>"
 				}
-	
 			/* 
 				    {
 				         "targets": [ 6 ],
@@ -180,28 +198,31 @@
 				    } 
 				    */
 			]
-		});
+		});	
 		$('#taable th').attr("class", "center aligned");
 //===================================버튼 아이디 비교===========================		
 		$('#taable tbody').on('click', 'div', function() {
- 			//var data = table.row($(this).parents('tr')).data();
-			//alert(data["e_name"]);
- //			if (document.getElementById('b_change')!=null) {
-			if (this.id == 'b_change') {
+			if (this.id == 'b_click') {
 			    //alert(this.id);
-				var data = table.row($(this).parents('tr')).data();
-				//alert(data["e_no"]);
-			    empUpdate(data["e_no"]);	
-
+			var data = table.row($(this).parents('tr')).data();
+			$('#eq_no').val(data["eq_no"]);
+				
+				/* Sign_up(data["eq_no"], data["eq_sort"]) */
+					
+			$("#modal").modal('show');
+					
 			} 
-			else if(this.id == 'b_edit') {
-			    //alert(this.id);
-				var data = table.row($(this).parents('tr')).data();
-				//alert(data["e_no"]);
-				deptUpdate(data["e_no"]);
- 			}
 		});
-		
+		function newaa(){
+		location.href="/E_BLOCK_plus/equip/add/newArticleAsk.ebp";
+		}function back(){
+			location.href="/E_BLOCK_plus/equip/add/addAskList.jsp";
+			}
+		function insert(){
+			$("#f_insert").attr("method","post")
+			$("#f_insert").attr("action","/E_BLOCK_plus/equip/purc/ask.ebp")
+			$("#f_insert").submit()
+		}
 	</script>
 	<!--=============== 작성부분 ===============-->
 	<%@ include file="/front/_includePage/sticky"%>

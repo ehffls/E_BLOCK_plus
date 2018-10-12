@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>근태신청내역</title>
+<title>비품관리페이지</title>
 <%@ include file="/0_src/_includeList/commonUI_S.jsp"%>
 <script src="/E_BLOCK_plus/0_src/js/table/datatables.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
@@ -25,22 +25,20 @@
             <div class="column" align="center" style="padding-left: 0px;">
                <h2 class="ui header" style="padding-top: 5px;">
                   <i class="tasks icon"></i>
-                  <div class="content">근태 신청내역</div>
+                  <div class="content">비품 처리내역</div>
                </h2>
             </div>
          </div>
          <table id="taable" class="ui grey fixed single line celled table">
             <thead>
                <tr>
-                  <th>번호</th>
-                  <th>신청사원</th>
+                  <th>구매신청번호</th>
+                  <th>비품이름</th>
+                  <th>수량</th>
+                  <th>소계</th>
                   <th>신청일자</th>
-                  <th>분류</th>
-                  <th>신청사유</th>
-                  <th>시작일자</th>
-                  <th>종료일자</th>
-                  <th>소요일</th>
-                  <th>상태</th>
+                  <th>신청사원번호</th>
+                  <th>결재상태</th>
                </tr>
             </thead>
          </table>
@@ -53,6 +51,8 @@
                   <div class="menu">
                      <div class="item" id="btn_permit"><i class="thumbs up icon"></i> 승인</div>
                      <div class="item" id="btn_dismiss"><i class="thumbs down icon"></i> 기각</div>
+                     <div class="item" id="btn_cash"><i class="credit card icon"></i> 결제</div>
+                     <div class="item" id="btn_inbound"><i class="truck icon"></i> 입고</div>
                   </div>
                </div>
             </div>
@@ -69,37 +69,31 @@
          <div class="ui form">
             <div class="four fields">
                <div class="field">
-                  <label>신청번호</label> <input type="text" id="text_1" readonly>
+                  <label>구매신청번호</label> <input type="text" id="text_1" readonly>
                </div>
                <div class="field">
-                  <label>신청사원</label> <input type="text" id="text_2" readonly>
+                  <label>비품이름</label> <input type="text" id="text_2" readonly>
                </div>
                <div class="field">
-                  <label>신청일자</label> <input type="text" id="text_3" readonly>
+                  <label>수량</label> <input type="text" id="text_3" readonly>
                </div>
                <div class="field">
-                  <label>종류</label> <input type="text" id="text_4" readonly>
+                  <label>소계</label> <input type="text" id="text_4" readonly>
                </div>
             </div>
          </div>
          <div class="ui form">
-            <div class="four fields">
+            <div class="three fields">
                <div class="field">
-                  <label>소요일</label> <input type="text" id="text_5" readonly>
+                  <label>신청일자</label> <input type="text" id="text_5" readonly>
                </div>
                <div class="field">
-                  <label>시작일자</label> <input type="text" id="text_6" readonly>
+                  <label>신청사원번호</label> <input type="text" id="text_6" readonly>
                </div>
                <div class="field">
-                  <label>종료일자</label> <input type="text" id="text_7" readonly>
-               </div>
-               <div class="field">
-                  <label>결재상태</label> <input type="text" id="text_8" readonly>
+                  <label>결재상태</label> <input type="text" id="text_7" readonly>
                </div>
             </div>
-            <div class="field">
-                  <label>결재사유</label> <input type="text" id="text_9" readonly>
-               </div>
          </div>
 
       </div>
@@ -133,30 +127,26 @@
          //페이지 네이션 버튼 한글로 변경
          },
          ajax : {
-            url : "/E_BLOCK_plus/attd/toMe/list.ebp",
+            url : "/E_BLOCK_plus/equip/inb/changeList.ebp",
             dataSrc : 'data'
          },
          columns : [ {
-            "data" : "at_no"
+            "data" : "eq_pno" //구매신청번호
          }, {
-            "data" : "ask_ename"
+            "data" : "eq_name"//비품이름
          }, {
-            "data" : "ask_date"
+            "data" : "num"//수량
          }, {
-            "data" : "at_sort"
+            "data" : "subtotal"//소계
          }, {
-            "data" : "at_rsn"
+            "data" : "ask_date"//신청일자
          }, {
-            "data" : "at_sdate"
+            "data" : "ask_eno" //신청사원번호
          }, {
-            "data" : "at_fdate"
-         }, {
-            "data" : "at_days"
-         }, {
-            "data" : "outcome"
+            "data" : "outcome"//결재상태
          } ],
          columnDefs : [ {
-            targets : [ 0, 3 ],
+            targets : [ 0, 3, 4, 5 ],
             width: "12%",
             className : 'right aligned'
          },
@@ -167,21 +157,14 @@
          },
          {
             targets : [ 2 ], //수량
-            width: "20%",
-            className : 'center aligned'
+            width: "10%",
+            className : 'center aligned',
+            render : function( data, type, row ) {
+               return "<div class='ui input' align='center'><input type='text' value='"+data+"' style='width:15px;'></div>";
+            }// 해놓긴 했는데, 결재자는 수량을 바꾸지 않네.. 다른데 써주렴...
          },
          {
-            targets : [ 4 ], //수량
-            width: "25%",
-            className : 'center aligned'
-         },
-         {
-            targets : [ 5,6,7 ], //수량
-            width: "20%",
-            className : 'center aligned'
-         },
-         {
-            targets : [ 8 ], // 상태
+            targets : [ 6 ], // 상태
             width: "20%",
             className : 'center aligned',
             render : function ( data, type, row ) {
@@ -207,7 +190,9 @@
       $('#taable tbody').on('click', 'tr', function() {
          
          //로우의 outcome값이 '취소' 또는 '기각' 또는 '입고완료'가 아닌 로우에 대하여
-         if(table.row(this).data()["outcome"]=="대기"){
+         if(table.row(this).data()["outcome"]!="취소"
+               ||table.row(this).data()["outcome"]!="기각"
+               ||table.row(this).data()["outcome"]!="입고완료"){
             
             //취소하기
             if ($(this).hasClass('active ro')) {
@@ -220,11 +205,11 @@
                //선택되어져 있던 로우들 중 최초의 outcome값
                var f_outcome = null;
                $('.active.ro').each(function(index, element){
-                  f_outcome = $(this).children().eq(8).text();
+                  f_outcome = $(this).children().eq(6).text();
                   return;//먼저 선택된 결재상태의 문자값만 담고 반복each문 탈출
                });
                //(이후에)현재 선택한 로우의  outcome값
-               var t_outcome = $(this).children().eq(8).text();
+               var t_outcome = $(this).children().eq(6).text();
                
                //둘을 비교해서 같거나, 혹은 먼저 선택된 로우의 outcome값이 없으면
                if(f_outcome == t_outcome || f_outcome == null){
@@ -237,23 +222,27 @@
       });
 
       $('#btn_permit').on('click', function() {
-         approval('attd-3');//승인
+         approval('ibp-3');//승인
       });
       $('#btn_dismiss').on('click', function() {
-         approval('attd-2');//기각
+         approval('ibp-2');//기각
+      });
+      $('#btn_cash').on('click', function() {
+         approval('ibp-4');//결제
+      });
+      $('#btn_inbound').on('click', function() {
+         approval('ibp-5');//입고
       });
       
       $('#taable tbody').on('dblclick', 'tr', function() {
          var data = table.row(this).data();
-         $('#text_1').val(data["at_no"]);
-         $('#text_2').val(data["ask_ename"]);
-         $('#text_3').val(data["ask_date"]);
-         $('#text_4').val(data["at_sort"]);
-         $('#text_5').val(data["at_days"]);
-         $('#text_6').val(data["at_sdate"]);
-         $('#text_7').val(data["at_fdate"]);
-         $('#text_8').val(data["outcome"]);
-         $('#text_9').val(data["at_rsn"]);
+         $('#text_1').val(data["eq_pno"]);
+         $('#text_2').val(data["eq_name"]);
+         $('#text_3').val(data["num"]);
+         $('#text_4').val(data["subtotal"]);
+         $('#text_5').val(data["ask_date"]);
+         $('#text_6').val(data["ask_eno"]);
+         $('#text_7').val(data["outcome"]);
          // attach events to buttons
          $('#modal_1').modal('setting', 'closable', false).modal('show');
          
@@ -283,11 +272,11 @@
             ,data:{//승인상태와 변경대상을 배열에 담아서 넘김 (ibp-3,X,X,X,..)
                "param":param
             }
-            ,url:'/E_BLOCK_plus/attd/toMe/sign.ebp'
+            ,url:'/E_BLOCK_plus/equip/purc/sign.ebp'
                   //결재사원번호는 로직에서 쿠키로 얻음
             ,success:function(html){
                alert('결재되었습니다.');
-               location.href = "./list.jsp";//자기자신에게 페이지이동(새로고침)
+               location.href = "./askList.jsp";//자기자신에게 페이지이동(새로고침)
             }
          });
       }

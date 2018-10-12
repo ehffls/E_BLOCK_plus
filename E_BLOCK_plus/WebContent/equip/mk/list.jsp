@@ -25,7 +25,7 @@
 				<div class="column" align="center" style="padding-left: 0px;">
 					<h2 class="ui header" style="padding-top: 5px;">
 						<i class="fax icon"></i>
-						<div class="content">거래처 내역</div>
+						<div class="content">거래처</div>
 					</h2>
 				</div>
 			</div>

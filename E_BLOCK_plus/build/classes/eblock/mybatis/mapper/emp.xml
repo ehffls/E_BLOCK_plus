@@ -184,6 +184,18 @@
 		 	</when>
 		 </choose> 
 	</select>
+	
+<!-- 내가 평가 가능한 사원 조회 -->
+	<select id="pev_tgList" parameterType="map" resultType="map">
+		SELECT e_no, e_name
+			,(CASE WHEN (e_rank = 50) THEN '대표' WHEN (e_rank = 40) THEN '부서장' WHEN (e_rank = 30) THEN '차장' WHEN (e_rank = 20) THEN '팀장' WHEN (e_rank = 10) THEN '사원' ELSE '인턴' END) AS `e_rank`
+		FROM `emp` 
+		 WHERE d_no = #{d_no}
+		   AND e_no NOT IN (SELECT  tg_eno FROM `pev` 
+		                     WHERE ev_eno=#{e_no}
+		                     )
+		   AND e_no != #{e_no}
+	</select>
  
  <!-- [ 내가 평가 가능한 사원 조회   ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  -->
    <select id="pev_tgList" parameterType="map" resultType="map">
@@ -370,10 +382,10 @@
 		VALUES(nextSeqVal('seq_rt_no')
            	  ,DATE_FORMAT(now(), '%Y-%m-%d') <!-- 퇴사신청일자 : 2011-06-14 -->
       		  ,#{rt_date} <!-- 퇴사예정일자 : 2018-10-26 -->
-			  ,#{outcome} <!-- 신청결과상태값-->
+			  ,'rta-1' <!-- 신청결과상태값-->
       		  ,#{ask_rsn} <!-- 신청사유 -->
       		  ,#{ask_eno} <!-- 퇴사신청사원 -->
-      		  ,#{sign_eno} <!-- 퇴사결재사원 -->
+      		  ,1 <!-- #{sign_eno} --> <!-- 퇴사결재사원 -->
       		  );
  	</insert>
  	
@@ -416,12 +428,15 @@
 	</update>
  
  <!-- [ 퇴사신청 결재하기 | 테스트완료(09/27) ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  -->
-	<update id="retire_sign" parameterType="map">
+	<update id="retire_sign" parameterType="java.util.List">
+		<foreach item="item" index="key" collection="list" separator=";">
 		UPDATE `retire_ask_list`
-		   SET sign_rsn  = #{sign_rsn} <!-- 승인사유 -->
+		   SET sign_rsn  = '퇴사처리완료' <!-- 승인사유 -->
    			  ,sign_date = DATE_FORMAT(now(), '%Y-%m-%d')
-   			  ,outcome   = #{outcome} <!-- 승인일때 'rta-3' / 기각일때 'rta-2' -->
-   		 WHERE rt_no = #{rt_no}
+   			  ,outcome   = #{item.outcome} <!-- 승인일때 'rta-3' / 기각일때 'rta-2' -->
+  		 WHERE rt_no = #{item.rt_no}
+   		AND sign_eno = #{item.sign_eno}
+   		 </foreach>
 	</update>
 	
 	
