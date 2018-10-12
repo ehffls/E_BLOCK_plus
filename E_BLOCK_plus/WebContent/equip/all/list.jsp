@@ -7,6 +7,24 @@
 <%@ include file="/0_src/_includeList/commonUI_S.jsp"%>
 <script src="/E_BLOCK_plus/0_src/js/table/datatables.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
+<script type="text/javascript">
+	function io_insert_page(){
+		$('#acc_add').modal('show');
+	}
+	function io_insert(){
+		$("#f_io").attr("method","post");
+		$("#f_io").attr("action","/E_BLOCK_plus/equip/mk/add.ebp");
+		$("#f_io").submit();
+	}
+	 function sort_insert_page(){
+		$('#sort_add').modal('show');
+	}
+	 function sort_insert(){
+			$("#f_soert").attr("method","post");
+			$("#f_soert").attr("action","/E_BLOCK_plus/equip/sort/add.ebp");
+			$("#f_soert").submit();
+		}
+</script>
 </head>
 <body>
 	<!-- sidebar -->
@@ -17,7 +35,62 @@
 	<!--■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■[비품추가신청조회]■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
 
 	<!--=============== 작성부분 ===============-->
+	<div class="ui mini modal" id="acc_add">
+		<div class="header">거래처 등록</div>
 
+		<div class="content">
+			<div class="bady">
+			<form id="f_io">
+				<div class="text">거래처종류</div>
+				<div class="ui input" style="width: 100%">
+					<input type="text" name="mk_cname" >
+				</div>
+				<div class="text">거래처이름</div>
+				<div class="ui input" style="width: 100%">
+					<input type="text" name="mk_ename">
+				</div>
+				<div class="text">연락처</div>
+				<div class="ui input" style="width: 100%">
+					<input type="text" name="mk_ph">
+				</div>
+				<div class="text">팩스</div>
+				<div class="ui input" style="width: 100%">
+					<input type="text" name="mk_fax">
+				</div>
+				<div class="text">이메일</div>
+				<div class="ui input" style="width: 100%">
+					<input type="text" name="mk_email">
+				</div>
+				<div class="actions">
+					<br>
+					<div class="ui a button" onclick="io_insert()">등록</div>
+					<div class="ui cancel button">취소</div>
+				</div>
+				</form>
+
+		</div>
+	</div>
+	 <div class="ui mini modal" id="sort_add">
+		<div class="header">비품분류 등록추가</div>
+
+		<div class="content">
+			<form id="f_soert">
+				<div class="text">비품분류이름</div>
+				<div class="ui input" style="width: 100%">
+					<input type="text" name="eq_sort" >
+			    </div>				
+				
+				<div class="actions">
+					<br>
+					<div class="ui a button" onclick="sort_insert()">등록</div>
+					<div class="ui cancel button">취소</div>
+				</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+ -->
 	<div class="ui container" style="margin-top: 20px;">
 		<div class="ui segment">
 			<div class="ui form">
@@ -43,7 +116,7 @@
 								</tr>
 							</thead>
 						</table>
-							<div id="btn_1" class="orange ui button">거래처 추가</div>
+							<div id="btn_1" class="orange ui button" onclick="io_insert_page()">거래처 추가</div>
 					</div>
 					<div class="five wide field">
 						<div class="ui column stackable grid container">
@@ -61,7 +134,7 @@
 								</tr>
 							</thead>
 						</table>
-							<div id="btn_1" class="orange ui button">종류 추가</div>
+							<div id="btn_1" class="orange ui button" onclick="sort_insert_page()">종류 추가</div>
 					</div>
 				</div>
 			</div>

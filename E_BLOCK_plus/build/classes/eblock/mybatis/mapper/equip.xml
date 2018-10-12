@@ -244,20 +244,16 @@
 	<insert id="mk_add" parameterType="map">
 		INSERT INTO `eq_market`
 		SET mk_no    = nextSeqVal('seq_mk_no')
-		  , mk_cname = #{mk_cname} 	<!-- 업체이름 		// '하드웨어납품업체' // 유니크컬럼(중복시 입력불가) -->
-		  , mk_ename = #{mk_ename} 	<!-- 업체담당자이름	//'하드남(Hard-man)' -->
+		  , mk_cname = #{mk_cname} 	<!-- 거래처종류 		// '하드웨어납품업체' // 유니크컬럼(중복시 입력불가) -->
+		  , mk_ename = #{mk_ename} 	<!-- 회사이름	//'하드남(Hard-man)' -->
 		  , mk_ph    = #{mk_ph} 	<!-- 업체연락처 	// '010-8899-9898' -->
-		<choose>
-			<when test="mk_fax != null">
+			<if test="mk_fax != null">
 		  , mk_fax   = #{mk_fax} 	<!-- 업체팩스번호	//'02-3399-5850' -->
-			</when>
-			<when test="mk_email != null">
+			</if>
+			<if test="mk_email != null">
 		  , mk_email = #{mk_email} 	<!-- 업체이메일주소	//'hardware@market.com' -->
-			</when>
-			<when test="mk_adate != null">
-		  , mk_adate = DATE_FORMAT(now(), '%Y-%m-%d') <!-- 2011-06-14 -->
-			</when>
-		</choose>  
+			</if>
+		 , mk_adate = DATE_FORMAT(now(), '%Y-%m-%d') <!-- 2011-06-14 -->
 	</insert>
 <!-- [결재권자] -->
 <!-- ─────[ 등록된 거래처 수정하기 ]──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->

@@ -65,8 +65,7 @@ public class EquipController implements Controller {
 			//비품분류 등록하기
 			if(crud.equals("add")) {
 				result = equipLogic.sort_add(pMap);
-				name ="attribute의 name redirect면 안씀";
-				path="forward:xxx.jsp";
+				path="redirect:/equip/all/list.jsp";
 			}
 			//[결재권자]
 			//등록된 비품분류 수정하기 
@@ -152,8 +151,7 @@ public class EquipController implements Controller {
 			//거래처 등록하기 
 			if(crud.equals("add")) {
 				result = equipLogic.mk_add(pMap);
-				name ="attribute의 name redirect면 안씀";
-				path="forward:xxx.jsp";
+				path="redirect:/equip/all/list.jsp";
 			}
 			//[결재권자]
 			//등록된 거래처 수정하기 

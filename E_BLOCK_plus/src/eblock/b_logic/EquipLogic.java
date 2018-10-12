@@ -38,6 +38,7 @@ public class EquipLogic {
 	//[결재권자]
 	//비품분류 등록하기
 	public int sort_add(Map<String, Object> pMap) {
+		pMap.put("e_no", pMap.get("c_eno"));
 		result = equipDao.sort_add(pMap);
 		return result;
 	}
@@ -122,6 +123,7 @@ public class EquipLogic {
 	//[결재권자]
 	//거래처 등록하기 
 	public int mk_add(Map<String, Object> pMap) {
+		logger.info(pMap);
 		result = equipDao.mk_add(pMap);
 		return result;
 	}
