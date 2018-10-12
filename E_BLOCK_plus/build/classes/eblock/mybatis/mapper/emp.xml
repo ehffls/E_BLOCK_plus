@@ -201,6 +201,7 @@
          AND e_no NOT IN (SELECT  tg_eno FROM `pev` 
                            	 WHERE ev_eno=#{e_no})
          AND e_no != #{e_no}
+         AND e_rank != 0
    </select>
  
 <!--
