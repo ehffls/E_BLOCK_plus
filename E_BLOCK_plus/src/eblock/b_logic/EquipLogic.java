@@ -94,7 +94,7 @@ public class EquipLogic {
 			newMap = new HashMap<>();
 			newMap.put("outcome",words[0]);//상태값
 			newMap.put("eq_addno",words[i]);
-			newMap.put("e_no", pMap.get("c_eno"));//결재자번호 10.. 쿠키에서 얻어야함.
+			newMap.put("e_no", pMap.get("c_eno"));//결재자번호 10.. 쿠키에서 얻어온 값
 			newList.add(newMap);
 		}
 		logger.info("newList : "+newList);

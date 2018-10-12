@@ -15,11 +15,23 @@
 	<!-- main -->
 	<%@ include file="/front/_includePage/mainpage.jsp"%>
 
-
-
 	<!--=============== 작성부분 ===============-->
-	<!-- 로그인시 부서 이름 쿠키로 .. 부서장 이상의 관리자 조회 되게 해야함. -->
-	<!-- 전체 조회 되게만 했음... -->
+
+
+	<%
+	Cookie[] cs_dname = request.getCookies();
+	String d_name = null;
+	if (cs_dname != null) {
+		for (int i = 0; i < cs_dname.length; i++) {
+			String cdname = cs[i].getName();
+			if ("c_dname".equals(cdname)) {
+				d_name = cs[i].getValue();
+			}
+		}
+	}
+	System.out.println("사원번호: " + d_name);
+	%>
+
 
 	<div class="ui container" style="margin-top: 5px;">
 		<div class="ui column stackable grid container">
@@ -90,6 +102,7 @@
 
 
 	<script>
+	var d_name= "<%=d_name%>";
 		//사이드 메뉴 설정
 		$('#sm_emp').attr("class", "active item");
 		$('#sm_emp_cmt').attr("class", "active item");
@@ -130,7 +143,7 @@
 				} //페이지 네이션 버튼 한글로 변경
 			},
 			ajax : {
-				url : "/E_BLOCK_plus/emp/cmt/deptList.ebp",
+				url : "/E_BLOCK_plus/emp/cmt/deptList.ebp?d_name="+d_name,
 				dataSrc : 'data'
 			},
 			columns : [

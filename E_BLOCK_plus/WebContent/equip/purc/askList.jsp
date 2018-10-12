@@ -23,7 +23,6 @@
          <a class="item" href="/E_BLOCK_plus/equip/add/askList.jsp">비품추가신청조회</a> <a class="item active" href="/E_BLOCK_plus/equip/purc/askList.jsp">비품구매신청조회</a> <a class="item" href="/E_BLOC_plus/equip/inb/askList.jsp">비품입출신청조회</a>
       </div>
       <div class="ui segment">
-         <!-- 검색창 시작  -->
          <div class="ui column stackable grid container">
             <div class="column" align="center" style="padding-left: 0px;">
                <h2 class="ui header" style="padding-top: 5px;">
@@ -223,6 +222,19 @@
          }
          
       });
+      $('#taable tbody').on('dblclick', 'tr', function() {
+         var data = table.row(this).data();
+         $('#text_1').val(data["eq_pno"]);
+         $('#text_2').val(data["eq_name"]);
+         $('#text_3').val(data["num"]);
+         $('#text_4').val(data["subtotal"]);
+         $('#text_5').val(data["ask_date"]);
+         $('#text_6').val(data["ask_eno"]);
+         $('#text_7').val(data["outcome"]);
+         // attach events to buttons
+         $('#modal_1').modal('setting', 'closable', false).modal('show');
+         
+      });
 
       $('#btn_permit').on('click', function() {
          approval('ibp-3');//승인
@@ -237,20 +249,8 @@
          approval('ibp-5');//입고
       });
       
-      $('#taable tbody').on('dblclick', 'tr', function() {
-         var data = table.row(this).data();
-         $('#text_1').val(data["eq_pno"]);
-         $('#text_2').val(data["eq_name"]);
-         $('#text_3').val(data["num"]);
-         $('#text_4').val(data["subtotal"]);
-         $('#text_5').val(data["ask_date"]);
-         $('#text_6').val(data["ask_eno"]);
-         $('#text_7').val(data["outcome"]);
-         // attach events to buttons
-         $('#modal_1').modal('setting', 'closable', false).modal('show');
-         
-      });
       
+      //다중선택값 서버전송코드
       function approval(outcome){
          //수정할 로우의 첫번째 셀(신청번호)의 값을 배열에 담음
          var tdArr = new Array();

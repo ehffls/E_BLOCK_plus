@@ -97,14 +97,12 @@ public class EquipDao {
 		list = sqlSession.selectList(nameSpace+"add_askList", pMap);
 		return list;
 	}
-	//다중조건 검토문 예제 구현하기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 	//[결재권자]
 	//─────[ 비품추가신청내역신청 결재하기 ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 	public int add_sign(List<Map<String, Object>> pList) {
 		result = sqlSession.update(nameSpace+"add_sign",pList);
 		return result;
 	}
-///////////////////// 상위 코드 단위테스트 완료 [ 10/04 ] //////////////////////////////////////////
 	//─────[ (신청가능)비품테이블에서 비품 조회하기 ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 	public List<Map<String, Object>> add_equipList(Map<String, Object> pMap) {
 		list = sqlSession.selectList(nameSpace+"add_equipList", pMap);
