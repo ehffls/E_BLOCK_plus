@@ -18,7 +18,7 @@
 	<!--=============== 작성부분 ===============-->
 
 		<div class="ui container" >
-			<form class="ui form" id="pev_AddForm">
+			<form class="ui form" id="pev_AddForm" method="post" action="/E_BLOCK_plus/emp/pev/add.ebp">
 				<h4 class="ui dividing header">인사평가작성</h4>
 				<div class="two fields">
 					<div class="field">
@@ -32,7 +32,7 @@
 					<div class="field">
 						<label>평가점수</label>
 						<div class="field">
-							<div class="ui massive heart rating" style="margin-top: 6px; margin-left: 30px"></div>
+							<div id="heart" class="ui massive heart rating" style="margin-top: 6px; margin-left: 30px"></div>
 						</div>
 					</div>
 				</div>
@@ -40,20 +40,37 @@
 					<label>인사평가작성</label>
 					<textarea style="resize: none; height: 80%" name="ev_content"></textarea>
 				</div>
-				<input type="hidden" name="ev_eno" />
-				<input type="hidden" name="ev_score" />
-				<div class="field" align="center">
-					<a href="javascript:pevAddTg()" class="ui button" >저장</a>
-					<div class="ui button" onclick="pev_bcencel()">취소</div>
+				<input type="hidden" id="ev_eno" name="ev_eno"/>
+				<input type="hidden" id="tg_eno" name="tg_eno"/>
+				<input type="hidden" id="ev_score" name="ev_score"/>
+				<div align="center">
+					<button class="ui button" id="btn" onclick="pevAdd()" >등록</button>
+					<div class="ui button" onclick="">취소</div>
 				</div>
 			</form>
 		</div>
 	<script type="text/javascript">
 
-		$('.ui.rating').rating({
-				initialRating : 0,
-				maxRating : 5
-			});
+		$('#heart').rating({ initialRating : 0, maxRating : 5 });
+		
+		function cntrPevAdd(){
+			var new_score = $('#heart').rating('get rating')*2;
+        	//alert(new_score);
+        	$("#ev_score").val(new_score);
+        	//alert($("#ev_score").val());
+/*         	$("#pev_AddForm").attr("method","post");
+    		$("#pev_AddForm").attr("action","/E_BLOCK_plus/emp/pev/add.ebp");  
+    		$('#pev_AddForm').submit(); */
+		}
+		
+		
+		function pevAdd(){
+			var new_score = $('#heart').rating('get rating')*2;
+        	$("#ev_score").val(new_score);
+			$('#pev_AddForm').submit();
+		}
+
+		
 
 	</script>
 
