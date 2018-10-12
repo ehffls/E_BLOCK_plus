@@ -51,10 +51,6 @@ $(document)
       <img src="/E_BLOCK_plus/1_file/img/_common/logo_white_all.png" style="width: 50%; height: 50%">
    </div>
    <!-- 로고 끝 -->
-   <!-- 메인페이지 시작 -->
-   <a class="item" href="<%=Project_Root2%>/emp/cmt/myList.jsp" id="sm_main">메인페이지</a>
-   <!-- 메인페이지 끝 -->
-   <!-- 메인페이지 시작 -->
    <%-- <a class="item" href="<%=Project_Root2%>" id="sm_search">부서/사원검색</a> --%>
    <!-- 메인페이지 끝 -->
    <!-- 나의전자결재 시작 -->
@@ -62,17 +58,17 @@ $(document)
       <div class="header">나의전자결재</div>
       <div class="ui vertical inverted accordion menu">
          <div class="item">
-            <a class="active title" id="sm_fromMe_equip"> 근태관련 </a>
+            <a class="active title" id="sm_fromMe_attd"> 근태관련 </a>
             <div class="active content">
-               <a class="item" href="<%=Project_Root2%>/attd/my/attdMyAsk.jsp" id=""> 근태관련 신청 </a>      
-               <a class="item" href="<%=Project_Root2%>" id=""> 내 신청 조회 </a>      
+               <a class="item" href="<%=Project_Root2%>/attd/my/attdMyAsk.jsp" id="sm_fromMe_attdC"> 근태관련 신청 </a>      
+               <a class="item" href="#" id="sm_fromMe_attdR"> 내 신청 조회 </a>      
             </div>
          </div>
          <div class="item">
             <a class="active title" id="sm_fromMe_equip"> 비품관련 </a>
             <div class="active content">
                <a class="item" href="<%=Project_Root2%>/equip/add/addAskList.jsp" id="sm_fromMe_equipC"> 비품관련 신청 </a>      
-               <a class="item" href="<%=Project_Root2%>" id="sm_fromMe_equipR"> 내 신청 조회 </a>      
+               <a class="item" href="#" id="sm_fromMe_equipR"> 내 신청 조회 </a>      
             </div>
          </div>
       </div>
@@ -89,14 +85,20 @@ $(document)
    </div>
    <!-- 전자결재 끝 -->
    <!-- 인사평가 시작 -->
-   <a class="item" href="<%=Project_Root2%>" id="sm_pev">인사평가</a>
+   <div class="item" id="sm_pev">
+      <div class="header">인사평가</div>
+      <div class="menu">
+         <a class="item" href="<%=Project_Root2%>/emp/pev/pevMyList.jsp" id="sm_pev_pevMy"> 평가한 내역 조회 및 수정 </a>
+         <a class="item" href="<%=Project_Root2%>/emp/pev/pevTgList.jsp" id="sm_pev_pevTg"> 인사평가하기 </a>
+      </div>
+   </div>
    <!-- 인사평가 끝 -->
    <!-- 인사관리 시작 -->
    <div class="item" id="sm_emp">
       <div class="header">인사관리</div>
       <div class="menu">
          <a class="item" href="<%=Project_Root2%>/emp/cmt/cmtDeptList.jsp" id="sm_emp_cmt"> 출결관리 </a>
-         <a class="item" href="<%=Project_Root2%>/emp/pev/pevList.jsp" id="sm_emp_pev"> 인사평가결과 </a>
+         <%-- <a class="item" href="<%=Project_Root2%>/emp/pev/pevList.jsp" id="sm_emp_pev"> 인사평가결과 </a> --%>
          <a class="item" href="<%=Project_Root2%>/emp/cntr/cntrList.jsp" id="sm_emp_dept"> 사원/부서 관리 </a>
       </div>
    </div>
@@ -105,7 +107,7 @@ $(document)
    <div class="item" id="sm_equip">
       <div class="header">비품관리</div>
       <div class="menu">
-         <a class="item" href="<%=Project_Root2%>" id="sm_equip_add"> 입고비품관리 </a>
+         <a class="item" href="#" id="sm_equip_add"> 입고비품관리 </a>
          <a class="item" href="<%=Project_Root2%>/equip/all/list.jsp" id="sm_equip_buy"> 비품분류|거래처 </a>
       </div>
    </div>

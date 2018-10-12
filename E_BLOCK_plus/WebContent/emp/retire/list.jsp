@@ -96,6 +96,10 @@
       </div>
    </div>
    <script>
+   
+   $('#sm_toMe').attr("class", "active item");
+   $('#sm_toMe_retire').attr("class", "active item");
+   
    $(function(){
       $('#ap_bp').attr('class', 'item active');
    });

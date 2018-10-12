@@ -40,69 +40,70 @@
 
 		<div class="content">
 			<div class="bady">
-			<form id="f_io">
-				<div class="text">거래처종류</div>
-				<div class="ui input" style="width: 100%">
-					<input type="text" name="mk_cname" >
-				</div>
-				<div class="text">거래처이름</div>
-				<div class="ui input" style="width: 100%">
-					<input type="text" name="mk_ename">
-				</div>
-				<div class="text">연락처</div>
-				<div class="ui input" style="width: 100%">
-					<input type="text" name="mk_ph">
-				</div>
-				<div class="text">팩스</div>
-				<div class="ui input" style="width: 100%">
-					<input type="text" name="mk_fax">
-				</div>
-				<div class="text">이메일</div>
-				<div class="ui input" style="width: 100%">
-					<input type="text" name="mk_email">
-				</div>
-				<div class="actions">
-					<br>
-					<div class="ui a button" onclick="io_insert()">등록</div>
-					<div class="ui cancel button">취소</div>
-				</div>
+				<form id="f_io">
+					<div class="text">거래처종류</div>
+					<div class="ui input" style="width: 100%">
+						<input type="text" name="mk_cname">
+					</div>
+					<div class="text">거래처이름</div>
+					<div class="ui input" style="width: 100%">
+						<input type="text" name="mk_ename">
+					</div>
+					<div class="text">연락처</div>
+					<div class="ui input" style="width: 100%">
+						<input type="text" name="mk_ph">
+					</div>
+					<div class="text">팩스</div>
+					<div class="ui input" style="width: 100%">
+						<input type="text" name="mk_fax">
+					</div>
+					<div class="text">이메일</div>
+					<div class="ui input" style="width: 100%">
+						<input type="text" name="mk_email">
+					</div>
+					<div class="actions">
+						<br>
+						<div class="ui a button" onclick="io_insert()">등록</div>
+						<div class="ui cancel button">취소</div>
+					</div>
 				</form>
 
+			</div>
 		</div>
-	</div>
-	 <div class="ui mini modal" id="sort_add">
-		<div class="header">비품분류 등록추가</div>
+		<div class="ui mini modal" id="sort_add">
+			<div class="header">비품분류 등록추가</div>
 
-		<div class="content">
-			<form id="f_soert">
-				<div class="text">비품분류이름</div>
-				<div class="ui input" style="width: 100%">
-					<input type="text" name="eq_sort" >
-			    </div>				
-				
-				<div class="actions">
-					<br>
-					<div class="ui a button" onclick="sort_insert()">등록</div>
-					<div class="ui cancel button">취소</div>
-				</div>
+			<div class="content">
+				<form id="f_soert">
+					<div class="text">비품분류이름</div>
+					<div class="ui input" style="width: 100%">
+						<input type="text" name="eq_sort">
+					</div>
+
+					<div class="actions">
+						<br>
+						<div class="ui a button" onclick="sort_insert()">등록</div>
+						<div class="ui cancel button">취소</div>
+					</div>
 				</form>
 
 			</div>
 		</div>
 	</div>
-	<div class="ui container" style="margin-top: 20px;">
-		<div class="ui segment">
-			<div class="ui form">
-				<div class="two fields">
-					<div class="eleven wide field">
-						<div class="ui column stackable grid container">
-							<div class="column" align="center" style="padding-left: 0px;">
-								<h2 class="ui header" style="padding-top: 5px;">
-									<i class="fax icon"></i>
-									<div class="content">거래처</div>
-								</h2>
-							</div>
+	-->
+	<div class="ui form">
+		<div class="ui container">
+			<div class="two fields">
+				<div class="eleven wide field">
+					<div class="ui column stackable grid container">
+						<div class="column" align="center" style="padding-left: 0px;padding-right: 8">
+							<h2 class="ui header" style="padding-top: 5px;">
+								<i class="fax icon"></i>
+								<div class="content">거래처</div>
+							</h2>
 						</div>
+					</div>
+					<div class="ui segment">
 						<table id="taable" class="ui grey fixed single line celled table">
 							<thead>
 								<tr>
@@ -115,8 +116,10 @@
 								</tr>
 							</thead>
 						</table>
-							<div id="btn_1" class="orange ui button" onclick="io_insert_page()">거래처 추가</div>
+						<div id="btn_1" class="orange ui button" onclick="io_insert_page()" align="center">거래처 추가</div>
 					</div>
+				</div>
+				<div class="ui container">
 					<div class="five wide field">
 						<div class="ui column stackable grid container">
 							<div class="column" align="center" style="padding-left: 0px;">
@@ -126,14 +129,16 @@
 								</h2>
 							</div>
 						</div>
-						<table id="taable2" class="ui grey fixed single line celled table">
-							<thead>
-								<tr>
-									<th>비품분류</th>
-								</tr>
-							</thead>
-						</table>
-							<div id="btn_1" class="orange ui button" onclick="sort_insert_page()">종류 추가</div>
+						<div class="ui segment">
+							<table id="taable2" class="ui grey fixed single line celled table">
+								<thead>
+									<tr>
+										<th>비품분류</th>
+									</tr>
+								</thead>
+							</table>
+							<div id="btn_1" class="orange ui button" onclick="sort_insert_page()" >종류 추가</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -167,7 +172,7 @@
 				"zeroRecords" : "검색 결과가 없습니다", //검색 결과 없을때 나오는 문구 지정
 				"sLoadingRecords" : "읽는중...",
 				"sProcessing" : "처리중...",
-				"search" : "검색 : ",
+				"search" : "검색",
 				"lengthMenu" : "_MENU_", //디폴트: "sLengthMenu": "Show _MENU_ entries",
 				"paginate" : {
 					"previous" : "이전",
@@ -211,7 +216,7 @@
 				"zeroRecords" : "검색 결과가 없습니다", //검색 결과 없을때 나오는 문구 지정
 				"sLoadingRecords" : "읽는중...",
 				"sProcessing" : "처리중...",
-				"search" : "검색 : ",
+				"search" : "검색",
 				"lengthMenu" : "_MENU_", //디폴트: "sLengthMenu": "Show _MENU_ entries",
 				"paginate" : {
 					"previous" : "이전",

@@ -57,6 +57,7 @@
 </head>
 <body>
 	<div class="ui container" style="margin-top: 20px">
+	<div class="ui segment">
 		<form class="ui form" id ="f_newAA">
 			<h4 class="ui dividing header">비품등록 신청서</h4>
 			<div class="two fields">
@@ -119,11 +120,12 @@
 		<label>결재사유</label>
 		<textarea name="" style="resize: none; height: 80%"></textarea>
 	</div>
-	<div class="field">
+	<div class="field" align="center">
 		<div class="ui button" tabindex="0" id="ap_Ok" onclick="newaa()">저장</div>
 		<div class="ui button" tabindex="0" id="ap_cancel" onclick="newaa2()">취소</div>
 	</div>
 	</form>
+	</div>
 	</div>
 	<script type="text/javascript">
 	

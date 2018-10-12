@@ -68,7 +68,7 @@ $('#day').calendar({
 		<label>결재사유</label>
 		<textarea style="resize:none; height:80%"></textarea>
 	  </div>
-	  <div class="field">
+	  <div align="center">
 		<div class="ui button" tabindex="0" id="ap_Ok">저장</div>
 		<div class="ui button" tabindex="0" id="ap_cancel">취소</div>
 	  </div>

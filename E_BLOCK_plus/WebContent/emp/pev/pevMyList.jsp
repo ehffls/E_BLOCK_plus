@@ -19,7 +19,7 @@
 	<%@ include file="/front/_includePage/sidemenu.jsp"%>
 	<!-- main -->
 	<%@ include file="/front/_includePage/mainpage.jsp"%>
-
+	
 	<!--=============== 작성부분 ===============-->
 	<%
 		Cookie[] cs_eno = request.getCookies();
@@ -35,6 +35,10 @@
 		System.out.println("사원번호: " + ev_eno);
 	%>
 	<script type="text/javascript">
+	
+	$('#sm_pev').attr("class", "active item");
+	$('#sm_pev_pevMy').attr("class", "active item");
+	
 	function pevMyUpdata(data) {
 		$.ajax({
 			method : "post",

@@ -142,7 +142,7 @@ public class EmpController implements Controller {
 			else if (crud.equals("addEmp")) {
 				logger.info(pMap);
 				robj = empLogic.cntr_addEmp(pMap, res); // 쿠키 생성을 위한 응답객체
-				path = "redirect:/emp/cntr/cntrList.jsp";
+				path = "redirect:/emp/cntr/cntrAddResult2.jsp";
 			}
 			// 부서배정하기 및 이동하기
 			else if (crud.equals("setDeptAuth")) {

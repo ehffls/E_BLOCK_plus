@@ -45,7 +45,7 @@ function c_days(){
 </script>
 </head>
 <body>
-<script>
+	<script>
 $(document).ready(function(){
 	var witch = "";
 	//Form dropdown처리부분
@@ -87,9 +87,8 @@ $(document).ready(function(){
 	});
 	
 	//sidemenu처리 부분
-	$('#approval').attr("class","active item");
-	$('#sm_ap').attr("class","active item");
-	$('#sm_ap_form').attr("class","active item");
+	$('#sm_fromMe').attr("class", "active item");
+	$('#sm_fromMe_attdC').attr("class", "active item");
 });
 </script>
 
@@ -104,57 +103,66 @@ $(document).ready(function(){
 
 	<!--=============== 작성부분 ===============-->
 
+
+
 	<div class="ui container" style="margin-top: 10px">
-		<h2 style="margin-top: 20px">결재신청</h2>
-		<div class="ui compact selection dropdown" id="dor">
-			<i class="dropdown icon"></i>
-			<div class="text">휴가신청</div>
-			<div class="menu">
-				<div class="item">휴가신청</div>
-				<div class="item">반가신청</div>
-				<div class="item">출장신청</div>
+		<div class="ui column stackable grid container">
+			<div class="column" align="center" style="padding-left: 0px;">
+				<h2 class="ui header" style="padding-top: 5px;">
+					<i class="file alternate outline icon"></i>
+					<div class="content">결제신청</div>
+				</h2>
 			</div>
 		</div>
-
-		<div id="form_1">
-			<div class="ui container" style="margin-top: 20px">
-				<form class="ui form" id="attd_ask">
-					<h4 class="ui dividing header">휴가신청 결재서</h4>
-					<div class="two fields">
-						<div class="field">
-							<label>시작일자</label>
-							<div class="ui calendar" id="r_start">
-								<div class="ui input left icon">
-									<i class="calendar icon"></i> <input name="at_sdate" id="at_sdate" type="text" placeholder="시작일자">
+		<div class="ui segment">
+			<div class="ui compact selection dropdown" id="dor">
+				<i class="dropdown icon"></i>
+				<div class="text">휴가신청</div>
+				<div class="menu">
+					<div class="item">휴가신청</div>
+					<div class="item">반가신청</div>
+					<div class="item">출장신청</div>
+				</div>
+			</div>
+			<div id="form_1">
+				<div class="ui container" style="margin-top: 20px">
+					<form class="ui form" id="attd_ask">
+						<h4 class="ui dividing header">휴가신청 결재서</h4>
+						<div class="two fields">
+							<div class="field">
+								<label>시작일자</label>
+								<div class="ui calendar" id="r_start">
+									<div class="ui input left icon">
+										<i class="calendar icon"></i> <input name="at_sdate" id="at_sdate" type="text" placeholder="시작일자">
+									</div>
+								</div>
+							</div>
+							<div class="field">
+								<label>종료일자</label>
+								<div class="ui calendar" id="r_end">
+									<div class="ui input left icon">
+										<i class="calendar icon"></i> <input name="at_fdate" id="at_fdate" type="text" placeholder="종료일자">
+									</div>
 								</div>
 							</div>
 						</div>
-						<div class="field">
-							<label>종료일자</label>
-							<div class="ui calendar" id="r_end">
-								<div class="ui input left icon">
-									<i class="calendar icon"></i> <input name="at_fdate" id="at_fdate" type="text" placeholder="종료일자">
-								</div>
-							</div>
+						<div class="field" style="height: 300px">
+							<label>신청사유</label>
+							<textarea name="at_rsn" style="resize: none; height: 80%"></textarea>
 						</div>
-					</div>
-					<div class="field" style="height: 300px">
-						<label>신청사유</label>
-						<textarea name="at_rsn" style="resize: none; height: 80%"></textarea>
-					</div>
-					<div class="field">
-						<div class="ui button" tabindex="0" id="ap_Ok">저장</div>
-						<div class="ui button" tabindex="0" id="ap_cancel">취소</div>
-					</div>
-					<input type="hidden" name="at_days" id="at_days">
-					<input type="hidden" name="at_sort" value="atd-d">
-				</form>
+						<div align="center">
+							<div class="ui button" tabindex="0" id="ap_Ok">저장</div>
+							<div class="ui button" tabindex="0" id="ap_cancel">취소</div>
+						</div>
+						<input type="hidden" name="at_days" id="at_days"> <input type="hidden" name="at_sort" value="atd-d">
+					</form>
+				</div>
 			</div>
 		</div>
-</div>
-		<!--=============== 작성부분 ===============-->
+	</div>
+	<!--=============== 작성부분 ===============-->
 
 
-		<%@ include file="/front/_includePage/sticky"%>
+	<%@ include file="/front/_includePage/sticky"%>
 </body>
 </html>

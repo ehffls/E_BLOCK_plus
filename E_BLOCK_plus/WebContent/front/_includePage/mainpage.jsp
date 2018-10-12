@@ -1,18 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-/* Cookie[] cookies = request.getCookies();
+Cookie[] cookies = request.getCookies();
 String path = null;
 if(cookies!=null){
 	for(Cookie cookie: cookies){
 		if(cookie.getName().equals("c_eno")||cookie.getName().equals("c_ename")||cookie.getName().equals("c_auno"))
 			break;
 		else
-			path = "/E_BLOCK_plus/front/emp/login/login.jsp";
+			path = "/E_BLOCK_plus/emp/login/login.jsp";
 			//out.print(cookie.getName()+", "+cookie.getValue());
 	}
 	if(path!=null)
 		response.sendRedirect(path);
-} */
+}
 %>
 <script type="text/javascript">
 
@@ -46,6 +46,9 @@ if(cookies!=null){
 				</a> <a class="item" id="mainpage" href="/E_BLOCK_plus/emp/cmt/myList.jsp">메인페이지</a> <a class="item" id="approval">전자결재</a>
 				<!-- 우측메뉴 시작 -->
   <div class="right item"><%=e_name %></div>
+  <a class="ui item" href='/E_BLOCK_plus/emp/info/persList.ebp'>
+       내정보
+    </a> 
     <a class="ui item" href='/E_BLOCK_plus/emp/login/logout.jsp'>
  <!--    <a class="ui item active" href='/E_BLOCK_plus/emp/login/logout.ebp'> -->
       Logout

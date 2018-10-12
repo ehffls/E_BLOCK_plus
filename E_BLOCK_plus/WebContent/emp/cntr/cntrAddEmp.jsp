@@ -131,7 +131,7 @@
 					</div>
 				</div>
 				<div class="field">
-					<label>비고</label>
+					<label>사원비고</label>
 					<input type="text" name="note1" placeholder="비고">
 				</div>
 				<h4 class="ui dividing header">사원 계약 등록</h4>
@@ -185,7 +185,7 @@
 					</div>
 				</div>
 				<div class="field">
-					<label>비고</label>
+					<label>계약비고</label>
 					<input type="text" name="note2" placeholder="비고">
 				</div>
 				<div align="center">

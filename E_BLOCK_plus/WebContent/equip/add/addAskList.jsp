@@ -55,18 +55,23 @@
 </script>
 </head>
 <body>
-<!-- sidebar -->
+	<!-- sidebar -->
 	<%@ include file="/front/_includePage/sidemenu.jsp"%>
 	<!-- main -->
 	<%@ include file="/front/_includePage/mainpage.jsp"%>
 	<!--=============== 작성부분 ===============-->
 
-	
+	<div class="ui container" style="margin-top: 10px;">
+		<div class="ui column stackable grid container">
+			<div class="column" align="center" style="padding-left: 0px;">
+				<h2 class="ui header" style="padding-top: 5px;">
+					<i class="clipboard outline icon"></i>
+					<div class="content">입출신청</div>
+				</h2>
+			</div>
+		</div>
 
-
-	<div class="ui segment">
-		<div class="ui container">
-		<div class="ui dividing header">입출신청</div>
+		<div class="ui segment">
 			<table id="taable" class="ui grey fixed single line celled table">
 				<thead>
 					<tr>
@@ -79,8 +84,11 @@
 					</tr>
 				</thead>
 			</table>
-			<button class="fluid ui button" onclick="aal2()">구매신청</button>
+			<div align="center">
+				<button class="ui button" onclick="aal2()">구매신청</button>
+			</div>
 		</div>
+	</div>
 	</div>
 
 	<script>
@@ -98,6 +106,10 @@
 		      ]
 		} );
 		 */
+		 
+		 $('#sm_fromMe').attr("class", "active item");
+		 $('#sm_fromMe_equipC').attr("class", "active item");
+		  
 		 
 		var table = $('#taable').DataTable({
 			//"lengthChange": false, //페이지메뉴 없음 설정

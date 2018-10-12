@@ -24,43 +24,42 @@
 				</h2>
 			</div>
 		</div>
-
-		<div class="ui grid">
-			<div class="row" style="padding-bottom: 5px; padding-top: 0px;">
-				<div class="eight wide column"></div>
-				<div class="one wide column"></div>
-				<div class="three wide column">
-					<div class="ui calendar" id="r_start" align="right" style="margin-bottom: 5px;">
-						<div class="ui input left icon">
-							<i class="calendar icon"></i>
-							<input type="text" placeholder="시작일자" />
+		<div class="ui segment">
+			<div class="ui grid">
+				<div class="row" style="padding-bottom: 5px; padding-top: 10px;">
+					<div class="eight wide column"></div>
+					<div class="one wide column"></div>
+					<div class="three wide column">
+						<div class="ui calendar" id="r_start" align="right" style="margin-bottom: 5px;">
+							<div class="ui input left icon">
+								<i class="calendar icon"></i> <input type="text" placeholder="시작일자" />
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="four wide column ">
-					<div class="ui calendar" id="r_end" align="right" style="margin-bottom: 5px;">
-						<div class="ui input left icon">
-							<i class="calendar icon"></i>
-							<input id="r_end" type="text" placeholder="종료일자">
+					<div class="four wide column ">
+						<div class="ui calendar" id="r_end" align="right" style="margin-bottom: 5px;">
+							<div class="ui input left icon">
+								<i class="calendar icon"></i> <input id="r_end" type="text" placeholder="종료일자">
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
-		<table id="taable" class="ui grey fixed single line celled table">
-			<thead>
-				<tr>
-					<th>부서명</th>
-					<th>사원번호</th>
-					<th>사원명</th>
-					<th>직급</th>
-				</tr>
-			</thead>
-		</table>
+			<table id="taable" class="ui grey fixed single line celled table">
+				<thead>
+					<tr>
+						<th>부서명</th>
+						<th>사원번호</th>
+						<th>사원명</th>
+						<th>직급</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
 	</div>
-	
-		<script>
+
+	<script>
 		//사이드 메뉴 설정
 		$('#').attr("class", "active item");
 		$('#').attr("class", "active item");

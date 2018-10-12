@@ -68,6 +68,9 @@
 
 
 	<script>
+	$('#sm_pev').attr("class", "active item");
+	$('#sm_pev_pevTg').attr("class", "active item");
+	
 	var eno= "<%=ev_eno%>";
 	var dno= "<%=d_no%>";
 
@@ -120,7 +123,7 @@
 					{
 						targets : [ 2 ],
 						data : null,
-						defaultContent : "<div class='ui small button'>수정</div>"
+						defaultContent : "<div class='ui small button'>평가</div>"
 					},
 				    {
 				         targets: [ 3 ],

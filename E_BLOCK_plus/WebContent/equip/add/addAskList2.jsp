@@ -59,10 +59,17 @@
 
 	</script>
 
+	<div class="ui container" style="margin-top: 10px;">
+		<div class="ui column stackable grid container">
+			<div class="column" align="center" style="padding-left: 0px;">
+				<h2 class="ui header" style="padding-top: 5px;">
+					<i class="clipboard outline icon"></i>
+					<div class="content">구매신청</div>
+				</h2>
+			</div>
+		</div>
 
-	<div class="ui segment">
-		<div class="ui container">
-			<div class="ui dividing header">구매신청</div>
+		<div class="ui segment">
 			<table id="taable" class="ui grey fixed single line celled table">
 				<thead>
 					<tr>
@@ -75,9 +82,10 @@
 					</tr>
 				</thead>
 			</table>
-			<button class="fluid ui button" onclick="newaa()">추가신청</button>
-			<br>
-			<button class="fluid ui button" onclick="back()">뒤로가기</button>
+			<div align="center">
+				<button class="ui button" onclick="newaa()">추가신청</button>
+				<button class="ui button" onclick="back()">뒤로가기</button>
+			</div>
 		</div>
 	</div>
 	<div class="ui modal mini" id="modal">

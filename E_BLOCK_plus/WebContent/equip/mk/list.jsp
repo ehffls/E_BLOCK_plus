@@ -19,7 +19,6 @@
 	<!--=============== 작성부분 ===============-->
 
 	<div class="ui container" style="margin-top: 20px;">
-		<div class="ui segment">
 			<!-- 검색창 시작  -->
 			<div class="ui column stackable grid container">
 				<div class="column" align="center" style="padding-left: 0px;">
@@ -29,6 +28,7 @@
 					</h2>
 				</div>
 			</div>
+		<div class="ui segment">
 			<table id="taable" class="ui grey fixed single line celled table">
 				<thead>
 					<tr>
@@ -41,7 +41,9 @@
 					</tr>
 				</thead>
 			</table>
-			<div id="btn_1" class="ui button">거래처 추가</div>
+			<div align="center">
+				<div id="btn_1" class="ui button">거래처 추가</div>
+			</div>
 		</div>
 	</div>
 	</div>
@@ -69,20 +71,19 @@
 					<div class="field">
 						<label>mk_email</label> <input type="text" id="text_5">
 					</div>
-					<div class="field">
-						
-					</div>
+					<div class="field"></div>
 				</div>
 			</div>
 
 		</div>
-		<div class="actions">
-			<div class="ui ok button" id="okbtn_1">처리</div>
-			<div class="ui black deny button">취소</div>
+		<div>
+			<div class="actions">
+				<div class="ui ok button" id="okbtn_1">처리</div>
+				<div class="ui black deny button">취소</div>
+			</div>
 		</div>
-	</div>
-	
-<script type="text/javascript">
+
+		<script type="text/javascript">
 $(function(){
 
 	$('#btn_1').on('click', function() {
@@ -93,7 +94,7 @@ $(function(){
 	});
 });
 </script>
-	<script>
+		<script>
 		$.fn.dataTable.ext.errMode = '';
 		var table = $('#taable').DataTable({
 
@@ -152,10 +153,10 @@ $(function(){
 
 
 	</script>
-	<!--=============== 작성부분 ===============-->
+		<!--=============== 작성부분 ===============-->
 
 
 
-	<%@ include file="/front/_includePage/sticky"%>
+		<%@ include file="/front/_includePage/sticky"%>
 </body>
 </html>
