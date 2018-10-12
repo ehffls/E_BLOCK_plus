@@ -17,58 +17,7 @@
 </head>
 <body>
 
-
 	<!--=============== 작성부분 ===============-->
-
-	<%
-		String targetName = "cntr_list";//여기에 request객체에 담은 리스트의 name을 쓰세요
-		List<Map<String, Object>> list = (List<Map<String, Object>>) request.getAttribute(targetName);
-
-		int e_no = 0; //사원번호    
-		int d_no = 0; //부서번호    
-		String e_id = ""; //아이디	   
-		String e_pw = ""; //비밀번호	   
-		String e_name = ""; //사원이름    
-		String e_jdate = ""; //입사일자    
-		int au_no = 0; //권한번호    
-		String e_ph = ""; //사원연락처	
-		String e_email = ""; //사원이메일	
-		String note1 = ""; //사원비고    
-		String e_addr = ""; //사원주소	   
-		String e_bdate = ""; //생년월일	   
-		String gender = ""; //성별 	   
-		int e_rank = 0; //계약직급    
-
-		String cntr_date = ""; //계약일자    
-		String cntr_sort = ""; //계약분류    
-		String cntr_sal = ""; //계약연봉    
-		String cntr_sdate = ""; //계약시작일자   
-		String cntr_fdate = ""; //계약종료일자   
-		String note2 = ""; //계약비고    
-
-		if (list != null && list.size() > 0) {
-			e_no = Integer.parseInt(list.get(0).get("e_no").toString());
-			e_name = list.get(0).get("e_name").toString();
-			e_id = list.get(0).get("e_id").toString();
-			e_pw = list.get(0).get("e_pw").toString();
-			e_ph = list.get(0).get("e_ph").toString();
-			e_email = list.get(0).get("e_email").toString();
-			e_addr = list.get(0).get("e_addr").toString();
-			e_bdate = list.get(0).get("e_bdate").toString();
-			gender = list.get(0).get("gender").toString();
-			d_no = Integer.parseInt(list.get(0).get("d_no").toString());
-			e_jdate = list.get(0).get("e_jdate").toString();
-			au_no = Integer.parseInt(list.get(0).get("au_no").toString());
-			note1 = list.get(0).get("e_note").toString();
-			cntr_date = list.get(0).get("cntr_date").toString();
-			cntr_sort = list.get(0).get("cntr_sort").toString();
-			cntr_sal = list.get(0).get("cntr_sal").toString();
-			cntr_sdate = list.get(0).get("cntr_sdate").toString();
-			cntr_fdate = list.get(0).get("cntr_fdate").toString();
-			e_rank = Integer.parseInt(list.get(0).get("e_rank").toString());
-			note2 = list.get(0).get("cntr_note").toString();
-		}
-	%>
 
 	<div class="ui stacked segment" style="margin-bottom: 20px;">
 		<div class="ui container">

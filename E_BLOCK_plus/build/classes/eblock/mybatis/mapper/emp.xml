@@ -187,7 +187,7 @@
  
  <!-- [ 내가 평가 가능한 사원 조회   ]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  -->
    <select id="pev_tgList" parameterType="map" resultType="map">
-      SELECT e_no, e_name
+      SELECT e_no as 'tg_eno', e_name
 			,(CASE WHEN (e_rank = 50) THEN '대표' 
 				   WHEN (e_rank = 40) THEN '부서장'
 				   WHEN (e_rank = 30) THEN '차장'

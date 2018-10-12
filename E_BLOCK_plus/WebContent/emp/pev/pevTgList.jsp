@@ -54,6 +54,7 @@
 								<th>평가대상직급</th>
 								<th>평가대상이름</th>
 								<th>평가하기</th>
+								<th></th>
 							</tr>
 						</thead>
 					</table>
@@ -105,48 +106,55 @@
 					},
 					{
 						//평가하기 버튼
+					},
+					{
+						"data" : "tg_eno"
 					}
 		
 				],
 				columnDefs : [
 					{
-						targets : [ 0, 1, 2 ],
+						targets : [ 0, 1, 2 ,3],
 						className : 'center aligned'
 					},
 					{
 						targets : [ 2 ],
 						data : null,
 						defaultContent : "<div class='ui small button'>수정</div>"
-					}
+					},
+				    {
+				         targets: [ 3 ],
+				         visible: false, //화면에 출력, 비출력 설정
+				         searchable: false //화면에서 검색가능, 검색 불가 설정
+				    }
 				]
 			});
 			$('#taable th').attr("class", "center aligned");
 			$('#taable tbody').on('click', 'div', function() {
 					//alert(this.id);
 					var data = table.row($(this).parents('tr')).data();
-					pevMyAdd(data["e_name"]);
+					pevMyAdd(data["e_name"],data["tg_eno"]);
 			});
 			
-			function pevMyAdd(data) {
+			function pevMyAdd(data_e_name,data_tg_eno) {
+				var var_tg_eno = data_tg_eno;
 				$.ajax({
 					method : "post",
-					url : "/E_BLOCK_plus/emp/pev/pevAdd.jsp?e_name="+data,
+					url : "/E_BLOCK_plus/emp/pev/pevAdd.jsp?e_name="+data_e_name,
 					success : function(result) {
-						$("#pev_AddForm").html(result);
+						$("#pev_AddForm").html(result);//평가페이지 로드
+						//값 히든 세팅
+						$("#ev_eno").val(eno);//쿠키에서 읽은 나의 사원번호
+						$("#tg_eno").val(var_tg_eno);//테이블에서 읽고 넘겨받은 대상사원번호
+						//평가준비 완료
 					},
 					error : function(xhrObject) {
 						alert(xhrObject.responseText);
 					}
 				});
 			}
-	        function pevAddTg(){
-	    		var new_score = $('.rating').rating('get rating')*2;
-	        	alert(new_score);
-	        	$("#ev_score").val(new_score);
-	    		$("#pev_AddForm").attr("method","post");
-	    		$("#pev_AddForm").attr("action","/E_BLOCK_plus/emp/pev/add.ebp");
-	    		$("#pev_AddForm").submit();
-	    	}
+
+			
 		</script>
 
 	<!--=============== 작성부분 ===============-->
