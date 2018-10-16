@@ -60,15 +60,23 @@ public class AttitudeLogic {
 		return result;
 	}
 
-	public List<Map<String, Object>> toMe_list(Map<String, Object> pMap, String e_no) {
+	public Map<String, Object> toMe_list(Map<String, Object> pMap, String e_no) {
 		pMap.put("sign_eno", e_no);
 		logger.info(pMap);
 		list = attitudeDao.attd_list(pMap);
-		return list;
+		
+		Map<String, Object> rMap = new HashMap<>();
+		rMap.put("data", list);
+		
+		return rMap;
 	}
 
-	public List<Map<String, Object>> list_attdAllList(Map<String, Object> pMap) {
+	public Map<String, Object> list_attdAllList(Map<String, Object> pMap) {
 		list = attitudeDao.attd_list(pMap);
-		return list;
+
+		Map<String, Object> rMap = new HashMap<>();
+		rMap.put("data", list);
+		
+		return rMap;
 	}
 }

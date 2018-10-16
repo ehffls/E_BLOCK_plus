@@ -15,10 +15,6 @@ import eblock.b_logic.AttitudeLogic;
 @RequestMapping("/attd")
 public class AttitudeController{
 	Logger logger = Logger.getLogger(AttitudeController.class);
-	String work = null;
-	String crud = null;
-	String name = null;
-	Object robj = null;
 	int result = 0;
 	@Autowired
 	AttitudeLogic attitudeLogic = null;
@@ -27,27 +23,15 @@ public class AttitudeController{
 					,@CookieValue(value="c_eno",required=false) String e_no
 					,@CookieValue(value="c_dno",required=false) String d_no) {
 		result = attitudeLogic.my_ask(pMap,e_no,d_no);
-		return "redirect:/emp/cmt/myList.jsp";
+		return "emp/cmt/myList";
+//		return "redirect:/emp/cmt/myList.jsp";
 	}
 	@RequestMapping("/toMe/sign")
 	public String toMe_sign(@RequestParam Map<String,Object> pMap
 						,@CookieValue(value="c_eno",required=false) String e_no) {
 		result = attitudeLogic.toMe_sign(pMap,e_no);
-		return "redirect:/attd/toMe/list.jsp";
-	}
-	@RequestMapping("/toMe/list")
-	public String toMe_list(@RequestParam Map<String,Object> pMap
-						,@CookieValue(value="c_eno",required=false) String e_no
-						,Model model) {
-		robj = attitudeLogic.toMe_list(pMap,e_no);
-		model.addAttribute("robj", robj);
-		return "forward:/attd/toMe/list_JSON.jsp";
-	}
-	@RequestMapping("/list/attdAllList")
-	public String list_attdAllList(@RequestParam Map<String,Object> pMap,Model model) {
-		robj = attitudeLogic.list_attdAllList(pMap);
-		model.addAttribute("robj", robj);
-		return "forward:/attd/list/attdAllList_JSON.jsp";
+		return "attd/toMe/list";
+//		return "redirect:/attd/toMe/list.jsp";
 	}
 }
 

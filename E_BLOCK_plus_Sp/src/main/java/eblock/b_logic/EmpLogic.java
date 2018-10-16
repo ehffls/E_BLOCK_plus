@@ -65,9 +65,12 @@ public class EmpLogic {
 		return rMap;
 	}
 
-	public List<Map<String, Object>> info_empList(Map<String, Object> pMap) {
+	public Map<String, Object> info_empList(Map<String, Object> pMap) {
 		list = empDao.info_empList(pMap);
-		return list;
+		
+		rMap.put("data", list);
+		
+		return rMap;
 	}
 
 	public List<Map<String, Object>> info_persList(Map<String, Object> pMap, String e_no) {
@@ -119,14 +122,22 @@ public class EmpLogic {
 		return result;
 	}
 
-	public List<Map<String, Object>> pev_myList(Map<String, Object> pMap) {
+	public Map<String, Object> pev_myList(Map<String, Object> pMap) {
 		list = empDao.pev_myList(pMap);
-		return list;
+		
+		rMap.put("data", list);
+		
+		return rMap;
 	}
 	
-	public List<Map<String,Object>> pev_tgList(Map<String, Object> pMap) {
+	public Map<String, Object> pev_tgList(Map<String, Object> pMap, String e_no) {
+		pMap.put("e_no", e_no);
+		
 		list = empDao.pev_tgList(pMap);
-		return list;
+		
+		rMap.put("data", list);
+		
+		return rMap;
 	}
 
 	public int cmt_checkIn(Map<String, Object> pMap) {
@@ -164,9 +175,12 @@ public class EmpLogic {
 		return list;
 	}
 
-	public List<Map<String, Object>> cmt_deptList(Map<String, Object> pMap) {
+	public Map<String, Object> cmt_deptList(Map<String, Object> pMap) {
 		list = empDao.cmt_deptList(pMap);
-		return list;
+
+		rMap.put("data", list);
+		
+		return rMap;
 	}
 	
 	public List<Map<String, Object>> cntr_list(Map<String, Object> pMap) {
@@ -205,10 +219,13 @@ public class EmpLogic {
 		return result;
 	}
 
-	public List<Map<String,Object>> retire_list(Map<String, Object> pMap, String e_no) {
+	public Map<String, Object> retire_list(Map<String, Object> pMap, String e_no) {
 		pMap.put("sign_eno", e_no);
 		list = empDao.retire_list(pMap);
-		return list;
+
+		rMap.put("data", list);
+		
+		return rMap;
 	}
 	
 	

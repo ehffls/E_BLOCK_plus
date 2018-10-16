@@ -26,6 +26,7 @@
 	<context:component-scan base-package="eblock.a_controller" />
 	<context:component-scan base-package="eblock.b_logic" />
 	<context:component-scan base-package="eblock.c_dao" />
+	<context:component-scan base-package="eblock.d_restController" />
 	<context:component-scan base-package="eblock.mybatis.mapper" />
 	
 	

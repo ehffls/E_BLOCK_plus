@@ -10,6 +10,22 @@
 		</layout>
 	</appender>
 	
+	<!-- log 찍기 -->
+	<logger name="eblock.a_controller">
+		<level value="info" />
+	</logger>
+	<logger name="eblock.b_logic">
+		<level value="info" />
+	</logger>
+	<logger name="eblock.c_dao">
+		<level value="info" />
+	</logger>
+	<!-- MyBatis연계시 로그 출력 설정 추가 -->
+	<logger name="eblock.mybatis.mapper">
+		<level value="TRACE"/>
+	</logger>
+	
+	
 	<!-- Application Loggers -->
 	<logger name="eblock.spring.com">
 		<level value="info" />
