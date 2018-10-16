@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- 	<bean id="data-source" class="com.p6spy.engine.spy.P6DataSource">
+		<constructor-arg ref="data-source-target"/>
+	</bean> -->
+	<!--=============================================================================-->
+	<!-- Mysql(mariadb) -->
+	<!--=============================================================================-->
+	<!-- JDBC원시적(개발자의 의도대로 전개할 수 있다.) 방법 대상 설정 -->
+	<bean id="data-source-mysql" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>com.mysql.cj.jdbc.Driver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:mysql://raonjena.iptime.org:3306/EBLOCK?serverTimezone=UTC&amp;allowMultiQueries=true&amp;noAccessToProcedureBodies = true</value>
+		</property>
+		<property name="username"><!-- public void setUserName(){} -->
+			<value>EBlockSub</value>
+		</property>
+		<property name="password">
+			<value>HLJLJH</value>
+		</property>
+	</bean>
+	<!--=============================================================================-->
+	<!-- TRANSACTION CONFIGURATION -->
+	<!--=============================================================================-->
+	<bean id="transactionManager-mysql" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="data-source-mysql"/>
+	</bean>	
+	<!--=============================================================================-->
+	<!-- myBatis Layer config -->
+	<!--=============================================================================-->
+	<bean id="sqlSessionFactory-mysql" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="WEB-INF/mybatis-config-mysql.xml"/>
+		<property name="dataSource" ref="data-source-mysql"/>
+	</bean>
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory-mysql"/>
+	</bean>	
+	<bean id="AttitudeDao" class="eblock.c_dao.AttitudeDao">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	<bean id="EmpDao" class="eblock.c_dao.EmpDao">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	<bean id="EquipDao" class="eblock.c_dao.EquipDao">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+
+
+
+
+	<!--=============================================================================-->
+	<!-- Oracle -->
+	<!--=============================================================================-->
+	<bean id="data-source-oracle" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>oracle.jdbc.driver.OracleDriver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:oracle:thin:@192.168.0.128:1521:orcl11</value>
+		</property>
+		<property name="username"><!-- public void setUserName(){} -->
+			<value>EBlock_OSub</value>
+		</property>
+		<property name="password">
+			<value>HLJLJH</value>
+		</property>
+	</bean>
+	<!--=============================================================================-->
+	<!-- TRANSACTION CONFIGURATION -->
+	<!--=============================================================================-->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="data-source-oracle"/>
+	</bean>	
+	<!--=============================================================================-->
+	<!-- myBatis Layer config -->
+	<!--=============================================================================-->
+	<bean id="sqlSessionFactory-oracle" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="WEB-INF/mybatis-config-oracle.xml"/>
+		<property name="dataSource" ref="data-source-oracle"/>
+	</bean>
+
+	<bean id="EstimateDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="eblock.c_dao.EstimateDao"/>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory-oracle"/>
+	</bean>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
