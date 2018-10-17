@@ -39,7 +39,7 @@ function c_days(){
 	} */
 	
 	$("#attd_ask").attr("method","post");
-	$("#attd_ask").attr("action","./ask.ebp");
+	$("#attd_ask").attr("action","./ask");
 	$("#attd_ask").submit();
 }
 </script>

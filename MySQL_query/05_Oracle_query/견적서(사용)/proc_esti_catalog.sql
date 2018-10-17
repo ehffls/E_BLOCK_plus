@@ -1,0 +1,1 @@
+{ CALL proc_esti_catalog( #{catalog_cur,mode=OUT,jdbcType=CURSOR,javaType=ResultSet, resultMap=esti_catalog_map} )}

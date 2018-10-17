@@ -179,4 +179,12 @@ public class EmpDao {
 		result = sqlSessionTemplate.update(nameSpace+"retire_sign",pMap);
 		return result;
 	}
+
+	//■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+
+	//견적서 결재 사원 검색
+	public Map<String, Object> esti_sign_no(Map<String, Object> pMap) {
+		rMap = sqlSessionTemplate.selectOne(nameSpace+"esti_sign_no", pMap);
+		return rMap;
+	}
 }

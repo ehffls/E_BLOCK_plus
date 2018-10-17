@@ -1,5 +1,7 @@
 package eblock.b_logic;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +23,7 @@ public class EmpLogic {
 	
 	int result = 0;
 	List<Map<String, Object>> list = null;
+	
 	Map<String, Object> rMap;
 	
 	public Map<String, Object> login_check(Map<String, Object> pMap, HttpServletResponse res) {
@@ -33,12 +36,19 @@ public class EmpLogic {
 			String d_name = String.valueOf(rMap.get("d_name")); 
 			String e_rank = String.valueOf(rMap.get("e_rank")); 
 			
-			Cookie c_ename = new Cookie("c_ename", e_name); 
 			Cookie c_eno = new Cookie("c_eno", e_no); 
 			Cookie c_auno = new Cookie("c_auno", au_no); 
 			Cookie c_dno = new Cookie("c_dno", d_no); 
 			Cookie c_dname = new Cookie("c_dname", d_name); 
-			Cookie c_erank = new Cookie("c_erank", e_rank); 
+			Cookie c_ename = null; 
+			Cookie c_erank=null;
+			try {
+				c_ename = new Cookie("c_ename", URLEncoder.encode(e_name,"utf-8"));
+				c_erank = new Cookie("c_erank", URLEncoder.encode(e_rank, "utf-8"));
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
 			c_ename.setPath("/"); 
 			c_eno.setPath("/"); 
 			c_auno.setPath("/"); 
@@ -67,7 +77,7 @@ public class EmpLogic {
 
 	public Map<String, Object> info_empList(Map<String, Object> pMap) {
 		list = empDao.info_empList(pMap);
-		
+		rMap = new HashMap<>();
 		rMap.put("data", list);
 		
 		return rMap;
@@ -124,7 +134,7 @@ public class EmpLogic {
 
 	public Map<String, Object> pev_myList(Map<String, Object> pMap) {
 		list = empDao.pev_myList(pMap);
-		
+		rMap = new HashMap<>();
 		rMap.put("data", list);
 		
 		return rMap;
@@ -134,7 +144,7 @@ public class EmpLogic {
 		pMap.put("e_no", e_no);
 		
 		list = empDao.pev_tgList(pMap);
-		
+		rMap = new HashMap<>();
 		rMap.put("data", list);
 		
 		return rMap;
@@ -222,7 +232,7 @@ public class EmpLogic {
 	public Map<String, Object> retire_list(Map<String, Object> pMap, String e_no) {
 		pMap.put("sign_eno", e_no);
 		list = empDao.retire_list(pMap);
-
+		rMap = new HashMap<>();
 		rMap.put("data", list);
 		
 		return rMap;

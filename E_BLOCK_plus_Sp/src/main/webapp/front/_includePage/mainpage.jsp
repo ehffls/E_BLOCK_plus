@@ -46,7 +46,7 @@ if(cookies!=null){
 				</a> <a class="item" id="mainpage" href="/E_BLOCK_plus/emp/cmt/myList.jsp">메인페이지</a> <a class="item" id="approval">전자결재</a>
 				<!-- 우측메뉴 시작 -->
   <div class="right item"><%=e_name %></div>
-  <a class="ui item" href='/E_BLOCK_plus/emp/info/persList.ebp'>
+  <a class="ui item" href='/E_BLOCK_plus/emp/info/persList'>
        내정보
     </a> 
     <a class="ui item" href='/E_BLOCK_plus/emp/login/logout.jsp'>

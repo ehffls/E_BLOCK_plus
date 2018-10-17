@@ -25,7 +25,7 @@ public class EmpController  {
 	@RequestMapping("/login/check")
 	public String login_check(@RequestParam Map<String,Object> pMap,HttpServletResponse res) {
 		robj = empLogic.login_check(pMap, res);
-		return "emp/login/login_result.jsp";
+		return "emp/login/login_result";
 	}
 
 	@RequestMapping("/info/persList")
@@ -34,24 +34,24 @@ public class EmpController  {
 			,Model model) {
 		robj = empLogic.info_persList(pMap,e_no);
 		model.addAttribute("robj", robj);
-		return "forward:/emp/info/persList";
+		return "forward:/emp/info/persList.jsp";
 	}
 	@RequestMapping("/pev/add")
 	public String pev_add(@RequestParam Map<String,Object> pMap) {
 		robj = empLogic.pev_add(pMap);
-		 name = "aPev";
+//		 name = "aPev";
 		return "forward:/emp/pev/pevTgList.jsp";
 	}
 	@RequestMapping("/pev/upd")
 	public String pev_upd(@RequestParam Map<String,Object> pMap) {
 		robj = empLogic.pev_upd(pMap);
-		 name = "uPev";
+//		 name = "uPev";
 		return "forward:/emp/pev/pevMyList.jsp";
 	}
 	@RequestMapping("/cntr/list")
-	public String cntr_list(@RequestParam Map<String,Object> pMap) {
+	public String cntr_list(@RequestParam Map<String,Object> pMap,Model model) {
 		robj = empLogic.cntr_list(pMap);
-		 name = "cntr_list";
+		model.addAttribute("cntr_list",robj);
 		return "forward:/emp/cntr/cntrModal.jsp";
 	}
 	@RequestMapping("/cntr/addEmp")
@@ -70,7 +70,7 @@ public class EmpController  {
 	public String retire_ask(@RequestParam Map<String,Object> pMap
 					,@CookieValue(value="c_eno",required=false) String e_no) {
 		robj = empLogic.retire_ask(pMap,e_no);
-		 name = "setDept";
+//		 name = "setDept";
 		return "emp/cmt/myList";
 	}
 }

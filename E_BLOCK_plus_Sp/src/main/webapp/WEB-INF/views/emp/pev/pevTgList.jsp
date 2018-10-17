@@ -15,26 +15,6 @@
 	<!-- main -->
 	<%@ include file="/front/_includePage/mainpage.jsp"%>
 
-	<!--=============== 작성부분 ===============-->
-	<%
-		Cookie[] cs_no = request.getCookies();
-		String ev_eno = null;
-		String d_no = null;
-		if (cs != null) {
-			for (int i = 0; i < cs.length; i++) {
-				String c_no = cs[i].getName();
-				if ("c_eno".equals(c_no)) {
-					ev_eno = cs[i].getValue();
-				}
-				else if ("c_dno".equals(c_no)) {
-					d_no = cs[i].getValue();
-				}
-			}
-		}
-		System.out.println("사원번호: " + ev_eno);
-		System.out.println("부서번호: " + d_no);
-	%>
-
 
 	<div class="ui container" style="margin-top: 10px;">
 		<div class="ui column stackable grid container">
@@ -70,9 +50,6 @@
 	<script>
 	$('#sm_pev').attr("class", "active item");
 	$('#sm_pev_pevTg').attr("class", "active item");
-	
-	var eno= "<%=ev_eno%>";
-	var dno= "<%=d_no%>";
 
 		var table = $('#taable').DataTable({
 				//"lengthChange": false, //페이지메뉴 없음 설정
@@ -96,7 +73,7 @@
 					} //페이지 네이션 버튼 한글로 변경
 				},
 				ajax : {
-					url : "/E_BLOCK_plus/emp/pev/tgList.ebp?e_no="+eno+"&d_no="+dno,
+					url : "/E_BLOCK_plus/emp/pev/tgList",
 					dataSrc : 'data'
 				},
 		

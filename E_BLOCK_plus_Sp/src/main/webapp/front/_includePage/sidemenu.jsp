@@ -1,3 +1,4 @@
+<%@page import="java.net.URLDecoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
    String Project_Root2 = request.getContextPath();
@@ -10,7 +11,7 @@
    if (cs != null && cs.length > 0) {
       for (int i = 0; i < cs.length; i++) {
          if ("c_ename".equals(cs[i].getName())) {
-            e_name = cs[i].getValue();
+            e_name = URLDecoder.decode(cs[i].getValue(),"utf-8");
          } else if (cs[i].getName().equals("c_eno")) {
             e_no = cs[i].getValue();
          } else if (cs[i].getName().equals("c_auno")) {
@@ -71,6 +72,13 @@ $(document)
                <a class="item" href="#" id="sm_fromMe_equipR"> 내 신청 조회 </a>      
             </div>
          </div>
+         <div class="item">
+            <a class="active title" id="sm_fromMe_equip"> 견적서관련 </a>
+            <div class="active content">
+               <a class="item" href="<%=Project_Root2%>/esti/catalog/esti_list.jsp" id="sm_fromMe_estiC"> 견적서 신청 </a>      
+               <a class="item" href="<%=Project_Root2%>/esti/list/esti_fromMe.jsp" id="sm_fromMe_estiR"> 내 신청 조회 & 수정 </a>
+            </div>
+         </div>
       </div>
    </div>
    <!-- 전자결재 끝 -->
@@ -81,6 +89,7 @@ $(document)
          <a class="item" href="<%=Project_Root2%>/attd/toMe/list.jsp" id="sm_toMe_attd"> 근태관련 </a>
          <a class="item" href="<%=Project_Root2%>/emp/retire/list.jsp" id="sm_toMe_retire"> 사직관련 </a>
          <a class="item" href="<%=Project_Root2%>/equip/add/askList.jsp" id="sm_toMe_equip"> 비품관련 </a>
+         <a class="item" href="<%=Project_Root2%>/esti/list/esti_toMe.jsp" id="sm_toMe_estimate"> 견적서관련 </a>
       </div>
    </div>
    <!-- 전자결재 끝 -->

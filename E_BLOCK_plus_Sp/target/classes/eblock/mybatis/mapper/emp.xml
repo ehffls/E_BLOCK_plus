@@ -429,6 +429,26 @@
    		 </foreach>
 	</update>
 	
+<!--
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+-->
+	<select id="esti_sign_no" parameterType="map" resultType="map">
+		SELECT  1 AS grouping
+			,SUM(IF(e_rank=30, e_no,0)) AS sign_eno1
+			,SUM(IF(e_rank=40, e_no,0)) AS sign_eno2
+			,SUM(IF(e_rank=50, e_no,0)) AS sign_eno3
+		  FROM 
+			 (SELECT  e_no, e_rank
+			  FROM emp 
+			 WHERE d_no = #{d_no} -- 해당부서
+			   AND e_rank> #{e_rank} -- 내 직급 이상
+			UNION ALL
+			 SELECT e_no, e_rank -- 대표
+			   FROM emp
+			  WHERE e_rank=50 
+			  ) `emp`
+		GROUP BY grouping
+	</select>
 	
 	
  </mapper>

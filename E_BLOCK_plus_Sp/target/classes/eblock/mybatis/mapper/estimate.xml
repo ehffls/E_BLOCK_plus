@@ -6,4 +6,57 @@
  	<select id="getTest" parameterType="map" resultType="map">
  		select 1 from dual
  	</select>
+ 	
+ 	<insert id="esti_insupd" statementType="CALLABLE" parameterType="map" >
+ 		{ CALL proc_esti_ins_upd( #{pesti_ano} -- 신청번호
+ 								 ,#{pec_no} -- 카달로그 번호
+ 								 ,#{pesti_email} -- 고객이메일
+ 								 ,#{p_note} -- 비고
+ 								 ,#{psign_eno1} -- 결제사원번호1 (차장) 
+ 								 ,#{psign_eno2} -- 결제사원번호2 (부서장) 
+ 								 ,#{psign_eno3} -- 결제사원번호3 (대표) 
+ 								 ,#{e_rank} -- 조회에서 가져온 자신의 직급번호
+ 								 ,#{pask_eno} -- 신청자 사원 번호 
+                                 ,#{result,mode=OUT,jdbcType=NUMERIC,javaType=int}
+                                )} 	
+ 	</insert>
+ 	
+ 	<update id="esti_sign" parameterType="map" statementType="CALLABLE" >
+        { CALL proc_esti_sign(   #{esti_pano} -- 신청번호
+                               , #{sign_peno} -- 결제 사원 번호
+                               , #{poutcome} -- 결제에 대한 상태(est-1:취소,est-2:대기,est-3:승인,est-4:기각)
+                               , #{sign_prsn} -- 결제사유
+                               , #{msg,mode=OUT,jdbcType=VARCHAR,javaType=String} -- 메세지 출력
+                             )}
+    </update>
+    
+    <resultMap type="java.util.Map" id="esti_catalog_map"></resultMap>
+	<select id="esti_catalog" statementType="CALLABLE" parameterType="map" resultType="map">
+		{ CALL proc_esti_catalog( #{catalog_cur,mode=OUT,jdbcType=CURSOR,javaType=ResultSet, resultMap=esti_catalog_map} )}
+	</select>
+	
+	<resultMap type="java.util.Map" id="esti_list_map"></resultMap>
+	<select id="esti_list"  statementType="CALLABLE" parameterType="map" resultType="map">
+		{ CALL proc_esti_list( #{peno} -- 사원 번호
+							 , #{ask_sign} -- 구분(1:결제자 조회, 0:신청자 조회)
+							 , #{level} -- 결제 정도에 따른 조회
+							 , #{esti_cur,mode=OUT,jdbcType=CURSOR,javaType=ResultSet, resultMap=esti_list_map} )}
+	
+	</select>
+	
+	<resultMap type="java.util.Map" id="list_result_map"></resultMap>
+	<select id="esti_result"  statementType="CALLABLE" parameterType="map" resultType="map">
+		{ CALL proc_esti_list_result( #{peno} -- 사원 번호
+		   						    , #{ask_sign} -- 구분(1:결제자 조회, 0:신청자 조회)
+		   						    , #{esti_cur,mode=OUT,jdbcType=CURSOR,javaType=ResultSet, resultMap=list_result_map} )}
+	</select>
+	
+	<update id="catalog_price" parameterType="map" statementType="CALLABLE">
+      { CALL proc_esti_catalog_price( #{standard_val} -- 내가 설정한 기준값
+                             ,   #{up_percent} -- 초과
+                             , #{down_percent} -- 이하
+                             , #{result,mode=OUT,jdbcType=INTEGER,javaType=INTEGER})}
+    </update>
+	
  </mapper>
+ 

@@ -19,7 +19,7 @@ public class EquipLogic {
 	
 	int result = 0;
 	List<Map<String, Object>> list = null;
-
+	Map<String,Object> rMap = null;
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 	
 	/* 비품분류관리 */
@@ -54,9 +54,11 @@ public class EquipLogic {
 		return result;
 	}
 	//등록된 비품분류 조회하기 
-	public List<Map<String, Object>> sort_list(Map<String, Object> pMap) {
+	public Map<String, Object> sort_list(Map<String, Object> pMap) {
 		list = equipDao.sort_list(pMap);
-		return list;
+		rMap = new HashMap<String, Object>();
+		rMap.put("data", list);
+		return rMap;
 	}
 	
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -75,10 +77,12 @@ public class EquipLogic {
 		return result;
 	}
 	//비품추가신청내역 조회하기
-	public List<Map<String, Object>> add_askList(Map<String, Object> pMap, String e_no) {
+	public Map<String, Object> add_askList(Map<String, Object> pMap, String e_no) {
 		pMap.put("sign_eno", e_no);//결재자번호 10.. 쿠키에서 얻어야함.
 		list = equipDao.add_askList(pMap);
-		return list;
+		rMap=new HashMap<String, Object>();
+		rMap.put("data", list);
+		return rMap;
 	}
 	//[결재권자]
 	//비품추가신청내역에 새로운비품내역 추가신청 결재하기
@@ -104,9 +108,11 @@ public class EquipLogic {
 	}
 	//[결재권자]
 	//(신청가능)비품테이블에서 비품 조회하기
-	public List<Map<String, Object>> add_equipList(Map<String, Object> pMap) {
+	public Map<String, Object> add_equipList(Map<String, Object> pMap) {
 		list = equipDao.add_equipList(pMap);
-		return list;
+		rMap = new HashMap<String,Object>();
+		rMap.put("data", list);
+		return rMap;
 	}
 	//[결재권자]
 	//(신청가능)비품테이블에 비품가격 수정하기
@@ -133,14 +139,18 @@ public class EquipLogic {
 		return result;
 	}
 	//등록된 거래처 조회하기  
-	public List<Map<String, Object>> mk_list(Map<String, Object> pMap) {
+	public Map<String, Object> mk_list(Map<String, Object> pMap) {
 		list = equipDao.mk_list(pMap);
-		return list;
+		rMap = new HashMap<String, Object>();
+		rMap.put("data", list);
+		return rMap;
 	}
 	//거래처|비품종류 거래처 조회하기
-	public List<Map<String, Object>> mk_allList(Map<String, Object> pMap) {
+	public Map<String, Object> mk_allList(Map<String, Object> pMap) {
 		list = equipDao.mk_allList(pMap);
-		return list;
+		rMap = new HashMap<String, Object>();
+		rMap.put("data", list);
+		return rMap;
 	}
 	
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -159,10 +169,12 @@ public class EquipLogic {
 		return result;
 	}
 	//비품구매신청내역 조회하기
-	public List<Map<String,Object>> purc_askList(Map<String, Object> pMap, String e_no) {
+	public Map<String, Object> purc_askList(Map<String, Object> pMap, String e_no) {
 		pMap.put("sign_eno", pMap.get("c_eno"));
 		list = equipDao.purc_askList(pMap);
-		return list;
+		rMap = new HashMap<String, Object>();
+		rMap.put("data", list);
+		return rMap;
 	}
 	//[결재권자]
 	//비품구매신청내역 결재하기
@@ -192,9 +204,11 @@ public class EquipLogic {
 	/* 비품입고처리 및 입고비품관리 */
 	
 	//입고비품내역에서 입출가능한 비품 조회하기
-	public List<Map<String, Object>> inb_eqList(Map<String, Object> pMap) {
+	public Map<String, Object> inb_eqList(Map<String, Object> pMap) {
 		list = equipDao.inb_eqList(pMap);
-		return list;
+		rMap = new HashMap<String, Object>();
+		rMap.put("data", list);
+		return rMap;
 	}
 	//비품입출신청내역에 비품입출 신청하기
 	public int inb_ask(Map<String, Object> pMap) {
@@ -208,15 +222,19 @@ public class EquipLogic {
 	}
 	//[결재권자]
 	//입고비품내역에서 입출비품내역 조회하기
-	public List<Map<String, Object>> inb_askList(Map<String, Object> pMap) {
+	public Map<String, Object> inb_askList(Map<String, Object> pMap) {
 		list = equipDao.inb_askList(pMap);
-		return list;
+		rMap = new HashMap<String, Object>();
+		rMap.put("data", list);
+		return rMap;
 	}
 	//[결재권자]
 	//입고비품내역에서 입출비품내역 조회하기
-	public List<Map<String, Object>> inb_changeList(Map<String, Object> pMap) {
+	public Map<String, Object> inb_changeList(Map<String, Object> pMap) {
 		list = equipDao.inb_changeList(pMap);
-		return list;
+		rMap = new HashMap<String, Object>();
+		rMap.put("data", list);
+		return rMap;
 	}
 	//[결재권자]
 	//비품입출신청내역의 신청 결재하기 (기각|승인)

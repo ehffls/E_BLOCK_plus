@@ -20,8 +20,14 @@
 	<logger name="eblock.c_dao">
 		<level value="info" />
 	</logger>
+	<logger name="eblock.d_restController">
+		<level value="info" />
+	</logger>
 	<!-- MyBatis연계시 로그 출력 설정 추가 -->
 	<logger name="eblock.mybatis.mapper">
+		<level value="TRACE"/>
+	</logger>
+	<logger name="eblock.c_dao.EstimateDao">
 		<level value="TRACE"/>
 	</logger>
 	

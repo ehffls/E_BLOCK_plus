@@ -54,7 +54,7 @@
 				$('#ev_score').val(data["ev_score"]);
 				setRating(data["ev_score"]);
 				$("#pev_UpModal").modal('show');
-				alert($('.rating').rating('get rating'));
+				//alert($('.rating').rating('get rating'));
 			},
 			error : function(xhrObject) {
 				alert(xhrObject.responseText);
