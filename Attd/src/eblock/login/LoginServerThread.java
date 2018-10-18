@@ -14,7 +14,7 @@ import javax.swing.JTextArea;
 
 import eblock.VO.ChatVO;
 import eblock.VO.LoginVO;
-import eblock.dao.ChatDAO;
+import eblock.dao.LoginDAO;
 import eblock.protocol.Protocol;
 
 
@@ -22,11 +22,11 @@ public class LoginServerThread extends Thread {
 	Socket sock = null;
 	private BufferedReader br;
 	private PrintWriter pw;
-	ChatDAO cDAO;
+	LoginDAO cDAO;
 	JTextArea jta;
 	HashMap<Integer, ChatVO> hm;
 
-	LoginServerThread(Socket sock, ChatDAO cDAO, JTextArea jta, HashMap<Integer, ChatVO> hm){
+	LoginServerThread(Socket sock, LoginDAO cDAO, JTextArea jta, HashMap<Integer, ChatVO> hm){
 		this.sock = sock;
 		this.cDAO = cDAO;
 		this.jta = jta;
@@ -51,21 +51,12 @@ public class LoginServerThread extends Thread {
 				case Protocol.Login:{
 					String email = st.nextToken();
 					String pasword = st.nextToken();
-					LoginVO lvo = null;
-					lvo = cDAO.login(email, pasword);
+					String res_msg = cDAO.login(email, pasword);
 
-					if(lvo.login_success) {
-						//if(!hm.containsKey(lvo.u_no)) {
-							pw.println(lvo.res_msg);
-							pw.flush();
-						/*} else {
-							pw.println(Protocol.Login_Fail+"|logining");
-							pw.flush();
-						}*/
-					} else {
-						pw.println(lvo.res_msg);
-						pw.flush();
-					}
+					
+					pw.println(res_msg);
+					pw.flush();
+					
 					break;}
 				case Protocol.attd_check:{
 					

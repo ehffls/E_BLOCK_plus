@@ -11,12 +11,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import eblock.VO.ChatVO;
-import eblock.dao.ChatDAO;
+import eblock.dao.LoginDAO;
 
 public class LoginServer {
 	JTextArea jta = new JTextArea();
 	public LoginServer() {
-		ChatDAO cDAO = new ChatDAO();
+		LoginDAO cDAO = new LoginDAO();
 		HashMap<Integer, ChatVO> hm = new HashMap<>();
 		initDisplay();
 		try{

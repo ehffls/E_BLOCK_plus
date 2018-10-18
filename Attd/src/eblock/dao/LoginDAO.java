@@ -7,19 +7,17 @@ import java.sql.SQLException;
 
 import eblock.VO.LoginVO;
 
-public class ChatDAO {
+public class LoginDAO {
 	public Connection con 	= null;
 	//Statement는 정적쿼리 처리할 때
 	PreparedStatement  pstmt 	= null;//동적쿼리를 처리할 때
 	ResultSet  			rs		= null;
 	DBConnection        dbCon	= new DBConnection();
-	public final int openRoom = 0;
-	public final int secretRoom = 1;
 	
+	String res_msg;
 	
 	//로그인
-	public LoginVO login(String email, String password) {
-		LoginVO lvo = new LoginVO();
+	public String login(String email, String password) {
 		StringBuilder sql = new StringBuilder("SELECT CASE(" + 
 				"                	 IFNULL(" + 
 				"               				(SELECT" + 
@@ -50,20 +48,71 @@ public class ChatDAO {
 			
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				lvo.login_success = true;
-				lvo.res_msg = rs.getString("res_msg");
+				res_msg = rs.getString("res_msg");
 				
 				rs = null;
-			} else {
-				lvo.login_success = false;
+				pstmt = null;
+				if(res_msg.equals("CONFIRM")) {
+					StringBuilder empInfo_sql = new StringBuilder("SELECT" + 
+							"			 d_no   AS 'd_no'" + 
+							"	 		,d_name AS 'd_name'" + 
+							"	 		,e_no   AS 'e_no'" + 
+							"    		,e_name AS 'e_name'" + 
+							"    		,e_rank AS 'e_rank'" + 
+							"    		,au_no	AS 'au_no'" + 
+							"  		  FROM `view_DpEmpName`" + 
+							" 		 WHERE e_no = (SELECT e_no FROM `emp`WHERE e_id = ?" + 
+							"                                               AND e_pw = ?);");
+					
+					pstmt = con.prepareStatement(empInfo_sql.toString());
+					pstmt.setString(1, email);
+					pstmt.setString(2, password);
+					
+					rs = pstmt.executeQuery();
+					if(rs.next()) {
+						int e_no = rs.getInt("e_no");
+						rs = null;
+						pstmt = null;
+						
+						StringBuilder cmt_sql = new StringBuilder("INSERT INTO `cmt_list`(cmt_no, e_no, cmt_date, cmt_time)" + 
+								"		VALUES(nextSeqVal('seq_cmt_no')" + 
+								"			  ,?" + 
+								"			  ,DATE_FORMAT(now(), '%Y-%m-%d')" + 
+								"      		  ,curtime()" + 
+								"			  )" + 
+								"		ON DUPLICATE KEY" + 
+								"		UPDATE" + 
+								"			   e_no = ?" + 
+								"			  ,cmt_date = DATE_FORMAT(now(), '%Y-%m-%d')" + 
+								"			  ,cmt_time = curtime()");
+						pstmt = con.prepareStatement(cmt_sql.toString());
+						pstmt.setInt(1, e_no);
+						pstmt.setInt(2, e_no);
+						
+						int result = pstmt.executeUpdate();
+						
+						if(result==1) {
+							res_msg = "출첵 확인";
+						}else {
+							res_msg = "춠첵 실패";
+						}
+						
+						
+						
+						rs = null;
+						pstmt = null;
+					} else {
+						
+					}
+				}
 			}
 		} catch (Exception e) {
-			System.out.println("dao(login(String email, String password)):"+e.toString());
+			e.printStackTrace();
 		} finally {
 			allclose();			
 		}
 		
-		return lvo;
+		return res_msg;
 	}
 
 	public void allclose() {
@@ -73,5 +122,9 @@ public class ChatDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public LoginVO chek() {
+		return null;
 	}
 }
