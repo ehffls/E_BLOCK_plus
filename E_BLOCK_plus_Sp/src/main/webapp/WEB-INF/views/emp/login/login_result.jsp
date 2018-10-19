@@ -5,11 +5,13 @@
 	Cookie[] cookies = request.getCookies();
 	String path = "./login.jsp";
 	for (Cookie cookie : cookies) {
-		if (cookie.getName().equals("c_eno") || cookie.getName().equals("c_ename")|| cookie.getName().equals("c_auno")) {
+		String cName = cookie.getName(); 
+		if (cName.equals("c_eno") || cName.equals("c_ename")|| cName.equals("c_auno")) {
 			path = "/E_BLOCK_plus/emp/cmt/myList.jsp";
 			break;
 		}
 	}
+		
 %>
 <script>
 	location.href = "<%=path%>";

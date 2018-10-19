@@ -20,10 +20,9 @@
 
    <div class="ui container" style="margin-top: 20px;">
       <div class="ui pointing menu">
-         <a class="item" href="/E_BLOCK_plus/equip/add/askList.jsp">비품추가신청조회</a> <a class="item active" href="/E_BLOCK_plus/equip/purc/askList.jsp">비품구매신청조회</a> <a class="item" href="/E_BLOC_plus/equip/inb/askList.jsp">비품입출신청조회</a>
+         <a class="item" href="/E_BLOCK_plus/equip/add/askList.jsp">비품추가신청조회</a> <a class="item active" href="/E_BLOCK_plus/equip/purc/askList.jsp">비품구매신청조회</a> <a class="item" href="/E_BLOCK_plus/equip/inb/askList.jsp">비품입출신청조회</a>
       </div>
       <div class="ui segment">
-         <!-- 검색창 시작  -->
          <div class="ui column stackable grid container">
             <div class="column" align="center" style="padding-left: 0px;">
                <h2 class="ui header" style="padding-top: 5px;">

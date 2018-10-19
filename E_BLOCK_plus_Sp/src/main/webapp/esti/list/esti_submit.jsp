@@ -49,7 +49,7 @@
 <div align="center">
 	<button id="btn_doSubmit"
 			class="ui left labeled icon large orange button"
-			data-tooltip="해당 신청이 승입됩니다.">
+			data-tooltip="해당 신청이 승인됩니다.">
 	  <i class="edit icon"></i>
 	  	승인
 	</button>

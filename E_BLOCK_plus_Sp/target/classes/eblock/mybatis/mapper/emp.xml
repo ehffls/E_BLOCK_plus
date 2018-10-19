@@ -34,8 +34,8 @@
                             <!-- [ outter 널값체크 ] 종료 -->
                             )
                 <!-- [ outter 널값체크 결과 ] -1(아이디틀림) / 1(아이디만 맞음) / 2(모두일치) -->
-                WHEN -1 THEN 'THE ID DOSE NOT EXIST' 	<!-- 아이디가 존재하지 않는다는 안내메시지 -->
-                WHEN  1 THEN 'PASSWORD DOSE NOT MATCH'  <!-- 아이디만 맞고, 비밀번호가 일치하지 않는다는 안내메시지 -->
+                WHEN -1 THEN 'THE_ID_DOSE_NOT_EXIST' 	<!-- 아이디가 존재하지 않는다는 안내메시지 -->
+                WHEN  1 THEN 'PASSWORD_DOSE_NOT_MATCH'  <!-- 아이디만 맞고, 비밀번호가 일치하지 않는다는 안내메시지 -->
                 WHEN  2 THEN 'CONFIRM'					<!-- 아이디,비밀번호 모두 일치한다는 안내메시 -->
                  END AS 'res_msg'
   		  FROM DUAL;

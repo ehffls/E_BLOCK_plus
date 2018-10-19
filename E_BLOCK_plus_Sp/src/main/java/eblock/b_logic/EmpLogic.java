@@ -68,6 +68,7 @@ public class EmpLogic {
 			res.addCookie(c_res_msg);
 		}else {
 			String res_msg = rMap.get("res_msg").toString();
+			System.out.println(res_msg);
 			Cookie c_res_msg = new Cookie("res_msg",res_msg);
 			c_res_msg.setPath("/");
 			res.addCookie(c_res_msg);

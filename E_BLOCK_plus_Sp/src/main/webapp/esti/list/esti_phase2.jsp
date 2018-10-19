@@ -4,13 +4,13 @@
 <table id="phase2_table" class="ui grey single line celled table" style="width:100%">
 	<thead>
 		<tr>
-			<th>견적신청번호</th>
-			<th>카탈로그번호</th>
+			<th>신청번호</th>
+			<th>제품번호</th>
 			<th>제품명</th>
 			<th>단가</th>
 			<th>신청일자</th>
-			<th>결재부서장 사원번호</th>
-			<th>부서장급 결재상태</th>
+			<th>결재부서장</th>
+			<th>결재상태</th>
 			<th>결재일자</th>
 			<th>신청이메일주소</th>
 			<th>비고</th>
