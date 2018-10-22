@@ -76,7 +76,7 @@
 			{
 				targets : [ 8 ],
 				data : null,
-				defaultContent : "<div class='ui small button'>발송</div>"
+				defaultContent : "<div class='ui small teal button'>발송</div>"
 			} ]
 	});
 	

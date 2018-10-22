@@ -19,7 +19,7 @@
 		<div class="ui column stackable grid container">
 			<div class="column" align="center" style="padding-left: 0px;">
 				<h2 class="ui header" style="padding-top: 5px;">
-					<i class="list alternate outline icon"></i>
+					<i class="blue list alternate outline icon"></i>
 					<div class="content">근태 내역 조회</div>
 				</h2>
 			</div>

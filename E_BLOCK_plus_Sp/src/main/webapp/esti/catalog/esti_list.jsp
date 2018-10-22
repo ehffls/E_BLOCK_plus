@@ -14,6 +14,10 @@
 <!-- 현재날짜박기함수 시작 /자동갱신 막은 상태 -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
 <script type="text/javascript">
+$(function(){
+	   $('#sm_fromMe').attr("class", "active item");
+	   $('#sm_fromMe_estiC').attr("class", "active item");
+});
 	function printClock() {
 	    
 	    var clock = document.getElementById("clock");            // 출력할 장소 선택
@@ -61,9 +65,9 @@
 	
 	<!-- 상단바 시작 -->
 	<div class="ui icon message">
-		<i class="book icon"></i>
+		<i class="green book icon"></i>
 		<div class="content">
-			<div class="header">카탈로그 목록</div>
+			<div class="header" style="font-size: 20px">카탈로그 목록</div>
 			<!-- 현재날짜박기함수 박히는 위치 -->
 			<p>조회 일자 : <span id="clock"></span></p>
 		</div>
@@ -268,8 +272,8 @@
 		
 		<!-- 버튼/이벤트 시작 -->
 		<div class="actions">
-			<div id="div_allUpd" class="ui approve grey button">일괄수정하기</div>
-    		<div class="ui cancel button">닫기</div>
+			<div id="div_allUpd" class="ui approve teal button">일괄수정하기</div>
+    		<div class="ui cancel grey button">닫기</div>
 		</div>
 		<!-- 버튼/이벤트 끝 -->
 		

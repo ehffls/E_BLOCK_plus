@@ -58,14 +58,14 @@
 		<div class="ui column stackable grid container">
 			<div class="column" align="center" style="padding-left: 0px;">
 				<h2 class="ui header" style="padding-top: 15px; padding-bottom: 15px">
-					<i class="address book outline icon"></i>
+					<i class="green address book outline icon"></i>
 					<div class="content">사원/부서 관리</div>
 				</h2>
 			</div>
 		</div>
 		<div class="ui grey two item menu" id="menu">
-			<a class="item" id="eInsert" onclick="empInsert()">신규 사원 등록 </a>
-			<a class="item" id="eSearch" onclick="eSearchList()"> 사원 조회 </a>
+			<a class="item" id="eInsert" onclick="empInsert()" style="font-weight: bold;">신규 사원 등록 </a>
+			<a class="item" id="eSearch" onclick="eSearchList()" style="font-weight: bold;"> 사원 조회 </a>
 		</div>
 		<div id="eList"></div>
 		<div id="eIns"></div>

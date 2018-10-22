@@ -5,11 +5,11 @@
 	String ac_no = request.getParameter("ac_no");
 %>
 <div align="center">
-	<i class="notched circle loading huge icon"></i>
+	<i class="yellow notched circle loading huge icon"></i>
 </div>
 <!-- 신청아이콘 -->
 <div class="ui icon message">
-	<i class="edit icon"></i>
+	<i class="green edit icon"></i>
 	<div class="content">
 		<div class="header">신청서 작성</div>
 		<p>아래 사항을 모두 입력하세요.</p>
@@ -56,7 +56,7 @@
 <!-- 신청버튼 -->
 <div align="center">
 	<button id="btn_doAsk"
-			class="ui left labeled icon large teal button"
+			class="ui left labeled icon large orange button"
 			data-tooltip="견적서가 신청됩니다.">
 	  <i class="edit icon"></i>
 	  	신청

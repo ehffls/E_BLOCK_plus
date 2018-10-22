@@ -65,7 +65,7 @@
 		<div class="ui column stackable grid container">
 			<div class="column" align="center" style="padding-left: 0px;">
 				<h2 class="ui header" style="padding-top: 5px;">
-					<i class="clipboard outline icon"></i>
+					<i class="green edit outline icon"></i>
 					<div class="content">입출신청</div>
 				</h2>
 			</div>
@@ -85,7 +85,7 @@
 				</thead>
 			</table>
 			<div align="center">
-				<button class="ui button" onclick="aal2()">구매신청</button>
+				<button class="ui orange button" onclick="aal2()">구매신청</button>
 			</div>
 		</div>
 	</div>
@@ -166,7 +166,7 @@
 				{
 					targets : [ 5 ],
 					data : null,
-					defaultContent : "<div class='ui small button' id='b_change' value ='대여신청' >대여신청</div>"
+					defaultContent : "<div class='ui teal small button' id='b_change' value ='대여신청' >대여신청</div>"
 				}
 	
 			/* 

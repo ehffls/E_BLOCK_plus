@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <style>
-#menu {
+#mainImg {
 	background-image: url(/E_BLOCK_plus/1_file/img/_common/7.jpg);
 	background-size: cover;
 	background-position: center;
@@ -25,9 +25,9 @@ if(cookies!=null){
 
 
 </script>
-<div class="ui black top fixed inverted menu">
+<div class="ui black top fixed inverted menu topmenu">
 	<div class="ui container">
-		<div class="ui large secondary inverted menu">
+		<div class="ui large secondary inverted menu topsecondary">
 			<a class="toc item sidemenu_icon" id="sidemenu_icon"> <i class="sidebar icon"></i>
 			</a> <a class="item" id="mainpage" href="/E_BLOCK_plus/emp/cmt/myList.jsp">메인페이지</a> <a class="item" id="approval">전자결재</a>
 		</div>
@@ -41,10 +41,10 @@ if(cookies!=null){
 </div>
 <!-- 메인페이지 구성 시작 -->
 <!-- 상단화면 시작 -->
-<div id="sticky" class="ui sticky">
-	<div class="ui black inverted vertical masthead center aligned segment" style="padding-top: 0px; padding-bottom: 0px;height: 42.844px">
+<div id="sticky" class="ui sticky topmenu">
+	<div class="ui inverted vertical masthead center aligned segment" style="padding-top: 0px; padding-bottom: 0px;height: 42.844px" id="topmenu">
 		<div class="ui container">
-			<div class="ui secondary inverted menu">
+			<div class="ui secondary inverted menu topsecondary">
 				<a class="toc item sidemenu_icon" id="sidemenu_icon"> <i class="sidebar icon"></i>
 				</a> <a class="item" id="mainpage" href="/E_BLOCK_plus/emp/cmt/myList.jsp">메인페이지</a> <a class="item" id="approval">전자결재</a>
 				<!-- 우측메뉴 시작 -->
@@ -60,7 +60,7 @@ if(cookies!=null){
 </div>
 <!-- <div id="context"> -->
 <!-- 모두 sticky에 context로 묶여있어야 함. -->
-<div class="ui inverted vertical masthead center aligned segment" id="menu" style="padding-top: 50px; padding-bottom: 50px;">
+<div class="ui inverted vertical masthead center aligned segment" id="mainImg" style="padding-top: 50px; padding-bottom: 50px;">
 	<div class="ui text container" style="margin-top: 20px;">
 		<img src="/E_BLOCK_plus/1_file/img/_common/logo_black_edge_font.png" style="margin-bottom: 20px; width: 250px; height: 60px" id="logo">
 		<!-- 움찔 이벤트 스크립트 시작 -->

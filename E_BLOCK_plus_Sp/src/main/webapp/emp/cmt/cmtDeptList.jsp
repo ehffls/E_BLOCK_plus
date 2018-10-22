@@ -37,7 +37,7 @@
 		<div class="ui column stackable grid container">
 			<div class="column" align="center" style="padding-left: 0px;">
 				<h2 class="ui header" style="padding-top: 5px;">
-					<i class="users icon"></i>
+					<i class="teal users icon"></i>
 					<div class="content">전체 출결</div>
 				</h2>
 			</div>
@@ -210,8 +210,8 @@
 	
 		$('#taable tbody').on('click', 'tr', function() {
 			var data = table.row(this).data();
-			alert(data["e_no"]);
-			alert(data["e_rank"]);
+				/* alert(data["e_no"]);
+				alert(data["e_rank"]); */
 	
 			if ($(this).hasClass('active')) {
 				$(this).removeClass('active');

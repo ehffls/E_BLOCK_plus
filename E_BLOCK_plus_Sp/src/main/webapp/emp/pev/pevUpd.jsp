@@ -16,7 +16,7 @@
 						</div>
 					</div>
 					<div class="field">
-						<label>평가점수</label>
+						<label>평가점수(하트는 개당 2점입니다.)</label>
 						<div class="field">
 							<div class="ui massive heart rating"  data-max-rating="5" style="margin-top: 6px; margin-left: 30px"></div>
 						</div>
@@ -30,8 +30,8 @@
 				<input type="hidden" id="tg_eno" name="tg_eno" />
 				<input type="hidden" id="ev_score" name="ev_score" />
 				<div class="field" align="center">
-					<div class="ui button" onclick="pev_bpermit()">저장</div>
-					<div class="ui button" onclick="pev_bcancel()">취소</div>
+					<div class="ui teal button" onclick="pev_bpermit()">저장</div>
+					<div class="ui grey button" onclick="pev_bcancel()">취소</div>
 				</div>
 			</form>
 		</div>

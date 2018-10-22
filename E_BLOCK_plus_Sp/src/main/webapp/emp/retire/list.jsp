@@ -24,7 +24,7 @@
          <div class="ui column stackable grid container">
             <div class="column" align="center" style="padding-left: 0px;">
                <h2 class="ui header" style="padding-top: 5px;">
-                  <i class="tasks icon"></i>
+                  <i class="green list alternate outline icon"></i>
                   <div class="content">사직 신청내역</div>
                </h2>
             </div>

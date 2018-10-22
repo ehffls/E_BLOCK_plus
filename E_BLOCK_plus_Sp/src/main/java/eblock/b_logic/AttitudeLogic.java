@@ -65,7 +65,7 @@ public class AttitudeLogic {
 		logger.info(pMap);
 		list = attitudeDao.attd_list(pMap);
 		
-		Map<String, Object> rMap = new HashMap<>();
+		Map<String, Object> rMap = new HashMap<String, Object>();
 		rMap.put("data", list);
 		
 		return rMap;
@@ -74,7 +74,7 @@ public class AttitudeLogic {
 	public Map<String, Object> list_attdAllList(Map<String, Object> pMap) {
 		list = attitudeDao.attd_list(pMap);
 
-		Map<String, Object> rMap = new HashMap<>();
+		Map<String, Object> rMap = new HashMap<String, Object>();
 		rMap.put("data", list);
 		
 		return rMap;

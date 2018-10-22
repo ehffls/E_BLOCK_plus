@@ -20,7 +20,7 @@
 		<div class="ui column stackable grid container">
 			<div class="column" align="center" style="padding-left: 0px;">
 				<h2 class="ui header" style="padding-top: 5px;">
-					<i class="clipboard outline icon"></i>
+					<i class="green clipboard outline icon"></i>
 					<div class="content">평가대상조회</div>
 				</h2>
 			</div>
@@ -100,7 +100,7 @@
 					{
 						targets : [ 2 ],
 						data : null,
-						defaultContent : "<div class='ui small button'>평가</div>"
+						defaultContent : "<div class='ui teal small button'>평가</div>"
 					},
 				    {
 				         targets: [ 3 ],

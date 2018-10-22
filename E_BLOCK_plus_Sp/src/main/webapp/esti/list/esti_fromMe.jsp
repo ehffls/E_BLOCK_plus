@@ -19,6 +19,10 @@
 
 	<!-- DOM구성이후 테이블 갈아끼우기 시작 -->
 	<script type="text/javascript">
+	$(function(){
+		   $('#sm_fromMe').attr("class", "active item");
+		   $('#sm_fromMe_estiR').attr("class", "active item");
+	})
 	//전역변수
 	var hiddenPageNum = 1;
 	
@@ -72,9 +76,9 @@
 
 		<!-- 상단바 시작 -->
 		<div class="ui icon message">
-			<i class="paper plane icon"></i>
+			<i class="green paper plane icon"></i>
 			<div class="content">
-				<div class="header">견적서 발급요청 목록</div>
+				<div class="header"  style="font-size: 20px">견적서 발급요청 목록</div>
 				<p>아래 탭을 통해 상태별로 확인할 수 있습니다.</p>
 			</div>
 			<!-- 상단 버튼 시작 -->
@@ -338,7 +342,17 @@
 		           //width: "12%",
 		        className : 'center aligned'
 		        
-		       } ]
+		       }
+		       ,{
+		            targets : [ 5 ], // 상태값
+		            render : function ( data, type, row ) {
+		               //해당 로우의 문자를 잘랐을때를 비교해서 렌더할 태그를 결정함
+		                  return "<div class='ui left icon transparent input loading'>"
+		                        +"<i class='search icon'></i>"
+		                        +"<input type='text' style='width: 1px;'/>"+"<font color='blue'>"+data+"</font>"+"</div>";
+		                }
+		         }
+		       ]
 		});
 		
 		//테이블 헤더 가운데 정렬

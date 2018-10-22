@@ -77,7 +77,7 @@ body>.grid {
 					</div>
 					<div class="field">
 						<div class="ui left icon input">
-							<i class="lock icon"></i> <input id="e_pw" type="password" name="e_pw" placeholder="비밀 번호">
+							<i class="lock icon"></i> <input id="e_pw" type="password" name="e_pw" placeholder="비밀 번호"  onKeypress="javascript:if(event.keyCode==13) {$('#f_login').submit();}"></input>
 						</div>
 					</div>
 					<div class="ui fluid large teal submit button">Login</div>

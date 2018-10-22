@@ -71,7 +71,7 @@
 							<div class="ui disabled input" style="width: 25%;">
 								<input id="sample6_postcode" placeholder="우편번호">
 							</div>
-							<div class="ui grey button" onclick="execDaumPostcode()" >우편번호 찾기</div>
+							<div class="ui teal button" onclick="execDaumPostcode()" >우편번호 찾기</div>
 						</div>
 					</div>
 					<div class="field">
@@ -189,7 +189,7 @@
 					<input type="text" name="note2" placeholder="비고">
 				</div>
 				<div align="center">
-					<a href="javascript:cntrAddEmp()" class="ui button">등록</a>
+					<a href="javascript:cntrAddEmp()" class="ui teal button">등록</a>
 				</div>
 			</form>
 		</div>

@@ -26,7 +26,7 @@
          <div class="ui column stackable grid container">
             <div class="column" align="center" style="padding-left: 0px;">
                <h2 class="ui header" style="padding-top: 5px;">
-                  <i class="tasks icon"></i>
+                  <i class="green list ul icon"></i>
                   <div class="content">비품구매 신청내역</div>
                </h2>
             </div>
@@ -105,6 +105,9 @@
    </div>
    <script>
    $(function(){
+	   $('#sm_toMe').attr("class", "active item");
+	   $('#sm_toMe_equip').attr("class", "active item");
+	   
       $('#ap_bp').attr('class', 'item active');
    });
       $.fn.dataTable.ext.errMode = '';//null 에러 오류 따로 안띄우게
@@ -174,11 +177,17 @@
                if(data.trim()=="대기"){
                   return "<div class='ui left icon transparent input loading'>"
                         +"<i class='search icon'></i>"
-                        +"<input type='text' style='width: 1px;'/>"+data+"</div>";
+                        +"<input type='text' style='width: 1px;'/>"+"<font color='blue'>"+data+"</font>"+"</div>";
                   //return "<div class='ui active inline tiny loader'>"+data+"</div>";
                }
+               else if(data.trim()=="기각"){
+                  return "<font color='black'>"+data+"</font>";
+               }               
+               else if(data.trim()=="결제완료"){
+                  return "<font color='red'>"+data+"</font>";
+               }               
                else{
-                  return data;
+                  return "<font color='green'>"+data+"</font>";
                }               
                 }
          }
@@ -192,9 +201,11 @@
       $('#taable tbody').on('click', 'tr', function() {
          
          //로우의 outcome값이 '취소' 또는 '기각' 또는 '입고완료'가 아닌 로우에 대하여
-         if(table.row(this).data()["outcome"]!="취소"
-               ||table.row(this).data()["outcome"]!="기각"
-               ||table.row(this).data()["outcome"]!="입고완료"){
+         if(table.row(this).data()["outcome"]=="취소"
+               ||table.row(this).data()["outcome"]=="기각"
+               ||table.row(this).data()["outcome"]=="입고완료"){
+         }
+         else{
             
             //취소하기
             if ($(this).hasClass('active ro')) {

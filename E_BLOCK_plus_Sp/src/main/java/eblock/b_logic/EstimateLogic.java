@@ -94,7 +94,7 @@ public class EstimateLogic {
 		list = estimateDao.esti_catalog(pMap);
 		logger.info("catalog_cur : "+pMap.get("catalog_cur"));
 		
-		rMap = new HashMap<>();
+		rMap = new HashMap<String, Object>();
 		rMap.put("data", pMap.get("catalog_cur"));
 		
 		return rMap;
@@ -125,7 +125,7 @@ public class EstimateLogic {
 		list = estimateDao.esti_list(pMap);
 		logger.info("esti_cur : "+pMap.get("esti_cur"));
 		
-		rMap = new HashMap<>();
+		rMap = new HashMap<String, Object>();
 		rMap.put("data", pMap.get("esti_cur"));
 		
 		return rMap;
@@ -138,7 +138,7 @@ public class EstimateLogic {
 		list = estimateDao.esti_result(pMap);
 		logger.info("esti_cur : "+pMap.get("esti_cur"));
 		
-		rMap = new HashMap<>();
+		rMap = new HashMap<String, Object>();
 		rMap.put("data", pMap.get("esti_cur"));
 		
 		return rMap;

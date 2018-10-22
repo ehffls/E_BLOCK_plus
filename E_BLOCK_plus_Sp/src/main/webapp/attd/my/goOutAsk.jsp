@@ -69,8 +69,8 @@ $('#day').calendar({
 		<textarea style="resize:none; height:80%"></textarea>
 	  </div>
 	  <div align="center">
-		<div class="ui button" tabindex="0" id="ap_Ok">저장</div>
-		<div class="ui button" tabindex="0" id="ap_cancel">취소</div>
+		<div class="ui teal button" tabindex="0" id="ap_Ok">저장</div>
+		<div class="ui grey button" tabindex="0" id="ap_cancel">취소</div>
 	  </div>
   </form>
 </div>

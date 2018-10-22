@@ -68,7 +68,7 @@
 		<div class="ui column stackable grid container">
 			<div class="column" align="center" style="padding-left: 0px;">
 				<h2 class="ui header" style="padding-top: 5px;">
-					<i class="file alternate outline icon"></i>
+					<i class="green file alternate outline icon"></i>
 					<div class="content">인사평가 내역조회</div>
 				</h2>
 			</div>
@@ -149,7 +149,7 @@
 				{
 					targets : [ 6 ],
 					data : null,
-					defaultContent : "<div class='ui small button'>상세보기</div>"
+					defaultContent : "<div class='ui teal small button'>상세보기</div>"
 				}
 			]
 		});

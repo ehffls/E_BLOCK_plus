@@ -75,7 +75,16 @@
 	           //width: "12%",
 	        className : 'center aligned'
 	        
-	       } ]
+	       }
+	       ,{
+	            targets : [ 6 ], // 결재상태
+	            render : function ( data, type, row ) {
+	               //해당 로우의 문자를 잘랐을때를 비교해서 렌더할 태그를 결정함
+	                  return "<font color='red'>"+data+"</font>";
+	                }
+	         }
+	       
+	       ]
 	});
 	
 	//테이블 헤더 가운데 정렬

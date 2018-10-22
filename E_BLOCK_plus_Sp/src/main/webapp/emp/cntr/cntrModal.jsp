@@ -174,8 +174,8 @@
 				<input type="hidden" name="note1" value="<%=note1%>" />
 				
 				<div align="center">
-					<a href="javascript:emp_updata('<%=e_no%>')" class="ui button">등록</a>
-					<div class="ui button" onclick="emp_bcencel()">취소</div>
+					<a href="javascript:emp_updata('<%=e_no%>')" class="ui teal button">등록</a>
+					<div class="ui grey button" onclick="emp_bcencel()">취소</div>
 				</div>
 			</form>
 		</div>
@@ -307,8 +307,8 @@
 				<input type="hidden" name="note2" value="<%=note2%>" />
 				
 				<div align="center">
-					<a class="ui button" href="javascript:dept_updata('<%=e_no%>')" >등록</a>
-					<div class="ui button" onclick="dept_bcencel()">취소</div>
+					<a class="ui teal button" href="javascript:dept_updata('<%=e_no%>')" >등록</a>
+					<div class="ui grey button" onclick="dept_bcencel()">취소</div>
 				</div>
 			</form>
 		</div>

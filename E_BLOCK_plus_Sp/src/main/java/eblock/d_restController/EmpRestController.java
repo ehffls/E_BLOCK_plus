@@ -32,8 +32,9 @@ public class EmpRestController {
 	}
 	@RequestMapping("/pev/tgList")
 	public Map<String, Object> pev_tgList(@RequestParam Map<String,Object> pMap
-					,@CookieValue(value="c_eno",required=false) String e_no) {
-		rMap = empLogic.pev_tgList(pMap,e_no);
+					,@CookieValue(value="c_eno",required=false) String e_no
+					,@CookieValue(value="c_dno",required=false) String d_no) {
+		rMap = empLogic.pev_tgList(pMap, e_no, d_no);
 		return rMap;
 	}
 	@RequestMapping("/cmt/cmt_calendar")

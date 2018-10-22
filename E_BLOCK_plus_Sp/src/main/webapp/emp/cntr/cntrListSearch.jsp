@@ -171,12 +171,12 @@
 				{
 					targets : [ 5 ],
 					data : null,
-					defaultContent : "<div class='ui small button' id='b_change' value ='변경' >변경</div>"
+					defaultContent : "<div class='ui small olive button' id='b_change' value ='변경' >변경</div>"
 				},
 				{
 					targets : [ 6 ],
 					data : null,
-					defaultContent : "<div class='ui small button' id='b_edit' >수정</div>"
+					defaultContent : "<div class='ui small teal button' id='b_edit' >수정</div>"
 				}
 	
 			/* 

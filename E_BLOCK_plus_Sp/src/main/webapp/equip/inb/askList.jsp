@@ -9,7 +9,8 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
 <script type="text/javascript">
 	$(function(){
-		$('#')
+		   $('#sm_toMe').attr("class", "active item");
+		   $('#sm_toMe_equip').attr("class", "active item");
 	});
 </script>
 </head>
@@ -29,7 +30,7 @@
 			<div class="ui column stackable grid container">
 				<div class="column" align="center" style="padding-left: 0px;">
 					<h2 class="ui header" style="padding-top: 5px;">
-						<i class="tasks icon"></i>
+						<i class="green list ul icon"></i>
 						<div class="content">비품입출 전체내역</div>
 					</h2>
 				</div>

@@ -109,7 +109,7 @@ $(document).ready(function(){
 		<div class="ui column stackable grid container">
 			<div class="column" align="center" style="padding-left: 0px;">
 				<h2 class="ui header" style="padding-top: 5px;">
-					<i class="file alternate outline icon"></i>
+					<i class="green file alternate outline icon"></i>
 					<div class="content">결제신청</div>
 				</h2>
 			</div>
@@ -151,8 +151,8 @@ $(document).ready(function(){
 							<textarea name="at_rsn" style="resize: none; height: 80%"></textarea>
 						</div>
 						<div align="center">
-							<div class="ui button" tabindex="0" id="ap_Ok">저장</div>
-							<div class="ui button" tabindex="0" id="ap_cancel">취소</div>
+							<div class="ui teal button" tabindex="0" id="ap_Ok">저장</div>
+							<div class="ui grey button" tabindex="0" id="ap_cancel">취소</div>
 						</div>
 						<input type="hidden" name="at_days" id="at_days"> <input type="hidden" name="at_sort" value="atd-d">
 					</form>

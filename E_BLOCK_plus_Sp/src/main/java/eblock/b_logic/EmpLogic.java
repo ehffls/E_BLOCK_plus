@@ -78,7 +78,7 @@ public class EmpLogic {
 
 	public Map<String, Object> info_empList(Map<String, Object> pMap) {
 		list = empDao.info_empList(pMap);
-		rMap = new HashMap<>();
+		rMap = new HashMap<String, Object>();
 		rMap.put("data", list);
 		
 		return rMap;
@@ -135,17 +135,18 @@ public class EmpLogic {
 
 	public Map<String, Object> pev_myList(Map<String, Object> pMap) {
 		list = empDao.pev_myList(pMap);
-		rMap = new HashMap<>();
+		rMap = new HashMap<String, Object>();
 		rMap.put("data", list);
 		
 		return rMap;
 	}
 	
-	public Map<String, Object> pev_tgList(Map<String, Object> pMap, String e_no) {
+	public Map<String, Object> pev_tgList(Map<String, Object> pMap, String e_no, String d_no) {
 		pMap.put("e_no", e_no);
+		pMap.put("d_no", d_no);
 		
 		list = empDao.pev_tgList(pMap);
-		rMap = new HashMap<>();
+		rMap = new HashMap<String, Object>();
 		rMap.put("data", list);
 		
 		return rMap;
@@ -233,7 +234,7 @@ public class EmpLogic {
 	public Map<String, Object> retire_list(Map<String, Object> pMap, String e_no) {
 		pMap.put("sign_eno", e_no);
 		list = empDao.retire_list(pMap);
-		rMap = new HashMap<>();
+		rMap = new HashMap<String, Object>();
 		rMap.put("data", list);
 		
 		return rMap;

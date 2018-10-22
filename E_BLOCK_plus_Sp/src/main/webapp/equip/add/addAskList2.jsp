@@ -63,7 +63,7 @@
 		<div class="ui column stackable grid container">
 			<div class="column" align="center" style="padding-left: 0px;">
 				<h2 class="ui header" style="padding-top: 5px;">
-					<i class="clipboard outline icon"></i>
+					<i class="green edit outline icon"></i>
 					<div class="content">구매신청</div>
 				</h2>
 			</div>
@@ -83,8 +83,8 @@
 				</thead>
 			</table>
 			<div align="center">
-				<button class="ui button" onclick="newaa()">추가신청</button>
-				<button class="ui button" onclick="back()">뒤로가기</button>
+				<button class="ui orange button" onclick="newaa()">추가신청</button>
+				<button class="ui grey button" onclick="back()">뒤로가기</button>
 			</div>
 		</div>
 	</div>
@@ -103,8 +103,8 @@
 					</div>
 					<div class="actions">
 						<br>
-						<div class="ui a button" onclick="insert()">등록</div>
-						<div class="ui cancel button">취소</div>
+						<div class="ui teal button" onclick="insert()">등록</div>
+						<div class="ui grey cancel button">취소</div>
 					</div>
 				</form>
 			</div>
@@ -181,7 +181,7 @@
 				{
 					targets : [ 5 ],
 					data : null,
-					defaultContent : "<div class='ui small button' id='b_click' value ='신청' >신청</div>"
+					defaultContent : "<div class='ui teal small button' id='b_click' value ='신청' >신청</div>"
 				}
 			/* 
 				    {

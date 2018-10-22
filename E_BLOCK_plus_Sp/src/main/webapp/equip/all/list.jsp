@@ -63,8 +63,8 @@
 				</div>
 				<div class="actions">
 					<br>
-					<div class="ui a button" onclick="io_insert()">등록</div>
-					<div class="ui cancel button">취소</div>
+					<div class="ui teal button" onclick="io_insert()">등록</div>
+					<div class="ui grey cancel button">취소</div>
 				</div>
 				</form>
 
@@ -82,8 +82,8 @@
 				
 				<div class="actions">
 					<br>
-					<div class="ui a button" onclick="sort_insert()">등록</div>
-					<div class="ui cancel button">취소</div>
+					<div class="ui teal button" onclick="sort_insert()">등록</div>
+					<div class="ui grey cancel button">취소</div>
 				</div>
 				</form>
 
@@ -92,13 +92,12 @@
 	</div>
 	<div class="ui container" style="margin-top: 20px;">
 		<div class="ui segment">
-			<div class="ui form">
-				<div class="two fields">
-					<div class="eleven wide field">
+			<div class="ui divided grid">
+					<div class="eleven wide column">
 						<div class="ui column stackable grid container">
 							<div class="column" align="center" style="padding-left: 0px;">
 								<h2 class="ui header" style="padding-top: 5px;">
-									<i class="fax icon"></i>
+									<i class="green fax icon"></i>
 									<div class="content">거래처</div>
 								</h2>
 							</div>
@@ -117,11 +116,11 @@
 						</table>
 							<div id="btn_1" class="orange ui button" onclick="io_insert_page()">거래처 추가</div>
 					</div>
-					<div class="five wide field">
+					<div class="five wide column">
 						<div class="ui column stackable grid container">
 							<div class="column" align="center" style="padding-left: 0px;">
 								<h2 class="ui header" style="padding-top: 5px;">
-									<i class="tasks icon"></i>
+									<i class="teal tasks icon"></i>
 									<div class="content">비품분류</div>
 								</h2>
 							</div>
@@ -188,6 +187,7 @@
 			}
 
 			]
+			,   "searching": false
 		});
 
 		$('#taable2 th').attr("class", "center aligned");

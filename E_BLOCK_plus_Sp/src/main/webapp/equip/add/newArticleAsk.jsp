@@ -1,3 +1,4 @@
+<%@page import="java.net.URLDecoder"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
@@ -16,7 +17,7 @@
 	if (cs != null && cs.length > 0) {
 		for (int i = 0; i < cs.length; i++) {
 			if ("c_ename".equals(cs[i].getName())) {
-				e_name = cs[i].getValue();
+				e_name = URLDecoder.decode(cs[i].getValue(),"utf-8");
 			} else if (cs[i].getName().equals("c_eno")) {
 				e_no = cs[i].getValue();
 			} else if (cs[i].getName().equals("c_dno")) {
@@ -63,12 +64,12 @@
 			<div class="two fields">
 				<div class="field">
 					<div class="ui labeled input">
-						<a class="ui label">신청사원</a> <input type="text" value="<%=e_name%>" readonly="readonly">
+						<div class="ui brown label">신청사원</div> <input type="text" value="<%=e_name%>" readonly="readonly">
 					</div>
 				</div>
 				<div class="field">
 					<div class="ui labeled input">
-						<a class="ui label">결제부서</a>
+						<div class="ui brown label">결제부서</div>
 						<div class="ui left pointing label">자동적으로 해당부서에 신청됩니다</div>
 
 					</div>
@@ -77,14 +78,14 @@
 			<div class="two fields">
 				<div class="field">
 					<div class="ui labeled input">
-						<a class="ui label">비품이름</a> <input type="text" name="eq_name">
+						<div class="ui olive label">비품이름</div> <input type="text" name="eq_name">
 					</div>
 				</div>
 				
 			</div>
 			<div class="two fields">
 			<div class="field">
-					<div class="ui large label">비품분류</div>
+					<div class="ui green large label">비품분류</div>
 					<br>
 
 					<select name="eq_sort" class="ui search selection dropdown" id="s_list">
@@ -100,7 +101,7 @@
 				</div>
 	<div class="two fields">
 		<div class="field">
-		<div class="ui large label">거래처</div>
+		<div class="ui green large label">거래처</div>
 					<br>
 			<select name="mk_no" class="ui search selection dropdown" id="search-select">
 				<%
@@ -121,8 +122,8 @@
 		<textarea name="" style="resize: none; height: 80%"></textarea>
 	</div>
 	<div class="field" align="center">
-		<div class="ui button" tabindex="0" id="ap_Ok" onclick="newaa()">저장</div>
-		<div class="ui button" tabindex="0" id="ap_cancel" onclick="newaa2()">취소</div>
+		<div class="ui teal button" tabindex="0" id="ap_Ok" onclick="newaa()">저장</div>
+		<div class="ui grey button" tabindex="0" id="ap_cancel" onclick="newaa2()">취소</div>
 	</div>
 	</form>
 	</div>
