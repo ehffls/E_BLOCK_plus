@@ -8,9 +8,9 @@
 <script src="/E_BLOCK_plus/0_src/js/table/datatables.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
 <script type="text/javascript">
-	$(function(){
-		   $('#sm_toMe').attr("class", "active item");
-		   $('#sm_toMe_equip').attr("class", "active item");
+	$(function() {
+		$('#sm_toMe').attr("class", "active item");
+		$('#sm_toMe_equip').attr("class", "active item");
 	});
 </script>
 </head>
@@ -25,6 +25,9 @@
 	<!--=============== 작성부분 ===============-->
 
 	<div class="ui container" style="margin-top: 20px;">
+		<div class="ui pointing menu">
+			<a class="item" href="/E_BLOCK_plus/equip/add/askList.jsp">비품추가신청조회</a> <a class="item" href="/E_BLOCK_plus/equip/purc/askList.jsp">비품구매신청조회</a> <a class="item active" href="/E_BLOCK_plus/equip/inb/askList.jsp">비품입출신청조회</a>
+		</div>
 		<div class="ui segment">
 			<!-- 검색창 시작  -->
 			<div class="ui column stackable grid container">
@@ -50,46 +53,57 @@
 					</tr>
 				</thead>
 			</table>
-			   <div align="center">
-            <div class="ui orange buttons" id="btn_approval">
-               <div class="ui button">선택</div>
-                  <div class="ui floating dropdown icon button">
-                  <i class="dropdown icon"></i>
-                  <div class="menu">
-                     <div class="item" id="btn_0"><i class="thumbs up icon"></i> 대여중</div>
-                     <div class="item" id="btn_1"><i class="thumbs down icon"></i> 신청가능</div>
-                     <div class="item" id="btn_"><i class="thumbs down icon"></i> 분실</div>
-                     <div class="item" id="btn_"><i class="thumbs down icon"></i> 파손</div>
-                     <div class="item" id="btn_"><i class="thumbs down icon"></i> 수리중</div>
-                     <div class="item" id="btn_"><i class="thumbs down icon"></i> 반입완료</div>
-                     <div class="item" id="btn_"><i class="thumbs down icon"></i> 폐기</div>
-                  </div>
-               </div>
-            </div>
-            <script type="text/javascript">
-               $('.ui.dropdown').dropdown();
-            </script>
-         </div>
+			<div align="center">
+				<div class="ui orange buttons" id="btn_approval">
+					<div class="ui button">선택</div>
+					<div class="ui floating dropdown icon button">
+						<i class="dropdown icon"></i>
+						<div class="menu">
+							<div class="item" id="btn_0">
+								<i class="thumbs up icon"></i> 대여중
+							</div>
+							<div class="item" id="btn_1">
+								<i class="thumbs down icon"></i> 신청가능
+							</div>
+							<div class="item" id="btn_">
+								<i class="thumbs down icon"></i> 분실
+							</div>
+							<div class="item" id="btn_">
+								<i class="thumbs down icon"></i> 파손
+							</div>
+							<div class="item" id="btn_">
+								<i class="thumbs down icon"></i> 수리중
+							</div>
+							<div class="item" id="btn_">
+								<i class="thumbs down icon"></i> 반입완료
+							</div>
+							<div class="item" id="btn_">
+								<i class="thumbs down icon"></i> 폐기
+							</div>
+						</div>
+					</div>
+				</div>
+				<script type="text/javascript">
+					$('.ui.dropdown').dropdown();
+				</script>
+			</div>
 		</div>
 	</div>
 	</div>
-	<div class="ui modal"id = "modal_1">
-	<div class="header">비품 이력보기</div>
-		<div class="ui segment" style="margin-right: 20px; margin-left: 20px" id="detail_modal">
-			
-		</div>
+	<div class="ui modal" id="modal_1">
+		<div class="header">비품 이력보기</div>
+		<div class="ui segment" style="margin-right: 20px; margin-left: 20px" id="detail_modal"></div>
 		<div class="actions">
 			<div class="ui ok button">확인</div>
 			<div class="ui black deny button">취소</div>
 		</div>
 	</div>
 	<script>
-	$(function(){
-		$('#ap_bp').attr('class', 'item active');
-	});
+		$(function() {
+			$('#ap_bp').attr('class', 'item active');
+		});
 		$.fn.dataTable.ext.errMode = '';
 		var table = $('#taable').DataTable({
-
 			aLengthMenu : [ 10, 20, 30 ],
 			language : {
 				/* 				"info": "총 _PAGES_ 중 현재 _PAGE_페이지 입니다." */
@@ -138,7 +152,7 @@
 			]
 		});
 		$('#taable th').attr("class", "center aligned");
-		
+	
 		$('#taable tbody').on('click', 'tr', function() {
 			if ($(this).hasClass('active')) {
 				$(this).removeClass('active');
@@ -146,21 +160,19 @@
 				$(this).addClass('active');
 			}
 		});
-
-		$('#btn_1').on('click', function() {
-			
-		});
-
+	
+		$('#btn_1').on('click', function() {});
+	
 		$('#taable tbody').on('dblclick', 'tr', function() {
 			$('#modal_1').modal('setting', 'closable', false).modal('show');
 			$.ajax({
-				method:'get',
-				url:'./askListDetail.jsp',
-				success:function(result){
+				method : 'get',
+				url : './askListDetail.jsp',
+				success : function(result) {
 					$('#modal_1').modal('setting', 'closable', false).modal('show');
 					$('#detail_modal').html(result);
 				},
-				error:function(XhrObject){
+				error : function(XhrObject) {
 					alert(XhrObject);
 				}
 			});

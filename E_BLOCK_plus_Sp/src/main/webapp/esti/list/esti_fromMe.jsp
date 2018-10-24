@@ -236,7 +236,7 @@
 								</div>
 							</div>
 							<div class="field">
-								<label>카탈로그번호</label> <input type="text" id="pec_no" placeholder="" readonly="readonly">
+								<label>카탈로그번호</label> <input type="text" id="pec_no" placeholder="">
 							</div>
 							<div class="field">
 								<label>이메일주소</label> <input type="text" id="pesti_email" placeholder="account@email.com">
@@ -264,8 +264,8 @@
 
 			<!-- 버튼/이벤트 시작 -->
 			<div class="actions">
-				<div id="div_allUpd" class="ui approve grey button">일괄수정하기</div>
-				<div class="ui cancel button">닫기</div>
+				<div id="div_allUpd" class="ui approve teal button">수정하기</div>
+				<div class="ui grey cancel button">닫기</div>
 			</div>
 			<!-- 버튼/이벤트 끝 -->
 
@@ -400,7 +400,7 @@
 	//데이터테이블 자료뿌리기
 	var m_table = $('#mini_table').DataTable({
 		//조회개수 조정
-		aLengthMenu : [ 5, 10, 15 ],
+		aLengthMenu : [ 10, 15 ],
 		//aLengthMenu : null,
 	       //페이지 네이션 버튼 한글로 변경
 		language : {

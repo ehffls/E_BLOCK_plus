@@ -6,7 +6,7 @@
 %>
 <!-- 신청아이콘 -->
 <div class="ui icon message">
-	<i class="edit icon"></i>
+	<i class="edit green	 icon"></i>
 	<div class="content">
 		<div class="header">결재하기</div>
 		<p>승인/기각 선택</p>
@@ -54,7 +54,7 @@
 	  	승인
 	</button>
 	<button id="btn_doReject"
-			class="ui left labeled icon large orange button"
+			class="ui left labeled icon large grey button"
 			data-tooltip="해당 신청이 기각됩니다.">
 	  <i class="edit icon"></i>
 	  	기각

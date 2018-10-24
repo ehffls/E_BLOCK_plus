@@ -110,7 +110,7 @@ $(document).ready(function(){
 			<div class="column" align="center" style="padding-left: 0px;">
 				<h2 class="ui header" style="padding-top: 5px;">
 					<i class="green file alternate outline icon"></i>
-					<div class="content">결제신청</div>
+					<div class="content">결재신청</div>
 				</h2>
 			</div>
 		</div>

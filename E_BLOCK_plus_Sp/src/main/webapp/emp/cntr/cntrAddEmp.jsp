@@ -16,6 +16,7 @@
 </style>
 </head>
 <body>
+		
 
 	<!--=============== 작성부분 ===============-->
 
@@ -26,14 +27,14 @@
 				<div class="two fields">
 					<div class="field">
 						<label>이름</label>
-						<input type="text" name="e_name" placeholder="이름">
+						<input type="text" name="e_name" id="name" placeholder="이름">
 					</div>
 					<div class="field">
 						<label>생년월일</label>
 						<div class="ui calendar" id="c_birthday">
 							<div class="ui input left icon">
 								<i class="calendar icon"></i>
-								<input type="text" name="e_bdate" placeholder="생년월일" />
+								<input type="text" name="e_bdate" id="bdate" placeholder="생년월일" />
 							</div>
 						</div>
 					</div>
@@ -41,16 +42,16 @@
 				<div class="three fields">
 					<div class="field">
 						<label>연락처</label>
-						<input type="text" name="e_ph" placeholder="000-0000-0000( - 를 입력해주세요)">
+						<input type="text" name="e_ph" id="ph" placeholder="000-0000-0000( - 를 입력해주세요)">
 					</div>
 					<div class="field">
 						<label>이메일</label>
-						<input type="text" name="e_email" placeholder="abcd1234@gmail.com">
+						<input type="text" name="e_email" id="mail" placeholder="abcd1234@gmail.com">
 					</div>
 					<div class="field">
 						<label>성별</label>
 						<div class="ui selection dropdown">
-							<input type="hidden" name="gender">
+							<input type="hidden" name="gender" id="gender">
 							<i class="dropdown icon"></i>
 							<div class="default text">성별</div>
 							<div class="menu">
@@ -93,11 +94,11 @@
 					</div>
 					<div class="field">
 						<label>아이디</label>
-						<input type="text" name="e_id" placeholder="아이디">
+						<input type="text" name="e_id" id="id" placeholder="아이디">
 					</div>
 					<div class="field">
 						<label>비밀번호</label>
-						<input type="text" name="e_pw" placeholder="비밀번호">
+						<input type="text" name="e_pw" id="pw" placeholder="비밀번호">
 					</div>
 				</div>
 				<div class="four fields">
@@ -132,7 +133,7 @@
 				</div>
 				<div class="field">
 					<label>사원비고</label>
-					<input type="text" name="note1" placeholder="비고">
+					<input type="text" name="note1" id="note1" placeholder="비고">
 				</div>
 				<h4 class="ui dividing header">사원 계약 등록</h4>
 				<div class="three fields">
@@ -141,14 +142,14 @@
 						<div class="ui calendar" id="c_day">
 							<div class="ui input left icon">
 								<i class="calendar icon"></i>
-								<input type="text" name="cntr_date" placeholder="계약일자" />
+								<input type="text" name="cntr_date" id="cdate" placeholder="계약일자" />
 							</div>
 						</div>
 					</div>
 					<div class="field">
 						<label>계약분류</label>
 						<div class="ui selection dropdown">
-							<input type="hidden" name="cntr_sort">
+							<input type="hidden" name="cntr_sort" id="c_sort">
 							<i class="dropdown icon"></i>
 							<div class="default text">계약분류</div>
 							<div class="menu">
@@ -161,7 +162,7 @@
 					</div>
 					<div class="field">
 						<label>계약연봉</label>
-						<input type="text" name="cntr_sal" placeholder="계약연봉">
+						<input type="text" name="cntr_sal" id="sal" placeholder="계약연봉">
 					</div>
 				</div>
 				<div class="two fields">
@@ -170,7 +171,7 @@
 						<div class="ui calendar" id="c_start">
 							<div class="ui input left icon">
 								<i class="calendar icon"></i>
-								<input type="text" name="cntr_sdate" placeholder="계약시작일" />
+								<input type="text" name="cntr_sdate" id="sdate" placeholder="계약시작일" />
 							</div>
 						</div>
 					</div>
@@ -179,17 +180,18 @@
 						<div class="ui calendar" id="c_end">
 							<div class="ui input left icon">
 								<i class="calendar icon"></i>
-								<input type="text" name="cntr_fdate" placeholder="계약종료일" />
+								<input type="text" name="cntr_fdate" id="cfdate" placeholder="계약종료일" />
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="field">
 					<label>계약비고</label>
-					<input type="text" name="note2" placeholder="비고">
+					<input type="text" name="note2" id="n2" placeholder="비고">
 				</div>
 				<div align="center">
 					<a href="javascript:cntrAddEmp()" class="ui teal button">등록</a>
+					<a href="javascript:testbtn()" class="ui red button">테스트</a>
 				</div>
 			</form>
 		</div>
@@ -229,8 +231,24 @@
 				startCalendar : $('#c_start')
 			});
 		});
-	
+
+		function testbtn(){
+			$('#name').val("김신규");
+			$('#bdate').val("1989-01-01");
+			$('#ph').val("010-1234-5678");
+			$('#mail').val("dong_a_s2@naver.com");
+			$('#id').val("new");
+			$('#pw').val("1234");
+			$('#note1').val("신규등록");
+			$('#cdate').val("2018-10-01");
+			$('#sal').val("50000000");
+			$('#sdate').val("2018-12-01");
+			$('#cfdate').val("2019-12-01");
+			$('#n2').val("계약비고");
+			
+		}
 		
+
 		<!-- Daum 우편번호 조회 시작  -->
 		
 		function execDaumPostcode() {

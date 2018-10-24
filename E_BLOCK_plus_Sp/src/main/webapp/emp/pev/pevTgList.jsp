@@ -124,7 +124,6 @@
 					success : function(result) {
 						$("#pev_AddForm").html(result);//평가페이지 로드
 						//값 히든 세팅
-						$("#ev_eno").val(eno);//쿠키에서 읽은 나의 사원번호
 						$("#tg_eno").val(var_tg_eno);//테이블에서 읽고 넘겨받은 대상사원번호
 						//평가준비 완료
 					},

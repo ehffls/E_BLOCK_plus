@@ -122,7 +122,9 @@ public class EmpLogic {
 		return result;
 	}
 
-	public int pev_add(Map<String, Object> pMap) {
+	public int pev_add(Map<String, Object> pMap, String e_no) {
+		pMap.put("ev_eno", e_no);
+		logger.info(pMap);
 		result = empDao.pev_add(pMap);
 		return result;
 	}
@@ -200,11 +202,15 @@ public class EmpLogic {
 		return list;
 	}
 	
-	public int cntr_addEmp(Map<String, Object> pMap, HttpServletResponse res)  {
+	public Map<String,Object> cntr_addEmp(Map<String, Object> pMap, HttpServletResponse res)  {
 		logger.info(pMap);
-		result = empDao.cntr_addEmp(pMap);
-		logger.info(pMap.get("result"));
-		if(result == 1) {
+		empDao.cntr_addEmp(pMap);
+		logger.info("결과:"+pMap);
+		logger.info("결과:"+pMap.get("result"));
+		rMap = new HashMap<String,Object>();
+		rMap.put("email", pMap.get("e_email").toString());
+		rMap.put("name", pMap.get("e_name").toString());
+		/*if(result == 1) {
 			Cookie c_email = new Cookie("email",pMap.get("e_email").toString());
 			Cookie c_ename = new Cookie("name",pMap.get("e_name").toString());
 			c_email.setMaxAge(2*60);
@@ -213,9 +219,8 @@ public class EmpLogic {
 			c_ename.setPath("/");
 			res.addCookie(c_email);
 			res.addCookie(c_ename);
-		}
-		logger.info(pMap.get("result"));
-		return result;
+		}*/
+		return rMap;
 	}
 
 	public int cntr_setDeptAuth(Map<String, Object> pMap) {

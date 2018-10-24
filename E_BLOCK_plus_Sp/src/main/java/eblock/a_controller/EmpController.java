@@ -37,8 +37,9 @@ public class EmpController  {
 		return "forward:/emp/info/persList.jsp";
 	}
 	@RequestMapping("/pev/add")
-	public String pev_add(@RequestParam Map<String,Object> pMap) {
-		robj = empLogic.pev_add(pMap);
+	public String pev_add(@RequestParam Map<String,Object> pMap
+			,@CookieValue(value="c_eno",required=false) String e_no) {
+		robj = empLogic.pev_add(pMap,e_no);
 //		 name = "aPev";
 		return "forward:/emp/pev/pevTgList.jsp";
 	}
@@ -55,9 +56,11 @@ public class EmpController  {
 		return "forward:/emp/cntr/cntrModal.jsp";
 	}
 	@RequestMapping("/cntr/addEmp")
-	public String cntr_addEmp(@RequestParam Map<String,Object> pMap,HttpServletResponse res) {
+	public String cntr_addEmp(@RequestParam Map<String,Object> pMap,HttpServletResponse res
+								,Model model) {
 		robj = empLogic.cntr_addEmp(pMap, res); // 쿠키 생성을 위한 응답객체
-		return "emp/cntr/cntrAddResult2";
+		model.addAttribute("email_name",robj);
+		return "forward:/emp/cntr/cntrAddResult2.jsp";
 	}
 	@RequestMapping("/cntr/setDeptAuth")
 	public String cntr_setDeptAuth(@RequestParam Map<String,Object> pMap, Model model) {

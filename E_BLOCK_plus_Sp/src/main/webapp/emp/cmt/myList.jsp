@@ -83,7 +83,7 @@
 				<div class="ui column stackable grid container">
 					<div class="column" align="center" style="padding-left: 0px;">
 						<h2 class="ui header" style="padding-top: 5px; padding-bottom: 5px">
-							<i class="large icons"> <i class="user icon"></i> <i class="bottom rigth corner calendar alternate outline icon"></i>
+							<i class="large icons"> <i class="green user icon"></i> <i class="teal bottom rigth corner calendar alternate outline icon"></i>
 							</i> 내 출퇴근 내역
 						</h2>
 					</div>

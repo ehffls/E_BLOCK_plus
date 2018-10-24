@@ -40,7 +40,6 @@
 					<label>인사평가작성</label>
 					<textarea style="resize: none; height: 80%" name="ev_content"></textarea>
 				</div>
-				<input type="hidden" id="ev_eno" name="ev_eno"/>
 				<input type="hidden" id="tg_eno" name="tg_eno"/>
 				<input type="hidden" id="ev_score" name="ev_score"/>
 				<div align="center">

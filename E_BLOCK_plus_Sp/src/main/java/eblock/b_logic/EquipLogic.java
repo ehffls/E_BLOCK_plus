@@ -170,7 +170,7 @@ public class EquipLogic {
 	}
 	//비품구매신청내역 조회하기
 	public Map<String, Object> purc_askList(Map<String, Object> pMap, String e_no) {
-		pMap.put("sign_eno", pMap.get("c_eno"));
+		pMap.put("sign_eno", e_no);
 		list = equipDao.purc_askList(pMap);
 		rMap = new HashMap<String, Object>();
 		rMap.put("data", list);
