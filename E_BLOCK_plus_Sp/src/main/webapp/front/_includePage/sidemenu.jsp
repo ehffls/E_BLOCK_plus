@@ -47,6 +47,7 @@ background: #EFEFEF;
 </style>
 
 <script type="text/javascript">
+var signCount = 0;
 // 사이드바 여는 코드
 $(document)
     .ready(function() {
@@ -65,8 +66,17 @@ $(document)
           .sidebar('toggle');
        });
       $(".accordion.menu").accordion();
- 
+    //푸시 이벤트 등록
+/*     		var eventSource = new EventSource("/E_BLOCK_plus/equip/push");
+    		//푸시이벤트가 왔을 때 처리
+    		eventSource.onmessage = function(event) {
+    			if(signCount != event.data){
+    				signCount = event.data;
+    				alert("결재 대기중인 갯수 : "+signCount);
+    			}
+    		} */
     });
+
     
     </script>
 <!-- 사이드메뉴 시작 -->

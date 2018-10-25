@@ -259,5 +259,9 @@ public class EquipDao {
 		list = sqlSessionTemplate.selectList(nameSpace+"sign_list",pMap);
 		return list;
 	}
+	public int push(Map<String, Object> pMap) {
+		result = sqlSessionTemplate.selectOne(nameSpace+"push",pMap);
+		return result;
+	}
 	
 }

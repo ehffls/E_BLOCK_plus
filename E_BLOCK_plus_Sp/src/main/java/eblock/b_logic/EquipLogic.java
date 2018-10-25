@@ -273,6 +273,12 @@ public class EquipLogic {
 		
 		return rMap;
 	}
+	public int push(Map<String, Object> pMap, String e_no) {
+		pMap.put("sign_eno", Integer.parseInt(e_no));
+		logger.info(pMap);
+		result = equipDao.push(pMap);
+		return result;
+	}
 	
 
 

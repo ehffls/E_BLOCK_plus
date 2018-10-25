@@ -1,6 +1,9 @@
 package eblock.a_controller;
 
+import java.io.PrintWriter;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,28 +51,56 @@ public class EquipController{
 										,Model model){
 		robj = equipLogic.newArticleAsk(pMap);
 		model.addAttribute("robj", robj);
-		return"forward:/equip/add/newArticleAsk.jsp";
+		return "forward:/equip/add/newArticleAsk.jsp";
 	}
 	@RequestMapping("/mk/add")
 	public String mk_add(@RequestParam Map<String,Object> pMap){
 		result = equipLogic.mk_add(pMap);
-		return"redirect:/equip/all/list.jsp";
+		return "redirect:/equip/all/list.jsp";
 	}
 	
 	@RequestMapping("/purc/ask")
 	public String purc_ask(@RequestParam Map<String,Object> pMap
 			,@CookieValue(value="c_eno",required=false) String e_no){
 		robj = equipLogic.purc_ask(pMap,e_no);
-		return"redirect:/equip/add/addAskList2.jsp";
+		return "redirect:/equip/add/addAskList2.jsp";
 	}
 	
 	@RequestMapping("/purc/sign")
 	public String purc_sign(@RequestParam Map<String,Object> pMap
 			,@CookieValue(value="c_eno",required=false) String e_no){
 		result = equipLogic.purc_sign(pMap,e_no);
-		return"redirect:/equip/purc/askList.jsp";//페이지 새로고침하고자함
+		return "redirect:/equip/purc/askList.jsp";//페이지 새로고침하고자함
 	}
 	
+	@RequestMapping("/push")
+	public void push(@RequestParam Map<String,Object> pMap
+			,@CookieValue(value="c_eno",required=false) String e_no
+			,HttpServletResponse response){
+		result = equipLogic.push(pMap,e_no);
+		
+		PrintWriter writer = null;
+		try {
+			response.setContentType("text/event-stream");
+			// cache must be set to no-cache
+			response.setHeader("Cache-Control", "no-cache");
+			// encoding is set to UTF-8
+			response.setCharacterEncoding("UTF-8");
+
+			writer = response.getWriter();
+
+			//System.out.println(sign_count);
+			writer.write("data: " + result + "\n\n");
+			writer.write("retry: 5000\n");
+			writer.flush();
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} 
+		writer.close();
+		
+		//return "redirect:/front/push.jsp?sign_count="+result;//페이지 새로고침하고자함
+	}
 	
 	
 }

@@ -617,5 +617,12 @@
 	</update>
 
 
+	<select id="push" parameterType="int" resultType="int">
+	SELECT count(eq_addno) FROM `eq_add_list` 
+	WHERE
+		sign_eno = #{sign_eno}
+	AND outcome = 'eqa-1' 
+	</select>
+
 	
  </mapper>
